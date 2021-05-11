@@ -3,7 +3,7 @@ name: KTP Project Review
 about: Keep & Problem & Try
 title: "[DateTime] KTP project review"
 labels: KTP, Review
-assignees: Reone1, yoontaek0928, seungsang00
+assignees: Reone1, seungsang00, yoontaek0928
 
 ---
 

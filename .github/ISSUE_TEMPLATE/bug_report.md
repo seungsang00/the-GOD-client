@@ -1,38 +1,23 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+about: write bug report
+title: "[Bug] issue"
+labels: bug, Client
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Describe the bug(버그 내용)**
+버그 내용에 대해 간략히 작성해 주세요.
 
-**To Reproduce**
-Steps to reproduce the behavior:
+**To Reproduce(버그 재현 방법)**
+가능한 자세히 버그 재현방법을 작성해 주세요
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+**Screenshots(참고할 만한 자료를 첨부, 스크린샷, 코드, 에러 메시지)**
+에러화면 스크린샷,  예상되는 문제코드 첨부, 에러 메시지등을 첨부해 주세요
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+**Additional context(수정할 방법을 제안할 수 있다면 작성해 주세요)**
