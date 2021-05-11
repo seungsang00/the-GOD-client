@@ -1,20 +1,26 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ''
-labels: ''
+title: "[Feature] Add | Update | Refactor | Delete - Title"
+labels: Client, Feature
 assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+### ISSUE
+- Group:  `client`
+- Type: `Add`, `Update`, `Refactor`, `Delete`
+- Detail: text
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+### TODO
+1. [ ] Job1
+2. [ ] Job2
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+### Estimated time
+## `3h`
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+### Urgency
+> Pick one
+##`High`
+##`Middle`
+##`Low`

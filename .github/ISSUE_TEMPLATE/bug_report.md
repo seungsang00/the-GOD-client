@@ -2,7 +2,7 @@
 name: Bug report
 about: write bug report
 title: "[Bug] issue"
-labels: bug, Client
+labels: Client, bug
 assignees: ''
 
 ---
