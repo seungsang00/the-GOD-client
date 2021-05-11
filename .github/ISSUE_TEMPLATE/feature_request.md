@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: 기능 추가 및 업데이트 리팩토링, 삭제할 내용에 대한 템플릿입니다
 title: "[Feature] Add | Update | Refactor | Delete - Title"
 labels: Client, Feature
 assignees: ''
@@ -21,6 +21,7 @@ assignees: ''
 
 ### Urgency
 > Pick one
+
 ##`High`
 ##`Middle`
 ##`Low`
