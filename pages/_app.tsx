@@ -2,6 +2,9 @@
 import type { AppProps /* AppContext */ } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@styles/index';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+library.add(faTimes);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
