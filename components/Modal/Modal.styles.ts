@@ -12,14 +12,14 @@ export default styled.div`
     border: 1px solid black;
     width: 75%;
     position: relative;
-    .Modal-close {
+    .modal-close {
       line-height: 1;
       display: inline-block;
       position: absolute;
       right: ${({ theme }) => theme.space.xs};
       top: ${({ theme }) => theme.space.xs};
     }
-    .component-box {
+    .modal-component-box {
       border: 1px solid red;
       padding: ${({ theme }) => theme.space.xs};
     }
