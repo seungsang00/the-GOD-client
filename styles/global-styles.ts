@@ -5,8 +5,11 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   * {
     box-sizing: border-box;
+    
   }
   body{
+    height:100%;
+    width:100%;
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
   a {
