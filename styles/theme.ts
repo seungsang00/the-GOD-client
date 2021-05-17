@@ -1,10 +1,23 @@
 import { DefaultTheme } from 'styled-components';
 
+// 색상
 const colors = {
   main: 'cyan',
   secondary: 'magenta',
 };
 
+// 컨셉
+const concept = {
+  glassmorphism: `
+    background: rgba( 255, 255, 255, 0.10 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
+    backdrop-filter: blur( 3.0px );
+    -webkit-backdrop-filter: blur( 3.0px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+  `,
+};
+
+// 반응형
 const customMediaQuery = (maxWidth: number): string => {
   // 최대폭을 입력하면. 문자열을 반환
   return `@media (max-width: ${maxWidth}px)`;
@@ -31,6 +44,7 @@ const space = {
 export const theme: DefaultTheme = {
   borderRadius: '5px',
   colors,
+  concept,
   media,
   space,
 };
