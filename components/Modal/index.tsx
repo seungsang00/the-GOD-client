@@ -9,9 +9,8 @@ const Modal = ({
   handler,
 }: ModalProps): ReactElement | null => {
   if (!isOpen) return null;
-
   return (
-    <ModalStyle>
+    <ModalStyle onClick={handler}>
       <div className="modal-box">
         <div className="modal-close" onClick={handler}>
           <FontAwesomeIcon icon="times" />
