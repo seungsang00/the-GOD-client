@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import ModalStyle from './Modal.styles';
+import ModalStyle from './Modal.style';
 import { ModalProps } from '@interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

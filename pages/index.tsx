@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Modal, Toggle, Layout } from '@components';
+import { Modal, Toggle, Button, Layout } from '@components';
 import useModal from 'hooks/useModal';
 
 const IndexPage = () => {
@@ -26,6 +26,16 @@ const IndexPage = () => {
         <Toggle
           value={toggleValue}
           icon="parking"
+          handler={() => {
+            setToggleValue(!toggleValue);
+          }}
+        />
+      </div>
+      <div style={{ width: '100%', padding: '40px' }}>
+        <h1>Button</h1>
+        <Button
+          disabled={false}
+          text="버튼"
           handler={() => {
             setToggleValue(!toggleValue);
           }}

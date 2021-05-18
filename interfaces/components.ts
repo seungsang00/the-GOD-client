@@ -16,3 +16,9 @@ export type ToggleProps = {
   readonly icon: 'parking' | 'bus' | 'baby' | 'subway' | 'train' | 'cat';
   handler: MouseEventHandler<HTMLDivElement> | undefined;
 };
+//button type
+export type ButtonProps = {
+  readonly disabled: boolean;
+  readonly text: string;
+  handler: MouseEventHandler<HTMLButtonElement> | undefined;
+};
