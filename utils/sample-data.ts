@@ -10,11 +10,11 @@ export const sampleUserData: User[] = [
 
 export const sampleSearchInputOptions = {
   artists: {
-    ENHYPEN: ['희승', '정원', '제이', '제이크', '성훈', '선우', '니키'],
+    ENHYPEN: ['ALL', '희승', '정원', '제이', '제이크', '성훈', '선우', '니키'],
     IU: null,
     나훈아: null,
     영탁: null,
-    BTS: ['V', '지민', '제이홉', '슈가', 'RM', '정국', '진'],
+    BTS: ['ALL', 'V', '지민', '제이홉', '슈가', 'RM', '정국', '진'],
   },
   location: {
     서울: [
