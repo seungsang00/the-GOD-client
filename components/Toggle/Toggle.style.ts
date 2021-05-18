@@ -12,8 +12,10 @@ export default styled.div<{ value: boolean }>`
     background-color: rgba(255, 255, 255, 0.6);
     border-radius: ${({ theme }) => theme.borderRadius};
     padding: ${({ theme }) => theme.space.md};
-    box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.3)
-      ${(props) => props.value && 'inset'};
+    box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.3);
+    &:active {
+      box-shadow: 0 7px 7px 0 rgba(0, 0, 0, 0.3) inset;
+    }
     .toggle-icon {
       text-align: center;
       font-size: 30px;

@@ -22,3 +22,11 @@ export type ButtonProps = {
   readonly text: string;
   handler: MouseEventHandler<HTMLButtonElement> | undefined;
 };
+// guide Button type
+export interface GuideButtonProps {
+  // TODO: handler type change;
+  active: boolean;
+  resetHandler: MouseEventHandler<HTMLButtonElement> | undefined;
+  shareHandler: MouseEventHandler<HTMLButtonElement> | undefined;
+  activeHandler: MouseEventHandler<HTMLButtonElement> | undefined;
+}
