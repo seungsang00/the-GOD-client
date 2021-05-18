@@ -8,8 +8,8 @@ export const sampleUserData: User[] = [
   { id: 104, name: 'Dave' },
 ];
 
-export const sampleSearchInputOptions = {
-  artists: {
+export const sampleSearchInputOptions: any = {
+  artist: {
     ENHYPEN: ['ALL', '희승', '정원', '제이', '제이크', '성훈', '선우', '니키'],
     IU: null,
     나훈아: null,
