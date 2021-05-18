@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import SearchInputs from './index';
 
-describe('SearchInputs container', () => {
+describe('SearchInputs component', () => {
   describe('SearchInputs render test', () => {
     it('.search-input-area와 .search-input-option-area 엘리먼트가 각각 1개씩 렌더 되어야 한다', () => {
       const wrapper = shallow(<SearchInputs />);
