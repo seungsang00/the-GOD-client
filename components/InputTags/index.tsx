@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { InputTagsSection } from './InputTags.style';
 
 interface IInputTags {
   tagList?: string[];
 }
-const InputTags = ({ tagList }: IInputTags) => {
+const InputTags = ({ tagList }: IInputTags): ReactElement => {
   const [value, setValue] = useState<string>('');
   const [tags, setTags] = useState<string[]>(tagList as string[]);
 
@@ -30,8 +30,20 @@ const InputTags = ({ tagList }: IInputTags) => {
 
   return (
     <InputTagsSection>
-      {tags && tags.map((el) => <span className="tag" key={el} onClick={() => handleDeleteTag(el)}>{`#${el}`}</span>)}
-      <input value={value} placeholder="태그를 입력해주세요" onChange={handleInputChange} onKeyDown={handleAddTag} />
+      {tags &&
+        tags.map((el) => (
+          <span
+            className="tag"
+            key={el}
+            onClick={() => handleDeleteTag(el)}
+          >{`#${el}`}</span>
+        ))}
+      <input
+        value={value}
+        placeholder="태그를 입력해주세요"
+        onChange={handleInputChange}
+        onKeyDown={handleAddTag}
+      />
     </InputTagsSection>
   );
 };

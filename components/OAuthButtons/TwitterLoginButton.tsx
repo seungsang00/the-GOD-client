@@ -1,3 +1,4 @@
+import React, { ReactElement } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { ButtonOAuth } from './OAuthButton.style';
@@ -5,7 +6,7 @@ import { ButtonOAuth } from './OAuthButton.style';
 interface TwitterLoginProps {
   onClick: () => void;
 }
-const TwitterLoginButton = ({ onClick }: TwitterLoginProps) => {
+const TwitterLoginButton = ({ onClick }: TwitterLoginProps): ReactElement => {
   return (
     <ButtonOAuth onClick={onClick}>
       <FontAwesomeIcon icon={faTwitter} />
