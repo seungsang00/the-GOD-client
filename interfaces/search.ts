@@ -1,15 +1,13 @@
-export interface ISearch {
-  artist?: string;
-  location: SearchLocation;
-  date: SearchDate;
+export interface SearchInputProps {
+  value: string[];
+  placeholder: string[];
+  options: any;
+  openOptionDep?: 1 | 2;
+  handleInputClick: SearchInputHandlers;
+  handleOptionClick: (selected: string, depth: number) => void;
 }
 
-type SearchLocation = {
-  city?: string;
-  district?: string;
-};
-
-type SearchDate = {
-  start?: string;
-  end?: string;
+type SearchInputHandlers = {
+  first: () => void;
+  second: () => void;
 };
