@@ -1,6 +1,6 @@
 import { SearchInputProps } from 'interfaces/search';
 import React, { ReactElement } from 'react';
-import { OptionArea } from './SearchInputs.style';
+import { InputArea, OptionArea } from './SearchInputs.style';
 
 const SearchInputs = ({
   value,
@@ -14,7 +14,7 @@ const SearchInputs = ({
 
   return (
     <section>
-      <div className="search-input-area">
+      <InputArea className="search-input-area">
         <input
           className="input-first-depth"
           name="first"
@@ -23,15 +23,17 @@ const SearchInputs = ({
           onClick={handleInputClick.first}
           readOnly // ! disabled면 아예 클릭도 안먹힘. DOM 자체에서 인식을 안해버림.
         />
-        <input
-          className="input-second-depth"
-          name="second"
-          value={secondValue}
-          placeholder={placeholder[1]}
-          onClick={handleInputClick.second}
-          readOnly
-        />
-      </div>
+        {secondValue && (
+          <input
+            className="input-second-depth"
+            name="second"
+            value={secondValue}
+            placeholder={placeholder[1]}
+            onClick={handleInputClick.second}
+            readOnly
+          />
+        )}
+      </InputArea>
       <OptionArea className="input-options-area">
         {openOptionDep === 1 && (
           <ul className="options-first-depth">
@@ -51,7 +53,7 @@ const SearchInputs = ({
         {openOptionDep === 2 && (
           <ul className="options-second-depth">
             {value &&
-              options[firstValue].length !== 0 &&
+              options[firstValue] &&
               options[firstValue].map((second: string, idx: number) => (
                 <li
                   className="option"
