@@ -15,12 +15,15 @@ const FilePreview = ({
     <>
       {url && (
         <PreviewContainer>
+          <div className="button-container">
+            <FontAwesomeIcon
+              className="button-file-remove"
+              icon={faTimesCircle}
+              onClick={handleRemoveFile}
+            />
+          </div>
           <img src={url} alt="uploaded file preview" />
-          <FontAwesomeIcon
-            className="button-file-remove"
-            icon={faTimesCircle}
-            onClick={handleRemoveFile}
-          />
+          <div className="preview-wrapper"></div>
         </PreviewContainer>
       )}
     </>
