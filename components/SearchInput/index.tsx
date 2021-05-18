@@ -1,8 +1,8 @@
 import { SearchInputProps } from 'interfaces/search';
 import React, { ReactElement } from 'react';
-import { InputArea, OptionArea } from './SearchInputs.style';
+import { InputArea, OptionArea } from './SearchInput.style';
 
-const SearchInputs = ({
+const SearchInput = ({
   value,
   placeholder,
   options,
@@ -71,4 +71,4 @@ const SearchInputs = ({
   );
 };
 
-export default SearchInputs;
+export default SearchInput;
