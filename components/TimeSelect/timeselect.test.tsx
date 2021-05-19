@@ -14,21 +14,21 @@ describe('TimeSelect component', () => {
     );
   });
 
-  it('TimeSelect는 시를 입력받는 select와 분을 입력받는 select를 하나씩 가져야합니다', () => {
-    expect(wrapper.find('select')).to.have.length(2);
-    expect(wrapper.find('select[name="hour"]')).to.have.length(1);
-    expect(wrapper.find('select[name="minutes"]')).to.have.length(1);
+  it('TimeSelect는 시와 분을 입력받는 필드를 하나씩 가져야합니다', () => {
+    expect(wrapper.find('article')).to.have.length(2);
+    expect(wrapper.find('.selectbox-hour')).to.have.length(1);
+    expect(wrapper.find('.selectbox-minutes')).to.have.length(1);
   });
 
   it('시를 입력받는 select의 옵션은 24개(00~23)가 존재해야 합니다', () => {
-    expect(wrapper.find('select[name="hour"]').find('option')).to.have.length(
-      24
-    );
+    expect(
+      wrapper.find('.selectbox-hour').find('ul').find('.option')
+    ).to.have.length(24);
   });
 
   it('분을 입력받는 select의 옵션은 60개(00~59)가 존재해야 합니다', () => {
     expect(
-      wrapper.find('select[name="minutes"]').find('option')
+      wrapper.find('.selectbox-minutes').find('ul').find('.option')
     ).to.have.length(60);
   });
 });

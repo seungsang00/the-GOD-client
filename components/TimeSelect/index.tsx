@@ -1,37 +1,76 @@
-import React, { ChangeEvent, ReactElement } from 'react';
+import React, { MouseEvent, ReactElement, useState } from 'react';
 import { hours, minutes } from '@utils/time';
 import { TimeSelectProps } from 'interfaces/props';
-import { TimeSelectContainer } from './TimeSelect.style';
+import { TimeSelectBox } from './TimeSelect.style';
 
 const TimeSelect = ({ setHour, setMinutes }: TimeSelectProps): ReactElement => {
-  const handleHourSelect = (e: ChangeEvent) => {
-    const target = e.target as HTMLSelectElement;
-    setHour(target.value);
-    console.log(target.value);
+  const [time, setTime] = useState<string[]>([' --시-- ', ' --분-- ']);
+  const [openOption, setOpenOption] = useState<boolean[]>([false, false]);
+  const [hour, minute] = time;
+  const [isOptionOpenH, isOptionOpenM] = openOption;
+
+  const handleSelectHour = (e: MouseEvent) => {
+    const target = e.target as HTMLLIElement;
+    const newTime = [...time];
+    newTime[0] = target.textContent as string;
+    setTime(newTime);
+    setHour(time[0]);
+    setOpenOption([false, false]);
+    console.log(target.textContent as string);
   };
-  const handleMinutesSelect = (e: ChangeEvent) => {
-    const target = e.target as HTMLSelectElement;
-    setMinutes(target.value);
-    console.log(target.value);
+
+  const handleSelectMinutes = (e: MouseEvent) => {
+    const target = e.target as HTMLLIElement;
+    const newTime = [...time];
+    newTime[1] = target.textContent as string;
+    setTime(newTime);
+    setMinutes(time[1]);
+    setOpenOption([false, false]);
+    console.log(target.textContent as string);
   };
+
   return (
-    <TimeSelectContainer>
-      <select name="hour" onChange={handleHourSelect}>
-        {hours.map((HH: string) => (
-          <option value={HH} key={`h${HH}`}>
-            {HH}
-          </option>
-        ))}
-      </select>
+    <TimeSelectBox>
+      <article className="selectbox-hour">
+        <div
+          className="selectbox-display"
+          onClick={() => setOpenOption([true, false])}
+        >
+          {hour}
+        </div>
+        {isOptionOpenH && (
+          <ul className="option-container">
+            {hours.map((HH: string) => (
+              <li key={`h${HH}`} onClick={handleSelectHour}>
+                {HH}
+              </li>
+            ))}
+          </ul>
+        )}
+      </article>
       <span>:</span>
-      <select name="minutes" onChange={handleMinutesSelect}>
-        {minutes.map((MM: string) => (
-          <option value={MM} key={`h${MM}`}>
-            {MM}
-          </option>
-        ))}
-      </select>
-    </TimeSelectContainer>
+      <article className="selectbox-minutes">
+        <div
+          className="selectbox-display"
+          onClick={() => setOpenOption([false, true])}
+        >
+          {minute}
+        </div>
+        {isOptionOpenM && (
+          <ul className="option-container">
+            {minutes.map((MM: string) => (
+              <li
+                className="option"
+                key={`m${MM}`}
+                onClick={handleSelectMinutes}
+              >
+                {MM}
+              </li>
+            ))}
+          </ul>
+        )}
+      </article>
+    </TimeSelectBox>
   );
 };
 
