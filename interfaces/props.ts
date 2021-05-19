@@ -24,6 +24,7 @@ export interface BadgeContainerProps {
   bgcolor?: string;
 }
 
-export interface UseMediaQueriesProps {
-  breakpoint: number;
+export interface TimeSelectProps {
+  setHour: (HH: string) => void;
+  setMinutes: (MM: string) => void;
 }

@@ -15,3 +15,4 @@ export { default as UsernameInput } from './UsernameInput';
 export { default as EmailInput } from './EmailInput';
 export { default as Badge } from './Badge';
 export { default as OrderSidebar } from './OrderSidebar';
+export { default as TimeSelect } from './TimeSelect';
