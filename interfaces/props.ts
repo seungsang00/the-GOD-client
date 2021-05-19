@@ -23,3 +23,7 @@ export interface BadgeContainerProps {
   textcolor?: string;
   bgcolor?: string;
 }
+
+export interface UseMediaQueriesProps {
+  breakpoint: number;
+}
