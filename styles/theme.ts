@@ -4,6 +4,9 @@ import { DefaultTheme } from 'styled-components';
 const colors = {
   main: 'cyan',
   secondary: 'magenta',
+  green: '#2ecc71',
+  red: '#e74c3c',
+  yellow: '#f1c40f',
 };
 
 // 컨셉

@@ -10,7 +10,8 @@ export { default as SearchInputs } from './SearchInputs';
 export { default as Header } from './Header';
 export { default as FileInput } from './FileInput';
 export { default as Avatar } from './Avatar';
-
+export { default as PasswordInput } from './PasswordInput';
+export { default as UsernameInput } from './UsernameInput';
+export { default as EmailInput } from './EmailInput';
 export { default as Badge } from './Badge';
 export { default as OrderSidebar } from './OrderSidebar';
-
