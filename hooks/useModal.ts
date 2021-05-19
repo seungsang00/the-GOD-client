@@ -1,7 +1,7 @@
 import { MouseEventHandler, useState } from 'react';
 
-export default () => {
-  const [isOpen, setIsOpen] = useState<Boolean>(false);
+const useModal = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const modalController: MouseEventHandler = (e) => {
     e.stopPropagation();
     if (
@@ -13,3 +13,4 @@ export default () => {
   };
   return { isOpen, modalController };
 };
+export default useModal;
