@@ -25,14 +25,14 @@ describe('Button component', () => {
       wrapper = shallow(
         <Button disabled={true} text={'1'} handler={onButtonClick} />
       );
-      wrapper.simulate('clinck');
-      expect(onButtonClick).to.have.property('callCount', 0);
+      expect(wrapper.first().prop('disabled')).to.be.true;
     });
 
     it('disabled가 false이면 핸들러 실행', () => {
       wrapper = shallow(
         <Button disabled={false} text={'1'} handler={onButtonClick} />
       );
+      expect(wrapper.first().prop('disabled')).to.be.false;
       wrapper.simulate('click');
       expect(onButtonClick).to.have.property('callCount', 1);
     });

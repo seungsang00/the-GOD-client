@@ -11,8 +11,22 @@ import {
   faCat,
   faTrain,
   faParking,
+  faRoute,
+  faShare,
+  faUndo,
 } from '@fortawesome/free-solid-svg-icons';
-library.add(faTimes, faBus, faSubway, faBaby, faCat, faTrain, faParking);
+library.add(
+  faTimes,
+  faBus,
+  faSubway,
+  faBaby,
+  faCat,
+  faTrain,
+  faParking,
+  faRoute,
+  faShare,
+  faUndo
+);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
