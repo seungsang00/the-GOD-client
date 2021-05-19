@@ -18,20 +18,20 @@ describe('carousel component', () => {
       );
     });
     it('isPage이 fales이면 페이지 전환 버튼 표시 안함', () => {
-      expect(wrapper.find('.pagenation').exists()).to.be.false;
+      expect(wrapper.find('.pagination').exists()).to.be.false;
     });
     it('isArrow이면 페이지 전환 버튼 표시', () => {
       expect(wrapper.find('.arrwo-box').exists()).to.be.false;
     });
   });
-  describe('col에 따른 pagenation 갯수 변화', () => {
+  describe('col에 따른 pagination 갯수 변화', () => {
     it('col = 4', () => {
       wrapper = shallow(
         <Carousel isArrow={true} isPage={true} col={4}>
           {fekeChildren}
         </Carousel>
       );
-      expect(wrapper.find('.pagenation').children()).to.have.lengthOf(2);
+      expect(wrapper.find('.pagination').children()).to.have.lengthOf(2);
     });
     it('col = 2', () => {
       wrapper = shallow(
@@ -39,7 +39,7 @@ describe('carousel component', () => {
           {fekeChildren}
         </Carousel>
       );
-      expect(wrapper.find('.pagenation').children()).to.have.lengthOf(4);
+      expect(wrapper.find('.pagination').children()).to.have.lengthOf(4);
     });
     it('col = 1', () => {
       wrapper = shallow(
@@ -47,7 +47,7 @@ describe('carousel component', () => {
           {fekeChildren}
         </Carousel>
       );
-      expect(wrapper.find('.pagenation').children()).to.have.lengthOf(8);
+      expect(wrapper.find('.pagination').children()).to.have.lengthOf(8);
     });
   });
   describe('carousel index test', () => {
@@ -76,11 +76,11 @@ describe('carousel component', () => {
         expect(wrapper.prop('index')).to.be.equal(0);
       });
     });
-    describe('pagenation button test', () => {
-      it('pagenation 클릭하면 해당 페이지로 이동', () => {
-        wrapper.find('.pagenation').childAt(1).simulate('click');
+    describe('pagination button test', () => {
+      it('pagination 클릭하면 해당 페이지로 이동', () => {
+        wrapper.find('.pagination').childAt(1).simulate('click');
         expect(wrapper.prop('index')).to.be.equal(1);
-        wrapper.find('.pagenation').childAt(3).simulate('click');
+        wrapper.find('.pagination').childAt(3).simulate('click');
         expect(wrapper.prop('index')).to.be.equal(3);
       });
     });

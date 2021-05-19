@@ -71,7 +71,7 @@ export default styled.div<{
       }
     }
   }
-  .pagenation {
+  .pagination {
     display: flex;
     justify-content: center;
     margin-top: ${({ theme }) => theme.space.xs};

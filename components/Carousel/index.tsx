@@ -66,7 +66,7 @@ const Carousel = ({
         </div>
       )}
       {isPage && (
-        <div className="pagenation">
+        <div className="pagination">
           {!Array.isArray(children) && children}
           {Array.isArray(children) &&
             children.map((_el, i) =>
