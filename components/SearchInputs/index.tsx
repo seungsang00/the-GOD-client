@@ -7,6 +7,16 @@ import MobileSearchInput from './MobileSearchInput';
 
 const SearchInputs = (): ReactElement => {
   const [viewWidth, setViewWidth] = useState<number | undefined>(undefined);
+  const handleResize = () => {
+    setViewWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     setViewWidth(window.innerWidth);
