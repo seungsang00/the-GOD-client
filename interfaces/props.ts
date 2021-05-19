@@ -15,4 +15,11 @@ export interface AvatarContainerProps {
 
 export interface BadgeProps {
   children: ReactNode;
+  textcolor?: string;
+  bgcolor?: string;
+}
+
+export interface BadgeContainerProps {
+  textcolor?: string;
+  bgcolor?: string;
 }

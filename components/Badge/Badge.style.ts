@@ -1,7 +1,11 @@
-import styled from '@styles/themed-components';
+import styled, { withProps } from '@styles/themed-components';
+import { BadgeContainerProps } from 'interfaces/props';
 
-export const BadgeContainer = styled.span`
-  background-color: cyan;
+export const BadgeContainer = withProps<BadgeContainerProps, HTMLSpanElement>(
+  styled.span
+)`
+  background-color: ${({ bgcolor }) => (bgcolor ? bgcolor : 'cyan')};
+  color: ${({ textcolor }) => (textcolor ? textcolor : 'black')};
   margin-right: ${({ theme }) => theme.space.xs};
   border-radius: ${({ theme }) => theme.borderRadius};
   font-weight: 500;
