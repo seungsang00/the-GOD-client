@@ -1,5 +1,5 @@
-export { default as InputTags } from './InputTags';
 export * from './OAuthButtons';
+export { default as InputTags } from './InputTags';
 export { default as Modal } from './Modal';
 export { default as Toggle } from './Toggle';
 export { default as Button } from './Button';
