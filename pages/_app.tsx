@@ -3,8 +3,16 @@ import type { AppProps /* AppContext */ } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@styles/index';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-library.add(faTimes);
+import {
+  faTimes,
+  faBus,
+  faSubway,
+  faBaby,
+  faCat,
+  faTrain,
+  faParking,
+} from '@fortawesome/free-solid-svg-icons';
+library.add(faTimes, faBus, faSubway, faBaby, faCat, faTrain, faParking);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
