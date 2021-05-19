@@ -6,13 +6,12 @@ import FileInput from './index';
 
 describe('FileInput component', () => {
   describe('FileInput render test', () => {
-    it('form 내부에 1개의 input과 1개의 label이 존재해야 한다', () => {
+    it('내부에 1개의 input과 1개의 label이 존재해야 한다', () => {
       const wrapper = shallow(
         <FileInput handleFileChange={() => console.log(`upload file`)} />
       );
-      expect(wrapper.find('form')).to.have.length(1);
-      expect(wrapper.find('form').find('input')).to.have.length(1);
-      expect(wrapper.find('form').find('label')).to.have.length(1);
+      expect(wrapper.find('input')).to.have.length(1);
+      expect(wrapper.find('label')).to.have.length(1);
     });
   });
 
