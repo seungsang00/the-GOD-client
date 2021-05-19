@@ -32,28 +32,4 @@ describe('TimeSelect component', () => {
       wrapper.find('select[name="minutes"]').find('option')
     ).to.have.length(60);
   });
-
-  describe('handler test', () => {
-    it('시(hour)가 선택되면 props로 전달받는 setHour가 호출되어야 합니다', () => {
-      const testSetHour = spy();
-      const testSetMinutes = spy();
-      wrapper = shallow(
-        <TimeSelect setHour={testSetHour} setMinutes={testSetMinutes} />
-      );
-      wrapper.find('select[name="hour"]').simulate('click');
-      wrapper.find('select[name="minutes"]').simulate('click');
-      expect(testSetHour).to.have.property('callCount', 1);
-    });
-
-    it('분(minutes)이 선택되면 props로 전달받는 setHour가 호출되어야 합니다', () => {
-      const testSetHour = spy();
-      const testSetMinutes = spy();
-      wrapper = shallow(
-        <TimeSelect setHour={testSetHour} setMinutes={testSetMinutes} />
-      );
-      wrapper.find('select[name="hour"]').simulate('click');
-      wrapper.find('select[name="minutes"]').simulate('click');
-      expect(testSetMinutes).to.have.property('callCount', 1);
-    });
-  });
 });
