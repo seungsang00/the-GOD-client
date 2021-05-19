@@ -12,6 +12,11 @@ describe('PasswordInput component', () => {
       wrapper = shallow(<PasswordInput />);
       wrapper.find('input').simulate('change', { target: { value: 'hello' } });
     });
+    it('입력을 시작하기 전에는 에러메시지 표시안함', () => {
+      expect(wrapper.find('.error').exists()).to.be.false;
+      expect(wrapper.find('p').exists()).to.be.false;
+      expect(wrapper.find('.error').exists()).to.not.true;
+    });
     it(
       '입력값이 유효하지 않을 경우 에러메시지 표시' /*, () => {
       expect(wrapper.find('.error').exists()).to.be.true;
