@@ -3,6 +3,7 @@ export * from './TextInput';
 export { default as InputTags } from './InputTags';
 export { default as Modal } from './Modal';
 export { default as Toggle } from './Toggle';
+export { default as Button } from './Button';
 export { default as Layout } from './Layout';
 export { default as SearchInputs } from './SearchInputs';
 export { default as Header } from './Header';

@@ -46,7 +46,7 @@ describe('Toggle component', () => {
       wrapper = shallow(
         <Toggle value={false} icon="parking" handler={onButtonClick} />
       );
-      wrapper.first().simulate('click');
+      wrapper.find('.toggle-box').simulate('click');
       expect(onButtonClick).to.have.property('callCount', 1);
     });
   });
