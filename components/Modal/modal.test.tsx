@@ -37,14 +37,10 @@ describe('Modal component', () => {
     );
     it('x버튼을 누르면 handler가 호출된다', () => {
       TestModal.find('.modal-close').simulate('click');
-      TestModal.find('.modal-box').simulate('click');
-      TestModal.find('.modal-component-box').simulate('click');
       expect(onButtonClick).to.have.property('callCount', 1);
     });
     it('배경을 클릭하면 handler가 호출된다', () => {
       TestModal.first().simulate('click');
-      TestModal.find('.modal-box').simulate('click');
-      TestModal.find('.modal-component-box').simulate('click');
       expect(onButtonClick).to.have.property('callCount', 2);
     });
   });
