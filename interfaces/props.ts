@@ -23,3 +23,8 @@ export interface BadgeContainerProps {
   textcolor?: string;
   bgcolor?: string;
 }
+
+export interface TimeSelectProps {
+  setHour: (HH: string) => void;
+  setMinutes: (MM: string) => void;
+}

@@ -1,17 +1,36 @@
-import React, { ReactElement, useRef, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { SearchInputsValues } from 'interfaces/search';
 import { SearchInputsSection } from './SearchInputs.style';
 import { sampleSearchInputOptions as optionData } from '../../utils/sample-data';
+import DesktopSearchInput from './DesktopSearchInput';
+import MobileSearchInput from './MobileSearchInput';
 
 const SearchInputs = (): ReactElement => {
+  const [viewWidth, setViewWidth] = useState<number | undefined>(undefined);
+  const handleResize = () => {
+    setViewWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    setViewWidth(window.innerWidth);
+  }, [viewWidth]);
+
   const [values, setValues] = useState<SearchInputsValues>({
     artist: ['', ''],
     location: ['', ''],
+    dates: ['', ''],
   });
 
   const [options, setOptions] = useState<string[] | undefined>(undefined);
 
-  const currentField = useRef<string>('');
+  const currentField = useRef<string>('artist');
   const currentOptionDepth = useRef<number | undefined>(undefined);
 
   const handleInputClick = (
@@ -19,9 +38,14 @@ const SearchInputs = (): ReactElement => {
     optionData: any
   ) => {
     const target = e.target as HTMLInputElement;
-    setOptions(Object.keys(optionData[target.name]));
     currentField.current = target.name;
-    currentOptionDepth.current = 1;
+    if (currentField.current !== 'dates') {
+      setOptions(Object.keys(optionData[target.name]));
+      currentOptionDepth.current = 1;
+    } else {
+      console.log(`달력 나와라 오바`);
+      // TODO: datepicker가 다루어져야 합니다
+    }
   };
 
   const handleOptionClick = (selected: string) => {
@@ -47,32 +71,65 @@ const SearchInputs = (): ReactElement => {
     }
   };
 
+  const initInputField = () => {
+    if (currentField.current === 'artist') {
+      // step1
+      currentField.current = 'location';
+      setOptions(Object.keys(optionData.location));
+    } else if (currentField.current === 'location') {
+      // step2
+      currentField.current = 'dates';
+      setOptions(undefined); // FIXME: datepicker 라이브러리에 맞게 변경해야 합니다
+    }
+    // common
+    currentOptionDepth.current = 1;
+  };
+
+  const handleMobileOptionClick = (selected: string) => {
+    if (currentOptionDepth.current === 1) {
+      setValues({
+        ...values,
+        [currentField.current as string]: [selected, ''],
+      });
+      const secondOptionList = optionData[currentField.current][selected];
+      if (options) {
+        if (secondOptionList) {
+          setOptions(secondOptionList);
+          currentOptionDepth.current = 2;
+        } else {
+          initInputField();
+        }
+      }
+    } else if (currentOptionDepth.current === 2) {
+      setValues({
+        ...values,
+        [currentField.current as string]: [
+          values[currentField.current as string][0],
+          selected,
+        ],
+      });
+      initInputField();
+    }
+  };
+
   return (
     <SearchInputsSection>
-      <div className="search-input-area">
-        <input
-          name="artist"
-          value={values.artist.join(' ')}
-          onClick={(e) => handleInputClick(e, optionData)}
-          placeholder="아티스트를 선택해주세요"
-          readOnly
+      {viewWidth && viewWidth > 425 ? (
+        <DesktopSearchInput
+          values={values}
+          options={options}
+          handleInputClick={handleInputClick}
+          handleOptionClick={handleOptionClick}
         />
-        <input
-          name="location"
-          value={values.location.join(' ')}
-          onClick={(e) => handleInputClick(e, optionData)}
-          placeholder="찾고 싶은 위치를 선택해주세요"
-          readOnly
+      ) : (
+        <MobileSearchInput
+          values={values}
+          currentField={currentField.current}
+          options={options}
+          handleInputClick={handleInputClick}
+          handleOptionClick={handleMobileOptionClick}
         />
-      </div>
-      <div className="search-input-option-area">
-        <ul className="search-input-option">
-          {options &&
-            options.map((el) => (
-              <li onClick={() => handleOptionClick(el)}>{el}</li>
-            ))}
-        </ul>
-      </div>
+      )}
     </SearchInputsSection>
   );
 };
