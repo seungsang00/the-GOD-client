@@ -1,6 +1,6 @@
 import styled from '@styles/themed-components';
 
-export const InputField = styled.div`
+export const InputField = styled.div<{ error: string | null }>`
   input {
     width: 100%;
     height: 32px;

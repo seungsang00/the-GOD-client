@@ -12,7 +12,6 @@ const UsernameInput = (): ReactElement => {
   };
 
   useEffect(() => {
-    console.log(error);
     const target = document.querySelector('#usernameInput');
     if (target && state) {
       if (!error) {
@@ -26,7 +25,7 @@ const UsernameInput = (): ReactElement => {
   }, [error]);
 
   return (
-    <InputField>
+    <InputField error={error}>
       <input
         id="usernameInput"
         type="text"
