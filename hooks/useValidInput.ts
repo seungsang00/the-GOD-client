@@ -1,9 +1,10 @@
-import { VerifyFunction } from '@utils/verify';
+import { VerifyFunction } from '@utils/verifyFunctions';
 import { useEffect, useState } from 'react';
 
 const useValidInput = (
   initialState: string,
-  verifyFunction: VerifyFunction
+  verifyFunction: VerifyFunction,
+  verifyStandard: RegExp
 ) => {
   const [state, setState] = useState<string>(initialState);
   const [error, setError] = useState<string | null>(null);
@@ -15,7 +16,7 @@ const useValidInput = (
       setError(null); // 입력 전까지는 error 미노출
       setDidInit(true); // state가 최초 변경되는 시점에 didInit true
     } else {
-      setError(verifyFunction(state).errorMessage);
+      setError(verifyFunction(verifyStandard, state).errorMessage);
     }
   }, [state]);
 
