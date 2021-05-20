@@ -1,5 +1,10 @@
 import { User } from '../interfaces';
 
+/* TODO: refactor
+/ 1. page-layout
+/ 2. reducer (factory)
+
+
 /** Dummy user data. */
 export const sampleUserData: User[] = [
   { id: 101, name: 'Alice' },

@@ -1,3 +1,5 @@
+// TODO: nullcheck
+
 export const verifyPassword = (password: string): VerifyResult => {
   // 6~10자 영문, 숫자 조합
   const regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,10}$/;
