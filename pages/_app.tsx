@@ -14,6 +14,9 @@ import {
   faRoute,
   faShare,
   faUndo,
+  faAngleRight,
+  faAngleLeft,
+  faCircle,
 } from '@fortawesome/free-solid-svg-icons';
 library.add(
   faTimes,
@@ -25,7 +28,10 @@ library.add(
   faParking,
   faRoute,
   faShare,
-  faUndo
+  faUndo,
+  faAngleRight,
+  faAngleLeft,
+  faCircle
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
