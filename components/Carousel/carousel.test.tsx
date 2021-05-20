@@ -1,8 +1,6 @@
 import React from 'react';
-import { configure, shallow, ShallowWrapper, ReactWrapper } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow, ShallowWrapper, ReactWrapper } from 'enzyme';
 import { expect } from 'chai';
-configure({ adapter: new Adapter() });
 import Carousel from './index';
 
 describe('carousel component', () => {
@@ -76,6 +74,7 @@ describe('carousel component', () => {
         expect(wrapper.prop('index')).to.be.equal(0);
       });
     });
+
     describe('pagination button test', () => {
       it('pagination 클릭하면 해당 페이지로 이동', () => {
         wrapper.find('.pagination').childAt(1).simulate('click');
