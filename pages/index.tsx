@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Modal, Toggle, Button, Layout, GuideButton } from '@components';
 import useModal from 'hooks/useModal';
 import Carousel from 'components/Carousel';
+import { LoginContent } from 'containers/auth/login';
 
 const IndexPage = () => {
   const { isOpen, modalController } = useModal();
@@ -14,12 +15,13 @@ const IndexPage = () => {
       <h1>component test</h1>
       <div style={{ width: '100%', padding: '40px' }}>
         <label htmlFor="modal">modal button</label>
+        <LoginContent />
         <button style={{ border: 'solid 1px red' }} onClick={modalController}>
           modal active button
         </button>
         <Modal
           isOpen={isOpen}
-          component={<>테스트용 컴포넌트</>}
+          component={<LoginContent />}
           handler={modalController}
         />
       </div>
