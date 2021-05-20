@@ -1,5 +1,3 @@
-import { verifyPassword } from '@utils/verify';
-import useValidInput from 'hooks/useValidInput';
 import React, {
   ChangeEvent,
   ReactElement,
@@ -10,19 +8,23 @@ import React, {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { PasswordInputField } from './PasswordInput.style';
+import { VerifiedInputProps } from 'interfaces/props';
 
-const PasswordInput = (): ReactElement => {
+const PasswordInput = ({
+  value,
+  setValue,
+  error,
+}: VerifiedInputProps): ReactElement => {
   const [visible, setVisible] = useState<boolean>(false);
-  const [state, setState, error] = useValidInput('', verifyPassword);
   const inputElement = useRef<HTMLInputElement | null>(null);
 
   const onChange = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
-    setState(target.value);
+    setValue(target.value);
   };
 
   useEffect(() => {
-    if (inputElement.current && state) {
+    if (inputElement.current && value) {
       if (!error) {
         inputElement.current.classList.remove('invalid');
         inputElement.current.classList.add('valid');
@@ -39,7 +41,8 @@ const PasswordInput = (): ReactElement => {
         <input
           id="pwInput"
           type={visible ? 'text' : 'password'}
-          value={state as string}
+          placeholder="Password"
+          value={value as string}
           onChange={onChange}
           ref={inputElement}
         />

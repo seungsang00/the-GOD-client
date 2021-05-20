@@ -6,29 +6,29 @@ import { mountWithTheme } from '@utils/testUtils';
 
 describe('EmailInput component', () => {
   let wrapper: ShallowWrapper | ReactWrapper;
-  describe('EmailInput 유효성 검사', () => {
-    before(() => {
-      wrapper = mountWithTheme(<EmailInput />);
-    });
+  afterEach(() => wrapper.unmount());
+  const fakeSetValue = (text: string) => console.log(text);
 
-    it('입력을 시작하기 전에는 에러메시지 표시안함', () => {
-      expect(wrapper.find('.error').exists()).to.be.false;
-      expect(wrapper.find('p').exists()).to.be.false;
-      expect(wrapper.find('.error').exists()).to.not.true;
-    });
+  it('props로 전달받은 value가 input에 표시되어야 합니다', () => {
+    wrapper = mountWithTheme(
+      <EmailInput
+        value={'test@example.com'}
+        setValue={fakeSetValue}
+        error={null}
+      />
+    );
+    expect(wrapper.find('input').prop('value')).to.be.equal('test@example.com');
+    expect(wrapper.find('p').exists()).to.be.false;
+    expect(wrapper.find('.error').exists()).to.not.true;
+  });
 
-    it('입력값이 이메일 형식에 맞지 않는 경우 에러메시지 표시', () => {
-      wrapper.find('input').simulate('change', { target: { value: 'hello' } });
-      expect(wrapper.find('.error').exists()).to.be.true;
-      wrapper
-        .find('input')
-        .simulate('change', { target: { value: 'hello@gmail' } });
-      expect(wrapper.find('.error').exists()).to.be.true;
-      wrapper
-        .find('input')
-        .simulate('change', { target: { value: 'hello@gmail.com' } });
-      expect(wrapper.find('.error').exists()).to.be.false;
-    });
+  it('props로 전달받은 error가 존재할 경우 p.error에 표시되어야 합니다', () => {
+    wrapper = mountWithTheme(
+      <EmailInput value={'a'} setValue={fakeSetValue} error={'error message'} />
+    );
+    expect(wrapper.find('p').exists()).to.be.true;
+    expect(wrapper.find('.error').exists()).to.be.true;
+    expect(wrapper.find('.error').text()).to.be.equal('error message');
   });
 });
 
