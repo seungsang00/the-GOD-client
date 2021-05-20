@@ -1,17 +1,8 @@
 import React from 'react';
-import { ShallowWrapper, ReactWrapper, mount } from 'enzyme';
+import { ShallowWrapper, ReactWrapper } from 'enzyme';
 import { expect } from 'chai';
 import UsernameInput from './index';
-import { ThemeProvider } from '@styles/themed-components';
-import theme from '@styles/theme';
-
-function mountWithTheme(child: any) {
-  return mount(child, {
-    wrappingComponent: ({ children }) => (
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    ),
-  });
-}
+import { mountWithTheme } from '@utils/testUtils';
 
 describe('UsernameInput component', () => {
   let wrapper: ShallowWrapper | ReactWrapper;
