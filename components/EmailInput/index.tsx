@@ -26,7 +26,7 @@ const EmailInput = (): ReactElement => {
   }, [error]);
 
   return (
-    <InputField>
+    <InputField error={error}>
       <input
         id="emailInput"
         type="text"

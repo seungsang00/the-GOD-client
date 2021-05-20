@@ -1,9 +1,7 @@
 import React, { ReactElement } from 'react';
-import { configure, shallow, ShallowWrapper, ReactWrapper } from 'enzyme';
+import { shallow, ShallowWrapper, ReactWrapper } from 'enzyme';
 import { spy } from 'sinon';
-import Adapter from 'enzyme-adapter-react-16';
 import { expect } from 'chai';
-configure({ adapter: new Adapter() });
 import Toggle from './index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

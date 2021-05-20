@@ -30,7 +30,12 @@ const TimeSelect = ({ setHour, setMinutes }: TimeSelectProps): ReactElement => {
   };
 
   return (
-    <TimeSelectBox>
+    <TimeSelectBox
+      hour={hour}
+      minute={minute}
+      isOptionOpenM={isOptionOpenM}
+      isOptionOpenH={isOptionOpenH}
+    >
       <article className="selectbox-hour">
         <div
           className="selectbox-display"
