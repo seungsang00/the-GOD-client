@@ -36,3 +36,7 @@ export interface VerifiedInputProps {
     | ((value: string) => void);
   error: string | null;
 }
+
+export interface HorizonProps {
+  text?: string;
+}
