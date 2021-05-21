@@ -17,3 +17,5 @@ export { default as Badge } from './Badge';
 export { default as OrderSidebar } from './OrderSidebar';
 export { default as TimeSelect } from './TimeSelect';
 export { default as Horizon } from './Horizon';
+export { default as Footer } from './Footer';
+export { default as UnderConstruction } from './UnderConstruction';
