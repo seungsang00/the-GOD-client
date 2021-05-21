@@ -1,3 +1,5 @@
+// TODO: null check
+
 export const confirmPassword = (regExp: RegExp, password: string) => {
   // 유효성검사 통과 여부를 리턴
   if (!regExp) {
