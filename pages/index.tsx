@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Modal, Toggle, Button, Layout, GuideButton } from '@components';
 import useModal from 'hooks/useModal';
 import Carousel from 'components/Carousel';
-import { LoginContent } from 'containers/auth/login';
+import { LoginContent, SignupContent } from 'containers/auth';
 
 const IndexPage = () => {
   const { isOpen, modalController } = useModal();
@@ -14,17 +14,24 @@ const IndexPage = () => {
       <h1>Hello Next.js 👋</h1>
       <h1>component test</h1>
       <div style={{ width: '100%', padding: '40px' }}>
-        <label htmlFor="modal">modal button</label>
-        <LoginContent />
+        <label htmlFor="modal">login modal button</label>
         <button style={{ border: 'solid 1px red' }} onClick={modalController}>
-          modal active button
+          modal active button : login + signup
         </button>
         <Modal
           isOpen={isOpen}
-          component={<LoginContent />}
+          component={
+            <>
+              <LoginContent />
+              <br />
+              <br />
+              <SignupContent />
+            </>
+          }
           handler={modalController}
         />
       </div>
+
       <div style={{ width: '100%', padding: '40px' }}>
         <h1>toggle button</h1>
         <Toggle

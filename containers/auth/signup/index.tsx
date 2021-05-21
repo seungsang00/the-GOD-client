@@ -78,6 +78,10 @@ const SignupContent = (): ReactElement => {
         />
         <Button disabled={disabled} text="sign up" handler={fakeHandler} />
       </section>
+      <section>
+        <span>Not a member?</span>
+        <span>Sign up now</span>
+      </section>
     </article>
   );
 };
