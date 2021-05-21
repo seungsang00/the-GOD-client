@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Modal, Toggle, Button, Layout, GuideButton } from '@components';
+import {
+  Modal,
+  Toggle,
+  Button,
+  Layout,
+  GuideButton,
+  Footer,
+} from '@components';
 import useModal from 'hooks/useModal';
 import Carousel from 'components/Carousel';
 import { LoginContent, SignupContent } from 'containers/auth';
@@ -10,7 +17,28 @@ const IndexPage = () => {
   const [toggleValue, setToggleValue] = useState<boolean>(false);
   const [guideActive, setGuideActive] = useState<boolean>(false);
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
+    <Layout title="FansSum | 팬심이 모여 문화가 되다" footer={<Footer />}>
+      <section>
+        <nav>
+          <Link href="/main">
+            <a>Main</a>
+          </Link>{' '}
+          |{' '}
+          <Link href="/">
+            <a>Home</a>
+          </Link>{' '}
+          |{' '}
+          <Link href="/about">
+            <a>About</a>
+          </Link>{' '}
+          |{' '}
+          <Link href="/users">
+            <a>Users List</a>
+          </Link>{' '}
+          | <a href="/api/users">Users API</a>
+        </nav>
+      </section>
+
       <h1>Hello Next.js 👋</h1>
       <h1>component test</h1>
       <div style={{ width: '100%', padding: '40px' }}>
