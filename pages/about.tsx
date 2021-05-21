@@ -4,6 +4,7 @@ import styled from '@styles/themed-components';
 import {
   Avatar,
   Badge,
+  Footer,
   InputTags,
   OrderSidebar,
   SearchInputs,
@@ -12,7 +13,6 @@ import {
   TimeSelect,
 } from '@components';
 import FilePreview from 'components/FilePreview';
-import PasswordInput from 'components/PasswordInput';
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};
@@ -26,7 +26,7 @@ const MyComponent = styled.div`
 const tagList = ['ENHYPEN', 'BORDER_CARNIVAL', 'COMEBACK'];
 const testHandler = (HHorMM: string) => console.log(HHorMM);
 const AboutPage = () => (
-  <Layout title="About | Next.js + TypeScript Example">
+  <Layout title="About | FansSum" footer={<Footer />}>
     <h1>About</h1>
     <p>This is the about page</p>
     <p>
@@ -39,7 +39,6 @@ const AboutPage = () => (
     <OrderSidebar />
     <Badge bgcolor="pink">#ENHYPEN</Badge>
     <Badge textcolor="pink">#ENHYPEN</Badge>
-    <PasswordInput />
     <SearchInputs />
     <InputTags tagList={tagList} />
     <FilePreview
