@@ -41,7 +41,7 @@ export interface HorizonProps {
   text?: string;
 }
 
-export interface AuthModalProps {
+export interface CutomModalProps {
   readonly isOpen: boolean;
   handler: MouseEventHandler<HTMLDivElement> | undefined;
 }
