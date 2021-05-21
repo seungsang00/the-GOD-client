@@ -17,11 +17,6 @@ export const PasswordInputField = styled.div`
     border-color: ${({ theme }) => theme.colors.red};
   }
 
-  p.error {
-    font-size: 0.8rem;
-    color: ${({ theme }) => theme.colors.red};
-  }
-
   div {
     position: relative;
   }
