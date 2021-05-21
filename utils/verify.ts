@@ -33,7 +33,7 @@ export const verifyEmail = (email: string): VerifyResult => {
 
 export const verifyUsername = (username: string): VerifyResult => {
   // 2~15자 한글, 영문 대소문자 사용가능
-  const regExp = /^[가-힣]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;
+  const regExp = /^[가-힣]{2,15}$|[a-zA-Z]{2,15}$\s[a-zA-Z]{2,15}$/;
   // 유효성검사 통과 여부를 리턴
   return regExp.test(username)
     ? {

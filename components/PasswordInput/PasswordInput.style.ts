@@ -30,6 +30,10 @@ export const PasswordInputField = styled.div`
     position: absolute;
     top: 8px;
     right: 8px;
+
+    svg {
+      color: inherit;
+    }
   }
 
   #visibleController.inactive {

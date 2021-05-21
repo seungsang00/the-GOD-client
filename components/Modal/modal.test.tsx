@@ -1,9 +1,7 @@
 import React, { ReactElement } from 'react';
-import Enzyme, { shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import sinon from 'sinon';
-import Adapter from 'enzyme-adapter-react-16';
 import { expect } from 'chai';
-Enzyme.configure({ adapter: new Adapter() });
 import Modal from './index';
 
 describe('Modal component', () => {
