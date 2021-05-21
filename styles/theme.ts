@@ -7,6 +7,10 @@ const colors = {
   green: '#2ecc71',
   red: '#e74c3c',
   yellow: '#f1c40f',
+  // 버튼이나 링크의 스타일을 위한 색상 지정
+  normal: '#4834d4',
+  hover: '#686de0',
+  action: '#4834d9',
 };
 
 // 컨셉

@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 export interface TextInputProps {
   placeholder: string;
@@ -39,4 +39,14 @@ export interface VerifiedInputProps {
 
 export interface HorizonProps {
   text?: string;
+}
+
+export interface AuthModalProps {
+  readonly isOpen: boolean;
+  handler: MouseEventHandler<HTMLDivElement> | undefined;
+}
+
+export interface AuthContentProps {
+  handleChangeContent: MouseEventHandler<HTMLSpanElement> | undefined;
+  submitHandler: () => void;
 }

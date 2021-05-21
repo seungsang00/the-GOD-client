@@ -1,2 +1,3 @@
-export { default as SignupContent } from './signup';
-export { default as LoginContent } from './login';
+export { default as SignupContent } from './AuthModal/SignupContent';
+export { default as LoginContent } from './AuthModal/LoginContent';
+export { default as AuthModal } from './AuthModal';
