@@ -1,5 +1,7 @@
 // import App from 'next/app';
 import type { AppProps /* AppContext */ } from 'next/app';
+import { Provider } from 'react-redux';
+import store from '../modules/store';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@styles/index';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -39,7 +41,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </ThemeProvider>
     </>
   );
