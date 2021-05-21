@@ -6,8 +6,8 @@ export const ButtonOAuth = styled.button`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 2rem;
-  color: #fafafa;
+  height: 100%;
+  /* color: #fafafa; */
   border-radius: 999px;
   margin-bottom: ${({ theme }) => theme.space.sm};
 

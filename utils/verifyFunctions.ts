@@ -1,8 +1,29 @@
-// TODO: nullcheck
+// TODO: null check
 
-export const verifyPassword = (password: string): VerifyResult => {
-  // 6~10자 영문, 숫자 조합
-  const regExp = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,10}$/;
+export const confirmPassword = (regExp: RegExp, password: string) => {
+  // 유효성검사 통과 여부를 리턴
+  if (!regExp) {
+    return {
+      isValid: false,
+      errorMessage: '먼저 비밀번호를 입력해주세요',
+    };
+  } else {
+    return regExp.test(password)
+      ? {
+          isValid: regExp.test(password),
+          errorMessage: null,
+        }
+      : {
+          isValid: regExp.test(password),
+          errorMessage: '비밀번호가 일치하지 않습니다',
+        };
+  }
+};
+
+export const verifyPassword = (
+  regExp: RegExp,
+  password: string
+): VerifyResult => {
   // 유효성검사 통과 여부를 리턴
   return regExp.test(password)
     ? {
@@ -15,10 +36,7 @@ export const verifyPassword = (password: string): VerifyResult => {
       };
 };
 
-export const verifyEmail = (email: string): VerifyResult => {
-  // 이메일 유효성검사
-  const regExp =
-    /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+export const verifyEmail = (regExp: RegExp, email: string): VerifyResult => {
   // 유효성검사 통과 여부를 리턴
   return regExp.test(email)
     ? {
@@ -31,9 +49,10 @@ export const verifyEmail = (email: string): VerifyResult => {
       };
 };
 
-export const verifyUsername = (username: string): VerifyResult => {
-  // 2~15자 한글, 영문 대소문자 사용가능
-  const regExp = /^[가-힣]{2,15}$|[a-zA-Z]{2,15}$\s[a-zA-Z]{2,15}$/;
+export const verifyUsername = (
+  regExp: RegExp,
+  username: string
+): VerifyResult => {
   // 유효성검사 통과 여부를 리턴
   return regExp.test(username)
     ? {
@@ -51,4 +70,4 @@ export type VerifyResult = {
   errorMessage: string | null;
 };
 
-export type VerifyFunction = (value: string) => VerifyResult;
+export type VerifyFunction = (regExp: RegExp, value: string) => VerifyResult;

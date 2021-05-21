@@ -28,3 +28,15 @@ export interface TimeSelectProps {
   setHour: (HH: string) => void;
   setMinutes: (MM: string) => void;
 }
+
+export interface VerifiedInputProps {
+  value: string;
+  setValue:
+    | React.Dispatch<React.SetStateAction<string>>
+    | ((value: string) => void);
+  error: string | null;
+}
+
+export interface HorizonProps {
+  text?: string;
+}

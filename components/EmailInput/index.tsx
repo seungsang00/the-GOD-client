@@ -1,20 +1,21 @@
 import React, { ChangeEvent, ReactElement, useEffect } from 'react';
-import { verifyEmail } from '@utils/verify';
-import useValidInput from 'hooks/useValidInput';
 import { InputField } from 'components/UsernameInput/UsernameInput.style';
+import { VerifiedInputProps } from 'interfaces/props';
 
-const EmailInput = (): ReactElement => {
-  const [state, setState, error] = useValidInput('', verifyEmail);
-
+const EmailInput = ({
+  value,
+  setValue,
+  error,
+}: VerifiedInputProps): ReactElement => {
   const onChange = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
-    setState(target.value);
+    setValue(target.value);
   };
 
   useEffect(() => {
     console.log(error);
     const target = document.querySelector('#emailInput');
-    if (target && state) {
+    if (target && value) {
       if (!error) {
         target.classList.remove('invalid');
         target.classList.add('valid');
@@ -30,7 +31,8 @@ const EmailInput = (): ReactElement => {
       <input
         id="emailInput"
         type="text"
-        value={state as string}
+        placeholder="Email"
+        value={value as string}
         onChange={onChange}
       />
       {error && <p className="error">{error}</p>}

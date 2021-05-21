@@ -5,6 +5,7 @@ import store from '../modules/store';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@styles/index';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import {
   faTimes,
   faBus,
@@ -19,6 +20,7 @@ import {
   faAngleRight,
   faAngleLeft,
   faCircle,
+  faComment,
 } from '@fortawesome/free-solid-svg-icons';
 library.add(
   faTimes,
@@ -33,7 +35,10 @@ library.add(
   faUndo,
   faAngleRight,
   faAngleLeft,
-  faCircle
+  faCircle,
+  faGoogle,
+  faComment,
+  faTwitter
 );
 
 function MyApp({ Component, pageProps }: AppProps) {

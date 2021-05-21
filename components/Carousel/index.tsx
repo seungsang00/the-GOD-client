@@ -71,7 +71,7 @@ const Carousel = ({
           {Array.isArray(children) &&
             children.map((_el, i) =>
               i % col === 0 ? (
-                <div onClick={() => setIndex(Number(i / col))}>
+                <div key={i} onClick={() => setIndex(Number(i / col))}>
                   <FontAwesomeIcon icon="circle" />
                 </div>
               ) : null

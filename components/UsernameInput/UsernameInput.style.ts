@@ -6,7 +6,7 @@ export const InputField = styled.div<{ error: string | null }>`
     height: 32px;
     border: 2px solid grey;
     border-radius: ${({ theme }) => theme.borderRadius};
-    margin-bottom: ${({ theme }) => theme.space.xxs};
+    margin-bottom: ${({ theme }) => theme.space.xs};
   }
 
   input.valid {
