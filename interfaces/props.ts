@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 export interface TextInputProps {
   placeholder: string;
@@ -7,6 +7,7 @@ export interface TextInputProps {
 export interface AvatarProps {
   profileImage: string;
   size: number;
+  handler: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 export interface AvatarContainerProps {
