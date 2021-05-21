@@ -16,9 +16,4 @@ export const InputField = styled.div<{ error: string | null }>`
   input.invalid {
     border-color: ${({ theme }) => theme.colors.red};
   }
-
-  p.error {
-    font-size: 0.8rem;
-    color: ${({ theme }) => theme.colors.red};
-  }
 `;

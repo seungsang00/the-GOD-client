@@ -11,11 +11,14 @@ import {
   usernameStandard,
 } from '@utils/verifyStandard';
 import useValidInput from 'hooks/useValidInput';
+import { AuthContentProps } from 'interfaces/props';
 import React, { ReactElement, useEffect, useState } from 'react';
+import { FormSection, LinkSection } from '../authcontent.style';
 
-const fakeHandler = () => console.log('signup!');
-
-const SignupContent = (): ReactElement => {
+const SignupContent = ({
+  handleChangeContent,
+  submitHandler,
+}: AuthContentProps): ReactElement => {
   const [username, setUsername, usernameError] = useValidInput(
     '',
     verifyUsername,
@@ -50,16 +53,18 @@ const SignupContent = (): ReactElement => {
 
   const [disabled, setDisabled] = useState(true);
   useEffect(() => {
-    if (!usernameError && !emailError && !passwordError && !confirmPwError) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
+    if (username && email && password && confirmPw) {
+      if (!usernameError && !emailError && !passwordError && !confirmPwError) {
+        setDisabled(false);
+      } else {
+        setDisabled(true);
+      }
     }
   }, [usernameError, emailError, passwordError, confirmPwError]);
 
   return (
     <article>
-      <section>
+      <FormSection>
         <UsernameInput
           value={username}
           setValue={setUsername}
@@ -76,12 +81,14 @@ const SignupContent = (): ReactElement => {
           setValue={setConfirmPw}
           error={confirmPwError}
         />
-        <Button disabled={disabled} text="sign up" handler={fakeHandler} />
-      </section>
-      <section>
+        <Button disabled={disabled} text="sign up" handler={submitHandler} />
+      </FormSection>
+      <LinkSection>
         <span>Not a member?</span>
-        <span>Sign up now</span>
-      </section>
+        <span className="auth-link" onClick={handleChangeContent}>
+          Sign up now
+        </span>
+      </LinkSection>
     </article>
   );
 };

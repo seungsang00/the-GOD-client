@@ -10,7 +10,7 @@ import {
 } from '@components';
 import useModal from 'hooks/useModal';
 import Carousel from 'components/Carousel';
-import { LoginContent, SignupContent } from 'containers/auth';
+import { AuthModal } from 'containers/auth';
 
 const IndexPage = () => {
   const { isOpen, modalController } = useModal();
@@ -46,18 +46,7 @@ const IndexPage = () => {
         <button style={{ border: 'solid 1px red' }} onClick={modalController}>
           modal active button : login + signup
         </button>
-        <Modal
-          isOpen={isOpen}
-          component={
-            <>
-              <LoginContent />
-              <br />
-              <br />
-              <SignupContent />
-            </>
-          }
-          handler={modalController}
-        />
+        <AuthModal isOpen={isOpen} handler={modalController} />
       </div>
 
       <div style={{ width: '100%', padding: '40px' }}>
