@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Modal, Toggle, Button, Layout, GuideButton } from '@components';
+import { Toggle, Button, GuideButton } from '@components';
 import useModal from 'hooks/useModal';
 import Carousel from 'components/Carousel';
 import { AuthModal } from 'containers/auth';
+import { Layout } from '@layouts';
 
 const IndexPage = () => {
   const { isOpen, modalController } = useModal();

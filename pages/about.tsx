@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Layout from '../components/Layout';
+import { Layout } from '@layouts';
 import styled from '@styles/themed-components';
 import {
   Avatar,
