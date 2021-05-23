@@ -11,4 +11,9 @@ export const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   left: 0;
+
+  nav {
+    display: flex;
+    align-items: center;
+  }
 `;
