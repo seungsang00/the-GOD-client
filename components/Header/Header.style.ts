@@ -12,6 +12,15 @@ export const HeaderContainer = styled.header`
   top: 0;
   left: 0;
 
+  .logo {
+    font-size: 1.7rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: ${({ theme }) => theme.space.sm};
+  }
+  nav.gnb {
+    cursor: pointer;
+  }
   nav {
     display: flex;
     align-items: center;

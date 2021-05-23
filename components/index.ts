@@ -18,3 +18,5 @@ export { default as Sidebar } from './Sidebar';
 export { default as TimeSelect } from './TimeSelect';
 export { default as Horizon } from './Horizon';
 export { default as InputWithLabel } from './InputWithLabel';
+export { default as Footer } from './Footer';
+export { default as UnderConstruction } from './UnderConstruction';
