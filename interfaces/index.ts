@@ -9,3 +9,4 @@ export type User = {
 };
 export * from './components';
 export * from './reducer';
+export * from './props';
