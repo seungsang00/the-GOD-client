@@ -20,7 +20,7 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
         <div className="logo">
           <Link href="/">
             <a>
-              {logo && logo} <h1>FansSum</h1>
+              {logo && logo} <h3>FansSum</h3>
             </a>
           </Link>
         </div>
