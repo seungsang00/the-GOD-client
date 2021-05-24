@@ -11,6 +11,7 @@ export interface TextInputProps {
 export interface AvatarProps {
   profileImage: string;
   size: number;
+  title?: string;
   handler?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
@@ -60,6 +61,7 @@ export interface AuthContentProps {
 export interface InputWithLabelProps {
   label: string;
   value?: string;
+  type?: string;
   setValue:
     | React.Dispatch<React.SetStateAction<string>>
     | ((value: string) => void);
@@ -68,4 +70,9 @@ export interface InputWithLabelProps {
 
 export interface AccountOptionsProps {
   handler: MouseEventHandler<HTMLButtonElement | HTMLDivElement> | undefined;
+}
+
+export interface FileInputProps {
+  handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  inputButton?: ReactNode;
 }
