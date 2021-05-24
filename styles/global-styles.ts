@@ -27,14 +27,19 @@ const GlobalStyle = createGlobalStyle`
   }
   h1 {
     font-size: 2rem;
-    margin: 0.67rem 0;
+    margin: 0.65rem 0;
   }
   h2 {
     font-size: 1.7rem;
-    margin: 0.5rem 0;
+    margin: 0.6rem 0;
   }
   h3 {
     font-size: 1.4rem;
+    margin: 0.55rem 0;
+  }
+  h4 {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
   }
   textarea {
     resize: none;

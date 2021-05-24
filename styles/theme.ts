@@ -8,6 +8,7 @@ const colors = {
   red: '#e74c3c',
   yellow: '#f1c40f',
   grey: 'rgb(239, 239, 239)',
+  grayScale500: '#969aa2',
   // 버튼이나 링크의 스타일을 위한 색상 지정
   normal: '#4834d4',
   hover: '#686de0',
