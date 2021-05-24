@@ -34,14 +34,17 @@ const MyPage = () => {
   // TODO: 스토어에서 유저정보를 불러온 값으로 변경
   const username = 'FakeUser01';
   const email = 'fakeuser01@fake.com';
+  const profileImage = undefined;
 
   return (
     <Layout title={`MyPage | FansSum::팬심이 모여 문화가 되다`}>
       <MyPageLayout>
         {viewWidth && showMenu ? (
-          // <Sidebar list={settingMenus} ref={sidebarElement} />
           <div>
-            <Avatar profileImage="/images/avatar_default.jpg" size={5} />
+            <Avatar
+              profileImage={profileImage || '/images/avatar_default.jpg'}
+              size={5}
+            />
             <div>{username}</div>
             <span>{email}</span>
           </div>
@@ -59,24 +62,24 @@ const MyPage = () => {
             </div>
           )}
           <section>
-            <h1>
+            <h2>
               <a id="my-artist">My Artist</a>
-            </h1>
+            </h2>
           </section>
           <section>
-            <h1>
+            <h2>
               <a id="my-route">My Route</a>
-            </h1>
+            </h2>
           </section>
           <section>
-            <h1>
+            <h2>
               <a id="my-post">My Post</a>
-            </h1>
+            </h2>
           </section>
           <section>
-            <h1>
+            <h2>
               <a id="bookmark">Bookmark</a>
-            </h1>
+            </h2>
           </section>
         </main>
       </MyPageLayout>
