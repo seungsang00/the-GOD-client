@@ -7,7 +7,9 @@ const Header = ({ logo, gnb }: any): ReactElement => {
     <HeaderContainer>
       <div className="logo">
         <Link href="/">
-          {logo && logo} <h1>FansSum</h1>
+          <a>
+            {logo && logo} <h1>FansSum</h1>
+          </a>
         </Link>
       </div>
       <nav className="gnb">{gnb}</nav>

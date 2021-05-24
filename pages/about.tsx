@@ -4,6 +4,7 @@ import styled from '@styles/themed-components';
 import {
   Avatar,
   Badge,
+  Footer,
   InputTags,
   OrderSidebar,
   SearchInputs,
@@ -14,6 +15,7 @@ import {
 import FilePreview from 'components/FilePreview';
 import useModal from 'hooks/useModal';
 import { SignoutModal } from 'containers/auth';
+
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};

@@ -13,4 +13,20 @@ export const AvatarContainer = withProps<AvatarContainerProps, HTMLDivElement>(
     object-fit: cover;
     border-radius: 999px;
   }
+
+  
+  ${({ onClick }) =>
+    onClick &&
+    `
+    &:hover {
+      filter: opacity(0.7);
+      -webkit-filter:opacity(0.7);
+    }
+
+    &:active {
+      filter: opacity(0.8);
+      -webkit-filter:opacity(0.8);
+    }
+    `}
+  
 `;
