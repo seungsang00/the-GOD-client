@@ -3,6 +3,7 @@ import { Layout, MyPageLayout } from 'layouts';
 import { Sidebar } from '@components';
 import { useRouter } from 'next/dist/client/router';
 import AccountSettings from 'containers/account';
+import ProfileSettings from 'containers/profile';
 
 const SettingPage = () => {
   const router = useRouter();
@@ -55,7 +56,7 @@ const SettingPage = () => {
             </div>
           )}
 
-          {category === 'profile' && <div>프로필 세팅</div>}
+          {category === 'profile' && <ProfileSettings />}
           {category === 'account-settings' && <AccountSettings />}
         </main>
       </MyPageLayout>
