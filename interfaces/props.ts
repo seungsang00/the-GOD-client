@@ -7,6 +7,7 @@ export interface TextInputProps {
 export interface AvatarProps {
   profileImage: string;
   size: number;
+  handler?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 export interface AvatarContainerProps {
