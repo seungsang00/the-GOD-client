@@ -69,7 +69,7 @@ const SearchInputs = (): ReactElement => {
         : moment(startDate).format('YYYY-MM-DD');
     const end =
       moment(endDate).format('YYYY-MM-DD') === 'Invalid date'
-        ? '일정을 선택해주세요'
+        ? ''
         : moment(endDate).format('YYYY-MM-DD');
 
     setValues({
@@ -79,7 +79,9 @@ const SearchInputs = (): ReactElement => {
   }, [dates]);
 
   useEffect(() => {
-    setShowDatePicker(!showDatePicker);
+    if (dates.endDate) {
+      setShowDatePicker(!showDatePicker);
+    }
   }, [dates.endDate]);
 
   const handleOptionClick = (selected: string) => {
