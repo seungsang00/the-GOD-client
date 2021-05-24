@@ -4,7 +4,6 @@ import styled from '@styles/themed-components';
 import {
   Avatar,
   Badge,
-  Footer,
   InputTags,
   OrderSidebar,
   SearchInputs,
@@ -13,11 +12,8 @@ import {
   TimeSelect,
 } from '@components';
 import FilePreview from 'components/FilePreview';
-<<<<<<< HEAD
 import useModal from 'hooks/useModal';
 import { SignoutModal } from 'containers/auth';
-=======
->>>>>>> 31ebcbe67b6037427fb1bbe4fd48e728aca2189d
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};
@@ -30,7 +26,6 @@ const MyComponent = styled.div`
 `;
 const tagList = ['ENHYPEN', 'BORDER_CARNIVAL', 'COMEBACK'];
 const testHandler = (HHorMM: string) => console.log(HHorMM);
-<<<<<<< HEAD
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
   return (
@@ -68,33 +63,5 @@ const AboutPage = () => {
     </Layout>
   );
 };
-=======
-const AboutPage = () => (
-  <Layout title="About | FansSum" footer={<Footer />}>
-    <h1>About</h1>
-    <p>This is the about page</p>
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
-    <MyComponent>디스플레이 크기에 따라 색이 바뀔거에요!</MyComponent>
-    <TimeSelect setHour={testHandler} setMinutes={testHandler} />
-    <OrderSidebar />
-    <Badge bgcolor="pink">#ENHYPEN</Badge>
-    <Badge textcolor="pink">#ENHYPEN</Badge>
-    <SearchInputs />
-    <InputTags tagList={tagList} />
-    <FilePreview
-      url="https://bit.ly/33TugE9"
-      handleRemoveFile={() => console.log(`file remove`)}
-    />
-    <TextInput placeholder="...을 입력해주세요" />
-    <TextArea placeholder="...을 입력해주세요" />
-    <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />
-    <Avatar profileImage="https://bit.ly/3oqUbfM" size={5} />
-  </Layout>
-);
->>>>>>> 31ebcbe67b6037427fb1bbe4fd48e728aca2189d
 
 export default AboutPage;
