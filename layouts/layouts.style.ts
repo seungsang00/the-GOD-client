@@ -22,16 +22,20 @@ export const CommonLayoutStyle = styled.div`
 export const MyPageStyle = styled.article`
   display: flex;
   padding: 0 ${({ theme }) => theme.space.md};
+
   section.settingCategory {
     width: 25%;
   }
+
   main {
     width: 75%;
     padding: 0 ${({ theme }) => theme.space.md};
   }
+
   #settingCategoryHandler {
     cursor: pointer;
   }
+
   #userInfoLeft {
     display: flex;
     flex-direction: column;
@@ -39,6 +43,7 @@ export const MyPageStyle = styled.article`
     align-items: center;
     padding: ${({ theme }) => theme.space.md} 0;
   }
+
   #userInfoTop {
     display: flex;
     align-items: center;
@@ -51,5 +56,13 @@ export const MyPageStyle = styled.article`
     ${({ theme }) => theme.media.mobile} {
       flex-direction: column;
     }
+  }
+
+  div.contents {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-top: ${({ theme }) => theme.space.sm};
+    padding-bottom: ${({ theme }) => theme.space.lg};
   }
 `;
