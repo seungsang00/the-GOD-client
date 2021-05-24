@@ -3,8 +3,8 @@ import {
   Component,
   MouseEventHandler,
   ReactElement,
-  Dispatch,
-  SetStateAction,
+  // Dispatch,
+  // SetStateAction,
 } from 'react';
 // modal type
 export type ModalProps = {

@@ -56,7 +56,7 @@ const DesktopSearchInput = ({
                 key={el}
                 onClick={() => handleOptionClick(el)}
               >
-                {el}
+                <span>{el}</span>
               </li>
             ))}
         </ul>

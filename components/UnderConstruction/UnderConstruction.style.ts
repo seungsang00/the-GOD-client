@@ -17,4 +17,7 @@ export const Wrapper = styled.main`
     font-size: 1rem;
     padding: ${({ theme }) => theme.space.xs} 0;
   }
+  button {
+    margin: ${({ theme }) => theme.space.md} 0;
+  }
 `;
