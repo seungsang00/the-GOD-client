@@ -1,9 +1,9 @@
 import React, { ReactElement, useState } from 'react';
 import { Modal } from '@components';
-import { AuthModalProps } from 'interfaces/props';
+import { CutomModalProps } from 'interfaces/props';
 import { LoginContent, SignupContent } from '..';
 
-const AuthModal = ({ isOpen, handler }: AuthModalProps): ReactElement => {
+const AuthModal = ({ isOpen, handler }: CutomModalProps): ReactElement => {
   const [isLoginContent, setIsLoginContent] = useState<boolean>(true);
   const fakeLoginHandler = () => console.log(`fake login submit`);
   const fakeSignupHandler = () => console.log(`fake signup submit`);
