@@ -66,8 +66,8 @@ export interface Content {
 }
 
 export interface Date {
-  start: string;
-  end: string;
+  start: string | undefined;
+  end: string | undefined;
 }
 export interface Time {
   open: string;

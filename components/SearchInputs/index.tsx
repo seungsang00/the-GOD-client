@@ -1,9 +1,11 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
-import { SearchInputsValues } from 'interfaces/search';
+import { Dates, SearchInputsValues } from 'interfaces/search';
 import { SearchInputsSection } from './SearchInputs.style';
 import { sampleSearchInputOptions as optionData } from '../../utils/sample-data';
 import DesktopSearchInput from './DesktopSearchInput';
 import MobileSearchInput from './MobileSearchInput';
+import moment from 'moment';
+moment.locale('ko'); // 한글화
 
 const SearchInputs = (): ReactElement => {
   const [viewWidth, setViewWidth] = useState<number | undefined>(undefined);
@@ -33,6 +35,16 @@ const SearchInputs = (): ReactElement => {
   const currentField = useRef<string>('artist');
   const currentOptionDepth = useRef<number | undefined>(undefined);
 
+  // datepicker
+  const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
+  const [dates, setDates] = useState<Dates>({ startDate: null, endDate: null });
+  const [focusedInput, setFocusedInput] =
+    useState<'startDate' | 'endDate' | null>('startDate');
+
+  const handleFocusInput = (focusedInput: 'startDate' | 'endDate' | null) => {
+    focusedInput ? setFocusedInput(focusedInput) : setFocusedInput('startDate');
+  };
+
   const handleInputClick = (
     e: React.MouseEvent<HTMLInputElement, MouseEvent>,
     optionData: any
@@ -45,8 +57,30 @@ const SearchInputs = (): ReactElement => {
     } else {
       console.log(`달력 나와라 오바`);
       // TODO: datepicker가 다루어져야 합니다
+      setShowDatePicker(!showDatePicker);
     }
   };
+
+  useEffect(() => {
+    const { startDate, endDate } = dates;
+    const start =
+      moment(startDate).format('YYYY-MM-DD') === 'Invalid date'
+        ? '일정을 선택해주세요'
+        : moment(startDate).format('YYYY-MM-DD');
+    const end =
+      moment(endDate).format('YYYY-MM-DD') === 'Invalid date'
+        ? '일정을 선택해주세요'
+        : moment(endDate).format('YYYY-MM-DD');
+
+    setValues({
+      ...values,
+      dates: [start, end],
+    });
+  }, [dates]);
+
+  useEffect(() => {
+    setShowDatePicker(!showDatePicker);
+  }, [dates.endDate]);
 
   const handleOptionClick = (selected: string) => {
     if (currentOptionDepth.current === 1) {
@@ -79,7 +113,7 @@ const SearchInputs = (): ReactElement => {
     } else if (currentField.current === 'location') {
       // step2
       currentField.current = 'dates';
-      setOptions(undefined); // FIXME: datepicker 라이브러리에 맞게 변경해야 합니다
+      setOptions(undefined);
     }
     // common
     currentOptionDepth.current = 1;
@@ -120,6 +154,11 @@ const SearchInputs = (): ReactElement => {
           options={options}
           handleInputClick={handleInputClick}
           handleOptionClick={handleOptionClick}
+          showDatePicker={showDatePicker}
+          dates={dates}
+          handleDateChange={setDates}
+          focusedInput={focusedInput}
+          handleFocusInput={handleFocusInput}
         />
       ) : (
         <MobileSearchInput
@@ -128,6 +167,11 @@ const SearchInputs = (): ReactElement => {
           options={options}
           handleInputClick={handleInputClick}
           handleOptionClick={handleMobileOptionClick}
+          showDatePicker={showDatePicker}
+          dates={dates}
+          handleDateChange={setDates}
+          focusedInput={focusedInput}
+          handleFocusInput={handleFocusInput}
         />
       )}
     </SearchInputsSection>
