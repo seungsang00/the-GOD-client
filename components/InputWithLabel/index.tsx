@@ -6,6 +6,7 @@ import React, { ChangeEvent } from 'react';
 const InputWithLabel = ({
   label,
   value,
+  type,
   setValue,
   disabled,
 }: InputWithLabelProps) => {
@@ -18,7 +19,7 @@ const InputWithLabel = ({
     <Wrapper>
       <div>{label}</div>
       <TextInput
-        type="password"
+        type={type || 'password'}
         value={value}
         disabled={disabled}
         onChange={onChange}
