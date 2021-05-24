@@ -32,6 +32,13 @@ export const MyPageStyle = styled.article`
   #settingCategoryHandler {
     cursor: pointer;
   }
+  #userInfoLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: ${({ theme }) => theme.space.md} 0;
+  }
   #userInfoTop {
     display: flex;
     align-items: center;
@@ -39,6 +46,10 @@ export const MyPageStyle = styled.article`
 
     & > .text {
       margin-left: ${({ theme }) => theme.space.sm};
+    }
+
+    ${({ theme }) => theme.media.mobile} {
+      flex-direction: column;
     }
   }
 `;
