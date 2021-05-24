@@ -23,3 +23,4 @@ export { default as Footer } from './Footer';
 export { default as UnderConstruction } from './UnderConstruction';
 export { default as TextButton } from './TextButton';
 export { default as DataNullLink } from './DataNullLink';
+export { default as ArtistCard } from './ArtistCard';
