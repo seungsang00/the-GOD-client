@@ -7,13 +7,16 @@ export default styled.div<{
 }>`
   position: relative;
   width: 100%;
+  height: 100%;
   .carousel-main-cotainer {
     overflow: hidden;
     width: 100%;
+    height: 100%;
   }
   .carousel-content-container {
     z-index: 998;
     width: 100%;
+    height: 100%;
     display: flex;
     & > div {
       flex-shrink: 0;
@@ -36,11 +39,10 @@ export default styled.div<{
           }
         `;
       }}
-      height: 240px;
+      min-height:240px;
       display: flex;
       justify-content: center;
-      item-align: center;
-      background-color: ${({ theme }) => theme.colors.secondary};
+      align-items: center;
     }
   }
   .arrow-box {
@@ -75,17 +77,26 @@ export default styled.div<{
   }
   .pagination {
     display: flex;
+    position: absolute;
     justify-content: center;
+    bottom: 4px;
+    width: 100%;
     margin-top: ${({ theme }) => theme.space.xs};
     & > div {
-      font-size: 24px;
+      font-size: 18px;
+      ${({ theme }) => theme.media.desktop} {
+        font-size: 18px;
+      }
+      ${({ theme }) => theme.media.tablet} {
+        font-size: 14px;
+      }
       padding: 0 5px;
       opacity: 0.3;
       &:hover {
         opacity: 0.7;
       }
       &:active {
-        opaciy: 1;
+        opacity: 1;
       }
     }
   }
