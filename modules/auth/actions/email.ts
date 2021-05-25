@@ -41,7 +41,7 @@ export const loginRequset = async (props: {
   if (window) {
     localStorage.setItem('accesstoken', result.data.result.accessToken);
   }
-  return result.data;
+  return result.data.result.accessToken;
 };
 
 export const checkPSRequset = async (password: string) => {
@@ -75,7 +75,7 @@ export const loginAsync = createAsyncAction(
   AUTH_LOGIN,
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGIN_ERROR
-)<null, LoginResponse, AxiosError>();
+)<null, { accessToken: string }, AxiosError>();
 
 export const updatePSAsync = createAsyncAction(
   AUTH_PASSWORD_UPDATE,
