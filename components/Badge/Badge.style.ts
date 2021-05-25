@@ -4,24 +4,30 @@ import { BadgeContainerProps } from 'interfaces/props';
 export const BadgeContainer = withProps<BadgeContainerProps, HTMLSpanElement>(
   styled.span
 )`
-  background-color: ${({ bgcolor }) => (bgcolor ? bgcolor : 'cyan')};
+  display: flex;
+  align-items: center;
+  background-color: ${({ bgcolor, theme }) =>
+    bgcolor ? bgcolor : theme.colors.yellow};
   color: ${({ textcolor }) => (textcolor ? textcolor : 'black')};
   margin-right: ${({ theme }) => theme.space.xs};
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: 7px;
   font-weight: 500;
+
   ${({ theme }) => theme.media.desktop} {
-    font-size: 18px;
-    height: 36px;
-    padding: 0 ${({ theme }) => theme.space.xs};
+    font-size: 0.9rem;
+    line-height: 1.8rem;
   }
+
   ${({ theme }) => theme.media.tablet} {
     font-size: 14px;
     height: 28px;
-    padding: 0 ${({ theme }) => theme.space.xxs};
   }
+
   ${({ theme }) => theme.media.mobile} {
     font-size: 12px;
     height: 24px;
-    padding: 0 ${({ theme }) => theme.space.xxs};
   }
+  width: fit-content;
+  height: fit-content;
+  padding: 0 0.9rem;
 `;
