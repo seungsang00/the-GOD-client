@@ -36,29 +36,29 @@ export interface Perks {
   airport: boolean;
   taxi: boolean;
 }
-export interface Content {
-  artist: string;
-  title: string;
-  tags: string[];
-  description: string;
-  images: string[];
-  date: {
-    start: Date;
-    end: Date;
-  };
-  time: {
-    open: string;
-    close: string;
-  };
-  storeName: string;
-  roadAddress: string;
-  location: {
-    lat: number;
-    lng: number;
-  };
-  mobile: string;
-  perks: Perks;
-}
+// export interface Content {
+//   artist: string;
+//   title: string;
+//   tags: string[];
+//   description: string;
+//   images: string[];
+//   date: {
+//     start: Date;
+//     end: Date;
+//   };
+//   time: {
+//     open: string;
+//     close: string;
+//   };
+//   storeName: string;
+//   roadAddress: string;
+//   location: {
+//     lat: number;
+//     lng: number;
+//   };
+//   mobile: string;
+//   perks: Perks;
+// }
 
 // content
 export interface PostContentResponse {
