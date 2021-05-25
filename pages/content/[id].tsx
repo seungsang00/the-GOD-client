@@ -1,17 +1,44 @@
 import React from 'react';
-import { UnderConstruction } from '@components';
 import { useRouter } from 'next/dist/client/router';
 import { Layout } from '@layouts';
+import ContentPageContainer from 'containers/content';
+import { sampleContentData } from '../../utils/sample-data';
 
 const ContentPage = () => {
   const router = useRouter();
-  const { id } = router.query; // 현재 step
+  const { id } = router.query; // contentId
 
-  const contentTitle = '엔하이픈 컴백 기념 이벤트'; // FIXME: 현재 페이지 컨텐츠의 타이틀을 불러와야 합니다
+  // FIXME: store에서 컨텐츠 정보를 받아와야 합니다
+  const {
+    artist,
+    title,
+    tags,
+    description,
+    images,
+    date,
+    time,
+    address,
+    mobile,
+    perks,
+    isBookmark,
+    author,
+  } = sampleContentData;
+
   return (
-    <Layout title={`${contentTitle} | FansSum::팬심이 모여 문화가 되다`}>
-      <UnderConstruction
-        description={`컨텐츠(id:${id}) 내용이 들어갈 예정입니다`}
+    <Layout title={`${title} | FansSum::팬심이 모여 문화가 되다`}>
+      <ContentPageContainer
+        artist={artist}
+        title={title}
+        tags={tags}
+        description={description}
+        images={images}
+        date={date}
+        time={time}
+        address={address}
+        mobile={mobile}
+        perks={perks}
+        isBookmark={isBookmark}
+        author={author}
       />
     </Layout>
   );
