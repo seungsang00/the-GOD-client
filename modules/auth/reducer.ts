@@ -1,6 +1,6 @@
 import { createReducer } from 'typesafe-actions';
 import { authReducer } from '@interfaces';
-import { authAction } from './actions';
+import { AuthAction } from './actions';
 import {
   AUTH_LOGIN,
   AUTH_LOGIN_ERROR,
@@ -46,9 +46,14 @@ const initialState: authReducer = {
     loading: false,
     error: null,
   },
+  kakao: {
+    data: null,
+    loading: false,
+    error: null,
+  },
 };
 
-const auth = createReducer<authReducer, authAction>(initialState, {
+const auth = createReducer<authReducer, AuthAction>(initialState, {
   [AUTH_SIGNUP]: (state) => ({
     ...state,
     signup: {
