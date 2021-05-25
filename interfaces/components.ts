@@ -15,9 +15,22 @@ export type ModalProps = {
 // toggle type
 export type ToggleProps = {
   readonly value: boolean;
-  readonly icon: 'parking' | 'bus' | 'baby' | 'subway' | 'train' | 'cat';
+  readonly icon:
+    | 'parking'
+    | 'bus'
+    | 'baby'
+    | 'subway'
+    | 'train'
+    | 'cat'
+    | 'sort';
   handler: MouseEventHandler<HTMLDivElement> | undefined;
 };
+// bookmark button type
+export type BookmarkButtonProps = {
+  readonly value: boolean;
+  handler: MouseEventHandler<HTMLDivElement> | undefined;
+};
+
 //button type
 export type ButtonProps = {
   readonly disabled: boolean;

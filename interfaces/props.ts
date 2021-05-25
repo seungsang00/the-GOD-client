@@ -1,5 +1,9 @@
 import { ChangeEventHandler, MouseEventHandler, ReactNode } from 'react';
 
+export interface PerkProps {
+  perk: string;
+  isActive: boolean;
+}
 export interface TextInputProps {
   placeholder?: string;
   value?: string;
