@@ -24,3 +24,4 @@ export { default as UnderConstruction } from './UnderConstruction';
 export { default as TextButton } from './TextButton';
 export { default as DataNullLink } from './DataNullLink';
 export { default as ArtistCard } from './ArtistCard';
+export { default as DatePicker } from './DatePicker';
