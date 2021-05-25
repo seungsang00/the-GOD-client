@@ -1,17 +1,71 @@
-import { User } from '../interfaces';
-
 /* TODO: refactor
 / 1. page-layout
 / 2. reducer (factory)
+*/
 
+import { Content } from '@interfaces';
 
-/** Dummy user data. */
-export const sampleUserData: User[] = [
-  { id: 101, name: 'Alice' },
-  { id: 102, name: 'Bob' },
-  { id: 103, name: 'Caroline' },
-  { id: 104, name: 'Dave' },
-];
+export const sampleUserProfile1 = {
+  userId: '019jkdkjbf1r0882939',
+  userName: 'testUser',
+  email: 'test1015@email.com',
+  profileImage: 'https://bit.ly/3oqUbfM',
+};
+
+export const sampleUserProfile2 = {
+  userId: '019jkdkjbf1r0982039',
+  userName: 'engene',
+  email: 'engene1130@email.com',
+  profileImage:
+    'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+};
+
+export const sampleContentData: Content = {
+  artist: 'ENHYPEN',
+  title: '엔하이픈 컴백 기념 컵홀더 이벤트',
+  tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
+  description:
+    '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+  images: [
+    'https://pbs.twimg.com/media/EkSaUUAVgAE--Kc?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EkSaVR3VoAAb4hd?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+  ],
+  date: {
+    start: '2021-05-25',
+    end: '2021-06-01',
+  },
+  time: {
+    open: '09:00:00',
+    close: '22:00:00',
+  },
+  address: {
+    storeName: '감탄커피',
+    roadAddress: '서울 강남구 테헤란로 522 지하 1층',
+    location: {
+      lat: 37.5640455,
+      lng: 126.8340014,
+    },
+  },
+  mobile: '070-0000-0000',
+  perks: {
+    bus: true,
+    subway: true,
+    train: true,
+    elevator: false,
+    baby: true,
+    parking: false,
+    pet: true,
+  },
+  isBookmark: true,
+  author: {
+    userId: '019jkdkjbf1r0982039',
+    username: 'ENGENE',
+    profileImage:
+      'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+  },
+};
 
 export const sampleSearchInputOptions: any = {
   artist: {
