@@ -25,10 +25,6 @@ const IndexPage = () => {
           <Link href="/about">
             <a>About</a>
           </Link>{' '}
-          |{' '}
-          <Link href="/users">
-            <a>Users List</a>
-          </Link>{' '}
           | <a href="/api/users">Users API</a>
         </nav>
       </section>
