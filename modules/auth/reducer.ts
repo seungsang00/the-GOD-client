@@ -163,7 +163,7 @@ const auth = createReducer<AuthReducer, AuthAction>(initialState, {
     login: {
       loading: false,
       error: null,
-      data: { accessToken: action.payload.result.accessToken },
+      data: action.payload,
     },
   }),
   [AUTH_LOGIN_ERROR]: (state, action) => ({

@@ -3,11 +3,19 @@ import { AsyncState } from '@utils/reducerUtils';
 export const API_ENDPOINT = `https://${process.env.NEXT_PUBLIC_API}`;
 
 export interface User {
-  username: string;
-  email: string;
+  type?: string;
   profileImage: string;
+  userName: string;
+  email: string;
+  passwordUpdate?: string;
 }
-
+export interface Artist {
+  id?: number;
+  name: string;
+  group: string;
+  profileImage: string;
+  isFollow?: boolean;
+}
 export interface signup {
   email: string;
   password: string;
@@ -23,30 +31,6 @@ export interface Perks {
   airport: boolean;
   taxi: boolean;
 }
-// export interface Content {
-//   artist: string;
-//   title: string;
-//   tags: string[];
-//   description: string;
-//   images: string[];
-//   date: {
-//     start: Date;
-//     end: Date;
-//   };
-//   time: {
-//     open: string;
-//     close: string;
-//   };
-//   storeName: string;
-//   roadAddress: string;
-//   location: {
-//     lat: number;
-//     lng: number;
-//   };
-//   mobile: string;
-//   perks: Perks;
-// }
-
 // content
 export interface SearchResult {
   id: string;
@@ -100,16 +84,28 @@ export type AxiosResponse<T> = {
   result: T;
   message: string;
 };
+// auth
 export type LoginResponse = AxiosResponse<{ accessToken: string }>;
 export type GetContentResponse = AxiosResponse<Content>;
-export type GetContentListResponse = AxiosResponse<Content[]>;
+// content
+export type GetSearchResultsResponse = AxiosResponse<SearchResult[]>;
 export type PostContentResponse = AxiosResponse<Content>;
 export type PutContentResponse = AxiosResponse<Content>;
-export type GetSearchResultsResponse = AxiosResponse<SearchResult[]>;
+export type PutFollowResponse = AxiosResponse<{ isFollow: boolean }>;
+export type PutBookmarkResponse = AxiosResponse<{ isBookmark: boolean }>;
+// user
 export type GetInfoResponse = AxiosResponse<User>;
+export type PutInfoResponse = AxiosResponse<User>;
+export type GetContentListResponse = AxiosResponse<Content[]>;
+export type GetUserContentResponse = AxiosResponse<Content[]>;
+export type GetBookmarkResponse = AxiosResponse<Content[]>;
+export type GetFollowResponse = AxiosResponse<Artist[]>;
 
 export interface UserState {
   userProfile: AsyncState<User>;
+  bookmarks: AsyncState<Content[]>;
+  contents: AsyncState<Content[]>;
+  follows: AsyncState<Artist[]>;
 }
 export interface AuthReducer {
   signup: AsyncState<{ message: string }>;

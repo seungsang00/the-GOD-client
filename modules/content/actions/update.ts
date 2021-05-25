@@ -1,4 +1,9 @@
-import { API_ENDPOINT, Content, PutContentResponse } from '@interfaces';
+import {
+  API_ENDPOINT,
+  Content,
+  PutBookmarkResponse,
+  PutContentResponse,
+} from '@interfaces';
 import createAsyncThunk from '@utils/createAsyncThunk';
 import axios, { AxiosError } from 'axios';
 import {
@@ -14,6 +19,18 @@ export const updateRequest = async (content: Content) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.post<PutContentResponse>(
     `${API_ENDPOINT}/content`,
+    content,
+    {
+      headers: { authorization: accessToken },
+    }
+  );
+  return result.data;
+};
+export const updateBookmarkRequest = async (content: Content) => {
+  // TODO: 컨텐츠 업데이트 미구현
+  const accessToken = localStorage.getItem('accessToken');
+  const result = await axios.put<PutBookmarkResponse>(
+    `${API_ENDPOINT}/user/bookmark`,
     content,
     {
       headers: { authorization: accessToken },

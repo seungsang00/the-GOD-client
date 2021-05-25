@@ -47,6 +47,7 @@ export const getContentAsync = createAsyncAction(
   CONTENT_GET_SUCCESS,
   CONTENT_GET_ERROR
 )<null, GetContentResponse, AxiosError>();
+
 export const getContentListAsync = createAsyncAction(
   CONTENT_LIST_GET,
   CONTENT_LIST_GET_SUCCESS,

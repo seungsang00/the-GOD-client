@@ -49,13 +49,25 @@ export const AUTH_TWITTER_USER_TOKEN_SUCCESS =
 export const AUTH_TWITTER_USER_TOKEN_ERROR = 'auth/TWITTER_USER_TOKEN_ERROR';
 
 // user
+export const USER_INFO_GET = 'user/INFO_GET';
+export const USER_INFO_GET_SUCCESS = 'user/INFO_GET_SUCCESS';
+export const USER_INFO_GET_ERROR = 'user/INFO_GET_ERROR';
+
 export const USER_INFO_UPDATE = 'user/info/update';
 export const USER_INFO_UPDATE_SUCCESS = 'user/info/update/success';
 export const USER_INFO_UPDATE_ERROR = 'user/info/update/success';
 
-export const USER_INFO_GET = 'user/info/get';
-export const USER_INFO_GET_SUCCESS = 'user/info/get/success';
-export const USER_INFO_GET_ERROR = 'user/info/get/error';
+export const USER_CONTENT_GET = 'user/CONTENT_GET';
+export const USER_CONTENT_GET_SUCCESS = 'user/CONTENT_GET_SUCCESS';
+export const USER_CONTENT_GET_ERROR = 'user/CONTENT_GET_ERROR';
+
+export const USER_BOOKMARK_GET = 'user/BOOKMARK_GET';
+export const USER_BOOKMARK_GET_SUCCESS = 'user/BOOKMARK_GET_SUCCESS';
+export const USER_BOOKMARK_GET_ERROR = 'user/BOOKMARK_GET_ERROR';
+
+export const USER_FOLLOW_GET = 'user/FOLLOW_GET';
+export const USER_FOLLOW_GET_SUCCESS = 'user/FOLLOW_GET_SUCCESS';
+export const USER_FOLLOW_GET_ERROR = 'user/FOLLOW_GET_ERROR';
 
 //content
 export const CONTENT_CREATE = 'content/CREATE';
@@ -65,6 +77,10 @@ export const CONTENT_CREATE_ERROR = 'content/CREATE_ERROR';
 export const CONTENT_GET = 'content/GET';
 export const CONTENT_GET_SUCCESS = 'content/GET_SUCCESS';
 export const CONTENT_GET_ERROR = 'content/GET_ERROR';
+
+export const CONTENT_LIST_GET = 'content/LIST_GET';
+export const CONTENT_LIST_GET_SUCCESS = 'content/LIST_GET_SUCCESS';
+export const CONTENT_LIST_GET_ERROR = 'content/LIST_GET_ERROR';
 
 export const CONTENT_UPDATE = 'content/UPDATE';
 export const CONTENT_UPDATE_SUCCESS = 'content/UPDATE_SUCCESS';
