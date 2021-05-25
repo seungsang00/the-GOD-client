@@ -25,4 +25,37 @@ export interface authReducer {
   checkps: AsyncState<{ message: string }>;
   updateps: AsyncState<{ message: string }>;
   login: AsyncState<{ accessToken: string }>;
+  kakao: AsyncState<{ code: string; accessToken: string }>;
+}
+export interface Perks {
+  parking: boolean;
+  baby: boolean;
+  pet: boolean;
+  subway: boolean;
+  train: boolean;
+  airport: boolean;
+  taxi: boolean;
+}
+export interface Content {
+  artist: string;
+  title: string;
+  tags: string[];
+  description: string;
+  images: string[];
+  date: {
+    start: Date;
+    end: Date;
+  };
+  time: {
+    open: string;
+    close: string;
+  };
+  storeName: string;
+  roadAddress: string;
+  location: {
+    lat: number;
+    lng: number;
+  };
+  mobile: string;
+  perks: Perks;
 }

@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import {
-  Modal,
-  Toggle,
-  Button,
-  Layout,
-  GuideButton,
-  Footer,
-} from '@components';
+import { Toggle, Button, Layout, GuideButton, Footer } from '@components';
 import useModal from 'hooks/useModal';
 import Carousel from 'components/Carousel';
 import { AuthModal } from 'containers/auth';
@@ -30,10 +23,6 @@ const IndexPage = () => {
           |{' '}
           <Link href="/about">
             <a>About</a>
-          </Link>{' '}
-          |{' '}
-          <Link href="/users">
-            <a>Users List</a>
           </Link>{' '}
           | <a href="/api/users">Users API</a>
         </nav>
