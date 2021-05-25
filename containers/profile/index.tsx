@@ -1,18 +1,16 @@
 import {
   Avatar,
-  Button,
+  // Button,
   FileInput,
-  FilePreview,
+  // FilePreview,
   InputWithLabel,
   TextButton,
 } from '@components';
 import { verifyUsername } from '@utils/verifyFunctions';
 import { usernameStandard } from '@utils/verifyStandard';
-import { SignoutModal } from 'containers/auth';
 import useDisabled from 'hooks/useDisabled';
-import useModal from 'hooks/useModal';
 import useValidInput from 'hooks/useValidInput';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { EditPassword } from './EditUserInfo';
 import { AccountStyle } from '../account/account.style';
 
@@ -50,6 +48,10 @@ const ProfileSettings = () => {
   };
 
   // TODO: useEffect를 사용해 avatarFile이 변경될 때마다 서버에 프로필 이미지 변경 요청 보내기
+  useEffect(() => {
+    console.log(error);
+    console.log(avatarFile);
+  });
 
   return (
     <AccountStyle>
