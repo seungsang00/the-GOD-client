@@ -58,14 +58,14 @@ export const USER_INFO_GET_SUCCESS = 'user/info/get/success';
 export const USER_INFO_GET_ERROR = 'user/info/get/error';
 
 //content
-export const CONTENT_POST = 'content/post';
-export const CONTENT_POST_SUCCESS = 'content/post/success';
-export const CONTENT_POST_ERROR = 'content/post/error';
+export const CONTENT_CREATE = 'content/CREATE';
+export const CONTENT_CREATE_SUCCESS = 'content/CREATE_SUCCESS';
+export const CONTENT_CREATE_ERROR = 'content/CREATE_ERROR';
 
-export const CONTENT_GET = 'content/get';
-export const CONTENT_GET_SUCCESS = 'content/get/success';
-export const CONTENT_GET_ERROR = 'content/get/error';
+export const CONTENT_GET = 'content/GET';
+export const CONTENT_GET_SUCCESS = 'content/GET_SUCCESS';
+export const CONTENT_GET_ERROR = 'content/GET_ERROR';
 
-export const CONTENT_SEARCH_GET = 'content/search/get';
-export const CONTENT_SEARCH_GET_SUCCESS = 'content/search/get/success';
-export const CONTENT_SEARCH_GET_ERROR = 'content/search/get/error';
+export const CONTENT_UPDATE = 'content/UPDATE';
+export const CONTENT_UPDATE_SUCCESS = 'content/UPDATE_SUCCESS';
+export const CONTENT_UPDATE_ERROR = 'content/UPDATE_ERROR';

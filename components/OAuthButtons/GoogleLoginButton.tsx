@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import GoogleLogin, {
   GoogleLoginResponse,
-  GoogleLoginResponseOffline /*GoogleLoginResponse, GoogleLoginResponseOffline*/,
+  GoogleLoginResponseOffline,
 } from 'react-google-login';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
