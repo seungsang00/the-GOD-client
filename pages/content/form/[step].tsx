@@ -1,6 +1,7 @@
 import React from 'react';
-import { Layout, UnderConstruction } from '@components';
+import { UnderConstruction } from '@components';
 import { useRouter } from 'next/dist/client/router';
+import { Layout } from '@layouts';
 
 const ContentPage = () => {
   const router = useRouter();

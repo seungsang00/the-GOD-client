@@ -1,7 +1,7 @@
 ---
-name: KTP Project Review
+name: KPT Project Review
 about: Keep & Problem & Try
-title: "[DateTime] KTP project review"
+title: "[DateTime] KPT project review"
 labels: KTP, Review
 assignees: Reone1, seungsang00, yoontaek0928
 

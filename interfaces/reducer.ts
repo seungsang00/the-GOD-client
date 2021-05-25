@@ -25,4 +25,112 @@ export interface authReducer {
   checkps: AsyncState<{ message: string }>;
   updateps: AsyncState<{ message: string }>;
   login: AsyncState<{ accessToken: string }>;
+  kakao: AsyncState<{ code: string; accessToken: string }>;
+}
+export interface Perks {
+  parking: boolean;
+  baby: boolean;
+  pet: boolean;
+  subway: boolean;
+  train: boolean;
+  airport: boolean;
+  taxi: boolean;
+}
+// export interface Content {
+//   artist: string;
+//   title: string;
+//   tags: string[];
+//   description: string;
+//   images: string[];
+//   date: {
+//     start: Date;
+//     end: Date;
+//   };
+//   time: {
+//     open: string;
+//     close: string;
+//   };
+//   storeName: string;
+//   roadAddress: string;
+//   location: {
+//     lat: number;
+//     lng: number;
+//   };
+//   mobile: string;
+//   perks: Perks;
+// }
+
+// content
+export interface PostContentResponse {
+  result: { id: string };
+  message: string;
+}
+
+export interface GetContentResponse {
+  result: Content;
+  message: string;
+}
+
+export interface GetSearchResultsResponse {
+  result: SearchResult[];
+  message: string;
+}
+
+export interface SearchResult {
+  id: string;
+  date: Date;
+  time: Time;
+  address: Address;
+  title: string;
+  images: string[];
+}
+
+export interface Content {
+  artist: string;
+  title: string;
+  tags: string[];
+  description: string;
+  images: string[];
+  date: Date;
+  time: Time;
+  address: Address;
+  mobile: string;
+  perks: Perks;
+}
+
+export interface Date {
+  start: string | undefined;
+  end: string | undefined;
+}
+export interface Time {
+  open: string;
+  close: string;
+}
+export interface Address {
+  storeName: string;
+  roadAddress: string;
+  lat: number;
+  lng: number;
+}
+export interface Perks {
+  bus: boolean;
+  subway: boolean;
+  train: boolean;
+  elevator: boolean;
+  baby: boolean;
+  parking: boolean;
+}
+
+export interface PostContentResponse {
+  artist: string;
+  title: string;
+  tags: string[];
+  description: string;
+  images: string;
+}
+
+export interface contentReducer {
+  getcontent: AsyncState<{ message: string }>;
+  postcontent: AsyncState<{ message: string }>;
+  getsearchresults: AsyncState<{ message: string }>;
 }

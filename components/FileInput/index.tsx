@@ -1,10 +1,13 @@
 import React, { ReactElement } from 'react';
-import { FileInputHandler } from 'interfaces/inputhandler';
 import { FileInputForm } from './FileInput.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FileInputProps } from '@interfaces';
 
-const FileInput = ({ handleFileChange }: FileInputHandler): ReactElement => {
+const FileInput = ({
+  handleFileChange,
+  inputButton,
+}: FileInputProps): ReactElement => {
   return (
     <FileInputForm>
       <input
@@ -15,7 +18,7 @@ const FileInput = ({ handleFileChange }: FileInputHandler): ReactElement => {
         style={{ display: 'none' }}
       />
       <label htmlFor="fileInput">
-        <FontAwesomeIcon icon={faPlus} />
+        {inputButton ? inputButton : <FontAwesomeIcon icon={faPlus} />}
       </label>
     </FileInputForm>
   );

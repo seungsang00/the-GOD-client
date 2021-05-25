@@ -20,6 +20,8 @@ export default styled.div<{
       ${(props) => {
         const width = 100 / props.col;
         return css`
+          width: calc(${width}% - 2 * ${({ theme }) => theme.space.sm});
+          margin: 0 ${({ theme }) => theme.space.sm};
           ${({ theme }) => theme.media.desktop} {
             width: calc(${width}% - 2 * ${({ theme }) => theme.space.sm});
             margin: 0 ${({ theme }) => theme.space.sm};

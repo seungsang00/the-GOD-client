@@ -1,4 +1,5 @@
-import { Footer, Layout, SearchInputs } from '@components';
+import { Footer, SearchInputs } from '@components';
+import { Layout } from '@layouts';
 
 const MainPage = () => {
   return (

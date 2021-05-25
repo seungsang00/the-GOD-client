@@ -21,10 +21,17 @@
     "paths": {
       "@components": ["components/index"],
       "@interfaces": ["interfaces/index"],
+      "@layouts": ["layouts/index"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "setup.js"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "setup.js",
+    "components/DatePicker/DayPickerRangeControllerWrapper.jsx",
+    "components/DatePicker/index.jsx"
+  ],
   "exclude": ["node_modules"]
 }
