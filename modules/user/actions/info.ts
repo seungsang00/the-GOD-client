@@ -1,6 +1,6 @@
-import { API_ENDPOINT, User } from '@interfaces';
+import { API_ENDPOINT, GetInfoResponse } from '@interfaces';
 import axios, { AxiosError } from 'axios';
-import { createAsyncAction, ActionType } from 'typesafe-actions';
+import { createAsyncAction } from 'typesafe-actions';
 import createAsyncThunk from '@utils/createAsyncThunk';
 import {
   USER_INFO_GET,
@@ -12,17 +12,11 @@ export const getInfoAsync = createAsyncAction(
   USER_INFO_GET,
   USER_INFO_GET_SUCCESS,
   USER_INFO_GET_ERROR
-)<null, User, AxiosError>();
-
-const actions = {
-  getInfoAsync,
-};
-
-export type UserAction = ActionType<typeof actions>;
+)<null, GetInfoResponse, AxiosError>();
 
 export const getInfoRequest = async () => {
   const token: string | null = localStorage.getItem('accessToken');
-  const result = await axios.get<User>(`${API_ENDPOINT}/auth/signup`, {
+  const result = await axios.get<GetInfoResponse>(`${API_ENDPOINT}/user`, {
     headers: {
       authorization: token,
     },
