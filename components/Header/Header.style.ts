@@ -18,8 +18,11 @@ export const HeaderContainer = styled.header`
     cursor: pointer;
     margin-right: ${({ theme }) => theme.space.sm};
   }
-
   nav.gnb {
     cursor: pointer;
+  }
+  nav {
+    display: flex;
+    align-items: center;
   }
 `;

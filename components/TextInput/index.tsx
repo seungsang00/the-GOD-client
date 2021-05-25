@@ -3,14 +3,22 @@ import { TextInputProps } from 'interfaces/props';
 import React, { ReactElement } from 'react';
 import { StyledTextInput, StyledTextArea } from './TextInput.style';
 
-export const TextInput = ({ placeholder }: TextInputProps): ReactElement => {
-  const { inputEvent } = useTextInput('');
+export const TextInput = ({
+  type,
+  placeholder,
+  value,
+  onChange,
+  disabled,
+}: TextInputProps): ReactElement => {
+  const { inputEvent } = useTextInput(value ? value : '');
   return (
     <StyledTextInput
       className="textinput"
-      type="text"
+      type={type}
       {...inputEvent}
       placeholder={placeholder}
+      onChange={onChange}
+      disabled={disabled}
     />
   );
 };

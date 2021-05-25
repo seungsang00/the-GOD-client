@@ -1,17 +1,7 @@
-import { User } from '../interfaces';
-
 /* TODO: refactor
 / 1. page-layout
 / 2. reducer (factory)
-
-
-/** Dummy user data. */
-export const sampleUserData: User[] = [
-  { id: 101, name: 'Alice' },
-  { id: 102, name: 'Bob' },
-  { id: 103, name: 'Caroline' },
-  { id: 104, name: 'Dave' },
-];
+*/
 
 export const sampleSearchInputOptions: any = {
   artist: {

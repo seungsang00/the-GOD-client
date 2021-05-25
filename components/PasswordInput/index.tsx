@@ -14,6 +14,7 @@ const PasswordInput = ({
   value,
   setValue,
   error,
+  disabled,
 }: VerifiedInputProps): ReactElement => {
   const [visible, setVisible] = useState<boolean>(false);
   const inputElement = useRef<HTMLInputElement | null>(null);
@@ -45,6 +46,7 @@ const PasswordInput = ({
           value={value as string}
           onChange={onChange}
           ref={inputElement}
+          disabled={disabled}
         />
         <div
           id="visibleController"

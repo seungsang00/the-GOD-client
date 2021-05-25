@@ -1,6 +1,12 @@
-import styled from 'styled-components';
+import styled, { withProps } from '@styles/themed-components';
+import { MouseEventHandler } from 'react';
 
-export default styled.button`
+type Props = {
+  readonly disabled: boolean;
+  handler: MouseEventHandler<HTMLButtonElement> | undefined;
+};
+
+export default withProps<Props, HTMLButtonElement>(styled.button)`
   border-radius: ${({ theme }) => theme.borderRadius};
   border: 1px solid black;
   min-width: 240px;
@@ -24,4 +30,6 @@ export default styled.button`
   &:active {
     background-color: rgba(233, 233, 233, 1);
   }
+
+  cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 `;
