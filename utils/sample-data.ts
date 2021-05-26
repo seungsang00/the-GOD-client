@@ -3,18 +3,64 @@
 / 2. reducer (factory)
 */
 
-import { Content } from '@interfaces';
+import { IComment, Content } from '@interfaces';
+
+export const sampleCommentsData: IComment[] = [
+  {
+    id: 'c019jkdkjbf1r088293902kjer',
+    author: {
+      userId: '019jkdkjbf1r0882939',
+      username: 'testUser',
+      profileImage: 'https://bit.ly/3oqUbfM',
+    },
+    comments: 'good',
+    createdAt: '2021-05-13 16:24:02',
+  },
+  {
+    id: 'c019jkqoeidf1r088293902kjer',
+    author: {
+      userId: '019jkdkjbf1r0882940',
+      username: 'sim',
+      profileImage:
+        'https://i.pinimg.com/280x280_RS/97/de/54/97de54c12e0bdfa5d334a83f6b682f63.jpg',
+    },
+    comments: 'very good',
+    createdAt: '2021-05-17 16:18:02',
+  },
+  {
+    id: 'c019jkdsldknflskfnreone293902kjer',
+    author: {
+      userId: '019jkdkjbf1r0882990',
+      username: 'reone',
+      profileImage:
+        'https://i.pinimg.com/736x/f1/2c/f2/f12cf2ff79a75193294dac1ee281e80f.jpg',
+    },
+    comments: 'super good',
+    createdAt: '2021-05-21 17:24:02',
+  },
+  {
+    id: 'c019jkskdfowiehfr088293902kjer',
+    author: {
+      userId: '019jkdkjbf1r0982039',
+      username: 'engene',
+      profileImage:
+        'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    },
+    comments: 'amazing',
+    createdAt: '2021-05-25 11:24:02',
+  },
+];
 
 export const sampleUserProfile1 = {
   userId: '019jkdkjbf1r0882939',
-  userName: 'testUser',
+  username: 'testUser',
   email: 'test1015@email.com',
   profileImage: 'https://bit.ly/3oqUbfM',
 };
 
 export const sampleUserProfile2 = {
   userId: '019jkdkjbf1r0982039',
-  userName: 'engene',
+  username: 'engene',
   email: 'engene1130@email.com',
   profileImage:
     'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',

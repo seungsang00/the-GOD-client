@@ -1,4 +1,10 @@
-import { ChangeEventHandler, MouseEventHandler, ReactNode } from 'react';
+import {
+  ChangeEventHandler,
+  Dispatch,
+  MouseEventHandler,
+  ReactNode,
+  SetStateAction,
+} from 'react';
 
 export interface PerkProps {
   perk: string;
@@ -6,10 +12,11 @@ export interface PerkProps {
 }
 export interface TextInputProps {
   placeholder?: string;
-  value?: string;
+  initValue?: string;
   type?: string;
   onChange?: ChangeEventHandler;
   disabled?: boolean;
+  handler?: Dispatch<SetStateAction<string>>;
 }
 
 export interface AvatarProps {
@@ -79,4 +86,9 @@ export interface AccountOptionsProps {
 export interface FileInputProps {
   handleFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputButton?: ReactNode;
+}
+
+export interface FlyoutProps {
+  children: ReactNode;
+  handler: MouseEventHandler;
 }
