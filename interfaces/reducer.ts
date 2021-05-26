@@ -51,6 +51,14 @@ export interface Content {
   address: Address;
   mobile: string;
   perks: Perks;
+  isBookmark: boolean;
+  author: Author;
+}
+
+export interface Author {
+  userId: string;
+  username: string;
+  profileImage: string;
 }
 export interface Date {
   start: string | undefined;
@@ -63,8 +71,10 @@ export interface Time {
 export interface Address {
   storeName: string;
   roadAddress: string;
-  lat: number;
-  lng: number;
+  location: {
+    lat: number;
+    lng: number;
+  };
 }
 export interface Perks {
   bus: boolean;
@@ -73,6 +83,11 @@ export interface Perks {
   elevator: boolean;
   baby: boolean;
   parking: boolean;
+  [prop: string]: boolean;
+}
+
+export interface PerkList {
+  [prop: string]: any;
 }
 export interface ContentQuery {
   artistId: string;
