@@ -28,3 +28,4 @@ export { default as ArtistCard } from './ArtistCard';
 export { default as DatePicker } from './DatePicker';
 export { default as PerkBadge } from './PerkBadge';
 export { default as InfoListItem } from './InfoListItem';
+export * from './Dropdown';
