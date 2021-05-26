@@ -145,3 +145,20 @@ export interface ContentReducer {
   update: AsyncState<Content>;
   delete: AsyncState<{ message: string }>;
 }
+
+export interface IComment {
+  id: string;
+  author: {
+    userId: string;
+    username: string;
+    profileImage: string;
+  };
+  comments: string;
+  createdAt: string;
+}
+
+export interface ICommentAuthor {
+  userId: string;
+  username: string;
+  profileImage: string;
+}
