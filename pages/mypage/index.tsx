@@ -78,7 +78,7 @@ const MyPage = () => {
               <a id="my-route">My Route</a>
             </h2>
             <div className="contents">
-              <PathContentLoader data={path.data} />
+              <PathContentLoader data={paths.data} />
             </div>
           </section>
           <section>

@@ -4,6 +4,8 @@ import styled from '@styles/themed-components';
 import {
   Avatar,
   Badge,
+  Carousel,
+  FileInput,
   InputTags,
   OrderSidebar,
   SearchInputs,
@@ -14,6 +16,8 @@ import {
 import FilePreview from 'components/FilePreview';
 import useModal from 'hooks/useModal';
 import { SignoutModal } from 'containers/auth';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { readFile } from '@interfaces';
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};
@@ -24,10 +28,34 @@ const MyComponent = styled.div`
     color: green;
   }
 `;
+
 const tagList = ['ENHYPEN', 'BORDER_CARNIVAL', 'COMEBACK'];
 const testHandler = (HHorMM: string) => console.log(HHorMM);
+
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
+  const [files, setFiles] = useState<readFile[]>([]);
+  const fileListToArray = (fileList: FileList) => {
+    for (let i = 0; i < fileList.length; i++) {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileList[i]);
+      reader.onloadend = () => {
+        setFiles((state) => [
+          ...state,
+          {
+            data: fileList[i],
+            name: fileList[i].name,
+            url: reader.result as string,
+          },
+        ]);
+      };
+    }
+  };
+  const testFilehandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      fileListToArray(e.target.files);
+    }
+  };
   return (
     <Layout title="About | Next.js + TypeScript Example">
       <h1>About</h1>
@@ -51,11 +79,21 @@ const AboutPage = () => {
       <Badge bgcolor="pink">#ENHYPEN</Badge>
       <Badge textcolor="pink">#ENHYPEN</Badge>
       <SearchInputs />
-      <InputTags tagList={tagList} />
-      <FilePreview
-        url="https://bit.ly/33TugE9"
-        handleRemoveFile={() => console.log(`file remove`)}
-      />
+      <InputTags tagList={tagList} handler={() => {}} />
+      <FileInput handleFileChange={testFilehandler} />
+      <Carousel col={4}>
+        {[
+          <div>
+            <FileInput handleFileChange={testFilehandler} />
+          </div>,
+          ...files.map((file, _i) => (
+            <FilePreview
+              url={file.url}
+              handleRemoveFile={() => console.log(file.name)}
+            />
+          )),
+        ]}
+      </Carousel>
       <TextInput placeholder="...을 입력해주세요" />
       <TextArea placeholder="...을 입력해주세요" />
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />

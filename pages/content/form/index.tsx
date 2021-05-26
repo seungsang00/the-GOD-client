@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UnderConstruction } from '@components';
-import { useRouter } from 'next/dist/client/router';
 import { Layout } from '@layouts';
 
-const ContentPage = () => {
-  const router = useRouter();
-  const { step } = router.query; // 현재 step
-
+const ContentFormPage = () => {
+  const [step, setStep] = useState<number>(1);
+  const nextStep = () => {
+    if (step < 3) setStep(step + 1);
+  };
+  const prevStep = () => {
+    if (step > 0) setStep(step - 1);
+  };
   return (
     <Layout title={`이벤트 등록 Step${step} | FansSum`}>
       <UnderConstruction
@@ -16,4 +19,4 @@ const ContentPage = () => {
   );
 };
 
-export default ContentPage;
+export default ContentFormPage;

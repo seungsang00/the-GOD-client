@@ -69,7 +69,7 @@ const user = createReducer<UserState, UserAction>(initialState, {
     ...state,
     userProfile: {
       loading: false,
-      error: action.payload.response?.data.message,
+      error: action.payload.message,
       data: null,
     },
   }),

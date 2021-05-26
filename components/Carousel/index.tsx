@@ -3,15 +3,14 @@ import CarouselStyle from './Carousel.style';
 import { CarouselProps } from '@interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Carousel = ({
-  isArrow = true,
-  isPage = true,
-  col = 2,
-  children,
-}: CarouselProps) => {
+const Carousel = ({ isPage, col = 2, children }: CarouselProps) => {
+  const [isArrow, setIsArrow] = useState<boolean>(false);
+  const [isPageState, setIsPageState] = useState<boolean>(
+    isPage ? true : false
+  );
   const [index, setIndex] = useState<number>(0);
   const [nav, setNav] = useState<number>(0);
-  const [pageNumber] = useState<number>(
+  const [pageNumber, setPageNumber] = useState<number>(
     !Array.isArray(children) ? 1 : Math.floor((children.length - 1) / col)
   );
   const slideRef = useRef<HTMLDivElement>(null);
@@ -23,19 +22,32 @@ const Carousel = ({
       slideRef.current.style.transform = `translateX(-${index}00%)`; // 백틱을 사용하여 슬라이드로 이동하는 애니메이션을 만듭니다.
     }
   }, [index]);
+
   useEffect(() => {
-    if (containerRef.current && nav === 0) {
+    setPageNumber(
+      !Array.isArray(children) ? 0 : Math.floor((children.length - 1) / col) + 1
+    );
+    if (containerRef.current) {
       setNav(containerRef.current.offsetHeight);
     }
-  }, []);
+  }, [children]);
+  useEffect(() => {
+    if (pageNumber > 1) {
+      setIsArrow(true);
+      setIsPageState(true);
+    } else {
+      setIsPageState(false);
+      setIsArrow(false);
+    }
+  }, [pageNumber]);
 
   const next = () => {
     if (!Array.isArray(children)) return;
-    if (index >= pageNumber) {
+    if (index < pageNumber - 1) {
       // 더 이상 넘어갈 슬라이드가 없으면 슬라이드를 초기화합니다.
-      setIndex(0);
-    } else {
       setIndex(index + 1);
+    } else {
+      setIndex(0);
     }
   };
 
@@ -65,7 +77,7 @@ const Carousel = ({
           </button>
         </div>
       )}
-      {isPage && (
+      {isPageState && (
         <div className="pagination">
           {!Array.isArray(children) && children}
           {Array.isArray(children) &&

@@ -1,10 +1,11 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useMemo, useState } from 'react';
 import { InputTagsSection } from './InputTags.style';
 
 interface IInputTags {
   tagList?: string[];
+  handler: (tags: string[]) => void;
 }
-const InputTags = ({ tagList }: IInputTags): ReactElement => {
+const InputTags = ({ tagList, handler }: IInputTags): ReactElement => {
   const [value, setValue] = useState<string>('');
   const [tags, setTags] = useState<string[]>(tagList as string[]);
 
@@ -13,7 +14,6 @@ const InputTags = ({ tagList }: IInputTags): ReactElement => {
   };
 
   const handleAddTag = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log(e.keyCode);
     const target = e.target as HTMLInputElement;
     if (e.keyCode === 13) {
       if (!tags.find((tag: any) => tag === target.value)) {
@@ -27,7 +27,7 @@ const InputTags = ({ tagList }: IInputTags): ReactElement => {
     const filteredTags = tags.filter((tag: string) => tag !== key);
     setTags(filteredTags);
   };
-
+  useMemo(() => handler(tags), [tags]);
   return (
     <InputTagsSection>
       {tags &&

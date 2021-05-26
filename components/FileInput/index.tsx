@@ -16,6 +16,7 @@ const FileInput = ({
         accept="image/*"
         onChange={handleFileChange}
         style={{ display: 'none' }}
+        multiple
       />
       <label htmlFor="fileInput">
         {inputButton ? inputButton : <FontAwesomeIcon icon={faPlus} />}

@@ -30,6 +30,6 @@ export const TextArea = ({ placeholder }: TextInputProps): ReactElement => {
       className="textarea"
       {...inputEvent}
       placeholder={placeholder}
-    ></StyledTextArea>
+    />
   );
 };

@@ -13,6 +13,11 @@ export type ModalProps = {
   handler: MouseEventHandler<HTMLDivElement> | undefined;
 };
 
+export interface readFile {
+  name: string;
+  data: File;
+  url: string;
+}
 export interface DataNullLinkProps {
   title: string;
   description: string;
@@ -43,7 +48,6 @@ export interface GuideButtonProps {
 // Carousel component Props
 // TODO:아직 옆에 보여주는걸 못넣음
 export interface CarouselProps {
-  isArrow?: boolean;
   isPage?: boolean;
   // isPreview?: boolean;
   col?: 4 | 2 | 1;
