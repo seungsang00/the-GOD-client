@@ -1,41 +1,54 @@
 import { createReducer } from 'typesafe-actions';
-import { contentReducer } from '@interfaces';
-import { contentAction } from './actions';
+import { ContentReducer } from '@interfaces';
+import { ContentAction } from './actions';
 import {
-  CONTENT_POST,
-  CONTENT_POST_ERROR,
-  CONTENT_POST_SUCCESS,
+  CONTENT_CREATE,
+  CONTENT_CREATE_ERROR,
+  CONTENT_CREATE_SUCCESS,
   CONTENT_GET,
   CONTENT_GET_ERROR,
   CONTENT_GET_SUCCESS,
-  CONTENT_SEARCH_GET,
-  CONTENT_SEARCH_GET_ERROR,
-  CONTENT_SEARCH_GET_SUCCESS,
+  CONTENT_LIST_GET,
+  CONTENT_LIST_GET_ERROR,
+  CONTENT_LIST_GET_SUCCESS,
+  CONTENT_UPDATE,
+  CONTENT_UPDATE_ERROR,
+  CONTENT_UPDATE_SUCCESS,
 } from '../actionTypes';
 
 // default Store
-const initialState: contentReducer = {
-  getcontent: {
+const initialState: ContentReducer = {
+  list: {
     data: null,
     loading: false,
     error: null,
   },
-  postcontent: {
+  current: {
     data: null,
     loading: false,
     error: null,
   },
-  getsearchresults: {
+  create: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  update: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  delete: {
     data: null,
     loading: false,
     error: null,
   },
 };
 
-const content = createReducer<contentReducer, contentAction>(initialState, {
+const content = createReducer<ContentReducer, ContentAction>(initialState, {
   [CONTENT_GET]: (state) => ({
     ...state,
-    getcontent: {
+    current: {
       loading: true,
       error: null,
       data: null,
@@ -43,63 +56,87 @@ const content = createReducer<contentReducer, contentAction>(initialState, {
   }),
   [CONTENT_GET_SUCCESS]: (state, action) => ({
     ...state,
-    getcontent: {
+    current: {
       loading: false,
       error: null,
-      data: action.payload,
+      data: action.payload.result,
     },
   }),
   [CONTENT_GET_ERROR]: (state, action) => ({
     ...state,
-    getcontent: {
+    current: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,
     },
   }),
-  [CONTENT_POST]: (state) => ({
+  [CONTENT_CREATE]: (state) => ({
     ...state,
-    postcontent: {
+    create: {
       loading: true,
       error: null,
       data: null,
     },
   }),
-  [CONTENT_POST_SUCCESS]: (state, action) => ({
+  [CONTENT_CREATE_SUCCESS]: (state, action) => ({
     ...state,
-    postcontent: {
+    create: {
       loading: false,
       error: null,
-      data: action.payload,
+      data: action.payload.result,
     },
   }),
-  [CONTENT_POST_ERROR]: (state, action) => ({
+  [CONTENT_CREATE_ERROR]: (state, action) => ({
     ...state,
-    postcontent: {
+    create: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,
     },
   }),
-  [CONTENT_SEARCH_GET]: (state) => ({
+  [CONTENT_UPDATE]: (state) => ({
     ...state,
-    getsearchresults: {
+    update: {
       loading: true,
       error: null,
       data: null,
     },
   }),
-  [CONTENT_SEARCH_GET_SUCCESS]: (state, action) => ({
+  [CONTENT_UPDATE_SUCCESS]: (state, action) => ({
     ...state,
-    getsearchresults: {
+    update: {
       loading: false,
       error: null,
-      data: action.payload,
+      data: action.payload.result,
     },
   }),
-  [CONTENT_SEARCH_GET_ERROR]: (state, action) => ({
+  [CONTENT_UPDATE_ERROR]: (state, action) => ({
     ...state,
-    getsearchresults: {
+    update: {
+      loading: false,
+      error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [CONTENT_LIST_GET]: (state) => ({
+    ...state,
+    list: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [CONTENT_LIST_GET_SUCCESS]: (state, action) => ({
+    ...state,
+    list: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [CONTENT_LIST_GET_ERROR]: (state, action) => ({
+    ...state,
+    list: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,

@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions';
-import { authReducer } from '@interfaces';
+import { AuthReducer } from '@interfaces';
 import { AuthAction } from './actions';
 import {
   AUTH_LOGIN,
@@ -20,7 +20,7 @@ import {
 } from '../actionTypes';
 
 // default Store
-const initialState: authReducer = {
+const initialState: AuthReducer = {
   signup: {
     data: null,
     loading: false,
@@ -53,7 +53,7 @@ const initialState: authReducer = {
   },
 };
 
-const auth = createReducer<authReducer, AuthAction>(initialState, {
+const auth = createReducer<AuthReducer, AuthAction>(initialState, {
   [AUTH_SIGNUP]: (state) => ({
     ...state,
     signup: {
@@ -163,7 +163,7 @@ const auth = createReducer<authReducer, AuthAction>(initialState, {
     login: {
       loading: false,
       error: null,
-      data: { accessToken: action.payload.result.accessToken },
+      data: action.payload,
     },
   }),
   [AUTH_LOGIN_ERROR]: (state, action) => ({
