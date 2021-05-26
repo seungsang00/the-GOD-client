@@ -33,3 +33,4 @@ export { default as Carousel } from './Carousel';
 export { default as Comment } from './Comment';
 export { default as CommentInput } from './CommentInput';
 export { default as Flyout } from './Flyout';
+export { default as OptionList } from './OptionList';
