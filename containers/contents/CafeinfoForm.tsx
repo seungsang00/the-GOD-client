@@ -10,7 +10,13 @@ import {
 import { readFile } from '@interfaces';
 import React, { ChangeEvent, useState } from 'react';
 
-const CafeInfoForm = ({ nextPageHandler }: { nextPageHandler: () => {} }) => {
+const CafeInfoForm = ({
+  nextPageHandler,
+  textareaValue,
+}: {
+  nextPageHandler: () => {};
+  textareaValue: string;
+}) => {
   const [tags, setTags] = useState<string[]>([]);
   const [images, setImages] = useState<readFile[]>([]);
   const tagHandler = (tags: string[]) => {
@@ -44,7 +50,7 @@ const CafeInfoForm = ({ nextPageHandler }: { nextPageHandler: () => {} }) => {
       </select>
       <TextInput />
       <InputTags handler={tagHandler} />
-      <TextArea />
+      <TextArea disabled={false} onChange={() => {}} value={textareaValue} />
       <Carousel col={4}>
         {[
           <div>

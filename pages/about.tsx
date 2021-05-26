@@ -34,6 +34,7 @@ const testHandler = (HHorMM: string) => console.log(HHorMM);
 
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
+  const [inputValue, setInputValue] = useState<string>('');
   const [files, setFiles] = useState<readFile[]>([]);
   const fileListToArray = (fileList: FileList) => {
     for (let i = 0; i < fileList.length; i++) {
@@ -51,6 +52,9 @@ const AboutPage = () => {
       };
     }
   };
+  useEffect(() => {
+    console.log(inputValue);
+  }, [inputValue]);
   const testFilehandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       fileListToArray(e.target.files);
@@ -94,7 +98,10 @@ const AboutPage = () => {
           )),
         ]}
       </Carousel>
-      <TextInput placeholder="...을 입력해주세요" />
+      <TextInput
+        changeHandler={setInputValue}
+        placeholder="...을 입력해주세요"
+      />
       <TextArea placeholder="...을 입력해주세요" />
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={5} />

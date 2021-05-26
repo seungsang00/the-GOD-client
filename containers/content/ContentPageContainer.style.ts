@@ -121,4 +121,22 @@ export const ContentPageStyle = styled.div`
       border-bottom: 1px solid black;
     }
   }
+
+  /* comments */
+  article.comments {
+    width: 100%;
+  }
+  .comments-title {
+    display: flex;
+    align-items: flex-end;
+    padding: ${({ theme }) => theme.space.sm};
+    margin-bottom: ${({ theme }) => theme.space.sm};
+
+    h3 {
+      margin-right: ${({ theme }) => theme.space.sm};
+    }
+    p {
+      font-size: 0.9rem;
+    }
+  }
 `;
