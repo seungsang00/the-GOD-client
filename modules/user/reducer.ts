@@ -8,6 +8,9 @@ import {
   USER_CONTENT_GET,
   USER_CONTENT_GET_ERROR,
   USER_CONTENT_GET_SUCCESS,
+  USER_CONTENT_PATH_GET,
+  USER_CONTENT_PATH_GET_ERROR,
+  USER_CONTENT_PATH_GET_SUCCESS,
   USER_FOLLOW_GET,
   USER_FOLLOW_GET_ERROR,
   USER_FOLLOW_GET_SUCCESS,
@@ -38,6 +41,11 @@ const initialState: UserState = {
     loading: false,
     error: null,
   },
+  paths: {
+    data: null,
+    loading: false,
+    error: null,
+  },
 };
 
 const user = createReducer<UserState, UserAction>(initialState, {
@@ -60,6 +68,30 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [USER_INFO_GET_ERROR]: (state, action) => ({
     ...state,
     userProfile: {
+      loading: false,
+      error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [USER_CONTENT_PATH_GET]: (state) => ({
+    ...state,
+    paths: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [USER_CONTENT_PATH_GET_SUCCESS]: (state, action) => ({
+    ...state,
+    paths: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [USER_CONTENT_PATH_GET_ERROR]: (state, action) => ({
+    ...state,
+    paths: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,

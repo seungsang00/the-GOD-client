@@ -10,9 +10,9 @@ export interface User {
   passwordUpdate?: string;
 }
 export interface Artist {
-  id?: number;
+  id: string;
   name: string;
-  group: string;
+  group: string | null;
   profileImage: string;
   isFollow?: boolean;
 }
@@ -21,7 +21,10 @@ export interface signup {
   password: string;
   username: string;
 }
-
+export interface SharedContent {
+  id: string;
+  content: Content[];
+}
 export interface Perks {
   parking: boolean;
   baby: boolean;
@@ -40,18 +43,21 @@ export interface SearchResult {
   title: string;
   images: string[];
 }
+
 export interface Content {
+  id: string;
   artist: string;
   title: string;
   tags: string[];
   description: string;
-  images: string[];
+  images: Image[];
   date: Date;
   time: Time;
   address: Address;
   mobile: string;
   perks: Perks;
 }
+export type Image = string;
 export interface Date {
   start: string | undefined;
   end: string | undefined;
@@ -97,6 +103,7 @@ export type PutBookmarkResponse = AxiosResponse<{ isBookmark: boolean }>;
 export type GetInfoResponse = AxiosResponse<User>;
 export type PutInfoResponse = AxiosResponse<User>;
 export type GetContentListResponse = AxiosResponse<Content[]>;
+export type GetContentPathResponse = AxiosResponse<SharedContent[]>;
 export type GetUserContentResponse = AxiosResponse<Content[]>;
 export type GetBookmarkResponse = AxiosResponse<Content[]>;
 export type GetFollowResponse = AxiosResponse<Artist[]>;
@@ -106,6 +113,7 @@ export interface UserState {
   bookmarks: AsyncState<Content[]>;
   contents: AsyncState<Content[]>;
   follows: AsyncState<Artist[]>;
+  paths: AsyncState<SharedContent[]>;
 }
 export interface AuthReducer {
   signup: AsyncState<{ message: string }>;

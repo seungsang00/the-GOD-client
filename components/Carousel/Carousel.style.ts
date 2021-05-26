@@ -22,6 +22,7 @@ export default styled.div<{
       flex-shrink: 0;
       ${(props) => {
         const width = 100 / props.col;
+        const mobileWidth = 100;
         return css`
           width: calc(${width}% - 2 * ${({ theme }) => theme.space.sm});
           margin: 0 ${({ theme }) => theme.space.sm};
@@ -34,7 +35,9 @@ export default styled.div<{
             margin: 0 ${({ theme }) => theme.space.xs};
           }
           ${({ theme }) => theme.media.mobile} {
-            width: calc(${width}% - 2 * ${({ theme }) => theme.space.xxs});
+            width: calc(
+              ${mobileWidth}% - 2 * ${({ theme }) => theme.space.xxs}
+            );
             margin: 0 ${({ theme }) => theme.space.xxs};
           }
         `;

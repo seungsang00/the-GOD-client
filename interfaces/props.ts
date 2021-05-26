@@ -1,4 +1,6 @@
+import { Content } from '@interfaces';
 import { ChangeEventHandler, MouseEventHandler, ReactNode } from 'react';
+import { SharedContent } from './reducer';
 
 export interface TextInputProps {
   placeholder?: string;
@@ -52,6 +54,14 @@ export interface CutomModalProps {
   readonly isOpen: boolean;
   handler: MouseEventHandler<HTMLDivElement> | undefined;
 }
+
+export type ContentLoaderPropsType = {
+  data: Content[] | null;
+  type: 'myContent' | 'bookmarks';
+};
+export type PathContentLoaderPropsType = {
+  data: SharedContent[] | null;
+};
 
 export interface AuthContentProps {
   handleChangeContent: MouseEventHandler<HTMLSpanElement> | undefined;

@@ -1,14 +1,8 @@
 import { Button } from '@components';
+import { DataNullLinkProps } from '@interfaces';
 import { useRouter } from 'next/dist/client/router';
 import React from 'react';
 import { Wrapper } from './DataNullLink.style';
-
-interface DataNullLinkProps {
-  title: string;
-  description: string;
-  buttonText: string;
-  linkTo: string;
-}
 
 const DataNullLink = ({
   title,
