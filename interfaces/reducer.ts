@@ -3,6 +3,7 @@ import { AsyncState } from '@utils/reducerUtils';
 export const API_ENDPOINT = `https://${process.env.NEXT_PUBLIC_API}`;
 
 export interface User {
+  id: string;
   type?: string;
   profileImage: string;
   userName: string;
@@ -89,12 +90,43 @@ export interface Perks {
 export interface PerkList {
   [prop: string]: any;
 }
+
+export interface ICommentAuthor {
+  userId: string;
+  username: string;
+  profileImage: string;
+}
+
+export interface IComment {
+  id: string;
+  author: {
+    userId: string;
+    username: string;
+    profileImage: string;
+  };
+  comments: string;
+  createdAt: string;
+}
+
+export interface CommentListResponse {
+  comments: IComment[];
+}
+
+export interface PostCommentReqBody {
+  contentsId: string;
+  comment: string;
+}
+export interface PutCommentReqBody {
+  id: string;
+  comment: string;
+}
 export interface ContentQuery {
   artistId: string;
   location: string;
   dateStart: string;
   dateEnd: string;
 }
+
 export type AxiosResponse<T> = {
   result: T;
   message: string;
@@ -115,6 +147,9 @@ export type GetContentListResponse = AxiosResponse<Content[]>;
 export type GetUserContentResponse = AxiosResponse<Content[]>;
 export type GetBookmarkResponse = AxiosResponse<Content[]>;
 export type GetFollowResponse = AxiosResponse<Artist[]>;
+// comment
+export type GetCommentListResponse = AxiosResponse<CommentListResponse>;
+export type PostCommentResponse = AxiosResponse<IComment>;
 
 export interface UserState {
   userProfile: AsyncState<User>;
@@ -138,19 +173,10 @@ export interface ContentReducer {
   delete: AsyncState<{ message: string }>;
 }
 
-export interface IComment {
-  id: string;
-  author: {
-    userId: string;
-    username: string;
-    profileImage: string;
-  };
-  comments: string;
-  createdAt: string;
-}
-
-export interface ICommentAuthor {
-  userId: string;
-  username: string;
-  profileImage: string;
+export interface CommentReducer {
+  list: AsyncState<IComment[]>;
+  current: AsyncState<IComment>;
+  create: AsyncState<IComment>;
+  update: AsyncState<{ message: string }>;
+  delete: AsyncState<{ message: string }>;
 }
