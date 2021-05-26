@@ -6,8 +6,11 @@ import {
   InfoListItem,
   PerkBadge,
   TextButton,
+  Carousel,
+  CommentInput,
+  sampleCommentsData,
 } from '@components';
-import Carousel from 'components/Carousel';
+
 import {
   sampleUserProfile1,
   sampleUserProfile2,
@@ -26,7 +29,9 @@ import {
   SectionStyle,
 } from './ContentPageContainer.style';
 import { useRouter } from 'next/dist/client/router';
-import { Content } from '@interfaces';
+import { API_ENDPOINT, Content } from '@interfaces';
+import axios from 'axios';
+import Comments from 'containers/comments';
 
 const ContentPageContainer = ({
   artist,
@@ -48,6 +53,9 @@ const ContentPageContainer = ({
     router.push(`/content/edit/${id}`);
   };
 
+  // TODO: 서버에 commentlist 요청 보내기
+  const comments = sampleCommentsData;
+
   // FIXME: store에서 유저 ID 정보를 받아와야 합니다
   const sameUserId = sampleUserProfile2.userId;
   const differentUserId = sampleUserProfile1.userId;
@@ -61,6 +69,19 @@ const ContentPageContainer = ({
     setBookmarked(!bookmarked);
     // TODO: 서버에 변경요청 보내기 (endpoint: `/user/bookmark`). req.body = {"contentId":"bookmark content ID"}
   };
+
+  // const getCommentAsync = async () => {
+  //   try {
+  //     const res = await axios.get(`${API_ENDPOINT}/comments?contentsId=${id}`);
+  //     const { comments } = await res.data.result;
+  //   } catch (e) {
+  //     throw e;
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getCommentAsync();
+  // }, []);
 
   return (
     <ContentPageStyle>
@@ -139,7 +160,14 @@ const ContentPageContainer = ({
           ))}
         </SectionStyle>
       </main>
-      <article className="comments">comments here</article>
+      <article className="comments">
+        <div className="comments-title">
+          <h3>Review</h3>
+          <p>방문 후기를 공유해보세요</p>
+        </div>
+        <CommentInput />
+        <Comments comments={comments} />
+      </article>
     </ContentPageStyle>
   );
 };
