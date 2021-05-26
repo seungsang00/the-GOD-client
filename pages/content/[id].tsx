@@ -1,13 +1,9 @@
 import React from 'react';
-import { useRouter } from 'next/dist/client/router';
 import { Layout } from '@layouts';
 import ContentPageContainer from 'containers/content';
 import { sampleContentData } from '../../utils/sample-data';
 
 const ContentPage = () => {
-  const router = useRouter();
-  const { id } = router.query; // contentId
-
   // FIXME: store에서 컨텐츠 정보를 받아와야 합니다
   const {
     artist,
