@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, ReactElement, ReactNode } from 'react';
+import React, { MouseEventHandler, ReactElement } from 'react';
 import { DropdownTriggerStyle } from './Dropdown.style';
 
 interface DropdownTriggerProps {

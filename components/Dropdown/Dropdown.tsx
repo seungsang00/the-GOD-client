@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, MouseEvent } from 'react';
+import React, { ReactNode, ReactElement } from 'react';
 import { DropdownStyle } from './Dropdown.style';
 
 interface DropdownProps {
@@ -12,16 +12,9 @@ const Dropdown = ({
   size = '100%',
   children,
 }: DropdownProps): ReactElement => {
-  const testHandler = (e: MouseEvent) => {
-    const target = e.target as HTMLLIElement;
-    console.dir(e.target);
-    // console.log(e.target.textContent);
-  };
   return (
     <DropdownStyle size={size} visible={visible}>
-      <div className="dropdown-content" onClick={testHandler}>
-        {children}
-      </div>
+      <div className="dropdown-content">{children}</div>
     </DropdownStyle>
   );
 };
