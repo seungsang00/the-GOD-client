@@ -4,12 +4,13 @@ import {
   FilePreview,
   InputTags,
   TextArea,
+  TextButton,
   TextInput,
 } from '@components';
 import { readFile } from '@interfaces';
 import React, { ChangeEvent, useState } from 'react';
 
-const CafeInfoForm = ({}) => {
+const CafeInfoForm = ({ nextPageHandler }: { nextPageHandler: () => {} }) => {
   const [tags, setTags] = useState<string[]>([]);
   const [images, setImages] = useState<readFile[]>([]);
   const tagHandler = (tags: string[]) => {
@@ -57,6 +58,7 @@ const CafeInfoForm = ({}) => {
           )),
         ]}
       </Carousel>
+      <TextButton disabled={false} handler={nextPageHandler} text="다음" />
     </>
   );
 };
