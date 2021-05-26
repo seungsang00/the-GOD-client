@@ -2,6 +2,10 @@ import { Content } from '@interfaces';
 import { ChangeEventHandler, MouseEventHandler, ReactNode } from 'react';
 import { SharedContent } from './reducer';
 
+export interface PerkProps {
+  perk: string;
+  isActive: boolean;
+}
 export interface TextInputProps {
   placeholder?: string;
   value?: string;

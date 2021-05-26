@@ -11,6 +11,7 @@ const Toggle = ({ value, icon, handler }: ToggleProps): ReactElement => {
     baby: '유아용 좌석',
     cat: '반려동물 출입가능',
     subway: '지하철',
+    sort: '엘리베이터 사용가능',
   };
   return (
     <ToggleStyle value={value}>
