@@ -8,9 +8,10 @@ import {
   TextButton,
   Carousel,
   CommentInput,
-} from '@components';
-import {
   sampleCommentsData,
+} from '@components';
+
+import {
   sampleUserProfile1,
   sampleUserProfile2,
 } from '../../utils/sample-data';
