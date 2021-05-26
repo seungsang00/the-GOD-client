@@ -18,4 +18,8 @@ export const StyledTextInput = withProps<TextInputProps, HTMLInputElement>(
 export const StyledTextArea = styled.textarea`
   width: 100%;
   padding: ${({ theme }) => theme.space.sm};
+  padding-top: ${({ theme }) => theme.space.xs};
+  padding-right: 3rem;
+  background-color: ${({ theme }) => theme.colors.lightgrey} !important;
+  border-radius: ${({ theme }) => theme.borderRadius};
 `;
