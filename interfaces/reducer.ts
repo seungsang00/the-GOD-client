@@ -120,7 +120,7 @@ export interface PutCommentReqBody {
   comment: string;
 }
 export interface ContentQuery {
-  artistId: string;
+  artist: string;
   location: string;
   dateStart: string;
   dateEnd: string;
