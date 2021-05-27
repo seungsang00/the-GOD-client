@@ -13,8 +13,7 @@ import {
 } from '@components';
 import FilePreview from 'components/FilePreview';
 import useModal from 'hooks/useModal';
-import { SignoutModal } from 'containers/auth';
-import MainSearchForm from 'containers/main/searchform';
+import { SignoutModal, MainSearchForm } from '@containers';
 import useTextInput from 'hooks/useTextInput';
 
 const MyComponent = styled.div`

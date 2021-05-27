@@ -8,7 +8,6 @@ import {
   TextButton,
   Carousel,
   CommentInput,
-  sampleCommentsData,
 } from '@components';
 
 import {
@@ -29,9 +28,8 @@ import {
   SectionStyle,
 } from './ContentPageContainer.style';
 import { useRouter } from 'next/dist/client/router';
-import { API_ENDPOINT, Content } from '@interfaces';
-import axios from 'axios';
-import Comments from 'containers/comments';
+import { Content } from '@interfaces';
+import { Comments } from '@containers';
 
 const ContentPageContainer = ({
   artist,
@@ -52,9 +50,6 @@ const ContentPageContainer = ({
   const handleClickEdit = () => {
     router.push(`/content/edit/${id}`);
   };
-
-  // TODO: 서버에 commentlist 요청 보내기
-  const comments = sampleCommentsData;
 
   // FIXME: store에서 유저 ID 정보를 받아와야 합니다
   const sameUserId = sampleUserProfile2.userId;
@@ -166,7 +161,7 @@ const ContentPageContainer = ({
           <p>방문 후기를 공유해보세요</p>
         </div>
         <CommentInput />
-        <Comments comments={comments} />
+        <Comments />
       </article>
     </ContentPageStyle>
   );
