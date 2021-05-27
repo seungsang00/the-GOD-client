@@ -20,8 +20,8 @@ const InputWithLabel = ({
       <div>{label}</div>
       <TextInput
         type={type || 'password'}
-        value={value}
-        disabled={disabled}
+        value={value as string}
+        disabled={disabled as boolean}
         onChange={onChange}
       />
     </Wrapper>
