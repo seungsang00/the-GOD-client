@@ -1,10 +1,10 @@
 import { Content } from '@interfaces';
 import {
   ChangeEventHandler,
+  SetStateAction,
   Dispatch,
   MouseEventHandler,
   ReactNode,
-  SetStateAction,
 } from 'react';
 import { SharedContent } from './reducer';
 

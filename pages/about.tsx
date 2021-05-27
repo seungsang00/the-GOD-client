@@ -9,7 +9,7 @@ import {
   InputTags,
   OrderSidebar,
   SearchInputs,
-  TextArea,
+  // TextArea,
   TextInput,
   TimeSelect,
 } from '@components';
@@ -19,6 +19,7 @@ import { SignoutModal } from 'containers/auth';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { readFile } from '@interfaces';
 import LocationForm from 'containers/contents/LocationForm';
+import MainSearchForm from 'containers/main/searchform';
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};
@@ -96,6 +97,8 @@ const AboutPage = () => {
         }}
       />
       <MyComponent>디스플레이 크기에 따라 색이 바뀔거에요!</MyComponent>
+      <h2>MainSearchForm</h2>
+      <MainSearchForm />
       <div style={{ width: '100%', padding: '40px' }}>
         <label htmlFor="modal">login modal button</label>
         <button style={{ border: 'solid 1px red' }} onClick={modalController}>
@@ -125,7 +128,7 @@ const AboutPage = () => {
         ]}
       </Carousel>
       <TextInput placeholder="...을 입력해주세요" />
-      <TextArea placeholder="...을 입력해주세요" />
+      {/* <TextArea placeholder="...을 입력해주세요" /> */}
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={5} />
     </Layout>
