@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { ImagesContainerStyle } from './ImagesContainer.style';
 
-interface ImagesContainerProps {
+export interface ImagesContainerProps {
   title: string;
   images: string[];
   max: number;
@@ -12,7 +12,7 @@ const ImagesContainer = ({
   max,
 }: ImagesContainerProps): ReactElement => {
   return (
-    <ImagesContainerStyle>
+    <ImagesContainerStyle max={max}>
       {images.slice(0, max).map((link: string, i: number) => (
         <img src={link} key={i} alt={`${title}-img-${i}`} />
       ))}
