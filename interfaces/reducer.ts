@@ -26,15 +26,7 @@ export interface SharedContent {
   id: string;
   content: Content[];
 }
-export interface Perks {
-  parking: boolean;
-  baby: boolean;
-  pet: boolean;
-  subway: boolean;
-  train: boolean;
-  airport: boolean;
-  taxi: boolean;
-}
+
 // content
 export interface SearchResult {
   id: string;
@@ -87,9 +79,10 @@ export interface Perks {
   bus: boolean;
   subway: boolean;
   train: boolean;
-  elevator: boolean;
+  elevator: boolean; // sort
   baby: boolean;
   parking: boolean;
+  pet: boolean; // cat
   [prop: string]: boolean;
 }
 
