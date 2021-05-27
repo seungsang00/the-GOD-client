@@ -1,20 +1,31 @@
-import { ImagesContainer } from '@components';
-import { Content } from '@interfaces';
-import React from 'react';
+import { Badge, ImagesContainer } from '@components';
+import { ContentCardProps } from '@interfaces';
+import { checkOpenNow } from '@utils/contentUtils';
+import moment from 'moment';
+import React, { ReactElement } from 'react';
 import ContentCardStyle from './ContentCard.style';
 
-interface ContentCardProps {
-  isOpen: boolean; // 현재 디테일 영역이 열려있는 컨텐츠id
-  contentData: Content;
-}
-const ContentCard = ({ isOpen, contentData }: ContentCardProps) => {
-  const { title, description, date, images } = contentData;
+const ContentCard = ({
+  focusedID,
+  contentData,
+  handleClick,
+}: ContentCardProps): ReactElement => {
+  const { id, title, description, date, images, time } = contentData;
   return (
-    <ContentCardStyle>
-      <div>{title}</div>
+    <ContentCardStyle onClick={() => handleClick(id)}>
+      <h4>{title}</h4>
+      <span>
+        <Badge>{moment(date.end).fromNow() + ' 마감'}</Badge>
+      </span>
+      <span>
+        <Badge>
+          {checkOpenNow(time.open, time.close) ? '영업중' : '준비중'}
+        </Badge>
+      </span>
       <div>{description}</div>
-      <div>{date}</div>
-      {isOpen && <ImagesContainer title={title} images={images} max={3} />}
+      {focusedID === id && (
+        <ImagesContainer title={title} images={images} max={3} />
+      )}
     </ContentCardStyle>
   );
 };
