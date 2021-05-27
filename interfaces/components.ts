@@ -12,6 +12,14 @@ export type ModalProps = {
   component: Component | FunctionComponent | ReactElement;
   handler: MouseEventHandler<HTMLDivElement> | undefined;
 };
+
+export interface DataNullLinkProps {
+  title: string;
+  description: string;
+  buttonText: string;
+  linkTo: string;
+}
+
 // toggle type
 export type ToggleProps = {
   readonly value: boolean;

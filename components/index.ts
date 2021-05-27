@@ -6,6 +6,8 @@ export { default as Toggle } from './Toggle';
 export { default as BookmarkButton } from './BookmarkButton';
 export { default as Button } from './Button';
 export { default as GuideButton } from './Guide';
+export { default as Carousel } from './Carousel';
+export { default as ContentCard } from './ContentCard';
 export { default as SearchInputs } from './SearchInputs';
 export { default as Header } from './Header';
 export { default as FileInput } from './FileInput';

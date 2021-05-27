@@ -1,10 +1,6 @@
-import {
-  ChangeEventHandler,
-  Dispatch,
-  MouseEventHandler,
-  ReactNode,
-  SetStateAction,
-} from 'react';
+import { Content } from '@interfaces';
+import { ChangeEventHandler, SetStateAction, Dispatch, MouseEventHandler, ReactNode } from 'react';
+import { SharedContent } from './reducer';
 
 export interface PerkProps {
   perk: string;
@@ -63,6 +59,14 @@ export interface CutomModalProps {
   readonly isOpen: boolean;
   handler: MouseEventHandler<HTMLDivElement> | undefined;
 }
+
+export type ContentLoaderPropsType = {
+  data: Content[] | null;
+  type: 'myContent' | 'bookmarks';
+};
+export type PathContentLoaderPropsType = {
+  data: SharedContent[] | null;
+};
 
 export interface AuthContentProps {
   handleChangeContent: MouseEventHandler<HTMLSpanElement> | undefined;
