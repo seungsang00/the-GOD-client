@@ -65,18 +65,391 @@ export const sampleUserProfile2 = {
   profileImage:
     'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
 };
-
+export const sampleContentListData: Content[] = [
+  {
+    id: '1',
+    artist: 'ENHYPEN',
+    title: '엔하이픈 컴백 기념 컵홀더 이벤트',
+    tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
+    description:
+      '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+    images: [
+      'https://pbs.twimg.com/media/EkSaUUAVgAE--Kc?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaVR3VoAAb4hd?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+    ],
+    date: {
+      start: '2021-05-25',
+      end: '2021-06-01',
+    },
+    time: {
+      open: '09:00:00',
+      close: '22:00:00',
+    },
+    address: {
+      storeName: '감탄커피',
+      roadAddress: '서울 강남구 테헤란로 522 지하 1층',
+      location: {
+        lat: 37.5640455,
+        lng: 126.8340014,
+      },
+    },
+    mobile: '070-0000-0000',
+    perks: {
+      bus: true,
+      subway: true,
+      train: true,
+      elevator: false,
+      baby: true,
+      parking: false,
+      pet: true,
+    },
+    isBookmark: true,
+    author: {
+      userId: '019jkdkjbf1r0982039',
+      username: 'ENGENE',
+      profileImage:
+        'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    },
+  },
+  {
+    id: '2',
+    artist: 'ENHYPEN',
+    title: '엔하이픈 음방 1위 기념 이벤트',
+    tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
+    description:
+      '엔하이픈 음방 1위 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+    images: [
+      'https://pbs.twimg.com/media/Ez8I9XdVUAEnBFk?format=jpg&name=large',
+      'https://pbs.twimg.com/media/Ez8I-GRVkAEIxhc?format=jpg&name=large',
+      'https://pbs.twimg.com/media/Ez8I-y-VIAAHV0i?format=jpg&name=large',
+      'https://pbs.twimg.com/media/Ez8I_dpVkAg32aE?format=jpg&name=large',
+    ],
+    date: {
+      start: '2021-05-25',
+      end: '2021-06-07',
+    },
+    time: {
+      open: '09:00:00',
+      close: '22:00:00',
+    },
+    address: {
+      storeName: '오가다커피',
+      roadAddress: '서울 강남구 테헤란로 522 지하 1층',
+      location: {
+        lat: 37.5640455,
+        lng: 126.8340014,
+      },
+    },
+    mobile: '070-0000-0000',
+    perks: {
+      bus: true,
+      subway: true,
+      train: true,
+      elevator: false,
+      baby: true,
+      parking: false,
+      pet: true,
+    },
+    isBookmark: true,
+    author: {
+      userId: '019jkdkjbf1r0982039',
+      username: 'ENGENE',
+      profileImage:
+        'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    },
+  },
+  {
+    id: '3',
+    artist: 'ENHYPEN',
+    title: '엔하이픈 선우 생카',
+    tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
+    description:
+      '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+    images: [
+      'https://pbs.twimg.com/media/E2Te_zvUUAEvltv?format=jpg&name=large',
+      'https://pbs.twimg.com/media/E2Te_ztUYAUuZ_Q?format=jpg&name=large',
+    ],
+    date: {
+      start: '2021-05-25',
+      end: '2021-06-01',
+    },
+    time: {
+      open: '09:00:00',
+      close: '22:00:00',
+    },
+    address: {
+      storeName: '감탄커피',
+      roadAddress: '서울 강남구 테헤란로 522 지하 1층',
+      location: {
+        lat: 37.5640455,
+        lng: 126.8340014,
+      },
+    },
+    mobile: '070-0000-0000',
+    perks: {
+      bus: true,
+      subway: true,
+      train: true,
+      elevator: false,
+      baby: true,
+      parking: false,
+      pet: true,
+    },
+    isBookmark: true,
+    author: {
+      userId: '019jkdkjbf1r0982039',
+      username: 'ENGENE',
+      profileImage:
+        'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    },
+  },
+  {
+    id: '4',
+    artist: 'ENHYPEN',
+    title: '엔하이픈 데뷔 기념 컵홀더 이벤트',
+    tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
+    description:
+      '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+    images: [
+      'https://pbs.twimg.com/media/En1PQxIVcAMdid_?format=jpg&name=large',
+      'https://pbs.twimg.com/media/En1PQxHVkAAA-DR?format=jpg&name=large',
+      'https://pbs.twimg.com/media/En1PQxJUwAIDX3N?format=jpg&name=large',
+    ],
+    date: {
+      start: '2021-05-25',
+      end: '2021-06-01',
+    },
+    time: {
+      open: '09:00:00',
+      close: '22:00:00',
+    },
+    address: {
+      storeName: '카페 오가다(여의도 KBS 점)',
+      roadAddress: '서울 강남구 테헤란로 522 지하 1층',
+      location: {
+        lat: 37.5640455,
+        lng: 126.8340014,
+      },
+    },
+    mobile: '070-0000-0000',
+    perks: {
+      bus: true,
+      subway: true,
+      train: true,
+      elevator: false,
+      baby: true,
+      parking: false,
+      pet: true,
+    },
+    isBookmark: true,
+    author: {
+      userId: '019jkdkjbf1r0982039',
+      username: 'ENGENE',
+      profileImage:
+        'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    },
+  },
+  {
+    id: '5',
+    artist: 'ENHYPEN',
+    title: '엔하이픈 선우 생일 카페 이벤트',
+    tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
+    description:
+      '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+    images: [
+      'https://pbs.twimg.com/media/E2OSdi4VEAECLok?format=jpg&name=large',
+      'https://pbs.twimg.com/media/E2OSdi7UUAEFNG8?format=jpg&name=large',
+    ],
+    date: {
+      start: '2021-05-25',
+      end: '2021-06-01',
+    },
+    time: {
+      open: '09:00:00',
+      close: '22:00:00',
+    },
+    address: {
+      storeName: '감탄커피',
+      roadAddress: '서울 강남구 테헤란로 522 지하 1층',
+      location: {
+        lat: 37.5640455,
+        lng: 126.8340014,
+      },
+    },
+    mobile: '070-0000-0000',
+    perks: {
+      bus: true,
+      subway: true,
+      train: true,
+      elevator: false,
+      baby: true,
+      parking: false,
+      pet: true,
+    },
+    isBookmark: true,
+    author: {
+      userId: '019jkdkjbf1r0982039',
+      username: 'ENGENE',
+      profileImage:
+        'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    },
+  },
+  {
+    id: '6',
+    artist: 'ENHYPEN',
+    title: '엔하이픈 제이 생카',
+    tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
+    description:
+      '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+    images: [
+      'https://pbs.twimg.com/media/EkSaUUAVgAE--Kc?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaVR3VoAAb4hd?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+    ],
+    date: {
+      start: '2021-05-25',
+      end: '2021-06-01',
+    },
+    time: {
+      open: '09:00:00',
+      close: '22:00:00',
+    },
+    address: {
+      storeName: '감탄커피',
+      roadAddress: '서울 강남구 테헤란로 522 지하 1층',
+      location: {
+        lat: 37.5640455,
+        lng: 126.8340014,
+      },
+    },
+    mobile: '070-0000-0000',
+    perks: {
+      bus: true,
+      subway: true,
+      train: true,
+      elevator: false,
+      baby: true,
+      parking: false,
+      pet: true,
+    },
+    isBookmark: true,
+    author: {
+      userId: '019jkdkjbf1r0982039',
+      username: 'ENGENE',
+      profileImage:
+        'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    },
+  },
+  {
+    id: '7',
+    artist: 'ENHYPEN',
+    title: '엔하이픈 희승 생카',
+    tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
+    description:
+      '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+    images: [
+      'https://pbs.twimg.com/media/EkSaUUAVgAE--Kc?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaVR3VoAAb4hd?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+    ],
+    date: {
+      start: '2021-05-25',
+      end: '2021-06-01',
+    },
+    time: {
+      open: '09:00:00',
+      close: '22:00:00',
+    },
+    address: {
+      storeName: '감탄커피',
+      roadAddress: '서울 강남구 테헤란로 522 지하 1층',
+      location: {
+        lat: 37.5640455,
+        lng: 126.8340014,
+      },
+    },
+    mobile: '070-0000-0000',
+    perks: {
+      bus: true,
+      subway: true,
+      train: true,
+      elevator: false,
+      baby: true,
+      parking: false,
+      pet: true,
+    },
+    isBookmark: true,
+    author: {
+      userId: '019jkdkjbf1r0982039',
+      username: 'ENGENE',
+      profileImage:
+        'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    },
+  },
+  {
+    id: '8',
+    artist: 'ENHYPEN',
+    title: '엔하이픈 제이크 생카',
+    tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
+    description:
+      '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+    images: [
+      'https://pbs.twimg.com/media/EkSaUUAVgAE--Kc?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaVR3VoAAb4hd?format=jpg&name=large',
+      'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+    ],
+    date: {
+      start: '2021-05-25',
+      end: '2021-06-01',
+    },
+    time: {
+      open: '09:00:00',
+      close: '22:00:00',
+    },
+    address: {
+      storeName: '감탄커피',
+      roadAddress: '서울 강남구 테헤란로 522 지하 1층',
+      location: {
+        lat: 37.5640455,
+        lng: 126.8340014,
+      },
+    },
+    mobile: '070-0000-0000',
+    perks: {
+      bus: true,
+      subway: true,
+      train: true,
+      elevator: false,
+      baby: true,
+      parking: false,
+      pet: true,
+    },
+    isBookmark: true,
+    author: {
+      userId: '019jkdkjbf1r0982039',
+      username: 'ENGENE',
+      profileImage:
+        'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
+    },
+  },
+];
 export const sampleContentData: Content = {
+  id: '1',
   artist: 'ENHYPEN',
-  title: '엔하이픈 컴백 기념 컵홀더 이벤트',
+  title: '엔하이픈 제이 데뷔 기념 카페',
   tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
   description:
     '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
   images: [
-    'https://pbs.twimg.com/media/EkSaUUAVgAE--Kc?format=jpg&name=large',
-    'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
-    'https://pbs.twimg.com/media/EkSaVR3VoAAb4hd?format=jpg&name=large',
-    'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EnoGgKDUwAEPORW?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EnoGgKDVkAEq_f5?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EnoGgKDVoAEehLT?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EnoGgKQVgAAgsOm?format=jpg&name=medium',
   ],
   date: {
     start: '2021-05-25',
