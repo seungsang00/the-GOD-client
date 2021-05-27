@@ -79,10 +79,10 @@ export interface Perks {
   bus: boolean;
   subway: boolean;
   train: boolean;
-  elevator: boolean;
+  elevator: boolean; // sort
   baby: boolean;
   parking: boolean;
-  pet: boolean;
+  pet: boolean; // cat
   [prop: string]: boolean;
 }
 

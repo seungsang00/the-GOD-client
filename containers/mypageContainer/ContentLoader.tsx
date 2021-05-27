@@ -22,15 +22,11 @@ const ContentLoader = ({ data, type }: ContentLoaderPropsType) => {
   }
   return (
     <Carousel>
-      {data.map(({ id, title, description, date, images, ...rest }) => (
+      {data.map((content) => (
         <ContentCard
-          key={`artist_${id}`}
-          id={id}
-          title={title}
-          description={description}
-          date={date}
-          images={images}
-          {...rest}
+          key={`content_${content.id}`}
+          contentData={content}
+          isOpen={true}
         />
       ))}
     </Carousel>

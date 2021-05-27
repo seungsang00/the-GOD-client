@@ -1,8 +1,11 @@
 import { Content } from '@interfaces';
 import {
+  ChangeEventHandler,
+  SetStateAction,
+  Dispatch,
   MouseEventHandler,
-  KeyboardEvent,
   ReactNode,
+  KeyboardEvent,
   ChangeEvent,
 } from 'react';
 import { SharedContent } from './reducer';
@@ -71,6 +74,12 @@ export interface CutomModalProps {
   handler: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
+export interface SearchContentLoaderProps {
+  data: Content[] | null;
+  focusedID: string | null;
+  handleCardClick: (id: string) => void;
+}
+
 export type ContentLoaderPropsType = {
   data: Content[] | null;
   type: 'myContent' | 'bookmarks';
@@ -106,4 +115,10 @@ export interface FileInputProps {
 export interface FlyoutProps {
   children: ReactNode;
   handler: MouseEventHandler;
+}
+
+export interface ContentCardProps {
+  focusedID: string | null; // 현재 디테일 영역이 열려있는 컨텐츠id
+  contentData: Content;
+  handleClick: (id: string) => void;
 }
