@@ -18,6 +18,7 @@ import useModal from 'hooks/useModal';
 import { SignoutModal } from 'containers/auth';
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { readFile } from '@interfaces';
+import LocationForm from 'containers/contents/LocationForm';
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};
@@ -35,6 +36,23 @@ const testHandler = (HHorMM: string) => console.log(HHorMM);
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
   const [inputValue, setInputValue] = useState<string>('');
+  const [toggles, setToggles] = useState<{
+    bus: boolean;
+    subway: boolean;
+    train: boolean;
+    sort: boolean;
+    baby: boolean;
+    parking: boolean;
+    cat: boolean;
+  }>({
+    bus: false,
+    subway: false,
+    train: false,
+    sort: false,
+    baby: false,
+    parking: false,
+    cat: false,
+  });
   const [files, setFiles] = useState<readFile[]>([]);
   const fileListToArray = (fileList: FileList) => {
     for (let i = 0; i < fileList.length; i++) {
@@ -69,6 +87,14 @@ const AboutPage = () => {
           <a>Go home</a>
         </Link>
       </p>
+      <LocationForm
+        toggles={toggles}
+        ToogleHandler={(icon: 'bus') => {
+          return () => {
+            setToggles((state) => ({ ...state, [icon]: !toggles[icon] }));
+          };
+        }}
+      />
       <MyComponent>디스플레이 크기에 따라 색이 바뀔거에요!</MyComponent>
       <div style={{ width: '100%', padding: '40px' }}>
         <label htmlFor="modal">login modal button</label>
@@ -98,10 +124,7 @@ const AboutPage = () => {
           )),
         ]}
       </Carousel>
-      <TextInput
-        changeHandler={setInputValue}
-        placeholder="...을 입력해주세요"
-      />
+      <TextInput placeholder="...을 입력해주세요" />
       <TextArea placeholder="...을 입력해주세요" />
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={5} />

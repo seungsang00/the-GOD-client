@@ -1,4 +1,10 @@
-import Document, { DocumentContext } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from 'next/document';
 import { ServerStyleSheet } from '@styles/themed-components';
 
 export default class MyDocument extends Document {
@@ -26,5 +32,25 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+  render() {
+    return (
+      <Html>
+        <Head>
+          <script
+            type="text/javascript"
+            src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_ID}&libraries=services`}
+          />
+          <script
+            type="text/javascript"
+            src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+          />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }

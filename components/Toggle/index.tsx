@@ -9,9 +9,9 @@ const Toggle = ({ value, icon, handler }: ToggleProps): ReactElement => {
     bus: '버스 정류장',
     train: '기차역',
     baby: '유아용 좌석',
-    cat: '반려동물 출입가능',
+    cat: '반려동물 출입가능', // pet
     subway: '지하철',
-    sort: '엘리베이터 사용가능',
+    sort: '엘리베이터 사용가능', // elevator
   };
   return (
     <ToggleStyle value={value}>
