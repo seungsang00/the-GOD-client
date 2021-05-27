@@ -1,24 +1,24 @@
-import useTextInput from 'hooks/useTextInput';
 import { TextInputProps } from 'interfaces/props';
 import React, { ChangeEvent, KeyboardEvent, ReactElement } from 'react';
 import { StyledTextInput, StyledTextArea } from './TextInput.style';
 
 export const TextInput = ({
   type,
-  placeholder,
-  initValue,
+  value,
   onChange,
+  onKeyDown,
   disabled,
+  placeholder,
 }: TextInputProps): ReactElement => {
-  const { inputEvent } = useTextInput(initValue ? initValue : '');
   return (
     <StyledTextInput
       className="textinput"
       type={type}
-      {...inputEvent}
-      placeholder={placeholder}
-      onChange={onChange}
+      value={value}
       disabled={disabled}
+      placeholder={placeholder}
+      onKeyDown={onKeyDown}
+      onChange={onChange}
     />
   );
 };

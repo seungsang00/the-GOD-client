@@ -1,18 +1,29 @@
 import { Content } from '@interfaces';
-import { ChangeEventHandler, SetStateAction, Dispatch, MouseEventHandler, ReactNode } from 'react';
+import {
+  MouseEventHandler,
+  KeyboardEvent,
+  ReactNode,
+  ChangeEvent,
+} from 'react';
 import { SharedContent } from './reducer';
 
 export interface PerkProps {
   perk: string;
   isActive: boolean;
 }
+
 export interface TextInputProps {
+  type: string;
+  value: string;
+  onChange: ({
+    target,
+  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onKeyDown?: ({
+    key,
+  }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onClick?: () => void;
+  disabled: boolean;
   placeholder?: string;
-  initValue?: string;
-  type?: string;
-  onChange?: ChangeEventHandler;
-  disabled?: boolean;
-  handler?: Dispatch<SetStateAction<string>>;
 }
 
 export interface AvatarProps {

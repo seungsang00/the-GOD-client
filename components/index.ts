@@ -31,7 +31,6 @@ export { default as DatePicker } from './DatePicker';
 export { default as PerkBadge } from './PerkBadge';
 export { default as InfoListItem } from './InfoListItem';
 export * from './Dropdown';
-export { default as Carousel } from './Carousel';
 export { default as Comment } from './Comment';
 export { default as CommentInput } from './CommentInput';
 export { default as Flyout } from './Flyout';
