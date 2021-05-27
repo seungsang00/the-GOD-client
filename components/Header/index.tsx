@@ -27,9 +27,9 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
         <nav className="gnb">
           {avatar}
           <AccountOptionsButton handler={flyoutController} />
+          {isOpen && <AccountOptionsFlyout handler={flyoutController} />}
         </nav>
       </HeaderContainer>
-      {isOpen && <AccountOptionsFlyout handler={flyoutController} />}
     </>
   );
 };

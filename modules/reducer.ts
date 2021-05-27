@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import user from './user';
 import auth from './auth';
 import content from './content';
+import comment from './comment';
 
 const rootReducer = combineReducers({
   user,
   auth,
   content,
+  comment,
 });
 
 // 루트 리듀서를 내보내주세요.

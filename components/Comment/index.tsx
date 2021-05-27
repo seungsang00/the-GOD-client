@@ -1,41 +1,73 @@
 import { Avatar, Flyout, TextButton } from '@components';
 import { CommentStyle } from './Comment.style';
-import { API_ENDPOINT, IComment } from '@interfaces';
+import { IComment } from '@interfaces';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import useFlyout from 'hooks/useFlyout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TextArea } from 'components/TextInput';
-import axios from 'axios';
 import useTextInput from 'hooks/useTextInput';
+// import { sampleCommentsData } from '@utils/sample-data';
+import { useSelector } from 'react-redux';
+import { RootState } from 'modules/reducer';
+import { getInfoThunk } from 'modules/user';
+import {
+  deleteCommentThunk,
+  getCommentListThunk,
+  updateCommentThunk,
+} from 'modules/comment';
+import { useRouter } from 'next/router';
 
 type Props = {
   commentData: IComment;
-  handleClickDelete: () => void;
 };
-const Comment = ({ commentData, handleClickDelete }: Props) => {
-  const [data, setData] = useState<IComment>(commentData);
-  const { id, author, comments, createdAt } = data;
+const Comment = ({ commentData }: Props) => {
+  const router = useRouter();
+  const { id: contentId } = router.query as { id: string };
+
+  const { id: commentId, author, comments, createdAt } = commentData;
+  const { username, profileImage } = author;
+
   const [editmode, setEditMode] = useState<boolean>(false);
+
   const { isOpen, flyoutController } = useFlyout(false);
+
   const { inputEvent } = useTextInput(comments);
   const { value, onChange, onKeyDown } = inputEvent;
 
-  const token: string | null = localStorage.getItem('accessToken');
+  // ! Store 구독
+  const { data: userData } = useSelector(
+    (state: RootState) => state.user.userProfile
+  );
+  const { data: deleteData } = useSelector(
+    (state: RootState) => state.comment.delete
+  );
+  const { data: updateData } = useSelector(
+    (state: RootState) => state.comment.update
+  );
 
-  const userId = '019jkdkjbf1r0882939'; // FIXME: store에서 사용자 아이디 받아오기
+  // ! userId 가져오기
+  // const userId = '019jkdkjbf1r0882939';
+  let userId: string | undefined;
+  useEffect(() => {
+    getInfoThunk();
+    if (userData) userId = userData.id;
+  }, []);
 
-  const submitEditedComment = async () => {
-    console.log(`edit!`);
-    // TODO: 서버에 요청을 보내고, 응답 상태에 따라 핸들링하는 과정이 추가되어야 합니다
-    // if ok,
-    const now = new Date();
-    setData({ ...data, comments: value, createdAt: moment(now).fromNow() });
-    setEditMode(false);
-  };
+  // ! 삭제 후 다시 불러오기
+  useEffect(() => {
+    if (!deleteData) getCommentListThunk(contentId);
+  }, [deleteData]);
 
-  const { username, profileImage } = author;
+  // ! 수정 후 다시 불러오기
+  useEffect(() => {
+    if (!updateData) {
+      getCommentListThunk(contentId);
+      setEditMode(false);
+    }
+  }, [updateData]);
+
   return (
     <CommentStyle>
       <section className="c-avatar-section">
@@ -54,7 +86,9 @@ const Comment = ({ commentData, handleClickDelete }: Props) => {
               <TextButton
                 disabled={false}
                 text="수정"
-                handler={submitEditedComment}
+                handler={() =>
+                  updateCommentThunk({ id: commentId, comment: value })
+                }
               />
               <TextButton
                 disabled={false}
@@ -68,7 +102,7 @@ const Comment = ({ commentData, handleClickDelete }: Props) => {
               {isOpen && (
                 <Flyout handler={flyoutController}>
                   <ul>
-                    {userId === author.userId ? (
+                    {userId && userId === author.userId ? (
                       <>
                         <li
                           className="flyout-option"
@@ -78,7 +112,7 @@ const Comment = ({ commentData, handleClickDelete }: Props) => {
                         </li>
                         <li
                           className="flyout-option"
-                          onClick={handleClickDelete}
+                          onClick={() => deleteCommentThunk(commentId)}
                         >
                           Delete
                         </li>
