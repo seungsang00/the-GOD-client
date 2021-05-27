@@ -9,6 +9,9 @@ import {
   handleOptionList,
 } from '@utils/dropdownUtils';
 import { MainSearchFormContainer } from './mainsearchform.style';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { getContentListThunk } from 'modules/content/actions/read';
 
 const MainSearchForm = (): ReactElement => {
   // option list
@@ -33,6 +36,37 @@ const MainSearchForm = (): ReactElement => {
   const [stateA, setStateA] = useState<string | undefined>(undefined); // 아티스트
   const [stateB, setStateB] = useState<string | undefined>(undefined); // 위치
   const [dates, setDates] = useState<Dates>({ startDate: null, endDate: null }); // 날짜
+
+  // queryData 생성
+  const makeQueryData = () => {
+    let artist, location;
+    const tempA = stateA?.split(' ');
+    tempA && tempA[1] === 'ALL'
+      ? (artist = tempA[0])
+      : (artist = tempA?.join(' '));
+    const tempB = stateB?.split(' ');
+    tempB && tempB[1] === '전체'
+      ? (location = tempB[0])
+      : (location = tempB?.join(' '));
+    const queryData = {
+      artist,
+      location,
+      dateStart: moment(dates.startDate).format('YYYY-MM-DD'),
+      dateEnd: moment(dates.endDate).format('YYYY-MM-DD'),
+    };
+    return queryData;
+  };
+
+  // 검색 버튼 핸들러
+  const handleSearchClick = () => {
+    const { artist, location, dateStart, dateEnd } = makeQueryData();
+    getContentListThunk({
+      artist: artist as string,
+      location: location as string,
+      dateStart: dateStart as string,
+      dateEnd: dateEnd as string,
+    });
+  };
 
   // 상태 관리 핸들러
   const handleChangeStateA = (selected: string) => {
@@ -94,8 +128,11 @@ const MainSearchForm = (): ReactElement => {
   }, [viewWidth]);
 
   return (
-    <MainSearchFormContainer>
-      <section style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+    <MainSearchFormContainer className="main__banner">
+      <section
+        className="main__searchform"
+        style={{ display: 'flex', justifyContent: 'space-evenly' }}
+      >
         <div className={`trigger-wrapper ${!isDoneA ? 'active' : 'inactive'}`}>
           <DropdownTrigger
             value={stateA}
@@ -134,6 +171,12 @@ const MainSearchForm = (): ReactElement => {
               handleShowOption(e, showC, setShowC, setShowB, setShowA)
             }
           ></DropdownTrigger>
+        </div>
+        <div
+          className={`trigger-wrapper ${
+            isDoneA && isDoneB ? 'active' : 'inactive'
+          }`}
+        >
           <DropdownTrigger
             value={
               dates.endDate
@@ -145,6 +188,11 @@ const MainSearchForm = (): ReactElement => {
               handleShowOption(e, showC, setShowC, setShowB, setShowA)
             }
           ></DropdownTrigger>
+        </div>
+        <div className="trigger-wrapper search-button">
+          <div onClick={handleSearchClick}>
+            <FontAwesomeIcon icon={faSearch} />
+          </div>
         </div>
       </section>
       <section
