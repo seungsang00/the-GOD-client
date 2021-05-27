@@ -50,12 +50,21 @@ const space = {
   xxl: '60px',
 };
 
+const zIndex = {
+  depth01: `z-index: 9`,
+  depth02: `z-index: 99`,
+  depth03: `z-index: 999`,
+  depth04: `z-index: 9999`,
+  depth05: `z-index: 99999`,
+};
+
 export const theme: DefaultTheme = {
   borderRadius: '10px',
   colors,
   concept,
   media,
   space,
+  zIndex,
 };
 
 export default theme;

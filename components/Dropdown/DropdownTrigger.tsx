@@ -13,11 +13,9 @@ const DropdownTrigger = ({
   onClick,
 }: DropdownTriggerProps): ReactElement => {
   return (
-    <>
-      <DropdownTriggerStyle>
-        <button onClick={onClick}>{value ? value : placeholder}</button>
-      </DropdownTriggerStyle>
-    </>
+    <DropdownTriggerStyle>
+      <button onClick={onClick}>{value ? value : placeholder}</button>
+    </DropdownTriggerStyle>
   );
 };
 
