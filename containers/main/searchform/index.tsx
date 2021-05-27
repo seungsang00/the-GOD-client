@@ -8,6 +8,7 @@ import {
   handleChangeState,
   handleOptionList,
 } from '@utils/dropdownUtils';
+import { MainSearchFormContainer } from './mainsearchform.style';
 
 const MainSearchForm = (): ReactElement => {
   // option list
@@ -77,45 +78,74 @@ const MainSearchForm = (): ReactElement => {
     if (dates.endDate) setShowC(false);
   }, [dates.endDate]);
 
+  // display vw check
+  const [viewWidth, setViewWidth] = useState<number | undefined>(undefined);
+  const handleResize = () => {
+    setViewWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  useEffect(() => {
+    setViewWidth(window.innerWidth);
+  }, [viewWidth]);
+
   return (
-    <article>
+    <MainSearchFormContainer>
       <section style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-        <DropdownTrigger
-          value={stateA}
-          placeholder="아티스트 선택"
-          onClick={(e) =>
-            handleShowOption(e, showA, setShowA, setShowB, setShowC)
-          }
-        ></DropdownTrigger>
-        <DropdownTrigger
-          value={stateB}
-          placeholder="위치 선택"
-          onClick={(e) =>
-            handleShowOption(e, showB, setShowB, setShowA, setShowC)
-          }
-        ></DropdownTrigger>
-        <DropdownTrigger
-          value={
-            dates.startDate
-              ? moment(dates.startDate).format('YYYY.MM.DD')
-              : '날짜 입력'
-          }
-          placeholder="dd3"
-          onClick={(e) =>
-            handleShowOption(e, showC, setShowC, setShowB, setShowA)
-          }
-        ></DropdownTrigger>
-        <DropdownTrigger
-          value={
-            dates.endDate
-              ? moment(dates.endDate).format('YYYY.MM.DD')
-              : '날짜 입력'
-          }
-          placeholder="dd3"
-          onClick={(e) =>
-            handleShowOption(e, showC, setShowC, setShowB, setShowA)
-          }
-        ></DropdownTrigger>
+        <div className={`trigger-wrapper ${!isDoneA ? 'active' : 'inactive'}`}>
+          <DropdownTrigger
+            value={stateA}
+            placeholder="아티스트 선택"
+            onClick={(e) =>
+              handleShowOption(e, showA, setShowA, setShowB, setShowC)
+            }
+          ></DropdownTrigger>
+        </div>
+        <div
+          className={`trigger-wrapper ${
+            isDoneA && !isDoneB ? 'active' : 'inactive'
+          }`}
+        >
+          <DropdownTrigger
+            value={stateB}
+            placeholder="위치 선택"
+            onClick={(e) =>
+              handleShowOption(e, showB, setShowB, setShowA, setShowC)
+            }
+          ></DropdownTrigger>
+        </div>
+        <div
+          className={`trigger-wrapper ${
+            isDoneA && isDoneB ? 'active' : 'inactive'
+          }`}
+        >
+          <DropdownTrigger
+            value={
+              dates.startDate
+                ? moment(dates.startDate).format('YYYY.MM.DD')
+                : '날짜 입력'
+            }
+            placeholder="dd3"
+            onClick={(e) =>
+              handleShowOption(e, showC, setShowC, setShowB, setShowA)
+            }
+          ></DropdownTrigger>
+          <DropdownTrigger
+            value={
+              dates.endDate
+                ? moment(dates.endDate).format('YYYY.MM.DD')
+                : '날짜 입력'
+            }
+            placeholder="dd3"
+            onClick={(e) =>
+              handleShowOption(e, showC, setShowC, setShowB, setShowA)
+            }
+          ></DropdownTrigger>
+        </div>
       </section>
       <section
         style={{
@@ -144,11 +174,11 @@ const MainSearchForm = (): ReactElement => {
             handleDateChange={setDates}
             focusedInput={focusedInput}
             handleFocusInput={handleFocusInput}
-            numberOfMonths={2}
+            numberOfMonths={viewWidth && viewWidth <= 650 ? 1 : 2}
           />
         </Dropdown>
       </section>
-    </article>
+    </MainSearchFormContainer>
   );
 };
 
