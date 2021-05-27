@@ -1,6 +1,20 @@
 import styled from '@styles/themed-components';
 
 export const DatePickerStyle = styled.div`
+  .DayPicker_transitionContainer {
+    height: fit-content;
+    min-height: 330px;
+  }
+
+  /* 상단 네비게이션 화살표 스타일 */
+  .DayPickerNavigation_button__default {
+    border: none;
+    border-radius: 999px;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.grey};
+    }
+  }
+
   /* 오른쪽 구석의 화살표를 안보이게 한다. */
   .DayPickerKeyboardShortcuts_buttonReset {
     display: none;

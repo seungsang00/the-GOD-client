@@ -89,3 +89,20 @@ export const CONTENT_LIST_GET_ERROR = 'content/LIST_GET_ERROR';
 export const CONTENT_UPDATE = 'content/UPDATE';
 export const CONTENT_UPDATE_SUCCESS = 'content/UPDATE_SUCCESS';
 export const CONTENT_UPDATE_ERROR = 'content/UPDATE_ERROR';
+
+// comment
+export const COMMENT_CREATE = 'comment/CREATE';
+export const COMMENT_CREATE_SUCCESS = 'comment/CREATE/SUCCESS';
+export const COMMENT_CREATE_ERROR = 'comment/CREATE/ERROR';
+
+export const COMMENT_LIST_GET = 'comment/LIST_GET';
+export const COMMENT_LIST_GET_SUCCESS = 'comment/LIST_GET_SUCCESS';
+export const COMMENT_LIST_GET_ERROR = 'comment/LIST_GET_ERROR';
+
+export const COMMENT_UPDATE = 'comment/UPDATE';
+export const COMMENT_UPDATE_SUCCESS = 'comment/UPDATE_SUCCESS';
+export const COMMENT_UPDATE_ERROR = 'comment/UPDATE_ERROR';
+
+export const COMMENT_DELETE = 'comment/DELETE';
+export const COMMENT_DELETE_SUCCESS = 'comment/DELETE_SUCCESS';
+export const COMMENT_DELETE_ERROR = 'comment/DELETE_ERROR';
