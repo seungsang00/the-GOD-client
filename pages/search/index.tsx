@@ -1,5 +1,5 @@
 import { Layout } from '@layouts';
-import SearchPageContainer from 'containers/search/SearchPageContainer';
+import { SearchPageContainer } from '@containers';
 
 const SearchPage = () => {
   return (

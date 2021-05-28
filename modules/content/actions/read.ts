@@ -60,5 +60,5 @@ export const getContentThunk = createAsyncThunk(
 );
 export const getContentListThunk = createAsyncThunk(
   getContentListAsync,
-  getContentRequest
+  getContentListRequest
 );

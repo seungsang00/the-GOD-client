@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Layout, MyPageLayout } from 'layouts';
 import { Sidebar } from '@components';
 import { useRouter } from 'next/dist/client/router';
-import AccountSettings from 'containers/account';
-import ProfileSettings from 'containers/profile';
+import { AccountSettings, ProfileSettings } from '@containers';
 
 const SettingPage = () => {
   const router = useRouter();

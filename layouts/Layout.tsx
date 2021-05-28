@@ -4,7 +4,7 @@ import { Avatar, Header } from '@components';
 import { CommonLayoutStyle } from './layouts.style';
 import { useRouter } from 'next/dist/client/router';
 import useModal from 'hooks/useModal';
-import { AuthModal } from 'containers/auth';
+import { AuthModal } from '@containers';
 
 type Props = {
   children?: ReactNode;
