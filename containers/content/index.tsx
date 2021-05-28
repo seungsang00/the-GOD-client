@@ -63,7 +63,7 @@ const ContentPageContainer = ({
   const { open, close } = time;
   const { storeName, roadAddress } = address;
   const { username, profileImage } = author;
-  const [bookmarked, setBookmarked] = useState<boolean>(isBookmark);
+  const [bookmarked, setBookmarked] = useState<boolean>((isBookmark = false));
 
   const handleContentBookmark = () => {
     setBookmarked(!bookmarked);

@@ -15,8 +15,8 @@ import {
 import FilePreview from 'components/FilePreview';
 import useModal from 'hooks/useModal';
 import { SignoutModal } from 'containers/auth';
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import { Perks, readFile } from '@interfaces';
+import React, { ChangeEvent, useState } from 'react';
+import { readFile } from '@interfaces';
 import LocationForm from 'containers/contents/LocationForm';
 import MainSearchForm from 'containers/main/searchform';
 import useTextInput from 'hooks/useTextInput';
@@ -36,7 +36,6 @@ const testHandler = (HHorMM: string) => console.log(HHorMM);
 
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
-  const [inputValue, setInputValue] = useState<string>('');
   const [files, setFiles] = useState<readFile[]>([]);
   const fileListToArray = (fileList: FileList) => {
     for (let i = 0; i < fileList.length; i++) {
@@ -54,9 +53,6 @@ const AboutPage = () => {
       };
     }
   };
-  useEffect(() => {
-    console.log(inputValue);
-  }, [inputValue]);
   const testFilehandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       fileListToArray(e.target.files);
