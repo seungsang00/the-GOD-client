@@ -17,13 +17,13 @@ import {
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
-export const singupRequest = async ({ email, password, username }: signup) => {
+export const singupRequest = async ({ email, password, userName }: signup) => {
   const result = await axios.post<{ message: string }>(
     `${API_ENDPOINT}/auth/signup`,
     {
       email,
       password,
-      username,
+      userName,
     }
   );
   return result.data;
