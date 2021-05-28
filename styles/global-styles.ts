@@ -45,7 +45,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .location_overlay_box{
-    div {overflow:hidden;}
+    div {
+      overflow:hidden;
+    }
     position: absolute;
     left: 0;
     bottom: 40px;

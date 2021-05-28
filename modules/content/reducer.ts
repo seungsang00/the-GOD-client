@@ -25,8 +25,6 @@ import {
   CONTENT_FORM_PERKS,
   CONTENT_FORM_MOBILE,
 } from '../actionTypes';
-import { Author } from 'containers/content/ContentPageContainer.style';
-import { AccountOptionsFlyout } from 'components/AccountOptions';
 
 // default Store
 const initialState: ContentReducer = {
@@ -57,7 +55,7 @@ const initialState: ContentReducer = {
   },
   form: {
     id: '',
-    artist: '',
+    artist: { name: '', group: '', id: '', profileImage: '' },
     title: '',
     tags: [],
     description: '',
@@ -185,7 +183,7 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
     ...state,
     form: {
       ...state.form,
-      artist: action.payload,
+      artist: { ...state.form.artist, ...action.payload },
     },
   }),
   [CONTENT_FORM_TITLE]: (state, action) => ({

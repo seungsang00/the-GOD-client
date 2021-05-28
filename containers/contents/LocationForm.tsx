@@ -1,4 +1,4 @@
-import { TextButton, Toggle } from '@components';
+import { TextButton, TextInput, Toggle } from '@components';
 import { ToggleProps } from '@interfaces';
 import { inputLocation, inputMobile, inputPerks } from 'modules/content';
 import { RootState } from 'modules/reducer';
@@ -47,14 +47,6 @@ const LocationForm = ({
         ); // 지도를 표시할 div
         this.map = new kakao.maps.Map(this.mapContainer, this.mapOption);
         this.ps = new kakao.maps.services.Places();
-
-        /*
-        this.customOverlay = new kakao.maps.CustomOverlay({
-          position: position,
-          content: this.content,
-          xAnchor: 0.3,
-          yAnchor: 0.91,
-        }); */
         this.displayMarker = this.displayMarker.bind(this);
         this.placesSearchCB = this.placesSearchCB.bind(this);
         this.keywordSearch = this.keywordSearch.bind(this);
@@ -91,6 +83,7 @@ const LocationForm = ({
         // 마커에 클릭이벤트를 등록합니다
         kakao.maps.event.addListener(marker, 'click', function () {
           // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+          // TODO: 클릭하면 맵이 닫히고
           dispatch(
             inputLocation({
               storeName: place.place_name,
@@ -142,15 +135,22 @@ const LocationForm = ({
     }
   }, [searchModule, keyword]);
 
+  useEffect(() => {
+    console.log(address);
+  }, [address]);
+
   return (
     <div>
       <div className="검색창">
-        <input
+        <TextInput
           id="sample5_address"
           type="text"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           placeholder="여기"
+          onClick={() => {
+            // 맵이 보이고
+          }}
         />
         <div style={{ display: 'flex', width: '100%' }}>
           <div style={{ width: '150px', height: '150px' }}>
@@ -165,24 +165,27 @@ const LocationForm = ({
           </div>
           <div>
             <div id="mapAddress">{address.storeName}</div>
-            <input
+            <TextInput
               id="detailAddr"
               type="text"
               name="detail"
               disabled={true}
+              onChange={() => {}}
               value={address.roadAddress}
             />
           </div>
         </div>
         <div>
-          <input
+          <TextInput
             type="tel"
-            id="phone"
-            name="phone"
+            disabled={false}
             value={mobile}
             placeholder="연락처"
             pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}"
-            onChange={() => dispatch(inputMobile(mobile))}
+            onChange={(e) => {
+              const { value } = e.target;
+              dispatch(inputMobile(value));
+            }}
           />
         </div>
         <div style={{ display: 'flex' }}>

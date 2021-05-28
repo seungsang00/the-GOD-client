@@ -38,7 +38,7 @@ export interface SearchResult {
 
 export interface Content {
   id: string;
-  artist: string;
+  artist: Artist;
   title: string;
   tags: string[];
   description: string;

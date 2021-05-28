@@ -19,6 +19,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Perks, readFile } from '@interfaces';
 import LocationForm from 'containers/contents/LocationForm';
 import MainSearchForm from 'containers/main/searchform';
+import useTextInput from 'hooks/useTextInput';
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};
@@ -36,15 +37,6 @@ const testHandler = (HHorMM: string) => console.log(HHorMM);
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
   const [inputValue, setInputValue] = useState<string>('');
-  const [toggles, setToggles] = useState<Perks>({
-    bus: false,
-    subway: false,
-    train: false,
-    sort: false,
-    baby: false,
-    parking: false,
-    cat: false,
-  });
   const [files, setFiles] = useState<readFile[]>([]);
   const fileListToArray = (fileList: FileList) => {
     for (let i = 0; i < fileList.length; i++) {
@@ -70,6 +62,8 @@ const AboutPage = () => {
       fileListToArray(e.target.files);
     }
   };
+  const { inputEvent } = useTextInput('');
+  const { value, onChange } = inputEvent;
   return (
     <Layout title="About | Next.js + TypeScript Example">
       <h1>About</h1>
@@ -81,6 +75,17 @@ const AboutPage = () => {
       </p>
       <LocationForm onPrev={() => {}} onSubmit={() => {}} />
       <MyComponent>디스플레이 크기에 따라 색이 바뀔거에요!</MyComponent>
+      <TextInput
+        type="text"
+        value={value}
+        onChange={onChange}
+        disabled={false}
+      />
+
+      <br />
+      <br />
+      <br />
+      <br />
       <h2>MainSearchForm</h2>
       <MainSearchForm />
       <div style={{ width: '100%', padding: '40px' }}>
@@ -110,7 +115,12 @@ const AboutPage = () => {
           )),
         ]}
       </Carousel>
-      <TextInput placeholder="...을 입력해주세요" />
+      <InputTags tagList={tagList} handler={() => {}} />
+      <FilePreview
+        url="https://bit.ly/33TugE9"
+        handleRemoveFile={() => console.log(`file remove`)}
+      />
+      {/* <TextInput placeholder="...을 입력해주세요" /> */}
       {/* <TextArea placeholder="...을 입력해주세요" /> */}
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={5} />

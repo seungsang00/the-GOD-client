@@ -11,10 +11,10 @@ import {
   CONTENT_FORM_PERKS,
   CONTENT_FORM_MOBILE,
 } from 'modules/actionTypes';
-import { ToggleProps } from '@interfaces';
+import { Artist, ToggleProps } from '@interfaces';
 export const inputArtist = createAction(
   CONTENT_FORM_ARTIST,
-  (artist: string) => artist
+  (artist: Artist) => artist
 )();
 export const inputTitle = createAction(
   CONTENT_FORM_TITLE,

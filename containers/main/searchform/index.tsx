@@ -133,7 +133,7 @@ const MainSearchForm = (): ReactElement => {
             onClick={(e) =>
               handleShowOption(e, showC, setShowC, setShowB, setShowA)
             }
-          ></DropdownTrigger>
+          />
           <DropdownTrigger
             value={
               dates.endDate

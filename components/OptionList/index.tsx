@@ -13,7 +13,7 @@ const OptionList = ({
   const handler = (e: MouseEvent, el: string) => {
     listHandler(el);
     stateHandler(el);
-    console.log(e.target);
+    console.log(e.target, el);
   };
   return (
     <OptionListStyle>

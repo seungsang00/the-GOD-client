@@ -1,14 +1,19 @@
 import {
   Carousel,
+  Dropdown,
+  DropdownTrigger,
   FileInput,
   FilePreview,
   InputTags,
+  OptionList,
   TextArea,
   TextButton,
   TextInput,
 } from '@components';
 import { readFile } from '@interfaces';
+import { sampleSearchInputOptions } from '@utils/sample-data';
 import {
+  inputArtist,
   inputDescription,
   inputImages,
   inputTags,
@@ -19,11 +24,16 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
-  const { title, tags } = useSelector(({ content }: RootState) => content.form);
+  const { title, tags, artist } = useSelector(
+    ({ content }: RootState) => content.form
+  );
+  const [artists, setArtists] = useState(
+    Object.keys(sampleSearchInputOptions.artist)
+  );
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [images, setImages] = useState<readFile[]>([]);
   const { description } = useSelector(({ content }: RootState) => content.form);
   const dispatch = useDispatch();
-
   const tagHandler = (tags: string[]) => {
     dispatch(inputTags(tags));
   };
@@ -55,11 +65,44 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
   };
   return (
     <>
-      <select>
-        <option>hi</option>
-      </select>
+      <section>
+        <DropdownTrigger
+          value={artist.name}
+          placeholder="아티스트 선택"
+          onClick={() => {
+            dispatch(inputArtist({ ...artist, name: '' }));
+            setIsOpen(!isOpen);
+          }}
+        />
+      </section>
+      <section>
+        <Dropdown visible={isOpen}>
+          <OptionList
+            list={artists}
+            listHandler={(el) => {
+              if (sampleSearchInputOptions.artist[el]) {
+                setArtists(sampleSearchInputOptions.artist[el]);
+              } else {
+                setArtists(Object.keys(sampleSearchInputOptions.artist));
+                setIsOpen(false);
+              }
+            }}
+            stateHandler={(el) => {
+              if (artist.name.length === 0) {
+                dispatch(inputArtist({ ...artist, name: el }));
+              } else {
+                dispatch(
+                  inputArtist({ ...artist, name: artist.name + ' ' + el })
+                );
+              }
+            }}
+          />
+        </Dropdown>
+      </section>
       <TextInput
-        initValue={title}
+        type="text"
+        value={title}
+        disabled={false}
         onChange={(e) => {
           const { value } = e.target;
           dispatch(inputTitle(value));

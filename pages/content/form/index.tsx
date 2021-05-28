@@ -4,16 +4,14 @@ import { OrderSidebar } from '@components';
 import CafeInfoForm from 'containers/contents/CafeinfoForm';
 import RangeForm from 'containers/contents/RangeForm';
 import LocationForm from 'containers/contents/LocationForm';
-import { Dates } from '@interfaces';
+import { createThunk } from 'modules/content';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'modules/reducer';
 
 const ContentFormPage = () => {
   const [step, setStep] = useState<number>(0);
-  const [dates, setDates] = useState<Dates>({
-    startDate: null,
-    endDate: null,
-  });
-  const [start, setStart] = useState<string>('');
-  const [end, setEnd] = useState<string>('');
+  const { form } = useSelector(({ content }: RootState) => content);
+  const dispatch = useDispatch();
   const nextStep = () => {
     if (step < 2) setStep(step + 1);
     return;
@@ -23,7 +21,7 @@ const ContentFormPage = () => {
     return;
   };
   const submitHandler = () => {
-    // 제출 리덕스 실행
+    dispatch(createThunk(form));
   };
   return (
     <Layout title={`이벤트 등록 Step${step} | FansSum`}>
