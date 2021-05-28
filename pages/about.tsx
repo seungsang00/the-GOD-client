@@ -15,6 +15,7 @@ import FilePreview from 'components/FilePreview';
 import useModal from 'hooks/useModal';
 import { SignoutModal } from 'containers/auth';
 import MainSearchForm from 'containers/main/searchform';
+import useTextInput from 'hooks/useTextInput';
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};
@@ -29,6 +30,8 @@ const tagList = ['ENHYPEN', 'BORDER_CARNIVAL', 'COMEBACK'];
 const testHandler = (HHorMM: string) => console.log(HHorMM);
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
+  const { inputEvent } = useTextInput('');
+  const { value, onChange } = inputEvent;
   return (
     <Layout title="About | Next.js + TypeScript Example">
       <h1>About</h1>
@@ -39,6 +42,17 @@ const AboutPage = () => {
         </Link>
       </p>
       <MyComponent>디스플레이 크기에 따라 색이 바뀔거에요!</MyComponent>
+      <TextInput
+        type="text"
+        value={value}
+        onChange={onChange}
+        disabled={false}
+      />
+
+      <br />
+      <br />
+      <br />
+      <br />
       <h2>MainSearchForm</h2>
       <MainSearchForm />
       <div style={{ width: '100%', padding: '40px' }}>
@@ -59,7 +73,7 @@ const AboutPage = () => {
         url="https://bit.ly/33TugE9"
         handleRemoveFile={() => console.log(`file remove`)}
       />
-      <TextInput placeholder="...을 입력해주세요" />
+      {/* <TextInput placeholder="...을 입력해주세요" /> */}
       {/* <TextArea placeholder="...을 입력해주세요" /> */}
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={5} />

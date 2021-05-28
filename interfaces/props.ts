@@ -1,10 +1,9 @@
 import { Content } from '@interfaces';
 import {
-  ChangeEventHandler,
-  SetStateAction,
-  Dispatch,
   MouseEventHandler,
   ReactNode,
+  KeyboardEvent,
+  ChangeEvent,
 } from 'react';
 import { SharedContent } from './reducer';
 
@@ -12,13 +11,19 @@ export interface PerkProps {
   perk: string;
   isActive: boolean;
 }
+
 export interface TextInputProps {
+  type: string;
+  value: string;
+  onChange: ({
+    target,
+  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onKeyDown?: ({
+    key,
+  }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onClick?: () => void;
+  disabled: boolean;
   placeholder?: string;
-  initValue?: string;
-  type?: string;
-  onChange?: ChangeEventHandler;
-  disabled?: boolean;
-  handler?: Dispatch<SetStateAction<string>>;
 }
 
 export interface AvatarProps {
@@ -66,6 +71,12 @@ export interface CutomModalProps {
   handler: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
+export interface SearchContentLoaderProps {
+  data: Content[] | null;
+  focusedID: string | null;
+  handleCardClick: (id: string) => void;
+}
+
 export type ContentLoaderPropsType = {
   data: Content[] | null;
   type: 'myContent' | 'bookmarks';
@@ -101,4 +112,10 @@ export interface FileInputProps {
 export interface FlyoutProps {
   children: ReactNode;
   handler: MouseEventHandler;
+}
+
+export interface ContentCardProps {
+  focusedID: string | null; // 현재 디테일 영역이 열려있는 컨텐츠id
+  contentData: Content;
+  handleClick: (id: string) => void;
 }
