@@ -6,7 +6,6 @@ import {
   Badge,
   InputTags,
   OrderSidebar,
-  SearchInputs,
   // TextArea,
   TextInput,
   TimeSelect,
@@ -66,7 +65,6 @@ const AboutPage = () => {
       <OrderSidebar />
       <Badge bgcolor="pink">#ENHYPEN</Badge>
       <Badge textcolor="pink">#ENHYPEN</Badge>
-      <SearchInputs />
       <InputTags tagList={tagList} />
       <FilePreview
         url="https://bit.ly/33TugE9"
