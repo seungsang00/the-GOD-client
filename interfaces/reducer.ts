@@ -6,7 +6,7 @@ export interface User {
   id: string;
   type?: string;
   profileImage: string;
-  userName: string;
+  name: string;
   email: string;
   passwordUpdate?: string;
 }
@@ -36,7 +36,7 @@ export interface IMember {
 export interface signup {
   email: string;
   password: string;
-  username: string;
+  name: string;
 }
 export interface SharedContent {
   id: string;
@@ -71,7 +71,7 @@ export interface Content {
 
 export interface Author {
   id: string;
-  username: string;
+  name: string;
   profileImage: string;
 }
 

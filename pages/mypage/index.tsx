@@ -47,7 +47,7 @@ const MyPage = () => {
               }
               size={5}
             />
-            <h3>{userProfile.data?.userName}</h3>
+            <h3>{userProfile.data?.name}</h3>
             <span>{userProfile.data?.email}</span>
           </div>
         ) : null}
@@ -57,7 +57,7 @@ const MyPage = () => {
               <div id="userInfoTop">
                 <Avatar profileImage="/images/avatar_default.jpg" size={3} />
                 <div className="text">
-                  <h2>{userProfile.data?.userName}</h2>
+                  <h2>{userProfile.data?.name}</h2>
                   <span>{userProfile.data?.email}</span>
                 </div>
               </div>
