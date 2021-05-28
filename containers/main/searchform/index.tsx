@@ -39,25 +39,25 @@ const MainSearchForm = (): ReactElement => {
 
   // queryData 생성
   const makeQueryData = () => {
-    let artistName = undefined;
-    let artistGroup = null;
+    let artistId = undefined;
     let location = null;
 
+    // FIXME: 옵션 구조가 변경 되었습니다. artistId를 가져와야 합니다.
     const tempA = stateA?.split(' ');
     if (tempA && tempA[1] === 'ALL') {
-      artistGroup = tempA[0];
+      artistId = tempA[0]; // FIXME: artistId를 가져와야 합니다.
     } else if (tempA) {
-      artistGroup = tempA[0];
-      artistName = tempA[1];
+      artistId = tempA[0]; // FIXME: artistId를 가져와야 합니다.
     }
 
+    // location
     const tempB = stateB?.split(' ');
     tempB && tempB[1] === '전체'
       ? (location = tempB[0])
       : (location = tempB?.join(' '));
+
     const queryData = {
-      artistName,
-      artistGroup,
+      artistId, // FIXME: artistId를 가져와야 합니다.
       location,
       dateStart: moment(dates.startDate).format('YYYY-MM-DD'),
       dateEnd: moment(dates.endDate).format('YYYY-MM-DD'),
@@ -67,11 +67,9 @@ const MainSearchForm = (): ReactElement => {
 
   // 검색 버튼 핸들러
   const handleSearchClick = () => {
-    const { artistName, artistGroup, location, dateStart, dateEnd } =
-      makeQueryData();
+    const { artistId, location, dateStart, dateEnd } = makeQueryData();
     getContentListThunk({
-      artistName: artistName as string,
-      artistGroup: artistGroup as string,
+      artistId: artistId as string,
       location: location as string,
       dateStart: dateStart as string,
       dateEnd: dateEnd as string,

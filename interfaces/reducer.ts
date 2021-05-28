@@ -17,6 +17,22 @@ export interface Artist {
   profileImage: string;
   isFollow?: boolean;
 }
+
+export type Artists = (IGroupArtist | IArtist)[];
+
+export interface IGroupArtist extends IArtist {
+  type: 'group';
+  member: IMember[];
+}
+export interface IArtist extends IMember {
+  type: 'group' | 'solo';
+}
+export interface IMember {
+  id: string;
+  name: string;
+  profileImage: string;
+}
+
 export interface signup {
   email: string;
   password: string;
@@ -39,7 +55,7 @@ export interface SearchResult {
 
 export interface Content {
   id: string;
-  artist: string;
+  artist: Artist;
   title: string;
   tags: string[];
   description: string;
@@ -54,7 +70,7 @@ export interface Content {
 }
 
 export interface Author {
-  userId: string;
+  id: string;
   username: string;
   profileImage: string;
 }
@@ -113,8 +129,7 @@ export interface PutCommentReqBody {
   comment: string;
 }
 export interface ContentQuery {
-  artistName: string;
-  artistGroup: string;
+  artistId: string;
   location: string;
   dateStart: string;
   dateEnd: string;

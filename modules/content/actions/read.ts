@@ -27,15 +27,14 @@ export const getContentRequest = async (id: string) => {
   return result.data;
 };
 export const getContentListRequest = async ({
-  artistName,
-  artistGroup,
+  artistId,
   location,
   dateStart,
   dateEnd,
 }: ContentQuery) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.get<GetContentListResponse>(
-    `${API_ENDPOINT}/content/query?artistName=${artistName}&artistGroup=${artistGroup}&location=${location}&dateStart=${dateStart}&dateEnd=${dateEnd}`,
+    `${API_ENDPOINT}/content/query?artistId=${artistId}&location=${location}&dateStart=${dateStart}&dateEnd=${dateEnd}`,
     {
       headers: { authorization: accessToken },
     }
