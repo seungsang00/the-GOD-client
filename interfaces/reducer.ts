@@ -58,6 +58,7 @@ export interface Author {
   username: string;
   profileImage: string;
 }
+
 export type Image = string;
 export interface Date {
   start: string | undefined;
@@ -67,13 +68,15 @@ export interface Time {
   open: string;
   close: string;
 }
+
+export interface Latlng {
+  lat: number;
+  lng: number;
+}
 export interface Address {
   storeName: string;
   roadAddress: string;
-  location: {
-    lat: number;
-    lng: number;
-  };
+  location: Latlng;
 }
 export interface Perks {
   bus: boolean;
@@ -90,19 +93,9 @@ export interface PerkList {
   [prop: string]: any;
 }
 
-export interface ICommentAuthor {
-  userId: string;
-  username: string;
-  profileImage: string;
-}
-
 export interface IComment {
   id: string;
-  author: {
-    userId: string;
-    username: string;
-    profileImage: string;
-  };
+  author: Author;
   comments: string;
   createdAt: string;
 }
@@ -120,7 +113,8 @@ export interface PutCommentReqBody {
   comment: string;
 }
 export interface ContentQuery {
-  artist: string;
+  artistName: string;
+  artistGroup: string;
   location: string;
   dateStart: string;
   dateEnd: string;
