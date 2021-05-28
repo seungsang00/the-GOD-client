@@ -54,7 +54,11 @@ const LoginContent = ({
           setValue={setPassword}
           error={passwordError}
         />
-        <Button disabled={disabled} text="signin" handler={submitHandler} />
+        <Button
+          disabled={disabled}
+          text="signin"
+          handler={() => submitHandler(email, password)}
+        />
       </FormSection>
       <LinkSection>
         <span>Already a member?</span>

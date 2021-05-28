@@ -2,11 +2,19 @@ import React, { ReactElement, useState } from 'react';
 import { Modal } from '@components';
 import { CutomModalProps } from 'interfaces/props';
 import { LoginContent, SignupContent } from '..';
+import { useDispatch } from 'react-redux';
+import { loginThunk, singupThunk } from 'modules/auth/actions';
 
 const AuthModal = ({ isOpen, handler }: CutomModalProps): ReactElement => {
   const [isLoginContent, setIsLoginContent] = useState<boolean>(true);
-  const fakeLoginHandler = () => console.log(`fake login submit`);
-  const fakeSignupHandler = () => console.log(`fake signup submit`);
+  //TODO: handler 만들기
+  const dispatch = useDispatch();
+  const handleLogin = (email: string, password: string) => {
+    dispatch(loginThunk({ email, password }));
+  };
+  const handleSignup = (email: string, password: string, userName?: string) => {
+    userName && dispatch(singupThunk({ userName, email, password }));
+  };
 
   return (
     <Modal
@@ -15,12 +23,12 @@ const AuthModal = ({ isOpen, handler }: CutomModalProps): ReactElement => {
         isLoginContent ? (
           <LoginContent
             handleChangeContent={() => setIsLoginContent(false)}
-            submitHandler={fakeLoginHandler}
+            submitHandler={handleLogin}
           />
         ) : (
           <SignupContent
             handleChangeContent={() => setIsLoginContent(true)}
-            submitHandler={fakeSignupHandler}
+            submitHandler={handleSignup}
           />
         )
       }
