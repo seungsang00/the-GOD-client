@@ -36,7 +36,7 @@ export interface IMember {
 export interface signup {
   email: string;
   password: string;
-  username: string;
+  userName: string;
 }
 export interface SharedContent {
   id: string;
