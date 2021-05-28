@@ -39,17 +39,25 @@ const MainSearchForm = (): ReactElement => {
 
   // queryData 생성
   const makeQueryData = () => {
-    let artist, location;
+    let artistName = undefined;
+    let artistGroup = null;
+    let location = null;
+
     const tempA = stateA?.split(' ');
-    tempA && tempA[1] === 'ALL'
-      ? (artist = tempA[0])
-      : (artist = tempA?.join(' '));
+    if (tempA && tempA[1] === 'ALL') {
+      artistGroup = tempA[0];
+    } else if (tempA) {
+      artistGroup = tempA[0];
+      artistName = tempA[1];
+    }
+
     const tempB = stateB?.split(' ');
     tempB && tempB[1] === '전체'
       ? (location = tempB[0])
       : (location = tempB?.join(' '));
     const queryData = {
-      artist,
+      artistName,
+      artistGroup,
       location,
       dateStart: moment(dates.startDate).format('YYYY-MM-DD'),
       dateEnd: moment(dates.endDate).format('YYYY-MM-DD'),
@@ -59,13 +67,16 @@ const MainSearchForm = (): ReactElement => {
 
   // 검색 버튼 핸들러
   const handleSearchClick = () => {
-    const { artist, location, dateStart, dateEnd } = makeQueryData();
+    const { artistName, artistGroup, location, dateStart, dateEnd } =
+      makeQueryData();
     getContentListThunk({
-      artist: artist as string,
+      artistName: artistName as string,
+      artistGroup: artistGroup as string,
       location: location as string,
       dateStart: dateStart as string,
       dateEnd: dateEnd as string,
     });
+    console.log('search!');
   };
 
   // 상태 관리 핸들러
@@ -189,11 +200,13 @@ const MainSearchForm = (): ReactElement => {
             }
           ></DropdownTrigger>
         </div>
-        <div className="trigger-wrapper search-button">
-          <div onClick={handleSearchClick}>
-            <FontAwesomeIcon icon={faSearch} />
+        {viewWidth && viewWidth > 768 && (
+          <div className="trigger-wrapper search-button">
+            <div onClick={handleSearchClick}>
+              <FontAwesomeIcon icon={faSearch} />
+            </div>
           </div>
-        </div>
+        )}
       </section>
       <section
         style={{
@@ -226,6 +239,14 @@ const MainSearchForm = (): ReactElement => {
           />
         </Dropdown>
       </section>
+      {viewWidth && viewWidth <= 768 && (
+        <div className="search-button__bottom--container">
+          <div className="search-button__bottom" onClick={handleSearchClick}>
+            <FontAwesomeIcon icon={faSearch} />
+            검색하기
+          </div>
+        </div>
+      )}
     </MainSearchFormContainer>
   );
 };
