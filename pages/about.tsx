@@ -7,7 +7,6 @@ import {
   Carousel,
   FileInput,
   InputTags,
-  OrderSidebar,
   SearchInputs,
   // TextArea,
   TextInput,
@@ -17,7 +16,7 @@ import FilePreview from 'components/FilePreview';
 import useModal from 'hooks/useModal';
 import { SignoutModal } from 'containers/auth';
 import React, { ChangeEvent, useEffect, useState } from 'react';
-import { readFile } from '@interfaces';
+import { Perks, readFile } from '@interfaces';
 import LocationForm from 'containers/contents/LocationForm';
 import MainSearchForm from 'containers/main/searchform';
 
@@ -37,15 +36,7 @@ const testHandler = (HHorMM: string) => console.log(HHorMM);
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
   const [inputValue, setInputValue] = useState<string>('');
-  const [toggles, setToggles] = useState<{
-    bus: boolean;
-    subway: boolean;
-    train: boolean;
-    sort: boolean;
-    baby: boolean;
-    parking: boolean;
-    cat: boolean;
-  }>({
+  const [toggles, setToggles] = useState<Perks>({
     bus: false,
     subway: false,
     train: false,
@@ -88,14 +79,7 @@ const AboutPage = () => {
           <a>Go home</a>
         </Link>
       </p>
-      <LocationForm
-        toggles={toggles}
-        ToogleHandler={(icon: 'bus') => {
-          return () => {
-            setToggles((state) => ({ ...state, [icon]: !toggles[icon] }));
-          };
-        }}
-      />
+      <LocationForm onPrev={() => {}} onSubmit={() => {}} />
       <MyComponent>디스플레이 크기에 따라 색이 바뀔거에요!</MyComponent>
       <h2>MainSearchForm</h2>
       <MainSearchForm />
@@ -108,7 +92,6 @@ const AboutPage = () => {
       </div>
 
       <TimeSelect setHour={testHandler} setMinutes={testHandler} />
-      <OrderSidebar />
       <Badge bgcolor="pink">#ENHYPEN</Badge>
       <Badge textcolor="pink">#ENHYPEN</Badge>
       <SearchInputs />

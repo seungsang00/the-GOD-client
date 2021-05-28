@@ -67,6 +67,7 @@ export const sampleUserProfile2 = {
 };
 
 export const sampleContentData: Content = {
+  id: '1',
   artist: 'ENHYPEN',
   title: '엔하이픈 컴백 기념 컵홀더 이벤트',
   tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
@@ -99,10 +100,10 @@ export const sampleContentData: Content = {
     bus: true,
     subway: true,
     train: true,
-    elevator: false,
+    sort: false,
     baby: true,
     parking: false,
-    pet: true,
+    cat: true,
   },
   isBookmark: true,
   author: {

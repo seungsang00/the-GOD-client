@@ -13,10 +13,12 @@ const DatePicker = ({
   focusedInput,
   handleFocusInput,
   numberOfMonths,
+  onBlur,
 }: DatePickerProps) => {
   return (
     <DatePickerStyle>
       <DayPickerRangeController
+        onBlur={onBlur}
         startDate={dates.startDate} // momentPropTypes.momentObj or null,
         endDate={dates.endDate} // momentPropTypes.momentObj or null,
         onDatesChange={handleDateChange} // PropTypes.func.isRequired, ({ startDate, endDate }) => this.setState({ startDate, endDate })

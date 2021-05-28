@@ -8,20 +8,30 @@ import {
   TextInput,
 } from '@components';
 import { readFile } from '@interfaces';
-import React, { ChangeEvent, useState } from 'react';
+import {
+  inputDescription,
+  inputImages,
+  inputTags,
+  inputTitle,
+} from 'modules/content';
+import { RootState } from 'modules/reducer';
+import React, { ChangeEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const CafeInfoForm = ({
-  nextPageHandler,
-  textareaValue,
-}: {
-  nextPageHandler: () => {};
-  textareaValue: string;
-}) => {
-  const [tags, setTags] = useState<string[]>([]);
+const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
+  const { title, tags } = useSelector(({ content }: RootState) => content.form);
   const [images, setImages] = useState<readFile[]>([]);
+  const { description } = useSelector(({ content }: RootState) => content.form);
+  const dispatch = useDispatch();
+
   const tagHandler = (tags: string[]) => {
-    setTags(tags);
+    dispatch(inputTags(tags));
   };
+
+  useEffect(() => {
+    dispatch(inputImages(images));
+  }, [images]);
+
   const fileListToArray = (fileList: FileList) => {
     for (let i = 0; i < fileList.length; i++) {
       const reader = new FileReader();
@@ -48,9 +58,22 @@ const CafeInfoForm = ({
       <select>
         <option>hi</option>
       </select>
-      <TextInput />
-      <InputTags handler={tagHandler} />
-      <TextArea disabled={false} onChange={() => {}} value={textareaValue} />
+      <TextInput
+        initValue={title}
+        onChange={(e) => {
+          const { value } = e.target;
+          dispatch(inputTitle(value));
+        }}
+      />
+      <InputTags tagList={tags} handler={tagHandler} />
+      <TextArea
+        disabled={false}
+        onChange={(e) => {
+          const { value } = e.target;
+          dispatch(inputDescription(value));
+        }}
+        value={description}
+      />
       <Carousel col={4}>
         {[
           <div>
@@ -64,7 +87,7 @@ const CafeInfoForm = ({
           )),
         ]}
       </Carousel>
-      <TextButton disabled={false} handler={nextPageHandler} text="다음" />
+      <TextButton disabled={false} handler={onSubmit} text="다음" />
     </>
   );
 };

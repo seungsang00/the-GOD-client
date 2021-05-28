@@ -1,20 +1,46 @@
 import React, { useState } from 'react';
-import { UnderConstruction } from '@components';
 import { Layout } from '@layouts';
+import { OrderSidebar } from '@components';
+import CafeInfoForm from 'containers/contents/CafeinfoForm';
+import RangeForm from 'containers/contents/RangeForm';
+import LocationForm from 'containers/contents/LocationForm';
+import { Dates } from '@interfaces';
 
 const ContentFormPage = () => {
-  const [step, setStep] = useState<number>(1);
+  const [step, setStep] = useState<number>(0);
+  const [dates, setDates] = useState<Dates>({
+    startDate: null,
+    endDate: null,
+  });
+  const [start, setStart] = useState<string>('');
+  const [end, setEnd] = useState<string>('');
   const nextStep = () => {
-    if (step < 3) setStep(step + 1);
+    if (step < 2) setStep(step + 1);
+    return;
   };
   const prevStep = () => {
     if (step > 0) setStep(step - 1);
+    return;
+  };
+  const submitHandler = () => {
+    // 제출 리덕스 실행
   };
   return (
     <Layout title={`이벤트 등록 Step${step} | FansSum`}>
-      <UnderConstruction
-        description={`현재 스텝: step${step} 에 해당하는 컨테이너 컴포넌트가 들어갈 예정입니다`}
-      />
+      <OrderSidebar />
+      <div>
+        {[
+          <section>
+            <CafeInfoForm onSubmit={nextStep} />
+          </section>,
+          <section>
+            <RangeForm onPrev={prevStep} onSubmit={nextStep} />
+          </section>,
+          <section>
+            <LocationForm onPrev={prevStep} onSubmit={submitHandler} />
+          </section>,
+        ].filter((_el, i) => i === step)}
+      </div>
     </Layout>
   );
 };

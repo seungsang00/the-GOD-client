@@ -16,7 +16,7 @@ export interface TextInputProps {
   placeholder?: string;
   initValue?: string;
   type?: string;
-  onChange?: ChangeEventHandler;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
   disabled?: boolean;
   handler?: Dispatch<SetStateAction<string>>;
 }

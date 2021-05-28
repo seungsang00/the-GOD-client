@@ -21,9 +21,11 @@ import {
   faAngleLeft,
   faCircle,
   faComment,
+  faSort,
 } from '@fortawesome/free-solid-svg-icons';
 library.add(
   faTimes,
+  faSort,
   faBus,
   faSubway,
   faBaby,
