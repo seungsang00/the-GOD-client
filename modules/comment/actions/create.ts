@@ -18,7 +18,7 @@ export const createCommentRequest = async (comment: PostCommentReqBody) => {
     `${API_ENDPOINT}/comments`,
     comment,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;

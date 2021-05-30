@@ -3,21 +3,38 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { TextArea } from 'components/TextInput';
 import { CommentInputStyle } from './CommentInput.style';
-import { sampleUserProfile1 } from '@utils/sample-data';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'modules/reducer';
+import { getInfoThunk } from 'modules/user';
+import { CommentInputProps } from '@interfaces';
 
-const CommentInput = () => {
-  const [text, setText] = useState<string>('');
+const CommentInput = ({ handler, value, onChange }: CommentInputProps) => {
+  // TODO: 스토어에서 사용자 프로필이미지를 가져와야 합니다
+  const { data } = useSelector((state: RootState) => state.user.userProfile);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getInfoThunk());
+  }, []);
 
-  const { profileImage } = sampleUserProfile1; // TODO: 스토어에서 사용자 프로필이미지를 가져와야 합니다
   return (
     <CommentInputStyle>
       <section className="cinput-avatar-section">
-        <Avatar profileImage={profileImage} size={2.5} />
+        <Avatar
+          profileImage={
+            (data?.profileImage as string) || '/images/avatar_default.jpg'
+          }
+          size={2.5}
+        />
       </section>
       <section className="comment-input-section">
-        <TextArea placeholder={`댓글을 입력하세요...`} handler={setText} />
-        <span className="button-comment-submit">
+        <TextArea
+          placeholder={`댓글을 입력하세요...`}
+          disabled={false}
+          value={value}
+          onChange={onChange}
+        />
+        <span className="button-comment-submit" onClick={handler}>
           <FontAwesomeIcon icon={faArrowUp} />
         </span>
       </section>
