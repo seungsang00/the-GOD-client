@@ -2,18 +2,71 @@ import { DefaultTheme } from 'styled-components';
 
 // 색상
 const colors = {
-  main: 'cyan',
-  secondary: 'magenta',
-  green: '#2ecc71',
-  red: '#e74c3c',
-  yellow: '#f1c40f',
+  primary: '#f45d48',
+  secondary: '#0a8080',
+  black: '#222525',
+  white: '#fff',
   lightgrey: 'rgb(239, 239, 239)',
   grey: '#bfbfbf',
   deepgrey: '#969aa2',
+
+  main: 'cyan',
+  green: '#2ecc71',
+  red: '#e74c3c',
+  yellow: '#f1c40f',
   // 버튼이나 링크의 스타일을 위한 색상 지정
   normal: '#4834d4',
   hover: '#686de0',
   action: '#4834d9',
+};
+
+const typography = {
+  title: {
+    fontFamily: '"Gelasio", serif',
+    fontSize: '4rem',
+    fontWeight: 600,
+  },
+  subtitle: {
+    fontFamily: '"Gelasio", serif',
+    fontSize: '2.5rem',
+    fontWeight: 600,
+    lineHeight: 1.1,
+  },
+  heading: {
+    fontFamily: '"Gelasio", serif',
+    fontSize: '1.5rem',
+    fontWeight: 500,
+  },
+  subheading: {
+    fontFamily: '"Lato", sans-serif',
+    fontSize: '1.25rem',
+    fontWeight: 700,
+  },
+  label: {
+    fontFamily: '"Lato", sans-serif',
+    fontWeight: 700,
+  },
+  description: {
+    fontFamily: '"Lato", sans-serif',
+    lineHeight: 1.5,
+  },
+  body: {
+    fontFamily: '"Lato", sans-serif',
+  },
+  caption: {
+    fontFamily: '"Lato", sans-serif',
+    fontSize: '0.875rem',
+  },
+  button: {
+    fontFamily: '"Lato", sans-serif',
+    fontSize: '0.875rem',
+  },
+  textbutton: {
+    fontFamily: '"Lato", sans-serif',
+    fontWeight: 700,
+    fontSize: '1rem',
+    border: 0,
+  },
 };
 
 // 컨셉
@@ -56,12 +109,12 @@ const zIndex = {
   depth02: `z-index: 99`,
   depth03: `z-index: 999`,
   depth04: `z-index: 9999`,
-  depth05: `z-index: 99999`,
 };
 
 export const theme: DefaultTheme = {
   borderRadius: '10px',
   colors,
+  typography,
   concept,
   media,
   space,
