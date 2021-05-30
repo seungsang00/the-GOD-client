@@ -26,9 +26,8 @@ export interface TextInputProps {
   placeholder?: string;
 }
 
-export interface AvatarProps {
+export interface AvatarProps extends AvatarContainerProps {
   profileImage: string;
-  size: number;
   title?: string;
   handler?: MouseEventHandler<HTMLDivElement> | undefined;
 }
@@ -37,10 +36,8 @@ export interface AvatarContainerProps {
   size: number;
 }
 
-export interface BadgeProps {
+export interface BadgeProps extends BadgeContainerProps {
   children: ReactNode;
-  textcolor?: string;
-  bgcolor?: string;
 }
 
 export interface BadgeContainerProps {
@@ -87,7 +84,7 @@ export type PathContentLoaderPropsType = {
 
 export interface AuthContentProps {
   handleChangeContent: MouseEventHandler<HTMLSpanElement> | undefined;
-  submitHandler: () => void;
+  submitHandler: (email: string, password: string, userName?: string) => void;
 }
 
 export interface InputWithLabelProps {

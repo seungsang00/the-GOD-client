@@ -3,9 +3,7 @@ import { Layout, MyPageLayout } from 'layouts';
 import { useRouter } from 'next/dist/client/router';
 import { useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
-import ArtistLoader from 'containers/mypageContainer/ArtistLoader';
-import ContentLoader from 'containers/mypageContainer/ContentLoader';
-import PathContentLoader from 'containers/mypageContainer/PathContentLoader';
+import { ArtistLoader, ContentLoader, PathContentLoader } from '@containers';
 import { Avatar } from '@components';
 
 const MyPage = () => {
@@ -49,7 +47,7 @@ const MyPage = () => {
               }
               size={5}
             />
-            <h3>{userProfile.data?.userName}</h3>
+            <h3>{userProfile.data?.name}</h3>
             <span>{userProfile.data?.email}</span>
           </div>
         ) : null}
@@ -59,7 +57,7 @@ const MyPage = () => {
               <div id="userInfoTop">
                 <Avatar profileImage="/images/avatar_default.jpg" size={3} />
                 <div className="text">
-                  <h2>{userProfile.data?.userName}</h2>
+                  <h2>{userProfile.data?.name}</h2>
                   <span>{userProfile.data?.email}</span>
                 </div>
               </div>
@@ -78,7 +76,7 @@ const MyPage = () => {
               <a id="my-route">My Route</a>
             </h2>
             <div className="contents">
-              <PathContentLoader data={path.data} />
+              <PathContentLoader data={paths.data} />
             </div>
           </section>
           <section>

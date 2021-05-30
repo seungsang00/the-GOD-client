@@ -8,7 +8,6 @@ import {
   TextButton,
   Carousel,
   CommentInput,
-  sampleCommentsData,
 } from '@components';
 
 import {
@@ -29,9 +28,8 @@ import {
   SectionStyle,
 } from './ContentPageContainer.style';
 import { useRouter } from 'next/dist/client/router';
-import { API_ENDPOINT, Content } from '@interfaces';
-import axios from 'axios';
-import Comments from 'containers/comments';
+import { Content } from '@interfaces';
+import { Comments } from '@containers';
 
 const ContentPageContainer = ({
   artist,
@@ -53,16 +51,13 @@ const ContentPageContainer = ({
     router.push(`/content/edit/${id}`);
   };
 
-  // TODO: 서버에 commentlist 요청 보내기
-  const comments = sampleCommentsData;
-
   // FIXME: store에서 유저 ID 정보를 받아와야 합니다
-  const sameUserId = sampleUserProfile2.userId;
-  const differentUserId = sampleUserProfile1.userId;
+  const sameUserId = sampleUserProfile2.id;
+  const differentUserId = sampleUserProfile1.id;
   const { start, end } = date;
   const { open, close } = time;
   const { storeName, roadAddress } = address;
-  const { username, profileImage } = author;
+  // const { name, profileImage } = author;
   const [bookmarked, setBookmarked] = useState<boolean>(isBookmark);
 
   const handleContentBookmark = () => {
@@ -97,7 +92,7 @@ const ContentPageContainer = ({
             </Carousel>
           </ImageSection>
           <InfoSection className="info">
-            {sameUserId === author.userId && (
+            {/* {sameUserId === author.id && (
               <div id="authorOnly">
                 <TextButton
                   disabled={false}
@@ -105,7 +100,7 @@ const ContentPageContainer = ({
                   handler={handleClickEdit}
                 />
               </div>
-            )}
+            )} */}
             <div className="head">
               <h1 className="main-title">{title}</h1>
               <div className="bookmark-button">
@@ -139,10 +134,10 @@ const ContentPageContainer = ({
               <span>{mobile}</span>
             </InfoListItem>
 
-            <Author className="author">
+            {/* <Author className="author">
               <Avatar profileImage={profileImage} size={3} />
-              <span>{username}</span>
-            </Author>
+              <span>{name}</span>
+            </Author> */}
           </InfoSection>
         </div>
 
@@ -166,7 +161,7 @@ const ContentPageContainer = ({
           <p>방문 후기를 공유해보세요</p>
         </div>
         <CommentInput />
-        <Comments comments={comments} />
+        <Comments />
       </article>
     </ContentPageStyle>
   );

@@ -12,10 +12,8 @@ export const DropdownStyle = withProps<Props, HTMLDivElement>(styled.div)`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  min-height: 100vh;
+  width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 25, 0.3);
 
   & > .dropdown-content {
     display: flex;
@@ -32,5 +30,8 @@ export const DropdownTriggerStyle = styled.div`
   ${({ theme }) => theme.zIndex.depth03};
   button {
     cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    word-break: keep-all;
   }
 `;
