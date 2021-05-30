@@ -1,105 +1,50 @@
 import { createReducer } from 'typesafe-actions';
-import { ArtistState } from '@interfaces';
+import { ArtistReducer } from '@interfaces';
 import { ArtistAction } from './actions';
 import {
   ARTIST_GET,
   ARTIST_GET_ERROR,
   ARTIST_GET_SUCCESS,
-  USER_CONTENT_GET,
-  USER_CONTENT_GET_ERROR,
-  USER_CONTENT_GET_SUCCESS,
-  USER_CONTENT_PATH_GET,
-  USER_CONTENT_PATH_GET_ERROR,
-  USER_CONTENT_PATH_GET_SUCCESS,
-  USER_FOLLOW_GET,
-  USER_FOLLOW_GET_ERROR,
-  USER_FOLLOW_GET_SUCCESS,
-  USER_INFO_GET,
-  USER_INFO_GET_ERROR,
-  USER_INFO_GET_SUCCESS,
+  ARTIST_UPDATE,
+  ARTIST_UPDATE_ERROR,
+  ARTIST_UPDATE_SUCCESS,
+  ARTIST_DELETE,
+  ARTIST_DELETE_ERROR,
+  ARTIST_DELETE_SUCCESS,
+  ARTIST_POST,
+  ARTIST_POST_ERROR,
+  ARTIST_POST_SUCCESS,
 } from '../actionTypes';
+import { AccountOptionsFlyout } from 'components/AccountOptions';
 
 // default Store
-const initialState: ArtistState = {
-  userProfile: {
-    data: null,
-    loading: false,
+const initialState: ArtistReducer = {
+  create: {
+    loading: true,
     error: null,
+    data: null,
   },
-  contents: {
-    data: null,
-    loading: false,
+  read: {
+    loading: true,
     error: null,
+    data: null,
   },
-  follows: {
-    data: null,
-    loading: false,
+  update: {
+    loading: true,
     error: null,
+    data: null,
   },
-  bookmarks: {
-    data: null,
-    loading: false,
+  delete: {
+    loading: true,
     error: null,
-  },
-  paths: {
     data: null,
-    loading: false,
-    error: null,
   },
 };
 
-const user = createReducer<ArtistState, ArtistAction>(initialState, {
-  [USER_INFO_GET]: (state) => ({
-    ...state,
-    userProfile: {
-      loading: true,
-      error: null,
-      data: null,
-    },
-  }),
-  [USER_INFO_GET_SUCCESS]: (state, action) => ({
-    ...state,
-    userProfile: {
-      loading: false,
-      error: null,
-      data: action.payload.result,
-    },
-  }),
-  [USER_INFO_GET_ERROR]: (state, action) => ({
-    ...state,
-    userProfile: {
-      loading: false,
-      error: action.payload.message,
-      data: null,
-    },
-  }),
-  [USER_CONTENT_PATH_GET]: (state) => ({
-    ...state,
-    paths: {
-      loading: true,
-      error: null,
-      data: null,
-    },
-  }),
-  [USER_CONTENT_PATH_GET_SUCCESS]: (state, action) => ({
-    ...state,
-    paths: {
-      loading: false,
-      error: null,
-      data: action.payload.result,
-    },
-  }),
-  [USER_CONTENT_PATH_GET_ERROR]: (state, action) => ({
-    ...state,
-    paths: {
-      loading: false,
-      error: action.payload.response?.data.message,
-      data: null,
-    },
-  }),
+const artist = createReducer<ArtistReducer, ArtistAction>(initialState, {
   [ARTIST_GET]: (state) => ({
     ...state,
-    bookmark: {
+    read: {
       loading: true,
       error: null,
       data: null,
@@ -107,68 +52,92 @@ const user = createReducer<ArtistState, ArtistAction>(initialState, {
   }),
   [ARTIST_GET_SUCCESS]: (state, action) => ({
     ...state,
-    bookmarks: {
+    read: {
       loading: false,
       error: null,
-      data: action.payload.result,
+      data: action.payload,
     },
   }),
   [ARTIST_GET_ERROR]: (state, action) => ({
     ...state,
-    bookmarks: {
+    read: {
       loading: false,
-      error: action.payload.response?.data.message,
+      error: action.payload.message,
       data: null,
     },
   }),
-  [USER_FOLLOW_GET]: (state) => ({
+  [ARTIST_UPDATE]: (state) => ({
     ...state,
-    follows: {
+    update: {
       loading: true,
       error: null,
       data: null,
     },
   }),
-  [USER_FOLLOW_GET_SUCCESS]: (state, action) => ({
+  [ARTIST_UPDATE_ERROR]: (state, action) => ({
     ...state,
-    follows: {
+    update: {
       loading: false,
-      error: null,
-      data: action.payload.result,
-    },
-  }),
-  [USER_FOLLOW_GET_ERROR]: (state, action) => ({
-    ...state,
-    follows: {
-      loading: false,
-      error: action.payload.response?.data.message,
+      error: action.payload.message,
       data: null,
     },
   }),
-  [USER_CONTENT_GET]: (state) => ({
+  [ARTIST_UPDATE_SUCCESS]: (state, action) => ({
     ...state,
-    contents: {
+    update: {
+      loading: false,
+      error: null,
+      data: action.payload,
+    },
+  }),
+  [ARTIST_DELETE]: (state) => ({
+    ...state,
+    delete: {
       loading: true,
       error: null,
       data: null,
     },
   }),
-  [USER_CONTENT_GET_SUCCESS]: (state, action) => ({
+  [ARTIST_DELETE_ERROR]: (state, action) => ({
     ...state,
-    contents: {
+    delete: {
       loading: false,
-      error: null,
-      data: action.payload.result,
+      error: action.payload.message,
+      data: null,
     },
   }),
-  [USER_CONTENT_GET_ERROR]: (state, action) => ({
+  [ARTIST_DELETE_SUCCESS]: (state, action) => ({
     ...state,
-    contents: {
+    delete: {
       loading: false,
-      error: action.payload.response?.data.message,
+      error: null,
+      data: action.payload,
+    },
+  }),
+  [ARTIST_POST]: (state) => ({
+    ...state,
+    create: {
+      loading: true,
+      error: null,
       data: null,
+    },
+  }),
+  [ARTIST_POST_ERROR]: (state, action) => ({
+    ...state,
+    create: {
+      loading: false,
+      error: action.payload.result.message,
+      data: null,
+    },
+  }),
+  [ARTIST_POST_SUCCESS]: (state, action) => ({
+    ...state,
+    create: {
+      loading: false,
+      error: null,
+      data: action.payload,
     },
   }),
 });
 
-export default user;
+export default artist;

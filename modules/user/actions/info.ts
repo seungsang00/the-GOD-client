@@ -32,7 +32,7 @@ export const getInfoRequest = async () => {
   const token: string | null = localStorage.getItem('accessToken');
   const result = await axios.get<GetInfoResponse>(`${API_ENDPOINT}/user`, {
     headers: {
-      authorization: token,
+      authorization: `bearer ${token}`,
     },
   });
   return result.data;
@@ -44,7 +44,7 @@ export const updateInfoRequest = async (user: User) => {
     user,
     {
       headers: {
-        authorization: token,
+        authorization: `bearer ${token}`,
       },
     }
   );
