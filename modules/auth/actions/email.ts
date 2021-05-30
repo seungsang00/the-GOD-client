@@ -17,13 +17,13 @@ import {
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
-export const singupRequest = async ({ email, password, userName }: signup) => {
+export const singupRequest = async ({ email, password, name }: signup) => {
   const result = await axios.post<{ message: string }>(
     `${API_ENDPOINT}/auth/signup`,
     {
       email,
       password,
-      userName,
+      name,
     }
   );
   return result.data;
@@ -39,7 +39,7 @@ export const loginRequset = async (props: {
     password,
   });
   if (window) {
-    localStorage.setItem('accesstoken', result.data.result.accessToken);
+    localStorage.setItem('accessToken', result.data.result.accessToken);
   }
   return result.data.result.accessToken;
 };
