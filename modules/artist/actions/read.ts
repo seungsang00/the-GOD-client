@@ -10,8 +10,8 @@ import { createAsyncAction } from 'typesafe-actions';
 
 export const getArtistAsync = createAsyncAction(
   ARTIST_GET,
-  ARTIST_GET_ERROR,
-  ARTIST_GET_SUCCESS
+  ARTIST_GET_SUCCESS,
+  ARTIST_GET_ERROR
 )<null, GetArtistResponse, AxiosError>();
 
 export const getArtistRequest = async () => {

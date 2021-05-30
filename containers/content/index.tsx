@@ -48,7 +48,7 @@ const ContentPageContainer = ({
   const { open, close } = time;
   const { storeName, roadAddress } = address;
   // const { name, profileImage } = author;
-  const [bookmarked, setBookmarked] = useState<boolean>(isBookmark);
+  const [bookmarked, setBookmarked] = useState<boolean | undefined>(isBookmark);
 
   const handleContentBookmark = () => {
     setBookmarked(!bookmarked);
@@ -95,7 +95,7 @@ const ContentPageContainer = ({
               <h1 className="main-title">{title}</h1>
               <div className="bookmark-button">
                 <BookmarkButton
-                  value={bookmarked}
+                  value={bookmarked ? true : false}
                   handler={handleContentBookmark}
                 />
               </div>

@@ -55,7 +55,7 @@ const artist = createReducer<ArtistReducer, ArtistAction>(initialState, {
     read: {
       loading: false,
       error: null,
-      data: action.payload,
+      data: action.payload.result,
     },
   }),
   [ARTIST_GET_ERROR]: (state, action) => ({

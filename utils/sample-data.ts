@@ -1,8 +1,3 @@
-/* TODO: refactor
-/ 1. page-layout
-/ 2. reducer (factory)
-*/
-
 import { IComment, Content, User, Artists } from '@interfaces';
 
 export const sampleCommentsData: IComment[] = [
@@ -71,11 +66,7 @@ export const sampleUserProfile2: User = {
 export const sampleContentListData: Content[] = [
   {
     id: '1',
-<<<<<<< HEAD
-    artist: { name: 'all', group: 'ENHYPEN', id: '', profileImage: '' },
-=======
     artist: { id: 'enhypen', name: 'ALL', group: 'ENHYPEN', profileImage: '' },
->>>>>>> c2cddb027cfb1f320da77ccb5bf88de114a2fbef
     title: '엔하이픈 컴백 기념 컵홀더 이벤트',
     tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
     description:

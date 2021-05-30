@@ -165,7 +165,7 @@ export type UpdateArtistResponse = AxiosResponse<{
   name: string;
   group: string;
 }>;
-export type GetArtistResponse = AxiosResponse<IArtists>;
+export type GetArtistResponse = AxiosResponse<Artists>;
 export type DeleteArtistResponse = AxiosResponse<{ message: string }>;
 export interface UserState {
   userProfile: AsyncState<User>;
@@ -194,7 +194,7 @@ export interface ArtistReducer {
   create: AsyncState<{ message: string }>;
   update: AsyncState<{ message: string }>;
   delete: AsyncState<{ message: string }>;
-  read: AsyncState<IArtists>;
+  read: AsyncState<Artists>;
 }
 
 export interface CommentReducer {
