@@ -1,15 +1,15 @@
 import { useRef, useEffect, useCallback } from 'react';
-import { ScrollDirection } from '@interfaces';
+import { Direction } from '@interfaces';
 
 const useScrollFadeIn = (
-  direction: ScrollDirection = 'up',
+  direction: Direction = 'up',
   duration: number = 1,
   delay: number = 0,
   threshold: number = 0.65
 ) => {
   const element = useRef<HTMLDivElement | null>(null);
 
-  const handleDirection = (name: ScrollDirection) => {
+  const handleDirection = (name: Direction) => {
     switch (name) {
       case 'up':
         return 'translate3d(0, 50%, 0)';
