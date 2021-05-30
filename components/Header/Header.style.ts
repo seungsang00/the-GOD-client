@@ -9,6 +9,7 @@ export const HeaderContainer = styled.header`
   padding: 0 ${({ theme }) => theme.space.sm};
   ${({ theme }) => theme.concept.glassmorphism}
   position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 9999;

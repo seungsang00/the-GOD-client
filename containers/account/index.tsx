@@ -1,5 +1,5 @@
 import { Button } from '@components';
-import { SignoutModal } from 'containers/auth';
+import { SignoutModal } from '@containers';
 import useModal from 'hooks/useModal';
 import React from 'react';
 import { EditPassword } from './EditUserInfo';

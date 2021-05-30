@@ -6,7 +6,7 @@ export interface User {
   id: string;
   type?: string;
   profileImage: string;
-  userName: string;
+  name: string;
   email: string;
   passwordUpdate?: string;
 }
@@ -17,10 +17,26 @@ export interface Artist {
   profileImage: string;
   isFollow?: boolean;
 }
+
+export type Artists = (IGroupArtist | IArtist)[];
+
+export interface IGroupArtist extends IArtist {
+  type: 'group';
+  member: IMember[];
+}
+export interface IArtist extends IMember {
+  type: 'group' | 'solo';
+}
+export interface IMember {
+  id: string;
+  name: string;
+  profileImage: string;
+}
+
 export interface signup {
   email: string;
   password: string;
-  userName: string;
+  name: string;
 }
 export interface SharedContent {
   id: string;
@@ -53,10 +69,11 @@ export interface Content {
 }
 
 export interface Author {
-  userId: string;
-  username: string;
+  id: string;
+  name: string;
   profileImage: string;
 }
+
 export type Image = string;
 export interface Date {
   start: string | undefined;
@@ -66,13 +83,15 @@ export interface Time {
   open: string;
   close: string;
 }
+
+export interface Latlng {
+  lat: number;
+  lng: number;
+}
 export interface Address {
   storeName: string;
   roadAddress: string;
-  location: {
-    lat: number;
-    lng: number;
-  };
+  location: Latlng;
 }
 export interface Perks {
   bus: boolean;
@@ -89,19 +108,9 @@ export interface PerkList {
   [prop: string]: any;
 }
 
-export interface ICommentAuthor {
-  userId: string;
-  username: string;
-  profileImage: string;
-}
-
 export interface IComment {
   id: string;
-  author: {
-    userId: string;
-    username: string;
-    profileImage: string;
-  };
+  author: Author;
   comments: string;
   createdAt: string;
 }

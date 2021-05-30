@@ -15,7 +15,7 @@ import {
   ARTIST_POST_ERROR,
   ARTIST_POST_SUCCESS,
 } from '../actionTypes';
-import { AccountOptionsFlyout } from 'components/AccountOptions';
+// import { AccountOptionsFlyout } from 'components/AccountOptions';
 
 // default Store
 const initialState: ArtistReducer = {

@@ -4,22 +4,21 @@ import styled from '@styles/themed-components';
 import {
   Avatar,
   Badge,
-  Carousel,
+  /* Carousel,
   FileInput,
   InputTags,
-  SearchInputs,
+  OrderSidebar, */
   // TextArea,
   TextInput,
   TimeSelect,
 } from '@components';
 import FilePreview from 'components/FilePreview';
 import useModal from 'hooks/useModal';
-import { SignoutModal } from 'containers/auth';
-import React, { ChangeEvent, useState } from 'react';
-import { readFile } from '@interfaces';
-import LocationForm from 'containers/contents/LocationForm';
-import MainSearchForm from 'containers/main/searchform';
+import { SignoutModal, MainSearchForm } from '@containers';
 import useTextInput from 'hooks/useTextInput';
+import React from 'react';
+import LocationForm from 'containers/contents/LocationForm';
+// import { readFile } from '@interfaces';
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};
@@ -31,13 +30,13 @@ const MyComponent = styled.div`
   }
 `;
 
-const tagList = ['ENHYPEN', 'BORDER_CARNIVAL', 'COMEBACK'];
+// const tagList = ['ENHYPEN', 'BORDER_CARNIVAL', 'COMEBACK'];
 const testHandler = (HHorMM: string) => console.log(HHorMM);
 
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
-  const [files, setFiles] = useState<readFile[]>([]);
-  const fileListToArray = (fileList: FileList) => {
+  // const [_files, setFiles] = useState<readFile[]>([]);
+  /*  const fileListToArray = (fileList: FileList) => {
     for (let i = 0; i < fileList.length; i++) {
       const reader = new FileReader();
       reader.readAsDataURL(fileList[i]);
@@ -52,12 +51,12 @@ const AboutPage = () => {
         ]);
       };
     }
-  };
-  const testFilehandler = (e: ChangeEvent<HTMLInputElement>) => {
+  }; */
+  /*  const testFilehandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       fileListToArray(e.target.files);
     }
-  };
+  }; */
   const { inputEvent } = useTextInput('');
   const { value, onChange } = inputEvent;
   return (
@@ -95,23 +94,7 @@ const AboutPage = () => {
       <TimeSelect setHour={testHandler} setMinutes={testHandler} />
       <Badge bgcolor="pink">#ENHYPEN</Badge>
       <Badge textcolor="pink">#ENHYPEN</Badge>
-      <SearchInputs />
-      <InputTags tagList={tagList} handler={() => {}} />
-      <FileInput handleFileChange={testFilehandler} />
-      <Carousel col={4}>
-        {[
-          <div>
-            <FileInput handleFileChange={testFilehandler} />
-          </div>,
-          ...files.map((file, _i) => (
-            <FilePreview
-              url={file.url}
-              handleRemoveFile={() => console.log(file.name)}
-            />
-          )),
-        ]}
-      </Carousel>
-      <InputTags tagList={tagList} handler={() => {}} />
+      {/* <InputTags tagList={tagList} /> */}
       <FilePreview
         url="https://bit.ly/33TugE9"
         handleRemoveFile={() => console.log(`file remove`)}

@@ -1,41 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layout } from '@layouts';
-import ContentPageContainer from 'containers/content';
+import { ContentPageContainer } from '@containers';
 import { sampleContentData } from '../../utils/sample-data';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'modules/reducer';
+import { getContentThunk } from 'modules/content/actions/read';
 
 const ContentPage = () => {
-  // FIXME: store에서 컨텐츠 정보를 받아와야 합니다
-  const {
-    artist,
-    title,
-    tags,
-    description,
-    images,
-    date,
-    time,
-    address,
-    mobile,
-    perks,
-    isBookmark,
-    author,
-  } = sampleContentData;
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { id: contentId } = router.query as { id: string };
+  const { loading, error, data } = useSelector(
+    (state: RootState) => state.content.current
+  );
+  useEffect(() => {
+    if (contentId) dispatch(getContentThunk(contentId));
+  }, [contentId]);
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
 
   return (
-    <Layout title={`${title} | FansSum::팬심이 모여 문화가 되다`}>
-      <ContentPageContainer
-        artist={artist}
-        title={title}
-        tags={tags}
-        description={description}
-        images={images}
-        date={date}
-        time={time}
-        address={address}
-        mobile={mobile}
-        perks={perks}
-        isBookmark={isBookmark}
-        author={author}
-      />
+    <Layout title={`${data && data.title} | FansSum::팬심이 모여 문화가 되다`}>
+      {loading && 'loading...'}
+      {data && <ContentPageContainer {...data} />}
     </Layout>
   );
 };

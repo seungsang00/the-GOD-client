@@ -9,6 +9,9 @@ import {
   handleOptionList,
 } from '@utils/dropdownUtils';
 import { MainSearchFormContainer } from './mainsearchform.style';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { getContentListThunk } from 'modules/content/actions/read';
 
 const MainSearchForm = (): ReactElement => {
   // option list
@@ -33,6 +36,46 @@ const MainSearchForm = (): ReactElement => {
   const [stateA, setStateA] = useState<string | undefined>(undefined); // 아티스트
   const [stateB, setStateB] = useState<string | undefined>(undefined); // 위치
   const [dates, setDates] = useState<Dates>({ startDate: null, endDate: null }); // 날짜
+
+  // queryData 생성
+  const makeQueryData = () => {
+    let artistId = undefined;
+    let location = null;
+
+    // FIXME: 옵션 구조가 변경 되었습니다. artistId를 가져와야 합니다.
+    const tempA = stateA?.split(' ');
+    if (tempA && tempA[1] === 'ALL') {
+      artistId = tempA[0]; // FIXME: artistId를 가져와야 합니다.
+    } else if (tempA) {
+      artistId = tempA[0]; // FIXME: artistId를 가져와야 합니다.
+    }
+
+    // location
+    const tempB = stateB?.split(' ');
+    tempB && tempB[1] === '전체'
+      ? (location = tempB[0])
+      : (location = tempB?.join(' '));
+
+    const queryData = {
+      artistId, // FIXME: artistId를 가져와야 합니다.
+      location,
+      dateStart: moment(dates.startDate).format('YYYY-MM-DD'),
+      dateEnd: moment(dates.endDate).format('YYYY-MM-DD'),
+    };
+    return queryData;
+  };
+
+  // 검색 버튼 핸들러
+  const handleSearchClick = () => {
+    const { artistId, location, dateStart, dateEnd } = makeQueryData();
+    getContentListThunk({
+      artistId: artistId as string,
+      location: location as string,
+      dateStart: dateStart as string,
+      dateEnd: dateEnd as string,
+    });
+    console.log('search!');
+  };
 
   // 상태 관리 핸들러
   const handleChangeStateA = (selected: string) => {
@@ -94,8 +137,11 @@ const MainSearchForm = (): ReactElement => {
   }, [viewWidth]);
 
   return (
-    <MainSearchFormContainer>
-      <section style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+    <MainSearchFormContainer className="main__banner">
+      <section
+        className="main__searchform"
+        style={{ display: 'flex', justifyContent: 'space-evenly' }}
+      >
         <div className={`trigger-wrapper ${!isDoneA ? 'active' : 'inactive'}`}>
           <DropdownTrigger
             value={stateA}
@@ -133,7 +179,13 @@ const MainSearchForm = (): ReactElement => {
             onClick={(e) =>
               handleShowOption(e, showC, setShowC, setShowB, setShowA)
             }
-          />
+          ></DropdownTrigger>
+        </div>
+        <div
+          className={`trigger-wrapper ${
+            isDoneA && isDoneB ? 'active' : 'inactive'
+          }`}
+        >
           <DropdownTrigger
             value={
               dates.endDate
@@ -146,6 +198,13 @@ const MainSearchForm = (): ReactElement => {
             }
           ></DropdownTrigger>
         </div>
+        {viewWidth && viewWidth > 768 && (
+          <div className="trigger-wrapper search-button">
+            <div onClick={handleSearchClick}>
+              <FontAwesomeIcon icon={faSearch} />
+            </div>
+          </div>
+        )}
       </section>
       <section
         style={{
@@ -178,6 +237,14 @@ const MainSearchForm = (): ReactElement => {
           />
         </Dropdown>
       </section>
+      {viewWidth && viewWidth <= 768 && (
+        <div className="search-button__bottom--container">
+          <div className="search-button__bottom" onClick={handleSearchClick}>
+            <FontAwesomeIcon icon={faSearch} />
+            검색하기
+          </div>
+        </div>
+      )}
     </MainSearchFormContainer>
   );
 };
