@@ -10,7 +10,7 @@ export const sampleCommentsData: IComment[] = [
     id: 'c019jkdkjbf1r088293902kjer',
     author: {
       id: '019jkdkjbf1r0882939',
-      username: 'testUser',
+      name: 'testUser',
       profileImage: 'https://bit.ly/3oqUbfM',
     },
     comments: 'good',
@@ -20,7 +20,7 @@ export const sampleCommentsData: IComment[] = [
     id: 'c019jkqoeidf1r088293902kjer',
     author: {
       id: '019jkdkjbf1r0882940',
-      username: 'sim',
+      name: 'sim',
       profileImage:
         'https://i.pinimg.com/280x280_RS/97/de/54/97de54c12e0bdfa5d334a83f6b682f63.jpg',
     },
@@ -31,7 +31,7 @@ export const sampleCommentsData: IComment[] = [
     id: 'c019jkdsldknflskfnreone293902kjer',
     author: {
       id: '019jkdkjbf1r0882990',
-      username: 'reone',
+      name: 'reone',
       profileImage:
         'https://i.pinimg.com/736x/f1/2c/f2/f12cf2ff79a75193294dac1ee281e80f.jpg',
     },
@@ -42,7 +42,7 @@ export const sampleCommentsData: IComment[] = [
     id: 'c019jkskdfowiehfr088293902kjer',
     author: {
       id: '019jkdkjbf1r0982039',
-      username: 'engene',
+      name: 'engene',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
@@ -53,7 +53,7 @@ export const sampleCommentsData: IComment[] = [
 
 export const sampleUserProfile1: User = {
   id: '019jkdkjbf1r0882939',
-  userName: 'testUser',
+  name: 'testUser',
   email: 'test1015@email.com',
   profileImage: 'https://bit.ly/3oqUbfM',
   passwordUpdate: '2021-05-26',
@@ -61,7 +61,7 @@ export const sampleUserProfile1: User = {
 
 export const sampleUserProfile2: User = {
   id: '019jkdkjbf1r0982039',
-  userName: 'engene',
+  name: 'engene',
   email: 'engene1130@email.com',
   profileImage:
     'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
@@ -111,7 +111,7 @@ export const sampleContentListData: Content[] = [
     isBookmark: true,
     author: {
       id: '019jkdkjbf1r0982039',
-      username: 'ENGENE',
+      name: 'ENGENE',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
@@ -158,7 +158,7 @@ export const sampleContentListData: Content[] = [
     isBookmark: true,
     author: {
       id: '019jkdkjbf1r0982039',
-      username: 'ENGENE',
+      name: 'ENGENE',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
@@ -208,7 +208,7 @@ export const sampleContentListData: Content[] = [
     isBookmark: true,
     author: {
       id: '019jkdkjbf1r0982039',
-      username: 'ENGENE',
+      name: 'ENGENE',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
@@ -254,7 +254,7 @@ export const sampleContentListData: Content[] = [
     isBookmark: true,
     author: {
       id: '019jkdkjbf1r0982039',
-      username: 'ENGENE',
+      name: 'ENGENE',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
@@ -304,7 +304,7 @@ export const sampleContentListData: Content[] = [
     isBookmark: true,
     author: {
       id: '019jkdkjbf1r0982039',
-      username: 'ENGENE',
+      name: 'ENGENE',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
@@ -356,7 +356,7 @@ export const sampleContentListData: Content[] = [
     isBookmark: true,
     author: {
       id: '019jkdkjbf1r0982039',
-      username: 'ENGENE',
+      name: 'ENGENE',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
@@ -408,7 +408,7 @@ export const sampleContentListData: Content[] = [
     isBookmark: true,
     author: {
       id: '019jkdkjbf1r0982039',
-      username: 'ENGENE',
+      name: 'ENGENE',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
@@ -460,7 +460,7 @@ export const sampleContentListData: Content[] = [
     isBookmark: true,
     author: {
       id: '019jkdkjbf1r0982039',
-      username: 'ENGENE',
+      name: 'ENGENE',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
@@ -514,7 +514,7 @@ export const sampleContentData: Content = {
   isBookmark: true,
   author: {
     id: '019jkdkjbf1r0982039',
-    username: 'ENGENE',
+    name: 'ENGENE',
     profileImage:
       'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
   },

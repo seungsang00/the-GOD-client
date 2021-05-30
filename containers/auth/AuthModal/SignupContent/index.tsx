@@ -19,7 +19,7 @@ const SignupContent = ({
   handleChangeContent,
   submitHandler,
 }: AuthContentProps): ReactElement => {
-  const [username, setUsername, usernameError] = useValidInput(
+  const [userName, setUsername, usernameError] = useValidInput(
     '',
     verifyUsername,
     usernameStandard
@@ -53,7 +53,7 @@ const SignupContent = ({
 
   const [disabled, setDisabled] = useState(true);
   useEffect(() => {
-    if (username && email && password && confirmPw) {
+    if (userName && email && password && confirmPw) {
       if (!usernameError && !emailError && !passwordError && !confirmPwError) {
         setDisabled(false);
       } else {
@@ -66,7 +66,7 @@ const SignupContent = ({
     <article>
       <FormSection>
         <UsernameInput
-          value={username}
+          value={userName}
           setValue={setUsername}
           error={usernameError}
         />
@@ -81,7 +81,11 @@ const SignupContent = ({
           setValue={setConfirmPw}
           error={confirmPwError}
         />
-        <Button disabled={disabled} text="sign up" handler={submitHandler} />
+        <Button
+          disabled={disabled}
+          text="sign up"
+          handler={() => submitHandler(userName, email, password)}
+        />
       </FormSection>
       <LinkSection>
         <span>Not a member?</span>
