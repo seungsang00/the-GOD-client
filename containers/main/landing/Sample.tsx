@@ -36,9 +36,9 @@ export const LandingSampleL = () => {
 export const LandingSampleR = () => {
   const animatedItem = {
     0: useScrollFadeIn('up', 1, 0),
-    1: useScrollFadeIn('up', 1, 0.2),
-    2: useScrollFadeIn('up', 1, 0.3),
-    3: useScrollFadeIn('up', 1, 0.4),
+    1: useScrollFadeIn('down', 1, 0.2),
+    2: useScrollFadeIn('left', 1, 0.3),
+    3: useScrollFadeIn('right', 1, 0.4),
     4: useScrollFadeIn('up', 1, 0.5),
   };
 
