@@ -116,3 +116,15 @@ export interface ContentCardProps {
   contentData: Content;
   handleClick: (id: string) => void;
 }
+
+export interface CommentInputProps {
+  handler: MouseEventHandler;
+  value: string;
+  onChange: ({
+    target,
+  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onKeyDown?: ({
+    key,
+  }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onClick?: () => void;
+}
