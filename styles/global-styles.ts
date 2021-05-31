@@ -1,48 +1,41 @@
 import reset from 'styled-reset';
-import { createGlobalStyle } from './themed-components';
+import { createGlobalStyle, css, DefaultTheme } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-  ${reset}
-  * {
-    box-sizing: border-box;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  }
-  body{
-    height:100%;
-    width:100%;
-  }
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  input, button, textarea {
-    font-size: 1rem;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  h1, h2, h3, h4, h5, h6{
-    font-family:'Maven Pro', sans-serif;
-    font-weight: 600;
-  }
-  h1 {
-    font-size: 2rem;
-  }
-  h2 {
-    font-size: 1.7rem;
-  }
-  h3 {
-    font-size: 1.4rem;
-  }
-  h4 {
-    font-size: 1.1rem;
-  }
-  textarea {
-    resize: none;
-  }
-  ul {
-    width: 100%;
-  }
-`;
+interface GlobalStyleProps {
+  theme: DefaultTheme;
+}
 
-export default GlobalStyle;
+export const GlobalStyle = createGlobalStyle(
+  (props: GlobalStyleProps) => css`
+    ${reset}
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: ${props.theme.colors.bgColor};
+      color: ${props.theme.colors.textColor};
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    input,
+    button,
+    textarea {
+      color: inherit;
+      font-size: 1rem;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+    button {
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: ${props.theme.borderRadius};
+      padding: 0 16px;
+    }
+    textarea {
+      resize: none;
+    }
+  `
+);
