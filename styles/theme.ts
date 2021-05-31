@@ -10,15 +10,33 @@ const colors = {
   lightgrey: 'rgb(239, 239, 239)',
   grey: '#bfbfbf',
   deepgrey: '#969aa2',
-
-  main: 'cyan',
-  green: '#2ecc71',
-  red: '#e74c3c',
-  yellow: '#f1c40f',
-  // 버튼이나 링크의 스타일을 위한 색상 지정
-  normal: '#4834d4',
-  hover: '#686de0',
-  action: '#4834d9',
+  button: {
+    default: {
+      // TODO: primary에 맞게 수정하기
+      normal: '#c2cad4', // normal
+      hover: '#ced0da', // hover
+      pressed: '#9a9fa8', // pressed
+      disabled: '#d4d9e1', // disabled
+    },
+    red: {
+      normal: '#f42d16', // normal
+      hover: '#f65745', // hover
+      pressed: '#db2813', // pressed
+      disabled: '#f1958a', // disabled
+    },
+    green: {
+      normal: '#00cd3c', // normal
+      hover: '#34d762', // hover
+      pressed: '#00b835', // pressed
+      disabled: '#a4e5b7', // disabled
+    },
+    line: {
+      normal: '#c2cad4', // normal
+      hover: '#ced0da', // hover
+      pressed: '#9a9fa8', // pressed
+      disabled: '#d4d9e1', // disabled
+    },
+  },
 };
 
 const typography = {
@@ -111,7 +129,7 @@ const zIndex = {
   depth04: `z-index: 9999`,
 };
 
-const borderRadius = calcRem(10);
+const borderRadius = calcRem(6);
 
 const light = {
   colors: {

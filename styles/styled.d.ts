@@ -4,7 +4,7 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     borderRadius: string;
     colors: {
-      [prop: string]: string;
+      [prop: string]: any;
     };
     concept: {
       [prop: string]: string;

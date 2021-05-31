@@ -8,16 +8,6 @@ interface GlobalStyleProps {
 export const GlobalStyle = createGlobalStyle(
   (props: GlobalStyleProps) => css`
     ${reset}
-    :root {
-      --color-red-01: '#f42d16';
-      --color-red-02: '#f65745';
-      --color-red-03: '#db2813';
-      --color-red-04: '#f1958a';
-      --color-green-01: '#00cd3c';
-      --color-green-02: '#34d762';
-      --color-green-03: '#00b835';
-      --color-green-04: '#a4e5b7';
-    }
     * {
       box-sizing: border-box;
     }
@@ -39,7 +29,10 @@ export const GlobalStyle = createGlobalStyle(
       outline: none;
     }
     button {
+      font-size: 1rem;
       cursor: pointer;
+      border-radius: ${props.theme.borderRadius};
+      padding: 0 16px;
     }
     textarea {
       resize: none;
