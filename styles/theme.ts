@@ -1,6 +1,7 @@
 import { DefaultTheme } from 'styled-components';
 
-// 색상
+const calcRem = (px: number) => `${px / 16}rem`;
+
 const colors = {
   primary: '#f45d48',
   secondary: '#0a8080',
@@ -69,7 +70,6 @@ const typography = {
   },
 };
 
-// 컨셉
 const concept = {
   glassmorphism: `
     background: rgba( 255, 255, 255, 0.10 );
@@ -95,13 +95,13 @@ const media = {
 
 // 간격 시스템
 const space = {
-  xxs: '4px',
-  xs: '8px',
-  sm: '16px',
-  md: '24px',
-  lg: '36px',
-  xl: '48px',
-  xxl: '60px',
+  xxs: calcRem(4),
+  xs: calcRem(8),
+  sm: calcRem(16),
+  md: calcRem(24),
+  lg: calcRem(36),
+  xl: calcRem(48),
+  xxl: calcRem(60),
 };
 
 const zIndex = {
@@ -111,14 +111,37 @@ const zIndex = {
   depth04: `z-index: 9999`,
 };
 
-export const theme: DefaultTheme = {
-  borderRadius: '10px',
-  colors,
+const borderRadius = calcRem(10);
+
+const light = {
+  colors: {
+    bgColor: '#f8f8f9',
+    textColor: '#2f2f37',
+    ...colors,
+  },
   typography,
   concept,
   media,
   space,
   zIndex,
+  borderRadius,
 };
 
-export default theme;
+const dark = {
+  colors: {
+    bgColor: '#2f2f37',
+    textColor: '#fff',
+    ...colors,
+  },
+  typography,
+  concept,
+  media,
+  space,
+  zIndex,
+  borderRadius,
+};
+
+export const lightTheme: DefaultTheme = { ...light };
+export const darkTheme: DefaultTheme = { ...dark };
+
+export type Theme = typeof lightTheme;

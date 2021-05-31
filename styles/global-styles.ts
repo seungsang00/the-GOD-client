@@ -1,48 +1,48 @@
 import reset from 'styled-reset';
-import { createGlobalStyle } from './themed-components';
+import { createGlobalStyle, css, DefaultTheme } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
-  ${reset}
-  * {
-    box-sizing: border-box;
-    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  }
-  body{
-    height:100%;
-    width:100%;
-  }
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-  input, button, textarea {
-    font-size: 1rem;
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-  h1, h2, h3, h4, h5, h6{
-    font-family:'Maven Pro', sans-serif;
-    font-weight: 600;
-  }
-  h1 {
-    font-size: 2rem;
-  }
-  h2 {
-    font-size: 1.7rem;
-  }
-  h3 {
-    font-size: 1.4rem;
-  }
-  h4 {
-    font-size: 1.1rem;
-  }
-  textarea {
-    resize: none;
-  }
-  ul {
-    width: 100%;
-  }
-`;
+interface GlobalStyleProps {
+  theme: DefaultTheme;
+}
 
-export default GlobalStyle;
+export const GlobalStyle = createGlobalStyle(
+  (props: GlobalStyleProps) => css`
+    ${reset}
+    :root {
+      --color-red-01: '#f42d16';
+      --color-red-02: '#f65745';
+      --color-red-03: '#db2813';
+      --color-red-04: '#f1958a';
+      --color-green-01: '#00cd3c';
+      --color-green-02: '#34d762';
+      --color-green-03: '#00b835';
+      --color-green-04: '#a4e5b7';
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: ${props.theme.colors.bgColor};
+      color: ${props.theme.colors.textColor};
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    input,
+    button,
+    textarea {
+      color: inherit;
+      font-size: 1rem;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+    button {
+      cursor: pointer;
+    }
+    textarea {
+      resize: none;
+    }
+  `
+);

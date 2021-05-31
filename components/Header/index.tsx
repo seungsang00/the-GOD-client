@@ -1,3 +1,4 @@
+import { ThemeToggleButton } from '@components';
 import {
   AccountOptionsButton,
   AccountOptionsFlyout,
@@ -25,6 +26,7 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
           </Link>
         </div>
         <nav className="gnb">
+          <ThemeToggleButton />
           {avatar}
           <AccountOptionsButton handler={flyoutController} />
           {isOpen && <AccountOptionsFlyout handler={flyoutController} />}

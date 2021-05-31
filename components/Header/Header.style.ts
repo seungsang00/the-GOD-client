@@ -8,7 +8,6 @@ export const HeaderContainer = styled.header`
   align-items: center;
   padding: 0 ${({ theme }) => theme.space.sm};
   ${({ theme }) => theme.concept.glassmorphism}
-  position: sticky;
   position: fixed;
   top: 0;
   left: 0;
