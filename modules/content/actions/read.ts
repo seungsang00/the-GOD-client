@@ -18,10 +18,11 @@ import { createAsyncAction } from 'typesafe-actions';
 
 export const getContentRequest = async (id: string) => {
   const accessToken = localStorage.getItem('accessToken');
+  console.log(`가니`, accessToken);
   const result = await axios.get<GetContentResponse>(
     `${API_ENDPOINT}/content?id=${id}`,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;
@@ -60,5 +61,5 @@ export const getContentThunk = createAsyncThunk(
 );
 export const getContentListThunk = createAsyncThunk(
   getContentListAsync,
-  getContentRequest
+  getContentListRequest
 );

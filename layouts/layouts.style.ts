@@ -1,21 +1,12 @@
 import styled from '@styles/themed-components';
 
 export const CommonLayoutStyle = styled.div`
-  #mainContent {
-    padding: ${({ theme }) => theme.space.lg} 0;
-  }
-
+  padding-top: 60px;
   /* main page */
-  #mainBanner {
-    height: 60vh;
-    padding: ${({ theme }) => theme.space.xxl} 0;
-
-    ${({ theme }) => theme.media.tablet} {
-      padding: ${({ theme }) => theme.space.xl} 0;
-    }
-    ${({ theme }) => theme.media.mobile} {
-      padding: ${({ theme }) => theme.space.lg} 0;
-    }
+  .main__banner {
+    height: 100vh;
+    padding: 12vw;
+    padding-top: 120px;
   }
 `;
 

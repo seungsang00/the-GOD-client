@@ -8,7 +8,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   padding: 0 ${({ theme }) => theme.space.sm};
   ${({ theme }) => theme.concept.glassmorphism}
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 9999;
@@ -25,5 +25,10 @@ export const HeaderContainer = styled.header`
   nav {
     display: flex;
     align-items: center;
+  }
+  .auth-modal-trigger {
+    & > button {
+      min-width: 60px;
+    }
   }
 `;

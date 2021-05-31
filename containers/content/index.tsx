@@ -1,20 +1,12 @@
 import React, { ReactElement, useState } from 'react';
 import {
-  Avatar,
   Badge,
   BookmarkButton,
   InfoListItem,
   PerkBadge,
-  TextButton,
   Carousel,
-  CommentInput,
-  sampleCommentsData,
 } from '@components';
 
-import {
-  sampleUserProfile1,
-  sampleUserProfile2,
-} from '../../utils/sample-data';
 import { faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import {
   faCalendar,
@@ -25,13 +17,11 @@ import {
   ContentPageStyle,
   ImageSection,
   InfoSection,
-  Author,
   SectionStyle,
 } from './ContentPageContainer.style';
-import { useRouter } from 'next/dist/client/router';
-import { API_ENDPOINT, Content } from '@interfaces';
-import axios from 'axios';
-import Comments from 'containers/comments';
+// import { useRouter } from 'next/dist/client/router';
+import { Content } from '@interfaces';
+import { Comments } from '@containers';
 
 const ContentPageContainer = ({
   artist,
@@ -45,25 +35,21 @@ const ContentPageContainer = ({
   mobile,
   perks,
   isBookmark,
-  author,
 }: Content): ReactElement => {
-  const router = useRouter();
-  const { id } = router.query;
-  const handleClickEdit = () => {
+  // const router = useRouter();
+  // const { id } = router.query;
+  /* const handleClickEdit = () => {
     router.push(`/content/edit/${id}`);
-  };
-
-  // TODO: 서버에 commentlist 요청 보내기
-  const comments = sampleCommentsData;
+  }; */
 
   // FIXME: store에서 유저 ID 정보를 받아와야 합니다
-  const sameUserId = sampleUserProfile2.userId;
-  const differentUserId = sampleUserProfile1.userId;
+  /* const sameUserId = sampleUserProfile2.id;
+  const differentUserId = sampleUserProfile1.id; */
   const { start, end } = date;
   const { open, close } = time;
   const { storeName, roadAddress } = address;
-  const { username, profileImage } = author;
-  const [bookmarked, setBookmarked] = useState<boolean>((isBookmark = false));
+  // const { name, profileImage } = author;
+  const [bookmarked, setBookmarked] = useState<boolean | undefined>(isBookmark);
 
   const handleContentBookmark = () => {
     setBookmarked(!bookmarked);
@@ -97,7 +83,7 @@ const ContentPageContainer = ({
             </Carousel>
           </ImageSection>
           <InfoSection className="info">
-            {sameUserId === author.userId && (
+            {/* {sameUserId === author.id && (
               <div id="authorOnly">
                 <TextButton
                   disabled={false}
@@ -105,12 +91,12 @@ const ContentPageContainer = ({
                   handler={handleClickEdit}
                 />
               </div>
-            )}
+            )} */}
             <div className="head">
               <h1 className="main-title">{title}</h1>
               <div className="bookmark-button">
                 <BookmarkButton
-                  value={bookmarked}
+                  value={bookmarked ? false : true}
                   handler={handleContentBookmark}
                 />
               </div>
@@ -139,10 +125,10 @@ const ContentPageContainer = ({
               <span>{mobile}</span>
             </InfoListItem>
 
-            <Author className="author">
+            {/* <Author className="author">
               <Avatar profileImage={profileImage} size={3} />
-              <span>{username}</span>
-            </Author>
+              <span>{name}</span>
+            </Author> */}
           </InfoSection>
         </div>
 
@@ -165,8 +151,7 @@ const ContentPageContainer = ({
           <h3>Review</h3>
           <p>방문 후기를 공유해보세요</p>
         </div>
-        <CommentInput />
-        <Comments comments={comments} />
+        <Comments />
       </article>
     </ContentPageStyle>
   );
