@@ -144,6 +144,7 @@ export type GetContentResponse = AxiosResponse<Content>;
 // content
 export type GetSearchResultsResponse = AxiosResponse<SearchResult[]>;
 export type PostContentResponse = AxiosResponse<Content>;
+export type PostSharedContentResponse = AxiosResponse<{ id: string }>;
 export type PutContentResponse = AxiosResponse<Content>;
 export type PutFollowResponse = AxiosResponse<{ isFollow: boolean }>;
 export type PutBookmarkResponse = AxiosResponse<{ isBookmark: boolean }>;
@@ -188,6 +189,7 @@ export interface ContentReducer {
   create: AsyncState<Content>;
   update: AsyncState<Content>;
   delete: AsyncState<{ message: string }>;
+  shared: AsyncState<{ id: string }>;
   form: Content;
 }
 export interface ArtistReducer {

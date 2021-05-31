@@ -1,11 +1,18 @@
-import { ContentCard, DataNullLink } from '@components';
+import { ContentCard, DataNullLink, GuideButton } from '@components';
 import { SearchContentLoaderProps } from '@interfaces';
-import React, { ReactElement } from 'react';
+import { createSharedContentThunk } from 'modules/content';
+import { RootState } from 'modules/reducer';
+import React, { ReactElement, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { SearchContentLoaderStyle } from './SearchContentLoader.style';
+import SearchMapContainer from './SearchMapContainer';
 
 const SearchContentLoader = ({
-  data,
-  focusedID,
+  selectedContents,
+  restContents,
+  isPath,
+  resetHadler,
+  setIsPath,
   handleCardClick,
 }: SearchContentLoaderProps): ReactElement => {
   const nullData = {
@@ -14,19 +21,77 @@ const SearchContentLoader = ({
     buttonText: '이벤트 등록하기',
     linkTo: '/',
   };
-  if (!data) {
+  const contentList = restContents;
+  if (restContents.length === 0 && selectedContents.length === 0) {
     return <DataNullLink {...nullData} />;
   }
+  const { shared } = useSelector(({ content }: RootState) => content);
+  const dispatch = useDispatch();
+  const clipBoardAction = (id: string) => {
+    const t = document.createElement('textarea');
+    document.body.appendChild(t);
+    t.value = id;
+    t.select();
+    document.execCommand('copy');
+    document.body.removeChild(t);
+  };
+  useEffect(() => {
+    if (shared.data) {
+      clipBoardAction(shared.data.id);
+    }
+  }, [shared]);
+
   return (
     <SearchContentLoaderStyle>
-      {data.map((content) => (
-        <ContentCard
-          key={`content_${content.id}`}
-          contentData={content}
-          focusedID={focusedID}
+      <div
+        style={{
+          zIndex: 99,
+          overflow: 'scroll',
+        }}
+      >
+        {selectedContents.map((content) => (
+          <ContentCard
+            key={`s_content_${content.id}`}
+            contentData={content}
+            isOpen={true}
+            handleClick={handleCardClick}
+          />
+        ))}
+        {restContents.map((content) => (
+          <ContentCard
+            key={`r_content_${content.id}`}
+            contentData={content}
+            isOpen={false}
+            handleClick={handleCardClick}
+          />
+        ))}
+      </div>
+      <div>
+        <GuideButton
+          active={isPath}
+          activeHandler={() => setIsPath((state) => !state)}
+          resetHandler={resetHadler}
+          shareHandler={() => {
+            dispatch(createSharedContentThunk(selectedContents));
+          }}
+        />
+      </div>
+      <div
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          zIndex: 2,
+          top: 0,
+          left: 0,
+        }}
+      >
+        <SearchMapContainer
+          contents={contentList}
+          path={selectedContents}
           handleClick={handleCardClick}
         />
-      ))}
+      </div>
     </SearchContentLoaderStyle>
   );
 };
