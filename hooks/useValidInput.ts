@@ -1,4 +1,4 @@
-import { VerifyFunction } from '@utils/verifyFunctions';
+import { VerifyFunction } from '@interfaces';
 import { useEffect, useState } from 'react';
 
 const useValidInput = (

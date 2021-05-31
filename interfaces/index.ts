@@ -7,3 +7,4 @@ export * from './components';
 export * from './reducer';
 export * from './props';
 export * from './search';
+export * from './hooks';

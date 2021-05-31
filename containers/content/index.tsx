@@ -160,7 +160,6 @@ const ContentPageContainer = ({
           <h3>Review</h3>
           <p>방문 후기를 공유해보세요</p>
         </div>
-        <CommentInput />
         <Comments />
       </article>
     </ContentPageStyle>

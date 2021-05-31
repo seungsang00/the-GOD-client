@@ -27,7 +27,7 @@ const Comment = ({ commentData }: Props) => {
   const { id: contentId } = router.query as { id: string };
 
   const { id: commentId, author, comments, createdAt } = commentData;
-  const { username, profileImage } = author;
+  const { name, profileImage } = author;
 
   const [editmode, setEditMode] = useState<boolean>(false);
 
@@ -76,7 +76,7 @@ const Comment = ({ commentData }: Props) => {
       <section>
         <div className="comment-top">
           <div className="comment-info">
-            <div className="comment-author">{username}</div>
+            <div className="comment-author">{name}</div>
             <span className="time-ago">
               {moment(createdAt, 'YYYY-MM-DD').fromNow()}
             </span>
@@ -102,7 +102,7 @@ const Comment = ({ commentData }: Props) => {
               {isOpen && (
                 <Flyout handler={flyoutController}>
                   <ul>
-                    {userId && userId === author.userId ? (
+                    {userId && userId === author.id ? (
                       <>
                         <li
                           className="flyout-option"
