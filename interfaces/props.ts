@@ -1,10 +1,6 @@
 import { Content } from '@interfaces';
-import {
-  MouseEventHandler,
-  ReactNode,
-  KeyboardEvent,
-  ChangeEvent,
-} from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
+import { IInputEvent } from './hooks';
 import { SharedContent } from './reducer';
 
 export interface PerkProps {
@@ -12,16 +8,8 @@ export interface PerkProps {
   isActive: boolean;
 }
 
-export interface TextInputProps {
+export interface TextInputProps extends IInputEvent {
   type: string;
-  value: string;
-  onChange: ({
-    target,
-  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onKeyDown?: ({
-    key,
-  }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onClick?: () => void;
   disabled: boolean;
   placeholder?: string;
 }
