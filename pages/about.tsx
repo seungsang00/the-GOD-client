@@ -12,12 +12,12 @@ import {
   TextInput,
   TimeSelect,
 } from '@components';
-import FilePreview from 'components/FilePreview';
+
 import useModal from 'hooks/useModal';
+import React from 'react';
+
 import { SignoutModal, MainSearchForm } from '@containers';
 import useTextInput from 'hooks/useTextInput';
-import React from 'react';
-import LocationForm from 'containers/contents/LocationForm';
 // import { readFile } from '@interfaces';
 
 const MyComponent = styled.div`
@@ -68,7 +68,7 @@ const AboutPage = () => {
           <a>Go home</a>
         </Link>
       </p>
-      <LocationForm onPrev={() => {}} onSubmit={() => {}} />
+
       <MyComponent>디스플레이 크기에 따라 색이 바뀔거에요!</MyComponent>
       <TextInput
         type="text"
@@ -94,11 +94,6 @@ const AboutPage = () => {
       <TimeSelect setHour={testHandler} setMinutes={testHandler} />
       <Badge bgcolor="pink">#ENHYPEN</Badge>
       <Badge textcolor="pink">#ENHYPEN</Badge>
-      {/* <InputTags tagList={tagList} /> */}
-      <FilePreview
-        url="https://bit.ly/33TugE9"
-        handleRemoveFile={() => console.log(`file remove`)}
-      />
       {/* <TextInput placeholder="...을 입력해주세요" /> */}
       {/* <TextArea placeholder="...을 입력해주세요" /> */}
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />

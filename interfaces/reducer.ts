@@ -120,7 +120,7 @@ export interface CommentListResponse {
 }
 
 export interface PostCommentReqBody {
-  contentsId: string;
+  contentId: string; // contentId
   comment: string;
 }
 export interface PutCommentReqBody {

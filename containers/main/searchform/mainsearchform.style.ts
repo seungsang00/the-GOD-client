@@ -41,6 +41,36 @@ export const MainSearchFormContainer = styled.article`
       }
     }
   }
+  .search-button__bottom--container {
+    position: fixed;
+    right: 0;
+    bottom: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 ${({ theme }) => theme.space.md};
+  }
+  .search-button__bottom {
+    width: 100%;
+    height: 3.5rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    background-color: ${({ theme }) => theme.colors.normal};
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.hover};
+    }
+    &:active {
+      background-color: ${({ theme }) => theme.colors.action};
+    }
+    z-index: 997;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
 
   ${({ theme }) => theme.media.tablet} {
     .inactive {

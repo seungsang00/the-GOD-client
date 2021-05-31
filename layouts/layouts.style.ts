@@ -1,10 +1,7 @@
 import styled from '@styles/themed-components';
 
 export const CommonLayoutStyle = styled.div`
-  #mainContent {
-    padding: ${({ theme }) => theme.space.lg} 0;
-  }
-
+  padding-top: 60px;
   /* main page */
   .main__banner {
     height: 100vh;

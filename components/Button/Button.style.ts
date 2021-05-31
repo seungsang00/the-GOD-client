@@ -7,21 +7,17 @@ type Props = {
 };
 
 export default withProps<Props, HTMLButtonElement>(styled.button)`
-  border-radius: ${({ theme }) => theme.borderRadius};
   border: 1px solid black;
   min-width: 240px;
-  font-size: 18px;
   height: 30px;
   ${({ theme }) => theme.media.desktop} {
-    min-width: 200px;
-    font-size: 18px;
+    padding: 0 16px;
   }
   ${({ theme }) => theme.media.tablet} {
-    min-width: 160px;
     font-size: 14px;
   }
   ${({ theme }) => theme.media.mobile} {
-    min-width: 100px;
+    padding: 0 8px;
     font-size: 12px;
   }
   &:hover {

@@ -5,7 +5,6 @@ import {
   InfoListItem,
   PerkBadge,
   Carousel,
-  CommentInput,
 } from '@components';
 
 import { faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
@@ -150,7 +149,6 @@ const ContentPageContainer = ({
           <h3>Review</h3>
           <p>방문 후기를 공유해보세요</p>
         </div>
-        <CommentInput />
         <Comments />
       </article>
     </ContentPageStyle>
