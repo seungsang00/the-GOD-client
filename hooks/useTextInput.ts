@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { IInputEvent } from '@interfaces';
 
 const useTextInput = (initValue: string) => {
   const [value, setValue] = useState(initValue);
 
-  const inputEvent = {
+  const inputEvent: IInputEvent = {
     value: value,
     onChange: ({
       target,

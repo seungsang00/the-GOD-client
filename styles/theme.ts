@@ -1,22 +1,93 @@
 import { DefaultTheme } from 'styled-components';
 
-// 색상
+const calcRem = (px: number) => `${px / 16}rem`;
+
 const colors = {
-  main: 'cyan',
-  secondary: 'magenta',
-  green: '#2ecc71',
-  red: '#e74c3c',
-  yellow: '#f1c40f',
+  primary: '#f45d48',
+  secondary: '#0a8080',
+  black: '#222525',
+  white: '#fff',
   lightgrey: 'rgb(239, 239, 239)',
   grey: '#bfbfbf',
   deepgrey: '#969aa2',
-  // 버튼이나 링크의 스타일을 위한 색상 지정
-  normal: '#4834d4',
-  hover: '#686de0',
-  action: '#4834d9',
+  button: {
+    default: {
+      // TODO: primary에 맞게 수정하기
+      normal: '#c2cad4', // normal
+      hover: '#ced0da', // hover
+      pressed: '#9a9fa8', // pressed
+      disabled: '#d4d9e1', // disabled
+    },
+    red: {
+      normal: '#f42d16', // normal
+      hover: '#f65745', // hover
+      pressed: '#db2813', // pressed
+      disabled: '#f1958a', // disabled
+    },
+    green: {
+      normal: '#00cd3c', // normal
+      hover: '#34d762', // hover
+      pressed: '#00b835', // pressed
+      disabled: '#a4e5b7', // disabled
+    },
+    line: {
+      normal: '#c2cad4', // normal
+      hover: '#ced0da', // hover
+      pressed: '#9a9fa8', // pressed
+      disabled: '#d4d9e1', // disabled
+    },
+  },
 };
 
-// 컨셉
+const typography = {
+  title: {
+    fontFamily: '"Gelasio", serif',
+    fontSize: '4rem',
+    fontWeight: 600,
+  },
+  subtitle: {
+    fontFamily: '"Gelasio", serif',
+    fontSize: '2.5rem',
+    fontWeight: 600,
+    lineHeight: 1.1,
+  },
+  heading: {
+    fontFamily: '"Gelasio", serif',
+    fontSize: '1.5rem',
+    fontWeight: 500,
+  },
+  subheading: {
+    fontFamily: '"Lato", sans-serif',
+    fontSize: '1.25rem',
+    fontWeight: 700,
+  },
+  label: {
+    fontFamily: '"Lato", sans-serif',
+    fontWeight: 700,
+  },
+  description: {
+    fontFamily: '"Lato", sans-serif',
+    lineHeight: 1.5,
+  },
+  body: {
+    fontFamily: '"Lato", sans-serif',
+  },
+  caption: {
+    fontFamily: '"Lato", sans-serif',
+    fontSize: '0.875rem',
+  },
+  button: {
+    fontFamily: '"Lato", sans-serif',
+    fontSize: '0.875rem',
+  },
+  textbutton: {
+    fontFamily: '"Lato", sans-serif',
+    fontWeight: 700,
+    fontSize: '1rem',
+    border: 0,
+  },
+};
+
 const concept = {
   glassmorphism: `
     background: rgba( 255, 255, 255, 0.10 );
@@ -42,13 +113,13 @@ const media = {
 
 // 간격 시스템
 const space = {
-  xxs: '4px',
-  xs: '8px',
-  sm: '16px',
-  md: '24px',
-  lg: '36px',
-  xl: '48px',
-  xxl: '60px',
+  xxs: calcRem(4),
+  xs: calcRem(8),
+  sm: calcRem(16),
+  md: calcRem(24),
+  lg: calcRem(36),
+  xl: calcRem(48),
+  xxl: calcRem(60),
 };
 
 const zIndex = {
@@ -56,16 +127,39 @@ const zIndex = {
   depth02: `z-index: 99`,
   depth03: `z-index: 999`,
   depth04: `z-index: 9999`,
-  depth05: `z-index: 99999`,
 };
 
-export const theme: DefaultTheme = {
-  borderRadius: '10px',
-  colors,
+const borderRadius = calcRem(6);
+
+const light = {
+  colors: {
+    bgColor: '#f8f8f9',
+    textColor: '#2f2f37',
+    ...colors,
+  },
+  typography,
   concept,
   media,
   space,
   zIndex,
+  borderRadius,
 };
 
-export default theme;
+const dark = {
+  colors: {
+    bgColor: '#2f2f37',
+    textColor: '#fff',
+    ...colors,
+  },
+  typography,
+  concept,
+  media,
+  space,
+  zIndex,
+  borderRadius,
+};
+
+export const lightTheme: DefaultTheme = { ...light };
+export const darkTheme: DefaultTheme = { ...dark };
+
+export type Theme = typeof lightTheme;

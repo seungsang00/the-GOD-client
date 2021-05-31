@@ -1,11 +1,11 @@
 import { Content } from '@interfaces';
 import {
-  MouseEventHandler,
-  ReactNode,
-  KeyboardEvent,
   ChangeEvent,
-  Dispatch,
+  MouseEventHandler,
+  KeyboardEvent,
+  ReactNode,
 } from 'react';
+import { IInputEvent } from './hooks';
 import { SharedContent } from './reducer';
 
 export interface PerkProps {
@@ -13,21 +13,9 @@ export interface PerkProps {
   isActive: boolean;
 }
 
-export interface TextInputProps
-  extends React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > {
+export interface TextInputProps extends IInputEvent {
   type: string;
-  value: string;
-  onChange: ({
-    target,
-  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onKeyDown?: ({
-    key,
-  }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  onClick?: () => void;
-  disabled?: boolean;
+  disabled: boolean;
   placeholder?: string;
 }
 
@@ -123,4 +111,16 @@ export interface ContentCardProps {
   isOpen: boolean; // 현재 디테일 영역이 열려있는 컨텐츠id
   contentData: Content;
   handleClick: (id: string) => void;
+}
+
+export interface CommentInputProps {
+  handler: MouseEventHandler;
+  value: string;
+  onChange: ({
+    target,
+  }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onKeyDown?: ({
+    key,
+  }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onClick?: () => void;
 }

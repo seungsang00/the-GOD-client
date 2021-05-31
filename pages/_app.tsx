@@ -2,8 +2,6 @@
 import type { AppProps /* AppContext */ } from 'next/app';
 import { Provider } from 'react-redux';
 import store from '../modules/store';
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyle, theme } from '@styles/index';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -23,6 +21,7 @@ import {
   faComment,
   faSort,
 } from '@fortawesome/free-solid-svg-icons';
+import { ThemeProvider } from '@styles/themeProvider';
 library.add(
   faTimes,
   faSort,
@@ -45,14 +44,11 @@ library.add(
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <Provider store={store}>
-          <Component {...pageProps} />
-        </Provider>
-      </ThemeProvider>
-    </>
+    <ThemeProvider>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </ThemeProvider>
   );
 }
 

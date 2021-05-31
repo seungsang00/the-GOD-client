@@ -7,8 +7,9 @@ const AccountOptionsFlyout = ({
   handler,
 }: AccountOptionsProps): ReactElement => {
   const logouthandler = () => {
-    // TODO: 로그아웃 요청
-    console.log(`logout!`);
+    window.localStorage.removeItem('accessToken');
+    // FIXME: 로컬스토리지가 변한 것을 페이지가 바로 인식하지 못합니다. 강제 새로고침 말고 다른 방법은 없을까요?
+    document.location.href = '/';
   };
   return (
     <FlyoutContainer className="flyout-overlay" onClick={handler}>

@@ -1,5 +1,7 @@
 // TODO: null check
 
+import { VerifyResult } from '@interfaces';
+
 export const confirmPassword = (regExp: RegExp, password: string) => {
   // 유효성검사 통과 여부를 리턴
   if (!regExp) {
@@ -64,10 +66,3 @@ export const verifyUsername = (
         errorMessage: '한글, 영문 대소문자를 이용해 2~15자로 작성해주세요',
       };
 };
-
-export type VerifyResult = {
-  isValid: boolean;
-  errorMessage: string | null;
-};
-
-export type VerifyFunction = (regExp: RegExp, value: string) => VerifyResult;
