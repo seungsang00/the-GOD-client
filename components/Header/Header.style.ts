@@ -26,4 +26,9 @@ export const HeaderContainer = styled.header`
     display: flex;
     align-items: center;
   }
+  .auth-modal-trigger {
+    & > button {
+      min-width: 60px;
+    }
+  }
 `;
