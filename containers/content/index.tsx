@@ -1,27 +1,43 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import {
   Badge,
   BookmarkButton,
   InfoListItem,
   PerkBadge,
   Carousel,
+  Avatar,
+  Flyout,
+  PopupNoTitle,
 } from '@components';
 
-import { faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEllipsisV,
+  faMapMarkerAlt,
+  faPhoneAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import {
   faCalendar,
   faClock,
   faHeart,
 } from '@fortawesome/free-regular-svg-icons';
 import {
+  Author,
   ContentPageStyle,
   ImageSection,
   InfoSection,
   SectionStyle,
 } from './ContentPageContainer.style';
-// import { useRouter } from 'next/dist/client/router';
 import { Content } from '@interfaces';
 import { Comments } from '@containers';
+import { useRouter } from 'next/router';
+import LocationInfo from './LocationInfo';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useFlyout from 'hooks/useFlyout';
+import useModal from 'hooks/useModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { getInfoThunk, updateBookmarkThunk } from 'modules/user';
+import { RootState } from 'modules/reducer';
+import { deleteContentThunk } from 'modules/content';
 
 const ContentPageContainer = ({
   artist,
@@ -33,39 +49,46 @@ const ContentPageContainer = ({
   time,
   address,
   mobile,
+  author,
   perks,
   isBookmark,
 }: Content): ReactElement => {
-  /* const router = useRouter();
-  const { id } = router.query; */
-  /* const handleClickEdit = () => {
-    router.push(`/content/edit/${id}`);
-  }; */
-
-  // FIXME: store에서 유저 ID 정보를 받아와야 합니다
-  const { start, end } = date;
-  const { open, close } = time;
-  const { storeName, roadAddress } = address;
-  // const { name, profileImage } = author;
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { isOpen, flyoutController } = useFlyout(false);
+  const { isOpen: popupIsOpen, modalController } = useModal();
   const [bookmarked, setBookmarked] = useState<boolean | undefined>(isBookmark);
 
+  const { id } = router.query as { id: string };
+  const { start, end } = date;
+  const { open, close } = time;
+  const { storeName, roadAddress, location } = address;
+  const { name, profileImage } = author;
+
+  const { data: userInfo } = useSelector(
+    (state: RootState) => state.user.userProfile
+  );
+
+  const handleClickEdit = () => {
+    router.push(`/content/edit/${id}`);
+  };
   const handleContentBookmark = () => {
     setBookmarked(!bookmarked);
-    // TODO: 서버에 변경요청 보내기 (endpoint: `/user/bookmark`). req.body = {"contentId":"bookmark content ID"}
+    dispatch(updateBookmarkThunk(id));
+  };
+  const handleClickDelete = (e: React.MouseEvent) => {
+    modalController(e);
+    flyoutController(e);
+  };
+  const handleDelete = () => {
+    // TODO: 서버에 삭제 요청 보내기
+    dispatch(deleteContentThunk(id));
+    router.push('/');
   };
 
-  // const getCommentAsync = async () => {
-  //   try {
-  //     const res = await axios.get(`${API_ENDPOINT}/comments?contentsId=${id}`);
-  //     const { comments } = await res.data.result;
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getCommentAsync();
-  // }, []);
+  useEffect(() => {
+    dispatch(getInfoThunk()); // 사용자 정보 요청
+  }, []);
 
   return (
     <ContentPageStyle>
@@ -81,26 +104,55 @@ const ContentPageContainer = ({
             </Carousel>
           </ImageSection>
           <InfoSection className="info">
-            {/* {sameUserId === author.id && (
-              <div id="authorOnly">
-                <TextButton
-                  disabled={false}
-                  text={`수정하기`}
-                  handler={handleClickEdit}
-                />
-              </div>
-            )} */}
             <div className="head">
               <h1 className="main-title">{title}</h1>
-              <div className="bookmark-button">
-                <BookmarkButton
-                  value={bookmarked ? true : false}
-                  handler={handleContentBookmark}
-                />
+              <div className="buttons">
+                <div className="bookmark-button">
+                  <BookmarkButton
+                    value={bookmarked ? true : false}
+                    handler={handleContentBookmark}
+                  />
+                </div>
+                {userInfo && userInfo.id === author.id && (
+                  <div
+                    className="author-action-trigger"
+                    onClick={flyoutController}
+                  >
+                    <FontAwesomeIcon icon={faEllipsisV} />
+                    {isOpen && (
+                      <Flyout isOpen={isOpen} handler={flyoutController}>
+                        <ul>
+                          <li
+                            className="flyout-option"
+                            onClick={handleClickEdit}
+                          >
+                            수정하기
+                          </li>
+                          <li
+                            className="flyout-option"
+                            onClick={handleClickDelete}
+                          >
+                            삭제하기
+                          </li>
+                        </ul>
+                      </Flyout>
+                    )}
+                  </div>
+                )}
               </div>
+              <PopupNoTitle
+                isOpen={popupIsOpen}
+                modalController={modalController}
+                isNoti={false}
+                description={
+                  '정말 삭제하실건가요? 삭제한 컨텐츠는 다시 복구할 수 없어요.'
+                }
+                buttonText="삭제하기"
+                buttonHandler={handleDelete}
+              />
             </div>
             <InfoListItem icon={faHeart} title="아티스트">
-              <span>{artist}</span>
+              <span>{`${artist.group} ${artist.name}`}</span>
             </InfoListItem>
             <InfoListItem icon={faCalendar} title="이벤트 일정">
               <span>{start}</span>
@@ -123,15 +175,29 @@ const ContentPageContainer = ({
               <span>{mobile}</span>
             </InfoListItem>
 
-            {/* <Author className="author">
-              <Avatar profileImage={profileImage} size={3} />
-              <span>{name}</span>
-            </Author> */}
+            <Author className="author">
+              <p>작성자</p>
+              <div>
+                <Avatar profileImage={profileImage} size={3} />
+                <span>{name}</span>
+              </div>
+            </Author>
           </InfoSection>
         </div>
-
+        <LocationInfo
+          storeName={storeName}
+          lat={location.lat}
+          lng={location.lng}
+        />
         <SectionStyle className="description">
-          <p>{description}</p>
+          <p>
+            {description.split('\n').map((el) => (
+              <>
+                {el}
+                <br />
+              </>
+            ))}
+          </p>
         </SectionStyle>
         <SectionStyle className="tags">
           {tags.map((tag, idx) => (
@@ -154,5 +220,4 @@ const ContentPageContainer = ({
     </ContentPageStyle>
   );
 };
-
 export default ContentPageContainer;

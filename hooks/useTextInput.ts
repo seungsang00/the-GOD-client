@@ -25,6 +25,7 @@ const useTextInput = (initValue: string) => {
     onClick: () => {
       console.log('Click');
     },
+    setValue: setValue,
   };
   return { value, inputEvent };
 };

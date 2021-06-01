@@ -13,7 +13,7 @@ import {
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
-export const updateRequest = async (content: Content) => {
+export const updateContentRequest = async (content: Content) => {
   // TODO: 컨텐츠 업데이트 미구현
   return;
   const accessToken = localStorage.getItem('accessToken');
@@ -39,10 +39,13 @@ export const updateBookmarkRequest = async (content: Content) => {
   return result.data;
 };
 
-export const updateAsync = createAsyncAction(
+export const updateContentAsync = createAsyncAction(
   CONTENT_UPDATE,
   CONTENT_UPDATE_SUCCESS,
   CONTENT_UPDATE_ERROR
 )<null, PutContentResponse, AxiosError>();
 
-export const updateThunk = createAsyncThunk(updateAsync, updateRequest);
+export const updateContentThunk = createAsyncThunk(
+  updateContentAsync,
+  updateContentRequest
+);

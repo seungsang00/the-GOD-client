@@ -1,11 +1,17 @@
 import { ActionType } from 'typesafe-actions';
 import { getInfoAsync, updateInfoAsync } from './info';
-import { getBookmarksAsync, getMyContentAsync, getPathAsync } from './content';
+import {
+  getBookmarksAsync,
+  updateBookmarkAsync,
+  getMyContentAsync,
+  getPathAsync,
+} from './content';
 import { getFollowsAsync } from './follow';
 const actions = {
   updateInfoAsync,
   getInfoAsync,
   getBookmarksAsync,
+  updateBookmarkAsync,
   getPathAsync,
   getMyContentAsync,
   getFollowsAsync,

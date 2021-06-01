@@ -110,8 +110,8 @@ export interface PerkList {
 
 export interface IComment {
   id: string;
-  author: Author;
-  comments: string;
+  user: Author;
+  comment: string;
   createdAt: string;
 }
 
@@ -120,7 +120,7 @@ export interface CommentListResponse {
 }
 
 export interface PostCommentReqBody {
-  contentId: string; // contentId
+  id: string; // contentId
   comment: string;
 }
 export interface PutCommentReqBody {
@@ -147,7 +147,7 @@ export type PostContentResponse = AxiosResponse<Content>;
 export type PostSharedContentResponse = AxiosResponse<{ id: string }>;
 export type PutContentResponse = AxiosResponse<Content>;
 export type PutFollowResponse = AxiosResponse<{ isFollow: boolean }>;
-export type PutBookmarkResponse = AxiosResponse<{ isBookmark: boolean }>;
+export type PutBookmarkResponse = AxiosResponse<{ isBookmarked: boolean }>;
 // user
 export type GetInfoResponse = AxiosResponse<User>;
 export type PutInfoResponse = AxiosResponse<User>;
@@ -175,6 +175,7 @@ export type DeleteArtistResponse = AxiosResponse<{ message: string }>;
 export interface UserState {
   userProfile: AsyncState<User>;
   bookmarks: AsyncState<Content[]>;
+  bookmark: AsyncState<{ isBookmarked: boolean }>;
   contents: AsyncState<Content[]>;
   follows: AsyncState<Artist[]>;
   paths: AsyncState<SharedContent[]>;
