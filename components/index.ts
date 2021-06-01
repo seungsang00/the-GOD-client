@@ -36,3 +36,4 @@ export { default as Flyout } from './Flyout';
 export { default as OptionList } from './OptionList';
 export { default as ImagesContainer } from './ImagesContainer';
 export { default as ThemeToggleButton } from './ThemeToggleButton';
+export { default as SearchTrigger } from './SearchTrigger';

@@ -11,7 +11,7 @@ export const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  ${({ theme }) => theme.zIndex.depth04 + ' !important'};
 
   .logo {
     font-size: 1.7rem;
@@ -29,6 +29,36 @@ export const HeaderContainer = styled.header`
   .auth-modal-trigger {
     & > button {
       min-width: 60px;
+    }
+  }
+`;
+
+export const SearchField = styled.section`
+  padding-top: 60px;
+
+  & > div {
+    align-items: flex-start !important;
+    ${({ theme }) => theme.zIndex.depth01 + ' !important'};
+    min-height: calc(100vh-60px);
+    height: 100% !important;
+    padding-top: 65px;
+    background-color: transparent;
+    border: none;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    position: fixed;
+    top: 0px;
+
+    .modal-box {
+      width: 100%;
+      max-width: 100% !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+
+      .modal-component-box {
+        background-color: transparent !important;
+        border: none;
+      }
     }
   }
 `;

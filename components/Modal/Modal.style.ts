@@ -1,8 +1,7 @@
 import styled from '@styles/themed-components';
 
 export default styled.div`
-  z-index: 998;
-  color: red;
+  z-index: ${({ theme }) => theme.zIndex.depth03};
   display: flex;
   justify-content: center;
   align-items: center;

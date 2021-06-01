@@ -103,6 +103,7 @@ export interface FileInputProps {
 }
 
 export interface FlyoutProps {
+  isOpen: boolean;
   children: ReactNode;
   handler: MouseEventHandler;
 }
