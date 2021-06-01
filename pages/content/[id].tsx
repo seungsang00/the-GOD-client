@@ -22,11 +22,14 @@ const ContentPage = () => {
       alert(error);
     }
   }, [error]);
+  // TODO: 에러 발생시 커스텀 404 페이지 띄우기
 
   return (
     <Layout title={`${data && data.title} | FansSum::팬심이 모여 문화가 되다`}>
       {loading && 'loading...'}
       {data && <ContentPageContainer {...data} />}
+      {/* 아래는 삭제되어야 할 부분 (테스트용) */}
+      {!data && <ContentPageContainer {...sampleContentData} />}
     </Layout>
   );
 };
