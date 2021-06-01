@@ -12,7 +12,7 @@ const useScrollFadeIn = (
   const handleDirection = (name: Direction) => {
     switch (name) {
       case 'up':
-        return 'translate3d(0, 50%, 0)';
+        return 'translate3d(0, 20%, 0)';
       case 'down':
         return 'translate3d(0, -50%, 0)';
       case 'left':
@@ -37,6 +37,8 @@ const useScrollFadeIn = (
           current.style.transform = 'translate3d(0, 0, 0)';
         } else {
           // TODO: 애니메이션 초기화해서 다시 스크롤할 때도 재현되게
+          current.style.opacity = '0';
+          current.style.transform = 'translate3d(0, 20%, 0)';
         }
       }
     },

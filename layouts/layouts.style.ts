@@ -1,12 +1,43 @@
 import styled from '@styles/themed-components';
 
 export const CommonLayoutStyle = styled.div`
-  padding-top: 60px;
-  /* main page */
-  .main__banner {
-    height: 100vh;
-    padding: 12vw;
-    padding-top: 120px;
+  /* 공통 스타일 */
+`;
+
+export const MainContainer = styled.div`
+  .holster {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-flow: column nowrap;
+    font-family: monospace;
+  }
+  .container {
+    display: flex;
+    overflow: auto;
+    flex: none;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .container.y {
+    width: 100%;
+    height: calc(100vh - 60px);
+    flex-flow: column nowrap;
+  }
+
+  /* scroll-snap */
+  .y.mandatory-scroll-snapping {
+    scroll-snap-type: y mandatory;
+  }
+
+  .container > div {
+    scroll-snap-align: center;
+    flex: none;
+  }
+  .container > div.footer {
+    scroll-snap-align: end;
   }
 `;
 

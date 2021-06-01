@@ -8,6 +8,7 @@ import useFlyout from 'hooks/useFlyout';
 import useModal from 'hooks/useModal';
 import { RootState } from 'modules/reducer';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { HeaderContainer, SearchField } from './Header.style';
@@ -36,9 +37,24 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
 
   useEffect(() => {
     if (document) {
+      // FIXME: 스크롤 이벤트를 인지하지 못하면서 헤더가 사라지는 효과가 적용되지 않음. 수정필요
       document.addEventListener('scroll', () => searchFieldHandler(undefined));
+      const modalOverlay = document.querySelector('.modal-overlay');
+      if (modalOverlay) {
+        modalOverlay.addEventListener('onwheel', () => console.log('wheel'));
+      }
     }
   });
+
+  const router = useRouter();
+  const revealSearchTrigger = (): boolean => {
+    const path = router.pathname;
+    const hide = ['/content/[id]', '/content/form'];
+    if (hide.find((el) => el === path)) {
+      return false;
+    }
+    return true;
+  };
 
   return (
     <>
@@ -50,7 +66,9 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
             </a>
           </Link>
         </div>
-        {!isExpanded && <SearchTrigger handler={searchFieldHandler} />}
+        {!isExpanded && revealSearchTrigger() && (
+          <SearchTrigger handler={searchFieldHandler} />
+        )}
         <nav className="gnb">
           <ThemeToggleButton />
           {isLogin ? (

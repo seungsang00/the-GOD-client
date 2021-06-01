@@ -2,17 +2,24 @@ import styled, { withProps } from '@styles/themed-components';
 
 export const Wrapper = styled.section`
   width: 100%;
-  width: 1180px;
   margin: auto;
-  padding: 120px 0;
+  padding: 120px 10%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  ${({ theme }) => theme.media.tablet} {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 export const Image = withProps<{ url: string }, HTMLDivElement>(styled.div)`
   width: 580px;
   height: 580px;
+  min-width: 300px;
+  min-height: 300px;
   background: no-repeat center/cover url(${({ url }) => url});
   background-size: contain;
   background-position: center center;

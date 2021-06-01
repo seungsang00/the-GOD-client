@@ -13,7 +13,6 @@ import {
 
 const SearchTrigger = ({ handler }: { handler: MouseEventHandler }) => {
   const router = useRouter();
-  const currentPage = router.pathname.slice(1);
   // TODO: store에서 검색 쿼리에 대한 데이터를 받아와서 넣어주어야 합니다
   const searchData = {
     queryData: {
@@ -29,7 +28,7 @@ const SearchTrigger = ({ handler }: { handler: MouseEventHandler }) => {
     <SearchTriggerWrapper className="search-trigger">
       <TriggerBg className="trigger-bg">
         <Trigger onClick={handler}>
-          {currentPage === 'main' || !searchData.queryData ? (
+          {router.pathname === '/' || !searchData.queryData ? (
             <SearchLabel onClick={handler}>검색하기</SearchLabel>
           ) : (
             <>
