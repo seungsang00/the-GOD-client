@@ -21,7 +21,7 @@ export const updateRequest = async (content: Content) => {
     `${API_ENDPOINT}/content`,
     content,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;
@@ -33,7 +33,7 @@ export const updateBookmarkRequest = async (content: Content) => {
     `${API_ENDPOINT}/user/bookmark`,
     content,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;

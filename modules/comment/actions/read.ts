@@ -13,7 +13,7 @@ export const getCommentListRequest = async (contentId: string) => {
   const result = await axios.get<GetCommentListResponse>(
     `${API_ENDPOINT}/comments?contentsId=${contentId}`,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;
