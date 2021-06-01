@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 // useScrollFadeIn
 export type Direction = 'up' | 'down' | 'left' | 'right';
 
@@ -11,6 +13,7 @@ export interface IInputEvent {
     key,
   }: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onClick?: () => void;
+  setValue: Dispatch<SetStateAction<string>>;
 }
 
 // useValidInput
