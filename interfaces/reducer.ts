@@ -65,7 +65,7 @@ export interface Content {
   mobile: string;
   perks: Perks;
   isBookmark?: boolean;
-  author?: Author;
+  author: Author;
 }
 
 export interface Author {

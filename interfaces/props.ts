@@ -14,9 +14,11 @@ export interface PerkProps {
 }
 
 export interface TextInputProps extends IInputEvent {
+  id?: string;
   type: string;
-  disabled: boolean;
+  disabled?: boolean;
   placeholder?: string;
+  name?: string;
 }
 
 export interface AvatarProps extends AvatarContainerProps {
@@ -121,4 +123,24 @@ export interface CommentInputProps {
     key,
   }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onClick?: () => void;
+}
+
+export interface PopupContentProps {
+  isNoti: boolean;
+  description: string;
+  buttonText?: string;
+  buttonHandler: (e: React.MouseEvent | undefined) => void;
+}
+
+export interface PopupProps extends PopupContentProps {
+  isOpen: boolean;
+  modalController: (e: React.MouseEvent | undefined) => void;
+}
+
+export interface PopupWithTitleContentProps extends PopupContentProps {
+  title: string;
+}
+
+export interface PopupWithTitleProps extends PopupProps {
+  title: string;
 }
