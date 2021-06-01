@@ -3,6 +3,7 @@ import {
   ContentQuery,
   GetContentListResponse,
   GetContentResponse,
+  GetSharedContentResponse,
 } from '@interfaces';
 import createAsyncThunk from '@utils/createAsyncThunk';
 import axios, { AxiosError } from 'axios';
@@ -13,6 +14,9 @@ import {
   CONTENT_LIST_GET,
   CONTENT_LIST_GET_SUCCESS,
   CONTENT_LIST_GET_ERROR,
+  CONTENT_SHARED_GET,
+  CONTENT_SHARED_GET_SUCCESS,
+  CONTENT_SHARED_GET_ERROR,
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
@@ -43,6 +47,19 @@ export const getContentListRequest = async ({
   return result.data;
 };
 
+export const getSharedContentRequest = async (id: string) => {
+  const result = await axios.get<GetSharedContentResponse>(
+    `${API_ENDPOINT}/sharedcontent?id=${id}`
+  );
+  return result.data;
+};
+
+export const getSharedContentAsync = createAsyncAction(
+  CONTENT_SHARED_GET,
+  CONTENT_SHARED_GET_SUCCESS,
+  CONTENT_SHARED_GET_ERROR
+)<null, GetSharedContentResponse, AxiosError>();
+
 export const getContentAsync = createAsyncAction(
   CONTENT_GET,
   CONTENT_GET_SUCCESS,
@@ -62,4 +79,8 @@ export const getContentThunk = createAsyncThunk(
 export const getContentListThunk = createAsyncThunk(
   getContentListAsync,
   getContentListRequest
+);
+export const getSharedContentThunk = createAsyncThunk(
+  getSharedContentAsync,
+  getSharedContentRequest
 );

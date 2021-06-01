@@ -24,6 +24,12 @@ import {
   CONTENT_FORM_LOCATION,
   CONTENT_FORM_PERKS,
   CONTENT_FORM_MOBILE,
+  CONTENT_SHARED_CREATE,
+  CONTENT_SHARED_CREATE_SUCCESS,
+  CONTENT_SHARED_CREATE_ERROR,
+  CONTENT_SHARED_GET,
+  CONTENT_SHARED_GET_SUCCESS,
+  CONTENT_SHARED_GET_ERROR,
 } from '../actionTypes';
 
 // default Store
@@ -80,6 +86,16 @@ const initialState: ContentReducer = {
       cat: false,
     },
   },
+  path: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  shared: {
+    data: null,
+    loading: false,
+    error: null,
+  },
 };
 
 const content = createReducer<ContentReducer, ContentAction>(initialState, {
@@ -107,6 +123,30 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
       data: null,
     },
   }),
+  [CONTENT_SHARED_GET]: (state) => ({
+    ...state,
+    path: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [CONTENT_SHARED_GET_SUCCESS]: (state, action) => ({
+    ...state,
+    path: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [CONTENT_SHARED_GET_ERROR]: (state, action) => ({
+    ...state,
+    path: {
+      loading: false,
+      error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
   [CONTENT_CREATE]: (state) => ({
     ...state,
     create: {
@@ -126,6 +166,30 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
   [CONTENT_CREATE_ERROR]: (state, action) => ({
     ...state,
     create: {
+      loading: false,
+      error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [CONTENT_SHARED_CREATE]: (state) => ({
+    ...state,
+    shared: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [CONTENT_SHARED_CREATE_SUCCESS]: (state, action) => ({
+    ...state,
+    shared: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [CONTENT_SHARED_CREATE_ERROR]: (state, action) => ({
+    ...state,
+    shared: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,

@@ -6,7 +6,7 @@ import React, { ReactElement } from 'react';
 import ContentCardStyle from './ContentCard.style';
 
 const ContentCard = ({
-  focusedID,
+  isOpen,
   contentData,
   handleClick,
 }: ContentCardProps): ReactElement => {
@@ -23,9 +23,7 @@ const ContentCard = ({
         </Badge>
       </span>
       <div>{description}</div>
-      {focusedID === id && (
-        <ImagesContainer title={title} images={images} max={3} />
-      )}
+      {isOpen && <ImagesContainer title={title} images={images} max={3} />}
     </ContentCardStyle>
   );
 };

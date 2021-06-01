@@ -78,9 +78,17 @@ export const CONTENT_CREATE = 'content/CREATE';
 export const CONTENT_CREATE_SUCCESS = 'content/CREATE_SUCCESS';
 export const CONTENT_CREATE_ERROR = 'content/CREATE_ERROR';
 
+export const CONTENT_SHARED_CREATE = 'content/SHARED_CREATE';
+export const CONTENT_SHARED_CREATE_SUCCESS = 'content/SHARED_CREATE_SUCCESS';
+export const CONTENT_SHARED_CREATE_ERROR = 'content/SHARED_CREATE_ERROR';
+
 export const CONTENT_GET = 'content/GET';
 export const CONTENT_GET_SUCCESS = 'content/GET_SUCCESS';
 export const CONTENT_GET_ERROR = 'content/GET_ERROR';
+
+export const CONTENT_SHARED_GET = 'content/SHARED_GET';
+export const CONTENT_SHARED_GET_SUCCESS = 'content/SHARED_GET_SUCCESS';
+export const CONTENT_SHARED_GET_ERROR = 'content/SHARED_GET_ERROR';
 
 export const CONTENT_LIST_GET = 'content/LIST_GET';
 export const CONTENT_LIST_GET_SUCCESS = 'content/LIST_GET_SUCCESS';

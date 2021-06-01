@@ -62,8 +62,11 @@ export interface CutomModalProps {
 }
 
 export interface SearchContentLoaderProps {
-  data: Content[] | null;
-  focusedID: string | null;
+  restContents: Content[];
+  selectedContents: Content[];
+  isPath: boolean;
+  resetHadler: () => void;
+  setIsPath: React.Dispatch<React.SetStateAction<boolean>>;
   handleCardClick: (id: string) => void;
 }
 
@@ -106,7 +109,7 @@ export interface FlyoutProps {
 }
 
 export interface ContentCardProps {
-  focusedID: string | null; // 현재 디테일 영역이 열려있는 컨텐츠id
+  isOpen: boolean; // 현재 디테일 영역이 열려있는 컨텐츠id
   contentData: Content;
   handleClick: (id: string) => void;
 }

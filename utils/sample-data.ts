@@ -89,7 +89,7 @@ export const sampleContentListData: Content[] = [
       storeName: '감탄커피',
       roadAddress: '서울 강남구 테헤란로 522 지하 1층',
       location: {
-        lat: 37.5640455,
+        lat: 37.0360005,
         lng: 126.8340014,
       },
     },
@@ -137,7 +137,7 @@ export const sampleContentListData: Content[] = [
       roadAddress: '서울 강남구 테헤란로 522 지하 1층',
       location: {
         lat: 37.5640455,
-        lng: 126.8340014,
+        lng: 128.8040014,
       },
     },
     mobile: '070-0000-0000',
@@ -186,8 +186,8 @@ export const sampleContentListData: Content[] = [
       storeName: '감탄커피',
       roadAddress: '서울 강남구 테헤란로 522 지하 1층',
       location: {
-        lat: 37.5640455,
-        lng: 126.8340014,
+        lat: 34.5640455,
+        lng: 128.8390014,
       },
     },
     mobile: '070-0000-0000',
@@ -232,7 +232,7 @@ export const sampleContentListData: Content[] = [
       storeName: '카페 오가다(여의도 KBS 점)',
       roadAddress: '서울 강남구 테헤란로 522 지하 1층',
       location: {
-        lat: 37.5640455,
+        lat: 34.5640455,
         lng: 126.8340014,
       },
     },
@@ -282,8 +282,8 @@ export const sampleContentListData: Content[] = [
       storeName: '감탄커피',
       roadAddress: '서울 강남구 테헤란로 522 지하 1층',
       location: {
-        lat: 37.5640455,
-        lng: 126.8340014,
+        lat: 36.3640455,
+        lng: 126.9740014,
       },
     },
     mobile: '070-0000-0000',
@@ -335,7 +335,7 @@ export const sampleContentListData: Content[] = [
       roadAddress: '서울 강남구 테헤란로 522 지하 1층',
       location: {
         lat: 37.5640455,
-        lng: 126.8340014,
+        lng: 126.7120014,
       },
     },
     mobile: '070-0000-0000',
@@ -386,8 +386,8 @@ export const sampleContentListData: Content[] = [
       storeName: '감탄커피',
       roadAddress: '서울 강남구 테헤란로 522 지하 1층',
       location: {
-        lat: 37.5640455,
-        lng: 126.8340014,
+        lat: 37.2340455,
+        lng: 126.1240014,
       },
     },
     mobile: '070-0000-0000',
@@ -438,8 +438,8 @@ export const sampleContentListData: Content[] = [
       storeName: '감탄커피',
       roadAddress: '서울 강남구 테헤란로 522 지하 1층',
       location: {
-        lat: 37.5640455,
-        lng: 126.8340014,
+        lat: 36.6040455,
+        lng: 128.1240014,
       },
     },
     mobile: '070-0000-0000',
@@ -492,8 +492,8 @@ export const sampleContentData: Content = {
     storeName: '감탄커피',
     roadAddress: '서울 강남구 테헤란로 522 지하 1층',
     location: {
-      lat: 37.5640455,
-      lng: 126.8340014,
+      lat: 37.0040455,
+      lng: 126.0040014,
     },
   },
   mobile: '070-0000-0000',

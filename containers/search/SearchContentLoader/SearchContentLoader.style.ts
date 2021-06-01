@@ -2,8 +2,29 @@ import styled from '@styles/themed-components';
 
 export const SearchContentLoaderStyle = styled.section`
   width: 400px;
-  /* FIXME: height를 어떻게 설정해야 할지 모르겠습니다 */
-  height: 90vh;
+  overflow: scroll;
+  height: 100%;
+  & > div {
+    position: absolute;
+    top: 60px;
+    &:first-child {
+      max-height: calc(100vh - 60px);
+      left: 0;
+    }
+    &:nth-child(2) {
+      z-index: 9;
+      top: 70px;
+      right: 20px;
+    }
+    &:last-child {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+  }
+
   overflow-y: scroll;
   ::-webkit-scrollbar {
     width: 7px;

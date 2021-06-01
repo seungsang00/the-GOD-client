@@ -14,7 +14,7 @@ export default styled.div<{ active: boolean }>`
   .guide-active-box {
     overflow: hidden;
     margin-top: -${({ theme }) => theme.space.md};
-    z-index: -1;
+    z-index: 2;
     transition: all 0.2s;
     max-height: ${(props) => (props.active ? '200px' : 0)};
     border-radius: ${({ theme }) => theme.borderRadius};

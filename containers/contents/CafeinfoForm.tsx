@@ -10,7 +10,6 @@ import {
   TextButton,
   TextInput,
 } from '@components';
-import { readFile } from '@interfaces';
 import { sampleSearchInputOptions } from '@utils/sample-data';
 import {
   inputArtist,
@@ -31,7 +30,9 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
     Object.keys(sampleSearchInputOptions.artist)
   );
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [images, setImages] = useState<readFile[]>([]);
+  const [images, setImages] = useState<
+    { data: File; name: string; url: string }[]
+  >([]);
   const { description } = useSelector(({ content }: RootState) => content.form);
   const dispatch = useDispatch();
   const tagHandler = (tags: string[]) => {
