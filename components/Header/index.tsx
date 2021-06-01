@@ -36,7 +36,12 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
 
   useEffect(() => {
     if (document) {
+      // FIXME: 스크롤 이벤트를 인지하지 못하면서 헤더가 사라지는 효과가 적용되지 않음. 수정필요
       document.addEventListener('scroll', () => searchFieldHandler(undefined));
+      const modalOverlay = document.querySelector('.modal-overlay');
+      if (modalOverlay) {
+        modalOverlay.addEventListener('onwheel', () => console.log('wheel'));
+      }
     }
   });
 
