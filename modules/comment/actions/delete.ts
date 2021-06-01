@@ -13,7 +13,7 @@ export const deleteCommentRequest = async (commentId: string) => {
   const result = await axios.delete<{ message: string }>(
     `${API_ENDPOINT}/comments`,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
       data: { id: commentId },
     }
   );

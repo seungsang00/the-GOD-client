@@ -14,7 +14,7 @@ export const updateCommentRequest = async (comment: PutCommentReqBody) => {
     `${API_ENDPOINT}/comments`,
     comment,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;

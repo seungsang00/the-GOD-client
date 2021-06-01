@@ -14,7 +14,7 @@ export const createRequest = async (content: Content) => {
     `${API_ENDPOINT}/content`,
     { ...content, artist: content.artist.name },
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;
