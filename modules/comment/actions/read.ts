@@ -11,7 +11,7 @@ import { createAsyncAction } from 'typesafe-actions';
 export const getCommentListRequest = async (contentId: string) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.get<GetCommentListResponse>(
-    `${API_ENDPOINT}/comments?contentsId=${contentId}`,
+    `${API_ENDPOINT}/comment?id=${contentId}`,
     {
       headers: { authorization: `BEARER ${accessToken}` },
     }
