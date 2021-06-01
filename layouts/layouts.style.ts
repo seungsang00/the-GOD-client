@@ -2,6 +2,9 @@ import styled from '@styles/themed-components';
 
 export const CommonLayoutStyle = styled.div`
   /* 공통 스타일 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const MainContainer = styled.div`

@@ -64,6 +64,9 @@ const ContentPageContainer = ({
   const { open, close } = time;
   const { storeName, roadAddress, location } = address;
   const { name, profileImage } = author;
+  const artistName = `${artist.group !== null ? artist.group + ' ' : ''}${
+    artist.name
+  }`;
 
   const { data: userInfo } = useSelector(
     (state: RootState) => state.user.userProfile
@@ -93,102 +96,104 @@ const ContentPageContainer = ({
   return (
     <ContentPageStyle>
       <main>
-        <div className="top">
-          <ImageSection className="images">
-            <Carousel col={1}>
-              {images.map((url, idx) => (
-                <div key={`image${idx}`}>
-                  <img src={url} />
-                </div>
-              ))}
-            </Carousel>
-          </ImageSection>
-          <InfoSection className="info">
-            <div className="head">
-              <h1 className="main-title">{title}</h1>
-              <div className="buttons">
-                <div className="bookmark-button">
-                  <BookmarkButton
-                    value={bookmarked ? true : false}
-                    handler={handleContentBookmark}
-                  />
-                </div>
-                {userInfo && userInfo.id === author.id && (
-                  <div
-                    className="author-action-trigger"
-                    onClick={flyoutController}
-                  >
-                    <FontAwesomeIcon icon={faEllipsisV} />
-                    {isOpen && (
-                      <Flyout isOpen={isOpen} handler={flyoutController}>
-                        <ul>
-                          <li
-                            className="flyout-option"
-                            onClick={handleClickEdit}
-                          >
-                            수정하기
-                          </li>
-                          <li
-                            className="flyout-option"
-                            onClick={handleClickDelete}
-                          >
-                            삭제하기
-                          </li>
-                        </ul>
-                      </Flyout>
-                    )}
-                  </div>
-                )}
+        <ImageSection className="images">
+          <Carousel col={1}>
+            {images.map((url, idx) => (
+              <div key={`image${idx}`}>
+                <img src={url} />
               </div>
-              <PopupNoTitle
-                isOpen={popupIsOpen}
-                modalController={modalController}
-                isNoti={false}
-                description={
-                  '정말 삭제하실건가요? 삭제한 컨텐츠는 다시 복구할 수 없어요.'
-                }
-                buttonText="삭제하기"
-                buttonHandler={handleDelete}
-              />
+            ))}
+          </Carousel>
+        </ImageSection>
+        <InfoSection className="info">
+          <section className="head">
+            <h1 className="main-title">{title}</h1>
+            <div className="buttons">
+              <div className="bookmark-button">
+                <BookmarkButton
+                  value={bookmarked ? true : false}
+                  handler={handleContentBookmark}
+                />
+              </div>
+              {userInfo && userInfo.id === author.id && (
+                <div
+                  className="author-action-trigger"
+                  onClick={flyoutController}
+                >
+                  <FontAwesomeIcon icon={faEllipsisV} />
+                  {isOpen && (
+                    <Flyout isOpen={isOpen} handler={flyoutController}>
+                      <ul>
+                        <li className="flyout-option" onClick={handleClickEdit}>
+                          수정하기
+                        </li>
+                        <li
+                          className="flyout-option"
+                          onClick={handleClickDelete}
+                        >
+                          삭제하기
+                        </li>
+                      </ul>
+                    </Flyout>
+                  )}
+                </div>
+              )}
             </div>
-            <InfoListItem icon={faHeart} title="아티스트">
-              <span>{`${artist.group} ${artist.name}`}</span>
-            </InfoListItem>
-            <InfoListItem icon={faCalendar} title="이벤트 일정">
-              <span>{start}</span>
-              <span>{` ~ `}</span>
-              <span>{end}</span>
-            </InfoListItem>
-            <InfoListItem icon={faClock} title="영업 시간">
-              <span>{open}</span>
-              <span>{` ~ `}</span>
-              <span>{close}</span>
-            </InfoListItem>
-            <InfoListItem icon={faMapMarkerAlt} title="위치">
-              <span className="road-address">
-                {roadAddress}
-                {` `}
-              </span>
-              <span className="store-name">{storeName}</span>
-            </InfoListItem>
-            <InfoListItem icon={faPhoneAlt} title="연락처">
-              <span>{mobile}</span>
-            </InfoListItem>
-
-            <Author className="author">
-              <p>작성자</p>
-              <div>
-                <Avatar profileImage={profileImage} size={3} />
-                <span>{name}</span>
-              </div>
-            </Author>
-          </InfoSection>
-        </div>
-        <LocationInfo
-          storeName={storeName}
-          lat={location.lat}
-          lng={location.lng}
-        />
+            <PopupNoTitle
+              isOpen={popupIsOpen}
+              modalController={modalController}
+              isNoti={false}
+              description={
+                '정말 삭제하실건가요? 삭제한 컨텐츠는 다시 복구할 수 없어요.'
+              }
+              buttonText="삭제하기"
+              buttonHandler={handleDelete}
+            />
+          </section>
+          <div className="body">
+            <section className="text-info">
+              <InfoListItem icon={faHeart} title="아티스트">
+                <span>{artistName}</span>
+              </InfoListItem>
+              <InfoListItem icon={faCalendar} title="이벤트 일정">
+                <span>{start}</span>
+                <span>{` ~ `}</span>
+                <span>{end}</span>
+              </InfoListItem>
+              <InfoListItem icon={faClock} title="영업 시간">
+                <span>{open}</span>
+                <span>{` ~ `}</span>
+                <span>{close}</span>
+              </InfoListItem>
+              <InfoListItem icon={faMapMarkerAlt} title="위치">
+                <span className="road-address">
+                  {roadAddress}
+                  {` `}
+                </span>
+                <span className="store-name">{storeName}</span>
+              </InfoListItem>
+              <InfoListItem icon={faPhoneAlt} title="연락처">
+                <span>{mobile}</span>
+              </InfoListItem>
+            </section>
+            <section className="map-info">
+              <LocationInfo
+                storeName={storeName}
+                lat={location.lat}
+                lng={location.lng}
+              />
+              <Author className="author">
+                <div>
+                  <Avatar profileImage={profileImage} size={3} />
+                  <div>
+                    <span className="author-name">{name}</span>
+                    <span className="author-desc">{`${artistName}의 Fan이에요 🤍`}</span>
+                  </div>
+                </div>
+              </Author>
+            </section>
+          </div>
+        </InfoSection>
         <SectionStyle className="description">
           <p>
             {description.split('\n').map((el) => (

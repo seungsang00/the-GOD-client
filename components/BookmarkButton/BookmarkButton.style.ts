@@ -1,30 +1,26 @@
 import styled from 'styled-components';
 
 export default styled.div<{ value: boolean }>`
-  position: absolute;
-  top: 4px;
-  right: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background-color: rgba(233, 233, 233, 0.2);
   input {
     display: none;
   }
   .toggle-box {
     text-align: center;
-    font-size: 30px;
+    font-size: 2rem;
     color: ${({ theme }) => theme.colors.normal};
     &:active {
       color: ${({ theme }) => theme.colors.action};
     }
 
     ${({ theme }) => theme.media.tablet} {
-      font-size: 27px;
+      font-size: 1.6rem;
     }
 
     ${({ theme }) => theme.media.mobile} {
-      font-size: 24px;
+      font-size: 1.2rem;
     }
   }
   /* space */

@@ -7,11 +7,13 @@ export const BadgeContainer = withProps<BadgeContainerProps, HTMLSpanElement>(
   display: flex;
   align-items: center;
   background-color: ${({ bgcolor, theme }) =>
-    bgcolor ? bgcolor : theme.colors.yellow};
-  color: ${({ textcolor }) => (textcolor ? textcolor : 'black')};
+    bgcolor ? bgcolor : theme.colors.primary};
+  color: ${({ textcolor }) => (textcolor ? textcolor : '#fff')};
   margin-right: ${({ theme }) => theme.space.xs};
-  border-radius: 7px;
+  margin-bottom: ${({ theme }) => theme.space.xs};
+  border-radius: 10px;
   font-weight: 500;
+  cursor: default;
 
   ${({ theme }) => theme.media.desktop} {
     font-size: 0.9rem;
