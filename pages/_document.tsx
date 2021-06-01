@@ -39,11 +39,7 @@ export default class MyDocument extends Document {
         <Head>
           <script
             type="text/javascript"
-            src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_ID}&libraries=services`}
-          />
-          <script
-            type="text/javascript"
-            src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"
+            src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_ID}&libraries=drawing,services`}
           />
         </Head>
         <body>
