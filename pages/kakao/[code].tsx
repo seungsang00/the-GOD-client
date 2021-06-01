@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { kakaoAuthThunk, kakaoTokenThunk } from 'modules/auth';
 import { RootState } from 'modules/reducer';
 
@@ -10,13 +10,12 @@ import { RootState } from 'modules/reducer';
 
 const KakaoAuth = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
   const { loading, data, error } = useSelector(
     (state: RootState) => state.auth.kakao
   );
   const { code } = router.query as { code: string };
   useEffect(() => {
-    if (code) dispatch(kakaoTokenThunk(code));
+    if (code) kakaoTokenThunk(code);
   });
   useEffect(() => {
     if (data) {

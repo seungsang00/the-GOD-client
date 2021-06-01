@@ -19,10 +19,12 @@ import {
   faAngleLeft,
   faCircle,
   faComment,
+  faSort,
 } from '@fortawesome/free-solid-svg-icons';
 import { ThemeProvider } from '@styles/themeProvider';
 library.add(
   faTimes,
+  faSort,
   faBus,
   faSubway,
   faBaby,

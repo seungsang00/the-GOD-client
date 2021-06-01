@@ -59,17 +59,20 @@ export default styled.div<{
       box-shadow: 0 0 22px 4px rgb(122 122 122 / 60%);
       width: 30px;
       z-index: 999;
+      position: absolute;
       background-color: white;
       height: 30px;
       font-size: 24px;
       &.left {
         margin-left: -10px;
         transition: margin-left 0.5s;
+        left: 0;
         &:hover {
           margin-left: -15px;
         }
       }
       &.right {
+        right: 0;
         margin-right: -10px;
         transition: margin-right 0.5s;
         &:hover {

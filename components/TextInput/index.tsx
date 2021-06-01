@@ -1,7 +1,6 @@
 import { TextInputProps } from 'interfaces/props';
 import React, { ChangeEvent, KeyboardEvent, ReactElement } from 'react';
 import { StyledTextInput, StyledTextArea } from './TextInput.style';
-
 export const TextInput = ({
   type,
   value,
@@ -9,9 +8,11 @@ export const TextInput = ({
   onKeyDown,
   disabled,
   placeholder,
+  ...rest
 }: TextInputProps): ReactElement => {
   return (
     <StyledTextInput
+      {...rest}
       className="textinput"
       type={type}
       value={value}
@@ -22,7 +23,6 @@ export const TextInput = ({
     />
   );
 };
-
 export interface TextAreaProps {
   value: string;
   onChange: ({
@@ -35,7 +35,6 @@ export interface TextAreaProps {
   disabled: boolean;
   placeholder?: string;
 }
-
 export const TextArea = ({
   value,
   onChange,
@@ -54,19 +53,3 @@ export const TextArea = ({
     ></StyledTextArea>
   );
 };
-// export const TextArea = ({
-//   initValue,
-//   disabled,
-//   placeholder,
-//   handler
-// }: TextInputProps): ReactElement => {
-//   const { inputEvent } = useTextInput(initValue ? initValue : '');
-//   return (
-//     <StyledTextArea
-//       className="textarea"
-//       {...inputEvent}
-//       disabled={disabled}
-//       placeholder={placeholder}
-//     ></StyledTextArea>
-//   );
-// };

@@ -1,19 +1,12 @@
 import React, { ReactElement, useState } from 'react';
 import {
-  Avatar,
   Badge,
   BookmarkButton,
   InfoListItem,
   PerkBadge,
-  TextButton,
   Carousel,
-  CommentInput,
 } from '@components';
 
-import {
-  sampleUserProfile1,
-  sampleUserProfile2,
-} from '../../utils/sample-data';
 import { faMapMarkerAlt, faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import {
   faCalendar,
@@ -24,10 +17,9 @@ import {
   ContentPageStyle,
   ImageSection,
   InfoSection,
-  Author,
   SectionStyle,
 } from './ContentPageContainer.style';
-import { useRouter } from 'next/dist/client/router';
+// import { useRouter } from 'next/dist/client/router';
 import { Content } from '@interfaces';
 import { Comments } from '@containers';
 
@@ -43,22 +35,21 @@ const ContentPageContainer = ({
   mobile,
   perks,
   isBookmark,
-  author,
 }: Content): ReactElement => {
-  const router = useRouter();
-  const { id } = router.query;
-  const handleClickEdit = () => {
+  // const router = useRouter();
+  // const { id } = router.query;
+  /* const handleClickEdit = () => {
     router.push(`/content/edit/${id}`);
-  };
+  }; */
 
   // FIXME: store에서 유저 ID 정보를 받아와야 합니다
-  const sameUserId = sampleUserProfile2.id;
-  const differentUserId = sampleUserProfile1.id;
+  /* const sameUserId = sampleUserProfile2.id;
+  const differentUserId = sampleUserProfile1.id; */
   const { start, end } = date;
   const { open, close } = time;
   const { storeName, roadAddress } = address;
   // const { name, profileImage } = author;
-  const [bookmarked, setBookmarked] = useState<boolean>(isBookmark);
+  const [bookmarked, setBookmarked] = useState<boolean | undefined>(isBookmark);
 
   const handleContentBookmark = () => {
     setBookmarked(!bookmarked);
@@ -105,7 +96,7 @@ const ContentPageContainer = ({
               <h1 className="main-title">{title}</h1>
               <div className="bookmark-button">
                 <BookmarkButton
-                  value={bookmarked}
+                  value={bookmarked ? false : true}
                   handler={handleContentBookmark}
                 />
               </div>

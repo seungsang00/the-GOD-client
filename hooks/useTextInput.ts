@@ -26,7 +26,7 @@ const useTextInput = (initValue: string) => {
       console.log('Click');
     },
   };
-  return { inputEvent };
+  return { value, inputEvent };
 };
 
 export default useTextInput;

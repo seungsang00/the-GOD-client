@@ -91,6 +91,17 @@ export const CONTENT_UPDATE_SUCCESS = 'content/UPDATE_SUCCESS';
 export const CONTENT_UPDATE_ERROR = 'content/UPDATE_ERROR';
 
 // comment
+export const CONTENT_FORM_ARTIST = 'content/FORM_ARTIST';
+export const CONTENT_FORM_TITLE = 'content/FORM_TITLE';
+export const CONTENT_FORM_TAGS = 'content/FORM_TAGS';
+export const CONTENT_FORM_DESCRIPTION = 'content/FORM_DESCRIPTION';
+export const CONTENT_FORM_IMAGES = 'content/FORM_IMAGES';
+export const CONTENT_FORM_DATES = 'content/FORM_DATES';
+export const CONTENT_FORM_TIMES = 'content/FORM_TIMES';
+export const CONTENT_FORM_LOCATION = 'content/FORM_LOCATION';
+export const CONTENT_FORM_MOBILE = 'content/FORM_MOBILE';
+export const CONTENT_FORM_PERKS = 'content/FORM_PERKS';
+
 export const COMMENT_CREATE = 'comment/CREATE';
 export const COMMENT_CREATE_SUCCESS = 'comment/CREATE/SUCCESS';
 export const COMMENT_CREATE_ERROR = 'comment/CREATE/ERROR';
