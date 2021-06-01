@@ -1,6 +1,4 @@
 import { Content } from '@interfaces';
-import { twitterAuthAsync } from 'modules/auth';
-import content from 'modules/content';
 import React, { useEffect, useMemo, useState } from 'react';
 
 const SearchMapContainer = ({
@@ -188,6 +186,13 @@ const SearchMapContainer = ({
   useEffect(() => {
     if (map) {
       map.fetchData(contents);
+      contents.forEach((content) => {
+        map.recoverImage(content.id);
+      });
+      path.forEach((content) => {
+        map.setImage(content.id);
+      });
+      map.drawPolyline(path);
     }
   }, [map]);
   useEffect(() => {
@@ -209,6 +214,7 @@ const SearchMapContainer = ({
       setSelectedId('');
     }
   }, [path]);
+
   return <div style={{ width: '100%', height: '100%' }} id="map"></div>;
 };
 

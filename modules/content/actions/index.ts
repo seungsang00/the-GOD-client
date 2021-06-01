@@ -14,12 +14,17 @@ import {
   inputLocation,
   inputPerks,
 } from './form';
-import { getContentAsync, getContentListAsync } from './read';
+import {
+  getSharedContentAsync,
+  getContentAsync,
+  getContentListAsync,
+} from './read';
 import {} from './delete';
 
 const actions = {
   getContentAsync,
   getContentListAsync,
+  getSharedContentAsync,
   createSharedContentAsync,
   updateAsync,
   createAsync,

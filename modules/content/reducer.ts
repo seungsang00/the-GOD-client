@@ -27,6 +27,9 @@ import {
   CONTENT_SHARED_CREATE,
   CONTENT_SHARED_CREATE_SUCCESS,
   CONTENT_SHARED_CREATE_ERROR,
+  CONTENT_SHARED_GET,
+  CONTENT_SHARED_GET_SUCCESS,
+  CONTENT_SHARED_GET_ERROR,
 } from '../actionTypes';
 
 // default Store
@@ -83,6 +86,11 @@ const initialState: ContentReducer = {
       cat: false,
     },
   },
+  path: {
+    data: null,
+    loading: false,
+    error: null,
+  },
   shared: {
     data: null,
     loading: false,
@@ -110,6 +118,30 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
   [CONTENT_GET_ERROR]: (state, action) => ({
     ...state,
     current: {
+      loading: false,
+      error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [CONTENT_SHARED_GET]: (state) => ({
+    ...state,
+    path: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [CONTENT_SHARED_GET_SUCCESS]: (state, action) => ({
+    ...state,
+    path: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [CONTENT_SHARED_GET_ERROR]: (state, action) => ({
+    ...state,
+    path: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,

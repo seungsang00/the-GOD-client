@@ -152,6 +152,10 @@ export type PutBookmarkResponse = AxiosResponse<{ isBookmark: boolean }>;
 export type GetInfoResponse = AxiosResponse<User>;
 export type PutInfoResponse = AxiosResponse<User>;
 export type GetContentListResponse = AxiosResponse<Content[]>;
+export type GetSharedContentResponse = AxiosResponse<{
+  id: string;
+  contents: Content[];
+}>;
 export type GetContentPathResponse = AxiosResponse<SharedContent[]>;
 export type GetUserContentResponse = AxiosResponse<Content[]>;
 export type GetBookmarkResponse = AxiosResponse<Content[]>;
@@ -190,6 +194,7 @@ export interface ContentReducer {
   update: AsyncState<Content>;
   delete: AsyncState<{ message: string }>;
   shared: AsyncState<{ id: string }>;
+  path: AsyncState<{ id: string; contents: Content[] }>;
   form: Content;
 }
 export interface ArtistReducer {

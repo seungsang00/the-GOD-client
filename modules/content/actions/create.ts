@@ -46,6 +46,7 @@ export const createAsync = createAsyncAction(
   CONTENT_CREATE_SUCCESS,
   CONTENT_CREATE_ERROR
 )<null, PostContentResponse, AxiosError>();
+
 export const createSharedContentAsync = createAsyncAction(
   CONTENT_SHARED_CREATE,
   CONTENT_SHARED_CREATE_SUCCESS,

@@ -1,90 +1,43 @@
-import { Content } from '@interfaces';
-import { sampleContentListData } from '@utils/sample-data';
-import React, { useMemo, useState } from 'react';
-import SearchContentLoader from '../../SearchContentLoader';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/dist/client/router';
 import { Layout } from '@layouts';
+import PathLoader from 'containers/contents/PathLoader';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSharedContentThunk } from 'modules/content/actions/read';
+import { RootState } from 'modules/reducer';
+// import { DataNullLink } from '@components';
+import { sampleContentListData } from '@utils/sample-data';
 
 const ContentEditPage = () => {
-  // const [focusedID, setFocusedID] = useState<string | null>(null);
-  const [isPath, setIsPath] = useState<boolean>(false);
-  const [sortedList, setSortedList] = useState<{
-    selectedContents: Content[];
-    restContents: Content[];
-  }>({ selectedContents: [], restContents: sampleContentListData });
   const router = useRouter();
-  const { id } = router.query; // 현재 step
-  const sortList = (id: string) => {
-    if (!isPath) {
-      setSortedList((state) => {
-        const checkItem = state.restContents.find(
-          (content) => content.id === id
-        );
-        if (checkItem) {
-          return {
-            restContents: [
-              ...sampleContentListData.filter((content) => content.id !== id),
-            ],
-            selectedContents: [checkItem],
-          };
-        } else {
-          return {
-            restContents: [...sampleContentListData],
-            selectedContents: [],
-          };
-        }
-      });
-    } else {
-      setSortedList((state) => {
-        const checkItem = state.restContents.find(
-          (content) => content.id === id
-        );
-        if (checkItem) {
-          return {
-            selectedContents: [...state.selectedContents, checkItem],
-            restContents: [
-              ...state.restContents.filter((content) => content.id !== id),
-            ],
-          };
-        } else {
-          const prevContent = state.selectedContents.find(
-            (content) => content.id === id
-          ) as Content;
-          return {
-            restContents: [...state.restContents, prevContent],
-            selectedContents: [
-              ...state.selectedContents.filter((content) => content.id !== id),
-            ],
-          };
-        }
-      });
-    }
-  };
-  const handleCardClick = (id: string) => {
-    sortList(id);
-  };
-  const resetHadler = () => {
-    setSortedList({
-      selectedContents: [],
-      restContents: sampleContentListData,
-    });
-  };
+  const { id } = router.query;
+  const dispatch = useDispatch();
+  const { path } = useSelector(({ content }: RootState) => content);
 
-  useMemo(() => {
-    resetHadler();
-  }, [isPath]);
+  useEffect(() => {
+    if (id) {
+      dispatch(getSharedContentThunk(id as string));
+    }
+  }, [id]);
 
   return (
     <Layout title={`투어 경로 | FansSum`}>
       <main>
-        <SearchContentLoader
-          selectedContents={sortedList.selectedContents}
-          restContents={sortedList.restContents}
-          isPath={isPath}
-          resetHadler={resetHadler}
-          setIsPath={setIsPath}
-          handleCardClick={handleCardClick}
-        />
+        {path.data ? (
+          <PathLoader contents={path.data.contents} />
+        ) : (
+          <>
+            <PathLoader contents={sampleContentListData} />
+            {/* 
+            FIXME: 로딩 데이터가 없는경우 처리
+            <DataNullLink
+            title="오류"
+            description="오류"
+            buttonText="홈으로"
+            linkTo="/"
+          /> */}
+          </>
+        )}
       </main>
     </Layout>
   );
