@@ -16,10 +16,10 @@ const PerkBadge = ({ perk, isActive }: PerkProps) => {
     bus: { text: '버스 정류장', icon: faBus },
     subway: { text: '지하철 정류장', icon: faSubway },
     train: { text: '기차역 인근', icon: faTrain },
-    elevator: { text: '엘리베이터', icon: faSort },
+    sort: { text: '엘리베이터', icon: faSort },
     baby: { text: '유아용 좌석', icon: faBaby },
     parking: { text: '주차 가능', icon: faParking },
-    pet: { text: '반려동물', icon: faCat },
+    cat: { text: '반려동물', icon: faCat },
   };
   return (
     <PerkBadgeStyle className={isActive ? 'perk active' : 'perk'}>
