@@ -8,6 +8,7 @@ import useFlyout from 'hooks/useFlyout';
 import useModal from 'hooks/useModal';
 import { RootState } from 'modules/reducer';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { HeaderContainer, SearchField } from './Header.style';
@@ -45,6 +46,16 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
     }
   });
 
+  const router = useRouter();
+  const revealSearchTrigger = (): boolean => {
+    const path = router.pathname;
+    const hide = ['/content/[id]', '/content/form'];
+    if (hide.find((el) => el === path)) {
+      return false;
+    }
+    return true;
+  };
+
   return (
     <>
       <HeaderContainer>
@@ -55,7 +66,9 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
             </a>
           </Link>
         </div>
-        {!isExpanded && <SearchTrigger handler={searchFieldHandler} />}
+        {!isExpanded && revealSearchTrigger() && (
+          <SearchTrigger handler={searchFieldHandler} />
+        )}
         <nav className="gnb">
           <ThemeToggleButton />
           {isLogin ? (
