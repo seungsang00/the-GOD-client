@@ -4,14 +4,18 @@ import styled from '@styles/themed-components';
 import {
   Avatar,
   Badge,
+  /* Carousel,
+  FileInput,
   InputTags,
-  OrderSidebar,
+  OrderSidebar, */
   // TextArea,
   TextInput,
   TimeSelect,
 } from '@components';
-import FilePreview from 'components/FilePreview';
+
 import useModal from 'hooks/useModal';
+import React from 'react';
+
 import { SignoutModal, MainSearchForm } from '@containers';
 import useTextInput from 'hooks/useTextInput';
 
@@ -24,8 +28,10 @@ const MyComponent = styled.div`
     color: green;
   }
 `;
-const tagList = ['ENHYPEN', 'BORDER_CARNIVAL', 'COMEBACK'];
+
+// const tagList = ['ENHYPEN', 'BORDER_CARNIVAL', 'COMEBACK'];
 const testHandler = (HHorMM: string) => console.log(HHorMM);
+
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
   const { inputEvent } = useTextInput('');
@@ -39,6 +45,7 @@ const AboutPage = () => {
           <a>Go home</a>
         </Link>
       </p>
+
       <MyComponent>디스플레이 크기에 따라 색이 바뀔거에요!</MyComponent>
       <TextInput
         type="text"
@@ -62,14 +69,9 @@ const AboutPage = () => {
       </div>
 
       <TimeSelect setHour={testHandler} setMinutes={testHandler} />
-      <OrderSidebar />
       <Badge bgcolor="pink">#ENHYPEN</Badge>
       <Badge textcolor="pink">#ENHYPEN</Badge>
-      <InputTags tagList={tagList} />
-      <FilePreview
-        url="https://bit.ly/33TugE9"
-        handleRemoveFile={() => console.log(`file remove`)}
-      />
+
       {/* <TextInput placeholder="...을 입력해주세요" /> */}
       {/* <TextArea placeholder="...을 입력해주세요" /> */}
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />

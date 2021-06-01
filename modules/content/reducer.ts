@@ -14,6 +14,16 @@ import {
   CONTENT_UPDATE,
   CONTENT_UPDATE_ERROR,
   CONTENT_UPDATE_SUCCESS,
+  CONTENT_FORM_ARTIST,
+  CONTENT_FORM_TITLE,
+  CONTENT_FORM_TAGS,
+  CONTENT_FORM_DESCRIPTION,
+  CONTENT_FORM_IMAGES,
+  CONTENT_FORM_DATES,
+  CONTENT_FORM_TIMES,
+  CONTENT_FORM_LOCATION,
+  CONTENT_FORM_PERKS,
+  CONTENT_FORM_MOBILE,
 } from '../actionTypes';
 
 // default Store
@@ -42,6 +52,33 @@ const initialState: ContentReducer = {
     data: null,
     loading: false,
     error: null,
+  },
+  form: {
+    id: '',
+    artist: { name: '', group: '', id: '', profileImage: '' },
+    title: '',
+    tags: [],
+    description: '',
+    images: [],
+    date: {
+      start: 'yyyy-mm-dd',
+      end: 'yyyy-mm-dd',
+    },
+    time: {
+      open: 'HH:MM:00',
+      close: 'HH:MM:00',
+    },
+    address: { storeName: '', roadAddress: '', location: { lat: 0, lng: 0 } },
+    mobile: '',
+    perks: {
+      bus: false,
+      sort: false,
+      baby: false,
+      subway: false,
+      train: false,
+      parking: false,
+      cat: false,
+    },
   },
 };
 
@@ -140,6 +177,79 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,
+    },
+  }),
+  [CONTENT_FORM_ARTIST]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      artist: { ...state.form.artist, ...action.payload },
+    },
+  }),
+  [CONTENT_FORM_TITLE]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      title: action.payload,
+    },
+  }),
+  [CONTENT_FORM_TAGS]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      tags: action.payload,
+    },
+  }),
+  [CONTENT_FORM_DESCRIPTION]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      description: action.payload,
+    },
+  }),
+  [CONTENT_FORM_IMAGES]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      images: action.payload,
+    },
+  }),
+  [CONTENT_FORM_DATES]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      date: action.payload,
+    },
+  }),
+  [CONTENT_FORM_TIMES]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      time: action.payload,
+    },
+  }),
+  [CONTENT_FORM_LOCATION]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      address: action.payload,
+    },
+  }),
+  [CONTENT_FORM_MOBILE]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      mobile: action.payload,
+    },
+  }),
+  [CONTENT_FORM_PERKS]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      perks: {
+        ...state.form.perks,
+        [action.payload]: !state.form.perks[action.payload],
+      },
     },
   }),
 });

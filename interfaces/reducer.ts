@@ -42,7 +42,6 @@ export interface SharedContent {
   id: string;
   content: Content[];
 }
-
 // content
 export interface SearchResult {
   id: string;
@@ -65,8 +64,8 @@ export interface Content {
   address: Address;
   mobile: string;
   perks: Perks;
-  isBookmark: boolean;
-  author: Author;
+  isBookmark?: boolean;
+  author?: Author;
 }
 
 export interface Author {
@@ -98,11 +97,11 @@ export interface Perks {
   bus: boolean;
   subway: boolean;
   train: boolean;
-  elevator: boolean; // sort
+  sort: boolean;
   baby: boolean;
   parking: boolean;
-  pet: boolean; // cat
-  [prop: string]: boolean;
+  cat: boolean;
+  readonly [x: string]: boolean;
 }
 
 export interface PerkList {
@@ -181,6 +180,7 @@ export interface ContentReducer {
   create: AsyncState<Content>;
   update: AsyncState<Content>;
   delete: AsyncState<{ message: string }>;
+  form: Content;
 }
 
 export interface CommentReducer {

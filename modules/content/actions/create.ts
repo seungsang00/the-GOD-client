@@ -12,7 +12,7 @@ export const createRequest = async (content: Content) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.post<PostContentResponse>(
     `${API_ENDPOINT}/content`,
-    content,
+    { ...content, artist: content.artist.name },
     {
       headers: { authorization: accessToken },
     }

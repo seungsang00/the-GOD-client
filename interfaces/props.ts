@@ -1,5 +1,10 @@
 import { Content } from '@interfaces';
-import { MouseEventHandler, ReactNode } from 'react';
+import {
+  ChangeEvent,
+  MouseEventHandler,
+  KeyboardEvent,
+  ReactNode,
+} from 'react';
 import { IInputEvent } from './hooks';
 import { SharedContent } from './reducer';
 
