@@ -1,5 +1,5 @@
-import { Button, ThemeToggleButton } from '@components';
-import { AuthModal } from '@containers';
+import { Button, ThemeToggleButton, SearchTrigger, Modal } from '@components';
+import { AuthModal, MainSearchForm } from '@containers';
 import {
   AccountOptionsButton,
   AccountOptionsFlyout,
@@ -10,13 +10,17 @@ import { RootState } from 'modules/reducer';
 import Link from 'next/link';
 import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { HeaderContainer } from './Header.style';
+import { HeaderContainer, SearchField } from './Header.style';
 
 interface HeaderProps {
   logo?: ReactNode;
   avatar: ReactNode;
 }
 const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
+  // 검색 필드 확장
+  const { isOpen: isExpanded, modalController: searchFieldHandler } =
+    useModal();
+
   const { data } = useSelector((state: RootState) => state.user.userProfile);
   const { isOpen, flyoutController } = useFlyout(false);
   const { isOpen: isAuthModalOpen, modalController } = useModal();
@@ -30,6 +34,12 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (document) {
+      document.addEventListener('scroll', () => searchFieldHandler(undefined));
+    }
+  });
+
   return (
     <>
       <HeaderContainer>
@@ -40,6 +50,7 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
             </a>
           </Link>
         </div>
+        {!isExpanded && <SearchTrigger handler={searchFieldHandler} />}
         <nav className="gnb">
           <ThemeToggleButton />
           {isLogin ? (
@@ -60,6 +71,13 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
           )}
         </nav>
       </HeaderContainer>
+      <SearchField>
+        <Modal
+          isOpen={isExpanded}
+          component={<MainSearchForm />}
+          handler={searchFieldHandler}
+        />
+      </SearchField>
     </>
   );
 };

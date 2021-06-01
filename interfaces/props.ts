@@ -1,5 +1,10 @@
 import { Content } from '@interfaces';
-import { MouseEventHandler, ReactNode } from 'react';
+import {
+  MouseEventHandler,
+  ReactNode,
+  ChangeEvent,
+  KeyboardEvent,
+} from 'react';
 import { IInputEvent } from './hooks';
 import { SharedContent } from './reducer';
 
@@ -95,6 +100,7 @@ export interface FileInputProps {
 }
 
 export interface FlyoutProps {
+  isOpen: boolean;
   children: ReactNode;
   handler: MouseEventHandler;
 }
