@@ -16,7 +16,7 @@ import {
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
-export const createRequest = async (content: Content) => {
+export const createContentRequest = async (content: Content) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.post<PostContentResponse>(
     `${API_ENDPOINT}/content`,
@@ -41,7 +41,7 @@ export const createSharedContentRequest = async (contents: Content[]) => {
   return result.data;
 };
 
-export const createAsync = createAsyncAction(
+export const createContentAsync = createAsyncAction(
   CONTENT_CREATE,
   CONTENT_CREATE_SUCCESS,
   CONTENT_CREATE_ERROR
@@ -53,7 +53,10 @@ export const createSharedContentAsync = createAsyncAction(
   CONTENT_SHARED_CREATE_ERROR
 )<null, PostSharedContentResponse, AxiosError>();
 
-export const createThunk = createAsyncThunk(createAsync, createRequest);
+export const createContentThunk = createAsyncThunk(
+  createContentAsync,
+  createContentRequest
+);
 export const createSharedContentThunk = createAsyncThunk(
   createSharedContentAsync,
   createSharedContentRequest

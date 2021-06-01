@@ -1,7 +1,7 @@
 import { ActionType } from 'typesafe-actions';
 
-import { createAsync, createSharedContentAsync } from './create';
-import { updateAsync } from './update';
+import { createContentAsync, createSharedContentAsync } from './create';
+import { updateContentAsync } from './update';
 import {
   inputArtist,
   inputTitle,
@@ -19,15 +19,16 @@ import {
   getContentAsync,
   getContentListAsync,
 } from './read';
-import {} from './delete';
+import { deleteContentAsync } from './delete';
 
 const actions = {
   getContentAsync,
   getContentListAsync,
   getSharedContentAsync,
   createSharedContentAsync,
-  updateAsync,
-  createAsync,
+  updateContentAsync,
+  deleteContentAsync,
+  createContentAsync,
   inputArtist,
   inputTitle,
   inputTags,

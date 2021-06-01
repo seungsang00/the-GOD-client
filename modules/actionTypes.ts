@@ -69,6 +69,10 @@ export const USER_BOOKMARK_GET = 'user/BOOKMARK_GET';
 export const USER_BOOKMARK_GET_SUCCESS = 'user/BOOKMARK_GET_SUCCESS';
 export const USER_BOOKMARK_GET_ERROR = 'user/BOOKMARK_GET_ERROR';
 
+export const USER_BOOKMARK_UPDATE = 'user/BOOKMARK_UPDATE';
+export const USER_BOOKMARK_UPDATE_SUCCESS = 'user/BOOKMARK_UPDATE_SUCCESS';
+export const USER_BOOKMARK_UPDATE_ERROR = 'user/BOOKMARK_UPDATE_ERROR';
+
 export const USER_FOLLOW_GET = 'user/FOLLOW_GET';
 export const USER_FOLLOW_GET_SUCCESS = 'user/FOLLOW_GET_SUCCESS';
 export const USER_FOLLOW_GET_ERROR = 'user/FOLLOW_GET_ERROR';
@@ -97,6 +101,10 @@ export const CONTENT_LIST_GET_ERROR = 'content/LIST_GET_ERROR';
 export const CONTENT_UPDATE = 'content/UPDATE';
 export const CONTENT_UPDATE_SUCCESS = 'content/UPDATE_SUCCESS';
 export const CONTENT_UPDATE_ERROR = 'content/UPDATE_ERROR';
+
+export const CONTENT_DELETE = 'content/DELETE';
+export const CONTENT_DELETE_SUCCESS = 'content/DELETE_SUCCESS';
+export const CONTENT_DELETE_ERROR = 'content/DELETE_ERROR';
 
 // comment
 export const CONTENT_FORM_ARTIST = 'content/FORM_ARTIST';
