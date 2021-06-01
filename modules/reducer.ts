@@ -3,12 +3,14 @@ import user from './user';
 import auth from './auth';
 import content from './content';
 import comment from './comment';
+import artist from './artist';
 
 const rootReducer = combineReducers({
   user,
   auth,
   content,
   comment,
+  artist,
 });
 
 // 루트 리듀서를 내보내주세요.

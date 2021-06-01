@@ -1,8 +1,3 @@
-/* TODO: refactor
-/ 1. page-layout
-/ 2. reducer (factory)
-*/
-
 import { IComment, Content, User, Artists } from '@interfaces';
 
 export const sampleCommentsData: IComment[] = [

@@ -23,7 +23,7 @@ export const getFollowsRequest = async () => {
   const token: string | null = localStorage.getItem('accessToken');
   const result = await axios.get<GetFollowResponse>(`${API_ENDPOINT}/user`, {
     headers: {
-      authorization: token,
+      authorization: `bearer ${token}`,
     },
   });
   return result.data;
@@ -35,7 +35,7 @@ export const updateFollowRequest = async (id: string) => {
     { id },
     {
       headers: {
-        authorization: token,
+        authorization: `bearer ${token}`,
       },
     }
   );

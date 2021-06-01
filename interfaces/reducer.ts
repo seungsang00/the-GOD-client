@@ -158,7 +158,15 @@ export type GetFollowResponse = AxiosResponse<Artist[]>;
 // comment
 export type GetCommentListResponse = AxiosResponse<CommentListResponse>;
 export type PostCommentResponse = AxiosResponse<IComment>;
-
+//
+export type CreateArtistResponse = AxiosResponse<{ message: string }>;
+export type UpdateArtistResponse = AxiosResponse<{
+  id: string;
+  name: string;
+  group: string;
+}>;
+export type GetArtistResponse = AxiosResponse<Artists>;
+export type DeleteArtistResponse = AxiosResponse<{ message: string }>;
 export interface UserState {
   userProfile: AsyncState<User>;
   bookmarks: AsyncState<Content[]>;
@@ -181,6 +189,12 @@ export interface ContentReducer {
   update: AsyncState<Content>;
   delete: AsyncState<{ message: string }>;
   form: Content;
+}
+export interface ArtistReducer {
+  create: AsyncState<{ message: string }>;
+  update: AsyncState<{ message: string }>;
+  delete: AsyncState<{ message: string }>;
+  read: AsyncState<Artists>;
 }
 
 export interface CommentReducer {

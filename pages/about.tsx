@@ -18,6 +18,7 @@ import React from 'react';
 
 import { SignoutModal, MainSearchForm } from '@containers';
 import useTextInput from 'hooks/useTextInput';
+// import { readFile } from '@interfaces';
 
 const MyComponent = styled.div`
   color: ${({ theme }) => theme.colors.main};
@@ -34,6 +35,28 @@ const testHandler = (HHorMM: string) => console.log(HHorMM);
 
 const AboutPage = () => {
   const { isOpen, modalController } = useModal();
+  // const [_files, setFiles] = useState<readFile[]>([]);
+  /*  const fileListToArray = (fileList: FileList) => {
+    for (let i = 0; i < fileList.length; i++) {
+      const reader = new FileReader();
+      reader.readAsDataURL(fileList[i]);
+      reader.onloadend = () => {
+        setFiles((state) => [
+          ...state,
+          {
+            data: fileList[i],
+            name: fileList[i].name,
+            url: reader.result as string,
+          },
+        ]);
+      };
+    }
+  }; */
+  /*  const testFilehandler = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      fileListToArray(e.target.files);
+    }
+  }; */
   const { inputEvent } = useTextInput('');
   const { value, onChange } = inputEvent;
   return (
@@ -71,7 +94,6 @@ const AboutPage = () => {
       <TimeSelect setHour={testHandler} setMinutes={testHandler} />
       <Badge bgcolor="pink">#ENHYPEN</Badge>
       <Badge textcolor="pink">#ENHYPEN</Badge>
-
       {/* <TextInput placeholder="...을 입력해주세요" /> */}
       {/* <TextArea placeholder="...을 입력해주세요" /> */}
       <Avatar profileImage="https://bit.ly/3oqUbfM" size={3} />

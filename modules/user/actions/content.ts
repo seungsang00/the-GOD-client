@@ -43,7 +43,7 @@ export const getMyContentRequest = async () => {
     `${API_ENDPOINT}/user/content`,
     {
       headers: {
-        authorization: token,
+        authorization: `bearer ${token}`,
       },
     }
   );
@@ -56,7 +56,7 @@ export const getPathRequest = async () => {
     `${API_ENDPOINT}/user/sharedcontent`,
     {
       headers: {
-        authorization: token,
+        authorization: `bearer ${token}`,
       },
     }
   );
@@ -69,7 +69,7 @@ export const getBookmarksRequest = async () => {
     `${API_ENDPOINT}/user/bookmark`,
     {
       headers: {
-        authorization: token,
+        authorization: `bearer ${token}`,
       },
     }
   );

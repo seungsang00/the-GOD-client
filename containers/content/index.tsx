@@ -36,15 +36,13 @@ const ContentPageContainer = ({
   perks,
   isBookmark,
 }: Content): ReactElement => {
-  // const router = useRouter();
-  // const { id } = router.query;
+  /* const router = useRouter();
+  const { id } = router.query; */
   /* const handleClickEdit = () => {
     router.push(`/content/edit/${id}`);
   }; */
 
   // FIXME: store에서 유저 ID 정보를 받아와야 합니다
-  /* const sameUserId = sampleUserProfile2.id;
-  const differentUserId = sampleUserProfile1.id; */
   const { start, end } = date;
   const { open, close } = time;
   const { storeName, roadAddress } = address;
@@ -96,7 +94,7 @@ const ContentPageContainer = ({
               <h1 className="main-title">{title}</h1>
               <div className="bookmark-button">
                 <BookmarkButton
-                  value={bookmarked ? false : true}
+                  value={bookmarked ? true : false}
                   handler={handleContentBookmark}
                 />
               </div>

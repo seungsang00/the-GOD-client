@@ -117,3 +117,20 @@ export const COMMENT_UPDATE_ERROR = 'comment/UPDATE_ERROR';
 export const COMMENT_DELETE = 'comment/DELETE';
 export const COMMENT_DELETE_SUCCESS = 'comment/DELETE_SUCCESS';
 export const COMMENT_DELETE_ERROR = 'comment/DELETE_ERROR';
+
+// artist
+export const ARTIST_GET = 'artist/GET';
+export const ARTIST_GET_ERROR = 'artist/GET_ERROR';
+export const ARTIST_GET_SUCCESS = 'artist/GET_SUCCCES';
+
+export const ARTIST_UPDATE = 'artist/UPDATE';
+export const ARTIST_UPDATE_ERROR = 'artist/UPDATE_ERROR';
+export const ARTIST_UPDATE_SUCCESS = 'artist/UPDATE_SUCCESS';
+
+export const ARTIST_DELETE = 'artist/DELETE';
+export const ARTIST_DELETE_ERROR = 'artist/DELETE_ERROR';
+export const ARTIST_DELETE_SUCCESS = 'artist/DELETE_SUCCESS';
+
+export const ARTIST_POST = 'artist/POST';
+export const ARTIST_POST_ERROR = 'artist/POST_ERROR';
+export const ARTIST_POST_SUCCESS = 'artist/POST_SUCCCES';
