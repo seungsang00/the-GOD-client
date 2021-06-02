@@ -11,7 +11,6 @@ import {
 import { MainSearchFormContainer } from './mainsearchform.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { getContentListThunk } from 'modules/content/actions/read';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
 import { getArtistThunk } from 'modules/artist';
@@ -23,9 +22,7 @@ const MainSearchForm = (): ReactElement => {
   const { data: artistData } = useSelector(
     ({ artist }: RootState) => artist.read
   );
-  const { data: contentListData } = useSelector(
-    ({ content }: RootState) => content.list
-  );
+
   // FIXME: option list 불러오기 (main 접속시 최초 1회)
   const optionlistB = sampleSearchInputOptions.location;
 
@@ -74,19 +71,9 @@ const MainSearchForm = (): ReactElement => {
   // 검색 버튼 핸들러
   const handleSearchClick = () => {
     const { artistId, location, dateStart, dateEnd } = makeQueryData();
-    dispatch(
-      getContentListThunk({
-        artistId: artistId as string,
-        location: location as string,
-        dateStart: dateStart as string,
-        dateEnd: dateEnd as string,
-      })
+    router.push(
+      `/search?artistId=${artistId}&location=${location}&dateStart=${dateStart}&dateEnd=${dateEnd}`
     );
-    if (contentListData) {
-      router.push(
-        `/search?artist=${stateA}&location=${stateB}&dateStart=${dates.startDate}&dateEnd=${dates.endDate}`
-      );
-    }
   };
 
   // 상태 관리 핸들러

@@ -151,7 +151,12 @@ export type PutBookmarkResponse = AxiosResponse<{ isBookmarked: boolean }>;
 // user
 export type GetInfoResponse = AxiosResponse<User>;
 export type PutInfoResponse = AxiosResponse<User>;
-export type GetContentListResponse = AxiosResponse<Content[]>;
+export type GetContentListResponse = AxiosResponse<{
+  contents: Content[];
+  totalPage: number;
+  currentPage: number;
+  dataPerPage: number;
+}>;
 export type GetSharedContentResponse = AxiosResponse<{
   id: string;
   contents: Content[];
@@ -189,7 +194,12 @@ export interface AuthReducer {
   kakao: AsyncState<{ code: string; accessToken: string }>;
 }
 export interface ContentReducer {
-  list: AsyncState<Content[]>;
+  list: AsyncState<{
+    contents: Content[];
+    totalPage: number;
+    currentPage: number;
+    dataPerPage: number;
+  }>;
   current: AsyncState<Content>;
   create: AsyncState<Content>;
   update: AsyncState<Content>;

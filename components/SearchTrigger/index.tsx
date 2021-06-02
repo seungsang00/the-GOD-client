@@ -1,8 +1,11 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IGroupArtist } from '@interfaces';
+import { RootState } from 'modules/reducer';
 import moment from 'moment';
 import { useRouter } from 'next/router';
 import { MouseEventHandler, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   SearchTriggerWrapper,
   TriggerBg,
@@ -20,19 +23,43 @@ interface QueryData {
 
 const SearchTrigger = ({ handler }: { handler: MouseEventHandler }) => {
   const router = useRouter();
+  const { data: artistList } = useSelector(
+    ({ artist }: RootState) => artist.read
+  );
+
   const [queryData, setQueryData] = useState<QueryData | null>(null);
+
   const { pathname, query } = router;
+
+  const findArtistByArtistId = (id: string, artistList: any) => {
+    for (let obj of artistList) {
+      if (obj.id === id) {
+        return obj.name;
+      } else if (obj.type === 'solo') {
+        continue;
+      } else {
+        const { member } = obj as IGroupArtist;
+        for (let memberObj of member) {
+          if (memberObj.id === id) {
+            return memberObj.name;
+          } else {
+            continue;
+          }
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     if (pathname === '/search') {
-      const { artist, location, dateStart, dateEnd } = query as {
-        artist: string;
+      const { artistId, location, dateStart, dateEnd } = query as {
+        artistId: string;
         location: string;
         dateStart: string;
         dateEnd: string;
       };
-      console.log(artist, location, dateStart, dateEnd);
-      setQueryData({ artist, location, dateStart, dateEnd });
+      const artist = findArtistByArtistId(artistId, artistList) as string;
+      artist && setQueryData({ artist, location, dateStart, dateEnd });
     }
   }, []);
 
