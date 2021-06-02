@@ -17,10 +17,17 @@ export const TriggerBg = styled.div`
   min-width: 20rem;
   text-align: left;
   vertical-align: middle;
-  border: 1px solid #ddd !important;
   border-radius: 40px;
   transition: box-shadow 0.2s ease;
+  ${({ theme }) => theme.concept.glassmorphism.deep};
   box-shadow: 0px 1px 2px rgb(0 0 0 / 8%), 0px 4px 12px rgb(0 0 0 / 5%) !important;
+  background-color: ${({ theme }) => theme.colors.bg.focused};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.bg.hover};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors.bg.normal};
+  }
 `;
 
 export const Trigger = styled.button`
@@ -52,8 +59,15 @@ export const SearchIcon = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.button.default.normal};
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => theme.colors.primary.normal};
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary.hover};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors.primary.pressed};
+  }
 `;

@@ -16,7 +16,7 @@ export const Label = styled.label`
   width: 60px;
   height: 30px;
   border-radius: 100px;
-  background-color: #222525;
+  background-color: #2a283e;
   overflow: hidden;
   cursor: pointer;
   &:before,
@@ -37,7 +37,7 @@ export const Label = styled.label`
   }
 
   &:after {
-    background-color: #222525;
+    background-color: #2a283e;
     left: -38px;
     transform: scale(0.00001);
   }

@@ -11,7 +11,7 @@ export const DatePickerStyle = styled.div`
     border: none;
     border-radius: 999px;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.grey};
+      background-color: ${({ theme }) => theme.colors.gray.gray01};
     }
   }
 

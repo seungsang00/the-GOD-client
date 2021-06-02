@@ -16,7 +16,7 @@ export const InfoListItemStyle = styled.div`
     justify-content: center;
     align-items: center;
     margin-right: ${({ theme }) => theme.space.sm};
-    ${({ theme }) => theme.concept.glassmorphism005};
+    ${({ theme }) => theme.concept.glassmorphism.deep};
     border-radius: 20px;
   }
 

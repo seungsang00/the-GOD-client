@@ -66,7 +66,7 @@ export default styled.div<{
       position: absolute;
       padding: 0;
       font-size: 24px;
-      ${({ theme }) => theme.concept.glassmorphism005};
+      ${({ theme }) => theme.concept.glassmorphism.deep};
       &.left {
         margin-left: -10px;
         transition: margin-left 0.5s;
@@ -93,7 +93,7 @@ export default styled.div<{
     width: 100%;
     margin-top: ${({ theme }) => theme.space.xs};
     & > div {
-      color: ${({ theme }) => theme.colors.button.default.disabled};
+      color: ${({ theme }) => theme.colors.primary.normal};
       font-size: 7px;
       ${({ theme }) => theme.media.desktop} {
         font-size: 7px;

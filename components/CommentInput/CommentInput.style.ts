@@ -23,13 +23,13 @@ export const CommentInputStyle = styled.div`
       border-radius: 999px;
       cursor: pointer;
       color: #fff;
-      background-color: ${({ theme }) => theme.colors.normal};
+      background-color: ${({ theme }) => theme.colors.bg.normal};
 
       &:hover {
-        background-color: ${({ theme }) => theme.colors.hover};
+        background-color: ${({ theme }) => theme.colors.bg.hover};
       }
       &:active {
-        background-color: ${({ theme }) => theme.colors.action};
+        background-color: ${({ theme }) => theme.colors.bg.focused};
       }
     }
   }
@@ -37,7 +37,7 @@ export const CommentInputStyle = styled.div`
   textarea {
     padding-top: ${({ theme }) => theme.space.xs};
     padding-right: 3rem;
-    background-color: ${({ theme }) => theme.colors.lightgrey} !important;
+    background-color: ${({ theme }) => theme.colors.gray.gray04} !important;
     border-radius: ${({ theme }) => theme.borderRadius};
   }
 `;

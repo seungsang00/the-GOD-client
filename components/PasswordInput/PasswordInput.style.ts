@@ -4,17 +4,17 @@ export const PasswordInputField = styled.div`
   input {
     width: 100%;
     height: 32px;
-    border: 2px solid grey;
+    border: 1px solid ${({ theme }) => theme.colors.line.line01};
     border-radius: ${({ theme }) => theme.borderRadius};
     margin-bottom: ${({ theme }) => theme.space.xxs};
   }
 
   input.valid {
-    border-color: ${({ theme }) => theme.colors.green};
+    border-color: ${({ theme }) => theme.colors.green.normal};
   }
 
   input.invalid {
-    border-color: ${({ theme }) => theme.colors.red};
+    border-color: ${({ theme }) => theme.colors.red.normal};
   }
 
   div {
@@ -32,6 +32,6 @@ export const PasswordInputField = styled.div`
   }
 
   #visibleController.inactive {
-    color: lightgray;
+    color: ${({ theme }) => theme.colors.gray.gray04};
   }
 `;

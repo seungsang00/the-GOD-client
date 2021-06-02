@@ -23,8 +23,13 @@ const Sidebar = ({ list, ref }: SidebarProps): ReactElement => {
       <ul className="list">
         {list &&
           list.map((item, idx) => (
-            <li className={`list-item`} key={`list-item-${idx}`}>
-              <div className={category === item.link ? 'active' : undefined}>
+            <li
+              className={
+                category === item.link ? 'list-item active' : 'list-item'
+              }
+              key={`list-item-${idx}`}
+            >
+              <div>
                 {item.isLink ? (
                   <Link href={`/mypage/setting/${item.link}`}>
                     <a>{item.text}</a>

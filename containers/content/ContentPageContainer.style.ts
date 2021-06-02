@@ -19,7 +19,7 @@ export const InfoSection = styled.section`
   padding: 0 ${({ theme }) => theme.space.lg};
   padding-bottom: ${({ theme }) => theme.space.md};
   border-radius: ${({ theme }) => theme.borderRadius};
-  ${({ theme }) => theme.concept.glassmorphism};
+  ${({ theme }) => theme.concept.glassmorphism.light};
 
   .head {
     display: flex;
@@ -48,14 +48,14 @@ export const InfoSection = styled.section`
       justify-content: center;
       align-items: center;
       font-size: 0.8rem;
-      color: ${({ theme }) => theme.colors.deepgrey};
+      color: ${({ theme }) => theme.colors.gray.gray01};
       cursor: pointer;
       border-radius: 999px;
       padding: 0 ${({ theme }) => theme.space.sm};
       margin-left: ${({ theme }) => theme.space.sm};
 
       &:hover {
-        background-color: ${({ theme }) => theme.colors.lightgrey};
+        background-color: ${({ theme }) => theme.colors.gray.gray04};
       }
     }
 
@@ -98,7 +98,7 @@ export const InfoSection = styled.section`
 export const Author = styled.div`
   width: 100%;
   /* height: 48px; */
-  ${({ theme }) => theme.concept.glassmorphism005}
+  ${({ theme }) => theme.concept.glassmorphism.deep}
   box-shadow: none;
   margin-top: ${({ theme }) => theme.space.xs};
   padding: ${({ theme }) => theme.space.xs};
@@ -142,7 +142,7 @@ export const SectionStyle = styled.section`
 
   &.perks {
     border-radius: ${({ theme }) => theme.borderRadius};
-    /* background-color: ${({ theme }) => theme.colors.lightgrey}; */
+    /* background-color: ${({ theme }) => theme.colors.gray.gray04}; */
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-start;

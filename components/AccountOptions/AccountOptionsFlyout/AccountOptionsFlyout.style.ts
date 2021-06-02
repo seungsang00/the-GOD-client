@@ -2,7 +2,7 @@ import styled from '@styles/themed-components';
 
 export const FlyoutContainer = styled.div`
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 0;
   width: 100vw;
   min-height: 100vh;
@@ -17,8 +17,7 @@ export const FlyoutContainer = styled.div`
     max-width: 360px;
     padding: ${({ theme }) => theme.space.sm} ${({ theme }) => theme.space.xs};
     border-radius: ${({ theme }) => theme.borderRadius};
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
+    ${({ theme }) => theme.concept.glassmorphism.deep};
 
     .account-option {
       cursor: pointer;
@@ -28,7 +27,7 @@ export const FlyoutContainer = styled.div`
 
       &:hover {
         border-radius: ${({ theme }) => theme.borderRadius};
-        background-color: lightgray;
+        background-color: ${({ theme }) => theme.colors.primary.normal};
       }
     }
   }

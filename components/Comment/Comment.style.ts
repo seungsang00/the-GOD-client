@@ -37,7 +37,7 @@ export const CommentStyle = styled.div`
   .time-ago {
     margin: 0 ${({ theme }) => theme.space.xs};
     font-size: 0.9rem;
-    color: ${({ theme }) => theme.colors.deepgrey};
+    color: ${({ theme }) => theme.colors.gray.gray01};
     font-weight: 500;
   }
   p {
@@ -50,13 +50,13 @@ export const CommentStyle = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 0.8rem;
-    color: ${({ theme }) => theme.colors.deepgrey};
+    color: ${({ theme }) => theme.colors.gray.gray01};
     cursor: pointer;
     border-radius: 999px;
     position: relative;
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.lightgrey};
+      background-color: ${({ theme }) => theme.colors.gray.gray04};
     }
   }
 `;

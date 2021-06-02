@@ -25,7 +25,9 @@ export const FooterContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   padding: ${({ theme }) => theme.space.sm};
-  background-color: orange;
+  background-color: ${({ theme }) => theme.colors.primary.normal};
+  background-image: linear-gradient(to bottom right, #aa5aff, #9b36fe);
+  color: ${({ theme }) => theme.colors.line.line04};
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-radius: 20px;

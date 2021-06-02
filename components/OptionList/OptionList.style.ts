@@ -14,6 +14,6 @@ export const OptionListStyle = styled.ul`
   }
   .option-item:hover {
     border-radius: ${({ theme }) => theme.borderRadius};
-    background-color: ${({ theme }) => theme.colors.grey} !important;
+    background-color: ${({ theme }) => theme.colors.line.line04} !important;
   }
 `;

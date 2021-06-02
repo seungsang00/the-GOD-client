@@ -6,7 +6,7 @@ export const Wrapper = styled.section`
   flex-direction: column;
   padding: ${({ theme }) => theme.space.md};
   border-radius: ${({ theme }) => theme.borderRadius};
-  ${({ theme }) => theme.concept.glassmorphism};
+  ${({ theme }) => theme.concept.glassmorphism.normal};
 
   h2 {
     font-size: 1.2rem;
