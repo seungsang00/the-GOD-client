@@ -23,12 +23,14 @@ export interface TextInputProps extends IInputEvent {
 
 export interface AvatarProps extends AvatarContainerProps {
   profileImage: string;
+  type?: 'round' | 'square';
   title?: string;
   handler?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 export interface AvatarContainerProps {
   size: number;
+  type?: 'round' | 'square';
 }
 
 export interface BadgeProps extends BadgeContainerProps {

@@ -4,13 +4,16 @@ import { passwordStandard } from '@utils/verifyStandard';
 import TextButton from 'components/TextButton';
 import useDisabled from 'hooks/useDisabled';
 import useValidInput from 'hooks/useValidInput';
+import { RootState } from 'modules/reducer';
 import React, { ReactElement } from 'react';
+import { useSelector } from 'react-redux';
 import { EditUserInfoWrapper } from './EditUserInfo.style';
 
 interface EditUserInfoProps {
   field: string;
 }
 export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
+  const { data } = useSelector((state: RootState) => state.user.userProfile);
   const [password, setPassword, passwordError] = useValidInput(
     '',
     verifyPassword,
@@ -23,6 +26,7 @@ export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
   );
   const { disabled, disabledController } = useDisabled(true);
 
+  // TODO: 비밀번호 변경 요청
   const 비밀번호변경핸들러함수 = () =>
     console.log('비밀번호변경핸들러함수 실행');
 
@@ -38,7 +42,9 @@ export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
           />
         </div>
         <section>
-          {!disabled && (
+          {disabled ? (
+            <div className="pwchange-recent-date">{data?.passwordUpdate}</div>
+          ) : (
             <>
               <section className="input-area">
                 <InputWithLabel
@@ -61,11 +67,13 @@ export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
                     : ''}
                 </p>
               </section>
-              <Button
-                disabled={true}
-                text="비밀번호 변경"
-                handler={비밀번호변경핸들러함수}
-              />
+              <div className="button-container">
+                <Button
+                  disabled={true}
+                  text="비밀번호 변경"
+                  handler={비밀번호변경핸들러함수}
+                />
+              </div>
             </>
           )}
         </section>

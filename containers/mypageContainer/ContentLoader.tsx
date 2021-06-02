@@ -5,15 +5,15 @@ import React from 'react';
 const ContentLoader = ({ data, type }: ContentLoaderPropsType) => {
   const nullData = {
     myContent: {
-      description: '내 컨텐츠 작성하기',
-      title: '내가 작성한 컨텐츠가 없습니다.',
+      title: '내가 등록한 이벤트는 여기에서 확인할 수 있어요',
+      description: '최애의 이벤트를 등록하고 모두와 공유해보아요!',
       buttonText: '이벤트 글 쓰기',
-      linkTo: '/',
+      linkTo: '/content/form',
     },
     bookmarks: {
-      description: '내 컨텐츠 작성하기',
-      title: '내가 작성한 컨텐츠가 없습니다.',
-      buttonText: '이벤트 글 쓰기',
+      title: '내가 북마크 한 이벤트는 여기에서 확인할 수 있어요',
+      description: '북마크한 컨텐츠가 없어요',
+      buttonText: '최애 이벤트 찾으러 가기',
       linkTo: '/',
     },
   };
