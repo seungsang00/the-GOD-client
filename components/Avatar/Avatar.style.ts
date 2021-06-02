@@ -11,8 +11,8 @@ export const AvatarContainer = withProps<AvatarContainerProps, HTMLDivElement>(
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 999px;
-    border: 1px solid ${({ theme }) => theme.colors.grey};
+    border-radius: ${({ type }) => (type === 'round' ? '999px' : '20px')};
+    border: 1px solid ${({ theme }) => theme.colors.line.line01};
   }
 
   
