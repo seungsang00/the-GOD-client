@@ -6,9 +6,10 @@ const Button = ({
   disabled,
   handler,
   text,
+  type,
 }: ButtonProps): ReactElement | null => {
   return (
-    <ButtonStyle disabled={disabled} onClick={handler}>
+    <ButtonStyle type={type || 'default'} disabled={disabled} onClick={handler}>
       {text}
     </ButtonStyle>
   );
