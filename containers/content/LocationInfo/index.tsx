@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
+import { MapContainer } from './LocationInfo.style';
 
 const LocationInfo = ({
   storeName,
@@ -44,17 +45,7 @@ const LocationInfo = ({
     setMapModule(new MapModule());
   }, []);
 
-  return (
-    <div
-      id="map"
-      style={{
-        // position: 'absolute',
-        width: '50%',
-        height: '500px',
-        zIndex: 10,
-      }}
-    ></div>
-  );
+  return <MapContainer id="map"></MapContainer>;
 };
 
 export default LocationInfo;
