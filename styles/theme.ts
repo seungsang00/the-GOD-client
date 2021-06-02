@@ -1,41 +1,118 @@
 import { DefaultTheme } from 'styled-components';
 
-const calcRem = (px: number) => `${px / 16}rem`;
+export const calcRem = (px: number) => `${px / 16}rem`;
 
-const colors = {
-  primary: '#f45d48',
-  secondary: '#0a8080',
-  black: '#222525',
-  white: '#fff',
-  lightgrey: 'rgb(239, 239, 239)',
-  grey: '#bfbfbf',
-  deepgrey: '#969aa2',
-  button: {
-    default: {
-      // TODO: primary에 맞게 수정하기
-      normal: '#c2cad4', // normal
-      hover: '#ced0da', // hover
-      pressed: '#9a9fa8', // pressed
-      disabled: '#d4d9e1', // disabled
-    },
-    red: {
-      normal: '#f42d16', // normal
-      hover: '#f65745', // hover
-      pressed: '#db2813', // pressed
-      disabled: '#f1958a', // disabled
-    },
-    green: {
-      normal: '#00cd3c', // normal
-      hover: '#34d762', // hover
-      pressed: '#00b835', // pressed
-      disabled: '#a4e5b7', // disabled
-    },
-    line: {
-      normal: '#c2cad4', // normal
-      hover: '#ced0da', // hover
-      pressed: '#9a9fa8', // pressed
-      disabled: '#d4d9e1', // disabled
-    },
+const colorsLight = {
+  primary: {
+    normal: '#aa5aff',
+    hover: '#b26aff',
+    pressed: '#a961f2',
+    disabled: '#d8b6ff',
+  },
+  secondary: {
+    normal: '#4ae0b0',
+    hover: '#7ee0c7',
+    pressed: '#4AC29A',
+    disabled: '#a8e0da',
+  },
+  gray: {
+    gray01: '#858c97',
+    gray02: '#aaafb9',
+    gray03: '#ced0da',
+    gray04: '#ebecf0',
+  },
+  black: {
+    black01: '#222525',
+    black02: '#33304a',
+    black03: '#373454',
+    black04: '#3e3c60',
+  },
+  red: {
+    normal: '#f42d16',
+    hover: '#f65745',
+    pressed: '#db2813',
+    disabled: '#f1958a',
+  },
+  green: {
+    normal: '#00cd3c',
+    hover: '#34d762',
+    pressed: '#00b835',
+    disabled: '#a4e5b7',
+  },
+  line: {
+    line01: '#d4d9e1',
+    line02: '#dfe3e9',
+    line03: '#ebecf0',
+    line04: '#f5f5f5',
+  },
+  bg: {
+    normal: '#f8f8f9',
+    hover: '#fff',
+    focused: 'rgba(255, 255, 255, 0.35)',
+    disabled: '#d4d9e1',
+  },
+  dark: {
+    normal: '#373856',
+    hover: '#414870',
+    pressed: '#2e3152',
+    disabled: '#2d2e47',
+  },
+};
+
+const colorsDark = {
+  primary: {
+    normal: '#9b36fe',
+    hover: '#9b5be8',
+    pressed: '#862bdb',
+    disabled: '#d8b6ff',
+  },
+  secondary: {
+    normal: '#4ae0b0',
+    hover: '#7ee0c7',
+    pressed: '#4AC29A',
+    disabled: '#a8e0da',
+  },
+  gray: {
+    gray01: '#858c97',
+    gray02: '#aaafb9',
+    gray03: '#ced0da',
+    gray04: '#ebecf0',
+  },
+  black: {
+    black01: '#222525',
+    black02: '#33304a',
+    black03: '#373454',
+    black04: '#3e3c60',
+  },
+  red: {
+    normal: '#f42d16',
+    hover: '#f65745',
+    pressed: '#db2813',
+    disabled: '#f1958a',
+  },
+  green: {
+    normal: '#00cd3c',
+    hover: '#34d762',
+    pressed: '#00b835',
+    disabled: '#a4e5b7',
+  },
+  line: {
+    line01: '#d4d9e1',
+    line02: '#dfe3e9',
+    line03: '#ebecf0',
+    line04: '#f5f5f5',
+  },
+  bg: {
+    normal: '#2A283E',
+    hover: '#322f4c',
+    focused: 'rgba(55, 56, 86, 0.85)',
+    disabled: '#2d2e47',
+  },
+  dark: {
+    normal: '#373856',
+    hover: '#414870',
+    pressed: '#2e3152',
+    disabled: '#2d2e47',
   },
 };
 
@@ -88,18 +165,60 @@ const typography = {
   },
 };
 
-const concept = {
-  glassmorphism: `
-    background: rgba( 255, 255, 255, 0.10 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
-    backdrop-filter: blur( 3.0px );
-    -webkit-backdrop-filter: blur( 3.0px );
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-  `,
+const conceptLight = {
+  glassmorphism: {
+    normal: `
+      background: rgba( 255, 255, 255, 0.20 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
+      backdrop-filter: blur( 3.0px );
+      -webkit-backdrop-filter: blur( 3.0px );
+      border: 1px solid rgba( 255, 255, 255, 0.18 );
+    `,
+    deep: `
+      background: rgba( 255, 255, 255, 0.35 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
+      backdrop-filter: blur( 3.0px );
+      -webkit-backdrop-filter: blur( 3.0px );
+      border: 1px solid rgba( 255, 255, 255, 0.18 );
+    `,
+    light: `
+      background: rgba( 255, 255, 255, 0.10 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
+      backdrop-filter: blur( 3.0px );
+      -webkit-backdrop-filter: blur( 3.0px );
+      border: 1px solid rgba( 255, 255, 255, 0.18 );
+    `,
+  },
+};
+
+const conceptDark = {
+  glassmorphism: {
+    normal: `
+      background: rgba( 55, 56, 86, 0.80 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
+      backdrop-filter: blur( 3.5px );
+      -webkit-backdrop-filter: blur( 3.5px );
+      border: 1px solid rgba( 255, 255, 255, 0.18 );
+    `,
+    deep: `
+      background: rgba( 55, 56, 86, 0.85 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
+      backdrop-filter: blur( 1.0px );
+      -webkit-backdrop-filter: blur( 1.0px );
+      border: 1px solid rgba( 255, 255, 255, 0.18 );  
+    `,
+    light: `
+      background: rgba( 55, 56, 86, 0.70 );
+      box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
+      backdrop-filter: blur( 2.0px );
+      -webkit-backdrop-filter: blur( 2.0px );
+      border: 1px solid rgba( 255, 255, 255, 0.18 );
+    `,
+  },
 };
 
 // 반응형
-const customMediaQuery = (maxWidth: number): string => {
+export const customMediaQuery = (maxWidth: number): string => {
   // 최대폭을 입력하면. 문자열을 반환
   return `@media (max-width: ${maxWidth}px)`;
 };
@@ -133,12 +252,11 @@ const borderRadius = calcRem(6);
 
 const light = {
   colors: {
-    bgColor: '#f8f8f9',
     textColor: '#2f2f37',
-    ...colors,
+    ...colorsLight,
   },
   typography,
-  concept,
+  concept: conceptLight,
   media,
   space,
   zIndex,
@@ -147,12 +265,11 @@ const light = {
 
 const dark = {
   colors: {
-    bgColor: '#2f2f37',
     textColor: '#fff',
-    ...colors,
+    ...colorsDark,
   },
   typography,
-  concept,
+  concept: conceptDark,
   media,
   space,
   zIndex,

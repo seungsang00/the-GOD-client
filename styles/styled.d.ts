@@ -7,7 +7,7 @@ declare module 'styled-components' {
       [prop: string]: any;
     };
     concept: {
-      [prop: string]: string;
+      [prop: string]: any;
     };
     media: {
       [prop: string]: string;
