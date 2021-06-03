@@ -3,12 +3,17 @@ import styled from '@styles/themed-components';
 export const Wrapper = styled.article`
   padding: ${({ theme }) => theme.space.sm};
   color: #222;
+  width: 45vw;
 `;
 
 export const ButtonSection = styled.section`
   display: flex;
   justify-content: flex-end;
   margin-top: ${({ theme }) => theme.space.md};
+
+  button {
+    margin-left: ${({ theme }) => theme.space.sm};
+  }
 `;
 
 export const ImageSection = styled.section`
@@ -71,13 +76,15 @@ export const TitleSection = styled.section`
     font-size: 2rem;
     text-align: center;
     padding: ${({ theme }) => theme.space.sm} 0;
+    margin-top: ${({ theme }) => theme.space.md};
   }
   p.user-email {
     width: fit-content;
     padding: ${({ theme }) => theme.space.xs};
     background-color: ${({ theme }) => theme.colors.primary.disabled};
-    border-radius: ${({ theme }) => theme.borderRadius};
-    margin-bottom: ${({ theme }) => theme.space.sm};
+    font-size: 0.95rem;
+    border-radius: 7px;
+    margin-bottom: ${({ theme }) => theme.space.lg};
   }
 
   ${({ theme }) => theme.media.tablet} {

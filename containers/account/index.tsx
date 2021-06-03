@@ -1,4 +1,4 @@
-import { Button, TextButton } from '@components';
+import { TextButton } from '@components';
 import { SignoutModal } from '@containers';
 import useModal from 'hooks/useModal';
 import React from 'react';
@@ -6,7 +6,7 @@ import { EditPassword } from './EditUserInfo';
 import { AccountStyle } from './account.style';
 
 const AccountSettings = () => {
-  const { isOpen, modalController } = useModal();
+  const { isOpen, modalController, setIsOpen } = useModal();
 
   return (
     <AccountStyle>
@@ -34,7 +34,11 @@ const AccountSettings = () => {
           </div>
         </section>
       </div>
-      <SignoutModal isOpen={isOpen} handler={modalController} />
+      <SignoutModal
+        isOpen={isOpen}
+        handler={modalController}
+        setIsOpen={setIsOpen}
+      />
     </AccountStyle>
   );
 };

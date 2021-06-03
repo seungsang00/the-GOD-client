@@ -4,6 +4,7 @@ import {
   MouseEventHandler,
   KeyboardEvent,
   ReactNode,
+  SetStateAction,
 } from 'react';
 import { IInputEvent } from './hooks';
 import { SharedContent } from './reducer';
@@ -63,6 +64,7 @@ export interface HorizonProps {
 export interface CutomModalProps {
   readonly isOpen: boolean;
   handler: MouseEventHandler<HTMLDivElement> | undefined;
+  setIsOpen: (value: SetStateAction<boolean>) => void;
 }
 
 export interface SearchContentLoaderProps {

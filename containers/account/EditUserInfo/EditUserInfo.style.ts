@@ -38,4 +38,14 @@ export const EditUserInfoWrapper = styled.article`
     font-size: 14px;
     color: ${({ theme }) => theme.colors.red.hover};
   }
+
+  .pwchange-recent-date {
+    margin-top: ${({ theme }) => theme.space.md};
+    display: flex;
+    align-items: center;
+
+    .password-update-date {
+      margin-left: ${({ theme }) => theme.space.xs};
+    }
+  }
 `;
