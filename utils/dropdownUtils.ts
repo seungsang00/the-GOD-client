@@ -1,3 +1,6 @@
+import { Artists, IGroupArtist, IMember } from '@interfaces';
+import { Dispatch, SetStateAction } from 'react';
+
 export const handleShowOption = (
   e: React.MouseEvent,
   target: boolean,
@@ -14,30 +17,49 @@ export const handleShowOption = (
 
 export const handleOptionList = (
   key: string,
-  optionObj: { [prop: string]: any },
-  setList: React.Dispatch<React.SetStateAction<string[]>>,
+  optionObj: { [prop: string]: any } | Artists,
+  setList: React.Dispatch<React.SetStateAction<string[] | IMember[]>>,
   setShow: React.Dispatch<React.SetStateAction<boolean>>,
   setIsDone: React.Dispatch<React.SetStateAction<boolean>>,
   setShowNext: React.Dispatch<React.SetStateAction<boolean>>,
   nextState1: (string | undefined) | (moment.Moment | null),
-  nextState2?: moment.Moment | null
+  nextState2?: moment.Moment | null,
+  setArtistId?: Dispatch<SetStateAction<string | null>>
 ) => {
-  if (optionObj[key]) {
-    setList(optionObj[key]);
-    setIsDone(false);
-  } else if (nextState2 !== undefined && nextState1 && nextState2) {
-    setShow(false);
-    setList(Object.keys(optionObj));
-    setIsDone(true);
-  } else if (nextState2 === undefined && nextState1) {
-    setShow(false);
-    setList(Object.keys(optionObj));
-    setIsDone(true);
+  if (Array.isArray(optionObj)) {
+    const [selectedOption] = optionObj.filter((el) => el.name === key);
+    if (selectedOption) {
+      if (selectedOption.type && selectedOption.type === 'group') {
+        const { member } = selectedOption as IGroupArtist;
+        setList(member);
+        setIsDone(false);
+      } else {
+        // 솔로 or member일 경우
+        setShow(false);
+        setShowNext(true);
+        setList(optionObj);
+        setIsDone(true);
+        setArtistId && setArtistId(selectedOption.id);
+      }
+    }
   } else {
-    setShow(false);
-    setShowNext(true);
-    setList(Object.keys(optionObj));
-    setIsDone(true);
+    if (optionObj[key]) {
+      setList(optionObj[key]);
+      setIsDone(false);
+    } else if (nextState2 !== undefined && nextState1 && nextState2) {
+      setShow(false);
+      setList(Object.keys(optionObj));
+      setIsDone(true);
+    } else if (nextState2 === undefined && nextState1) {
+      setShow(false);
+      setList(Object.keys(optionObj));
+      setIsDone(true);
+    } else {
+      setShow(false);
+      setShowNext(true);
+      setList(Object.keys(optionObj));
+      setIsDone(true);
+    }
   }
 };
 

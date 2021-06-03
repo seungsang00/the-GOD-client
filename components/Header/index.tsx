@@ -18,14 +18,15 @@ interface HeaderProps {
   avatar: ReactNode;
 }
 const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
-  // 검색 필드 확장
+  const router = useRouter();
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const { isOpen, flyoutController } = useFlyout(false);
+  const { isOpen: isAuthModalOpen, modalController } = useModal();
   const { isOpen: isExpanded, modalController: searchFieldHandler } =
     useModal();
 
   const { data } = useSelector((state: RootState) => state.user.userProfile);
-  const { isOpen, flyoutController } = useFlyout(false);
-  const { isOpen: isAuthModalOpen, modalController } = useModal();
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+
   useEffect(() => {
     const accessToken = window.localStorage.getItem('accessToken');
     if (accessToken) {
@@ -34,7 +35,6 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
       setIsLogin(false);
     }
   }, [data]);
-
   useEffect(() => {
     if (document) {
       // FIXME: 스크롤 이벤트를 인지하지 못하면서 헤더가 사라지는 효과가 적용되지 않음. 수정필요
@@ -46,7 +46,6 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
     }
   });
 
-  const router = useRouter();
   const revealSearchTrigger = (): boolean => {
     const path = router.pathname;
     const hide = ['/content/[id]', '/content/form'];

@@ -1,13 +1,13 @@
 import { OptionListStyle } from './OptionList.style';
 import { MouseEvent } from 'react';
-import { IArtist, IGroupArtist, IMember } from '@interfaces';
+import { Artists, IArtist, IGroupArtist, IMember } from '@interfaces';
 
 const OptionList = ({
   list,
   listHandler,
   stateHandler,
 }: {
-  list: string[] | IArtist[] | IGroupArtist[] | IMember[];
+  list: Artists | null | string[] | IMember[]; //string[] | IArtist[] | IGroupArtist[] ;
   listHandler: (key: string, id?: string) => void;
   stateHandler: (selected: string, id?: string) => void;
 }) => {
@@ -29,18 +29,19 @@ const OptionList = ({
   };
   return (
     <OptionListStyle>
-      {list.map((el: string | IArtist | IGroupArtist | IMember) => {
-        const value = typeof el === 'string' ? el : el.name;
-        return (
-          <li
-            className="option-item"
-            key={`option_${value}`}
-            onClick={(e) => handler(e, el)}
-          >
-            {value}
-          </li>
-        );
-      })}
+      {list &&
+        list.map((el: string | IArtist | IGroupArtist | IMember) => {
+          const value = typeof el === 'string' ? el : el.name;
+          return (
+            <li
+              className="option-item"
+              key={`option_${value}`}
+              onClick={(e) => handler(e, el)}
+            >
+              {value}
+            </li>
+          );
+        })}
     </OptionListStyle>
   );
 };

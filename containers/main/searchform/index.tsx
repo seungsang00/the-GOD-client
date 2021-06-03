@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import moment from 'moment';
-import { Dates } from '@interfaces';
+import { Artists, Dates, IMember } from '@interfaces';
 import { DatePicker, Dropdown, DropdownTrigger, OptionList } from '@components';
 import { sampleSearchInputOptions } from '@utils/sample-data';
 import {
@@ -11,17 +11,26 @@ import {
 import { MainSearchFormContainer } from './mainsearchform.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { getContentListThunk } from 'modules/content/actions/read';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'modules/reducer';
+import { getArtistThunk } from 'modules/artist';
+import { useRouter } from 'next/router';
 
 const MainSearchForm = (): ReactElement => {
-  // option list
-  const optionlistA = sampleSearchInputOptions.artist;
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { data: artistData } = useSelector(
+    ({ artist }: RootState) => artist.read
+  );
+
+  // FIXME: option list 불러오기 (main 접속시 최초 1회)
   const optionlistB = sampleSearchInputOptions.location;
 
   // 드롭다운을 보여줄 것인지 여부
   const [showA, setShowA] = useState<boolean>(false);
   const [showB, setShowB] = useState<boolean>(false);
   const [showC, setShowC] = useState<boolean>(false);
+  const [isActive, setIsActive] = useState<string>('inactive'); // 검색 버튼 클래스
 
   // 입력 완료 여부
   const [isDoneA, setIsDoneA] = useState<boolean>(false);
@@ -29,8 +38,12 @@ const MainSearchForm = (): ReactElement => {
   // const [isDoneC, setIsDoneC] = useState<boolean>(false); // ! C는 datepicker이기 때문에 불필요. useEffect로 핸들링
 
   // 드롭다운의 내용을 구성할 옵션 리스트 관리
-  const [listA, setListA] = useState<string[]>(Object.keys(optionlistA));
-  const [listB, setListB] = useState<string[]>(Object.keys(optionlistB));
+  const [listA, setListA] = useState<Artists | IMember[] | string[]>(
+    artistData as Artists
+  );
+  const [listB, setListB] = useState<string[] | IMember[]>(
+    Object.keys(optionlistB)
+  );
 
   // DropdownTrigger 에서 보여줄 문자열 관리
   const [stateA, setStateA] = useState<string | undefined>(undefined); // 아티스트
@@ -38,26 +51,16 @@ const MainSearchForm = (): ReactElement => {
   const [dates, setDates] = useState<Dates>({ startDate: null, endDate: null }); // 날짜
 
   // queryData 생성
+  const [artistId, setArtistId] = useState<string | null>(null);
   const makeQueryData = () => {
-    let artistId = undefined;
     let location = null;
-
-    // FIXME: 옵션 구조가 변경 되었습니다. artistId를 가져와야 합니다.
-    const tempA = stateA?.split(' ');
-    if (tempA && tempA[1] === 'ALL') {
-      artistId = tempA[0]; // FIXME: artistId를 가져와야 합니다.
-    } else if (tempA) {
-      artistId = tempA[0]; // FIXME: artistId를 가져와야 합니다.
-    }
-
-    // location
     const tempB = stateB?.split(' ');
     tempB && tempB[1] === '전체'
       ? (location = tempB[0])
       : (location = tempB?.join(' '));
 
     const queryData = {
-      artistId, // FIXME: artistId를 가져와야 합니다.
+      artistId,
       location,
       dateStart: moment(dates.startDate).format('YYYY-MM-DD'),
       dateEnd: moment(dates.endDate).format('YYYY-MM-DD'),
@@ -68,13 +71,9 @@ const MainSearchForm = (): ReactElement => {
   // 검색 버튼 핸들러
   const handleSearchClick = () => {
     const { artistId, location, dateStart, dateEnd } = makeQueryData();
-    getContentListThunk({
-      artistId: artistId as string,
-      location: location as string,
-      dateStart: dateStart as string,
-      dateEnd: dateEnd as string,
-    });
-    console.log('search!');
+    router.push(
+      `/search?artistId=${artistId}&location=${location}&dateStart=${dateStart}&dateEnd=${dateEnd}`
+    );
   };
 
   // 상태 관리 핸들러
@@ -89,12 +88,14 @@ const MainSearchForm = (): ReactElement => {
   const handleOptionA = (key: string) => {
     handleOptionList(
       key,
-      optionlistA,
+      listA,
       setListA,
       setShowA,
       setIsDoneA,
       setShowB,
-      stateB
+      stateB,
+      null,
+      setArtistId
     );
   };
   const handleOptionB = (key: string) => {
@@ -118,8 +119,24 @@ const MainSearchForm = (): ReactElement => {
     focusedInput ? setFocusedInput(focusedInput) : setFocusedInput('startDate');
   };
   useEffect(() => {
-    if (dates.endDate) setShowC(false);
+    if (dates.endDate) {
+      setShowC(false); // 데이트피커 옵션창 닫기
+    }
   }, [dates.endDate]);
+
+  useEffect(() => {
+    if (stateA && stateB && dates.startDate && dates.endDate) {
+      setIsActive('active');
+    } else {
+      setIsActive('inactive');
+    }
+  }, [stateA, stateB, dates.startDate, dates.endDate]);
+
+  useEffect(() => {
+    if (!artistData) {
+      dispatch(getArtistThunk());
+    }
+  }, [artistData]);
 
   // display vw check
   const [viewWidth, setViewWidth] = useState<number | undefined>(undefined);
@@ -199,7 +216,7 @@ const MainSearchForm = (): ReactElement => {
           ></DropdownTrigger>
         </div>
         {viewWidth && viewWidth > 768 && (
-          <div className="trigger-wrapper search-button">
+          <div className={`trigger-wrapper search-button ${isActive}`}>
             <div onClick={handleSearchClick}>
               <FontAwesomeIcon icon={faSearch} />
             </div>
@@ -238,10 +255,10 @@ const MainSearchForm = (): ReactElement => {
         </Dropdown>
       </section>
       {viewWidth && viewWidth <= 768 && (
-        <div className="search-button__bottom--container">
+        <div className={`search-button__bottom--container ${isActive}`}>
           <div className="search-button__bottom" onClick={handleSearchClick}>
             <FontAwesomeIcon icon={faSearch} />
-            검색하기
+            <span>검색하기</span>
           </div>
         </div>
       )}
