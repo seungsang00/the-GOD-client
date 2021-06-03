@@ -8,23 +8,33 @@ export const DatePickerStyle = styled.div`
     justify-content: center;
     padding-top: ${({ theme }) => theme.space.sm};
     border-radius: ${({ theme }) => theme.borderRadius};
+    background-color: ${({ theme }) => theme.colors.bg.normal};
   }
   .DayPicker_transitionContainer {
     height: fit-content;
     min-height: 320px;
   }
 
+  /* 캘린더 박스 */
+  .CalendarMonthGrid {
+    background-color: ${({ theme }) => theme.colors.bg.normal};
+  }
+  .CalendarMonth {
+    background-color: ${({ theme }) => theme.colors.bg.normal};
+  }
+
   /* 상단 네비게이션 화살표 스타일 */
   .DayPickerNavigation_button__default {
     border: none;
     border-radius: 999px;
+    background-color: ${({ theme }) => theme.colors.bg.normal};
     &:hover {
-      background-color: ${({ theme }) => theme.colors.gray.gray01};
+      background-color: ${({ theme }) => theme.colors.bg.focused};
     }
   }
   .DayPickerNavigation_svg__horizontal {
     &:hover {
-      fill: ${({ theme }) => theme.colors.primary};
+      fill: ${({ theme }) => theme.colors.secondary.normal};
     }
   }
 
@@ -40,53 +50,54 @@ export const DatePickerStyle = styled.div`
     vertical-align: middle;
     outline: none;
     margin: 10px !important;
+    background-color: ${({ theme }) => theme.colors.bg.normal};
+    color: ${({ theme }) => theme.colors.textColor};
   }
 
   /* 달력 각 칸에 호버가 되었을 때 스타일 */
   .CalendarDay__default:hover {
     border: none;
-    background: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.colors.secondary.normal};
     background-image: radial-gradient(
       circle closest-side,
-      ${({ theme }) => theme.colors.primary} 55%,
-      #fff 120%
+      ${({ theme }) => theme.colors.secondary.normal} 90%,
+      ${({ theme }) => theme.colors.bg.normal} 120%
     );
-    color: #fff;
+    color: ${({ theme }) => theme.colors.black.black01};
   }
 
-  /* 체크인 체크아웃이 선택되었을 때 그 사의 날짜들에 대한 스타일 */
+  /* 체크인 체크아웃이 선택되었을 때 그 사이 날짜들에 대한 스타일 */
   .CalendarDay__selected_span {
-    background-color: ${({ theme }) => theme.colors.button.default.normal};
+    background-color: ${({ theme }) => theme.colors.secondary.disabled};
     background-image: radial-gradient(
       circle closest-side,
-      ${({ theme }) => theme.colors.button.default.normal} 50%,
-      #fff 120%
+      ${({ theme }) => theme.colors.secondary.disabled} 90%,
+      ${({ theme }) => theme.colors.bg.normal} 120%
     );
     border: none;
-    /* border-radius: 0; */
-    color: black;
+    color: ${({ theme }) => theme.colors.black.black01};
   }
 
   /* 체크인 체크아웃이 선택되었을 때 그 사이 날짜들에 호버 혹은 클릭했을 시 스타일 */
   .CalendarDay__selected_span::active,
   .CalendarDay__selected_span:hover {
     color: black;
-    background-color: ${({ theme }) => theme.colors.button.default.hover};
+    background-color: ${({ theme }) => theme.colors.secondary.hover};
   }
 
   /* 선택된 체크인 체크아웃 날짜에 대한 스타일 */
   .CalendarDay__selected,
   .CalendarDay__selected:active,
   .CalendarDay__selected:hover {
-    background: ${({ theme }) => theme.colors.primary};
+    background: ${({ theme }) => theme.colors.secondary.normal};
     background-image: radial-gradient(
       circle closest-side,
-      ${({ theme }) => theme.colors.primary} 95%,
-      #fff 120%
+      ${({ theme }) => theme.colors.secondary.normal} 95%,
+      ${({ theme }) => theme.colors.bg.normal} 120%
     );
     border: none;
     border-top-right-radius: ${({ theme }) => theme.borderRadius};
-    color: white;
+    color: ${({ theme }) => theme.colors.black.black01};
   }
 
   /* 블록된 날짜에 대한 스타일링 */
@@ -104,12 +115,16 @@ export const DatePickerStyle = styled.div`
   .CalendarDay__hovered_span,
   .CalendarDay__hovered_span:hover {
     color: black;
-    background-color: #f7f7f7;
+    background-color: ${({ theme }) => theme.colors.bg.focused};
     border: none;
   }
 
-  /* 요일 표시 부분에 대한 스타일. */
+  /* 텍스트 스타일. */
   .CalendarMonth_caption {
+    color: ${({ theme }) => theme.colors.textColor};
     margin-bottom: 10px;
+  }
+  .DayPicker_weekHeader {
+    color: ${({ theme }) => theme.colors.textColor};
   }
 `;
