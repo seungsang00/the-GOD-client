@@ -4,15 +4,18 @@ import { passwordStandard } from '@utils/verifyStandard';
 import TextButton from 'components/TextButton';
 import useDisabled from 'hooks/useDisabled';
 import useValidInput from 'hooks/useValidInput';
+import { updatePSThunk } from 'modules/auth';
 import { RootState } from 'modules/reducer';
-import React, { ReactElement } from 'react';
-import { useSelector } from 'react-redux';
+import moment, { MomentInput } from 'moment';
+import React, { MouseEvent, ReactElement } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { EditUserInfoWrapper } from './EditUserInfo.style';
 
 interface EditUserInfoProps {
   field: string;
 }
 export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
+  const dispatch = useDispatch();
   const { data } = useSelector((state: RootState) => state.user.userProfile);
   const [password, setPassword, passwordError] = useValidInput(
     '',
@@ -25,10 +28,16 @@ export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
     new RegExp(password)
   );
   const { disabled, disabledController } = useDisabled(true);
+  const { data: pwUpdateResponse } = useSelector(
+    (state: RootState) => state.auth.updateps
+  );
 
-  // TODO: 비밀번호 변경 요청
-  const 비밀번호변경핸들러함수 = () =>
-    console.log('비밀번호변경핸들러함수 실행');
+  const handlePwUpdate = (e: MouseEvent) => {
+    dispatch(updatePSThunk(password));
+    setPassword('');
+    setconfirmPw('');
+    disabledController(e);
+  };
 
   return (
     <>
@@ -43,7 +52,16 @@ export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
         </div>
         <section>
           {disabled ? (
-            <div className="pwchange-recent-date">{data?.passwordUpdate}</div>
+            <div className="pwchange-recent-date">
+              <span>최종 수정일 :</span>
+              <span className="password-update-date">
+                {pwUpdateResponse
+                  ? moment(pwUpdateResponse as MomentInput).fromNow()
+                  : data
+                  ? moment(data.passwordUpdate).fromNow()
+                  : '최초 가입일'}
+              </span>
+            </div>
           ) : (
             <>
               <section className="input-area">
@@ -60,7 +78,7 @@ export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
                   disabled={disabled}
                 />
                 <p className="error">
-                  {passwordError
+                  {password && confirmPw && passwordError
                     ? passwordError
                     : confirmPwError
                     ? confirmPwError
@@ -69,9 +87,9 @@ export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
               </section>
               <div className="button-container">
                 <Button
-                  disabled={true}
+                  disabled={!passwordError && !confirmPwError ? false : true}
                   text="비밀번호 변경"
-                  handler={비밀번호변경핸들러함수}
+                  handler={handlePwUpdate}
                 />
               </div>
             </>

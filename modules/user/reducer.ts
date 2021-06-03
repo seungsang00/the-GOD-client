@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions';
-import { UserState } from '@interfaces';
+import { User, UserState } from '@interfaces';
 import { UserAction } from './actions';
 import {
   USER_BOOKMARK_GET,
@@ -20,11 +20,27 @@ import {
   USER_INFO_GET,
   USER_INFO_GET_ERROR,
   USER_INFO_GET_SUCCESS,
+  USER_NAME_UPDATE,
+  USER_NAME_UPDATE_ERROR,
+  USER_NAME_UPDATE_SUCCESS,
+  USER_AVATAR_UPDATE,
+  USER_AVATAR_UPDATE_ERROR,
+  USER_AVATAR_UPDATE_SUCCESS,
 } from '../actionTypes';
 
 // default Store
 const initialState: UserState = {
   userProfile: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  profileImage: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  username: {
     data: null,
     loading: false,
     error: null,
@@ -76,6 +92,54 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [USER_INFO_GET_ERROR]: (state, action) => ({
     ...state,
     userProfile: {
+      loading: false,
+      error: action.payload.message,
+      data: null,
+    },
+  }),
+  [USER_NAME_UPDATE]: (state) => ({
+    ...state,
+    username: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [USER_NAME_UPDATE_SUCCESS]: (state, action) => ({
+    ...state,
+    username: {
+      loading: false,
+      error: null,
+      data: action.payload,
+    },
+  }),
+  [USER_NAME_UPDATE_ERROR]: (state, action) => ({
+    ...state,
+    username: {
+      loading: false,
+      error: action.payload.message,
+      data: null,
+    },
+  }),
+  [USER_AVATAR_UPDATE]: (state) => ({
+    ...state,
+    profileImage: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [USER_AVATAR_UPDATE_SUCCESS]: (state, action) => ({
+    ...state,
+    profileImage: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [USER_AVATAR_UPDATE_ERROR]: (state, action) => ({
+    ...state,
+    profileImage: {
       loading: false,
       error: action.payload.message,
       data: null,
