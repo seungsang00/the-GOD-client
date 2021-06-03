@@ -7,6 +7,7 @@ export const PasswordInputField = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.line.line01};
     border-radius: ${({ theme }) => theme.borderRadius};
     margin-bottom: ${({ theme }) => theme.space.xxs};
+    padding: 0 ${({ theme }) => theme.space.sm};
   }
 
   input.valid {
