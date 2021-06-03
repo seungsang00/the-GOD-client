@@ -9,6 +9,6 @@ export const Wrapper = withProps<InputWithLabelProps, HTMLDivElement>(
   }
   ${({ theme, disabled }) =>
     disabled
-      ? `input[disabled=true] {border: 1px solid ${theme.colors.normal};}`
-      : `input[disabled=false] {border: 1px solid ${theme.colors.action}; background-color: #fff;}`}
+      ? `input[disabled=true] {border: 1px solid ${theme.colors.bg.disabled};}`
+      : `input[disabled=false] {border: 1px solid ${theme.colors.bg.normal};}`}
 `;

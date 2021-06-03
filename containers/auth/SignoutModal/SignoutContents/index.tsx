@@ -18,7 +18,7 @@ import {
   ButtonSection,
 } from './signoutcontent.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
   email?: string;
@@ -104,7 +104,8 @@ export const SignoutSecondStep = ({ email, handler }: Props): ReactElement => {
 
 export const SignoutResult = (): ReactElement => {
   const router = useRouter();
-  const moveToMain = () => {
+  const handleSignout = () => {
+    // TODO: 회원 탈퇴 요청을 추가해야 합니다
     router.push('/');
   };
   return (
@@ -117,7 +118,11 @@ export const SignoutResult = (): ReactElement => {
         <p>이제는 우리가 헤어져야 할 시간 다음에 또 만나요</p>
       </TitleSection>
       <ButtonSection className="button-area">
-        <Button disabled={false} text="OK" handler={moveToMain} />
+        <Button
+          disabled={false}
+          text="메인으로 돌아가기"
+          handler={handleSignout}
+        />
       </ButtonSection>
     </Wrapper>
   );

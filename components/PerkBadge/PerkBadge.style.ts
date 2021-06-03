@@ -6,7 +6,7 @@ export const PerkBadgeStyle = styled.div`
   align-items: center;
   justify-content: center;
   width: 5rem;
-  color: ${({ theme }) => theme.colors.button.default.disabled};
+  color: ${({ theme }) => theme.colors.gray.gray02};
 
   .perk-icon {
     width: 4rem;
@@ -18,11 +18,11 @@ export const PerkBadgeStyle = styled.div`
     text-align: center;
     font-size: 30px;
     padding: ${({ theme }) => theme.space.xs};
-    ${({ theme }) => theme.concept.glassmorphism005};
+    ${({ theme }) => theme.concept.glassmorphism.deep};
     border-radius: 20px;
   }
   &.active {
-    color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary.hover};
     .perk-icon {
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(5px);
@@ -35,5 +35,6 @@ export const PerkBadgeStyle = styled.div`
     font-weight: 500;
     padding: ${({ theme }) => theme.space.xs} 0;
     cursor: default;
+    /* color: ${({ theme }) => theme.colors.textColor}; */
   }
 `;

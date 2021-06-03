@@ -45,20 +45,36 @@ export const MainContainer = styled.div`
 `;
 
 export const MyPageStyle = styled.article`
+  width: 100%;
   display: flex;
-  padding: 0 ${({ theme }) => theme.space.md};
+  padding: ${({ theme }) => theme.space.xl};
 
   section.settingCategory {
     width: 25%;
   }
 
   main {
-    width: 75%;
+    width: 70%;
     padding: 0 ${({ theme }) => theme.space.md};
+    padding-left: ${({ theme }) => theme.space.xl};
   }
 
   #settingCategoryHandler {
     cursor: pointer;
+    width: 50px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 999px;
+    position: relative;
+    left: -15px;
+    color: ${({ theme }) => theme.colors.textColor};
+    padding-right: 2px;
+
+    &:hover {
+      ${({ theme }) => theme.concept.glassmorphism.light};
+    }
   }
 
   #userInfoLeft {

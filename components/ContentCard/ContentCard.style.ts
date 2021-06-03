@@ -12,6 +12,6 @@ export default styled.div`
     background-color: '#fff';
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors.lightgrey};
+    background-color: ${({ theme }) => theme.colors.gray.gray04};
   }
 `;

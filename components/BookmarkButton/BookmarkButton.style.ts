@@ -10,9 +10,10 @@ export default styled.div<{ value: boolean }>`
   .toggle-box {
     text-align: center;
     font-size: 2rem;
-    color: ${({ theme }) => theme.colors.normal};
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.secondary.normal};
     &:active {
-      color: ${({ theme }) => theme.colors.action};
+      color: ${({ theme }) => theme.colors.secondary.pressed};
     }
 
     ${({ theme }) => theme.media.tablet} {

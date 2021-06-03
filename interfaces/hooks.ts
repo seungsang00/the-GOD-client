@@ -13,7 +13,7 @@ export interface IInputEvent {
     key,
   }: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onClick?: () => void;
-  setValue: Dispatch<SetStateAction<string>>;
+  setValue?: Dispatch<SetStateAction<string>>;
 }
 
 // useValidInput

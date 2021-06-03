@@ -21,7 +21,7 @@ export const OptionListStyle = styled.ul`
   }
   .option-item:hover {
     border-radius: ${({ theme }) => theme.borderRadius};
-    ${({ theme }) => theme.concept.glassmorphism};
+    ${({ theme }) => theme.concept.glassmorphism.normal};
     border: none;
   }
 `;

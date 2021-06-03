@@ -19,7 +19,7 @@ export const DatePickerStyle = styled.div`
     border: none;
     border-radius: 999px;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.lightgrey};
+      background-color: ${({ theme }) => theme.colors.gray.gray01};
     }
   }
   .DayPickerNavigation_svg__horizontal {

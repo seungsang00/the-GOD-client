@@ -6,8 +6,15 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.colors.grayScale500};
 
+  h4 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: ${({ theme }) => theme.space.sm} 0;
+  }
+  p {
+    color: ${({ theme }) => theme.colors.gray.gray01};
+  }
   button {
     margin: ${({ theme }) => theme.space.md} 0;
   }

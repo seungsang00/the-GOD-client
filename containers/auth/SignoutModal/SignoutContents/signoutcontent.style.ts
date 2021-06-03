@@ -2,7 +2,7 @@ import styled from '@styles/themed-components';
 
 export const Wrapper = styled.article`
   padding: ${({ theme }) => theme.space.sm};
-  color: #000;
+  color: #222;
 `;
 
 export const ButtonSection = styled.section`
@@ -33,10 +33,11 @@ export const InfoSection = styled.section`
     align-items: center;
     padding: ${({ theme }) => theme.space.sm};
     margin: ${({ theme }) => theme.space.xs} 0;
-    background-color: #eee;
+    background-color: ${({ theme }) => theme.colors.gray.gray04};
     border-radius: ${({ theme }) => theme.borderRadius};
 
     span {
+      color: ${({ theme }) => theme.colors.primary.disabled};
       margin-right: ${({ theme }) => theme.space.xs};
     }
   }
@@ -55,7 +56,8 @@ export const FormSection = styled.section`
   }
 
   p.error {
-    color: ${({ theme }) => theme.colors.red};
+    font-size: 0.9rem;
+    color: ${({ theme }) => theme.colors.red.hover};
   }
 `;
 
@@ -63,15 +65,17 @@ export const TitleSection = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
+    text-align: center;
     padding: ${({ theme }) => theme.space.sm} 0;
   }
   p.user-email {
     width: fit-content;
     padding: ${({ theme }) => theme.space.xs};
-    background-color: lightsteelblue;
+    background-color: ${({ theme }) => theme.colors.primary.disabled};
     border-radius: ${({ theme }) => theme.borderRadius};
     margin-bottom: ${({ theme }) => theme.space.sm};
   }

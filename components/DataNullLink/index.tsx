@@ -18,7 +18,12 @@ const DataNullLink = ({
     <Wrapper>
       <h4>{title}</h4>
       <p>{description}</p>
-      <Button disabled={false} text={buttonText} handler={handler} />
+      <Button
+        disabled={false}
+        type="line"
+        text={buttonText}
+        handler={handler}
+      />
     </Wrapper>
   );
 };

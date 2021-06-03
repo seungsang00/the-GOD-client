@@ -20,7 +20,7 @@ export const SidebarContainer = styled.div`
     margin: ${({ theme }) => theme.space.sm} 0;
     padding: ${({ theme }) => theme.space.xs};
     border-radius: ${({ theme }) => theme.borderRadius};
-    ${({ theme }) => theme.concept.glassmorphism}
+    ${({ theme }) => theme.concept.glassmorphism.deep};
 
     ${({ theme }) => theme.media.tablet} {
       width: 3.2rem;

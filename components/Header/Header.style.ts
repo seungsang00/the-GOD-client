@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 ${({ theme }) => theme.space.sm};
-  ${({ theme }) => theme.concept.glassmorphism}
+  ${({ theme }) => theme.concept.glassmorphism.normal};
   position: fixed;
   top: 0;
   left: 0;

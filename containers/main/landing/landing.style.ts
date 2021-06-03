@@ -37,18 +37,17 @@ export const TextWrapper = styled.div`
 export const Label = styled.p`
   display: inline-block;
   ${({ theme }) => theme.typography.label};
-  ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary.hover};
   margin-bottom: 1rem;
 `;
 
 export const Title = styled.h2`
   ${({ theme }) => theme.typography.subtitle};
-  ${({ theme }) => theme.colors.black};
   margin-bottom: 1rem;
 `;
 
 export const Description = styled.p`
   ${({ theme }) => theme.typography.description};
-  ${({ theme }) => theme.colors.black};
+  /* color: ${({ theme }) => theme.colors.gray.gray01}; */
   margin-bottom: 2rem;
 `;

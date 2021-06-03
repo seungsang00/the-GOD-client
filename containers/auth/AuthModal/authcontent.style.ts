@@ -9,7 +9,7 @@ export const FormSection = styled.section`
 
   p.error {
     font-size: 0.8rem;
-    color: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.red.hover};
     margin-bottom: ${({ theme }) => theme.space.xs};
   }
 `;
@@ -52,10 +52,12 @@ export const LinkSection = styled.section`
     cursor: pointer;
     font-weight: 500;
     margin-left: ${({ theme }) => theme.space.xxs};
-    color: ${({ theme }) => theme.colors.normal};
-
+    color: ${({ theme }) => theme.colors.primary.normal};
     &:hover {
-      color: ${({ theme }) => theme.colors.hover};
+      color: ${({ theme }) => theme.colors.primary.hover};
+    }
+    &:active {
+      color: ${({ theme }) => theme.colors.primary.pressed};
     }
   }
 `;

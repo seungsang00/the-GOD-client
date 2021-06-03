@@ -12,7 +12,7 @@ export const GlobalStyle = createGlobalStyle(
       box-sizing: border-box;
     }
     body {
-      background-color: ${props.theme.colors.bgColor};
+      background-color: ${props.theme.colors.bg.normal};
       color: ${props.theme.colors.textColor};
     }
     a {
@@ -32,27 +32,28 @@ export const GlobalStyle = createGlobalStyle(
       font-size: 1rem;
       cursor: pointer;
       border-radius: ${props.theme.borderRadius};
-      padding: 0 16px;
     }
     textarea {
       resize: none;
     }
     
     .location_overlay_box{
-    div {
-      overflow:hidden;
-    }
-    position: absolute;
-    left: 0;
-    bottom: 40px;
-    width: 288px;
-    height: 132px;
-    margin-left: -144px;
-    text-align: left;
-    overflow: hidden;
-    font-size: 18px;
-    font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-    line-height: 1.5;
+      div {
+        overflow:hidden;
+      }
+
+      position: absolute;
+      left: 0;
+      bottom: 40px;
+      width: 288px;
+      height: 132px;
+      margin-left: -144px;
+      text-align: left;
+      overflow: hidden;
+      font-size: 18px;
+      font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+      line-height: 1.5;
+
     & > div {
       padding:15px;
       width: 286px;
@@ -62,6 +63,7 @@ export const GlobalStyle = createGlobalStyle(
       border-right: 1px solid #ccc;
       overflow: hidden;
       background: #fff;
+
       &:after {
         content: '';
         position: absolute;
