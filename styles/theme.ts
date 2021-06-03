@@ -116,43 +116,6 @@ const colorsDark = {
   },
 };
 
-const colorsDark = {
-  primary: '#f45d48',
-  secondary: '#0a8080',
-  black: '#222525',
-  white: '#fff',
-  lightgrey: 'rgb(239, 239, 239)',
-  grey: '#bfbfbf',
-  deepgrey: '#969aa2',
-  button: {
-    default: {
-      // TODO: primary에 맞게 수정하기
-      normal: '#c2cad4', // normal
-      hover: '#ced0da', // hover
-      pressed: '#9a9fa8', // pressed
-      disabled: '#505050', // disabled
-    },
-    red: {
-      normal: '#f42d16', // normal
-      hover: '#f65745', // hover
-      pressed: '#db2813', // pressed
-      disabled: '#f1958a', // disabled
-    },
-    green: {
-      normal: '#00cd3c', // normal
-      hover: '#34d762', // hover
-      pressed: '#00b835', // pressed
-      disabled: '#a4e5b7', // disabled
-    },
-    line: {
-      normal: '#c2cad4', // normal
-      hover: '#ced0da', // hover
-      pressed: '#9a9fa8', // pressed
-      disabled: '#505050', // disabled
-    },
-  },
-};
-
 const typography = {
   title: {
     fontFamily: '"Gelasio", serif',
