@@ -109,6 +109,8 @@ export const CONTENT_FORM_TIMES = 'content/FORM_TIMES';
 export const CONTENT_FORM_LOCATION = 'content/FORM_LOCATION';
 export const CONTENT_FORM_MOBILE = 'content/FORM_MOBILE';
 export const CONTENT_FORM_PERKS = 'content/FORM_PERKS';
+export const CONTENT_INIT_FORM = 'content/INIT_FORM';
+export const CONTENT_INIT_GET = 'content/INIT_GET';
 
 export const COMMENT_CREATE = 'comment/CREATE';
 export const COMMENT_CREATE_SUCCESS = 'comment/CREATE/SUCCESS';

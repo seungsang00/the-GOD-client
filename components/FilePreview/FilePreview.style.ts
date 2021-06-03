@@ -9,6 +9,7 @@ export const PreviewContainer = styled.div`
 
     .button-file-remove {
       position: absolute;
+      cursor: pointer;
       right: ${({ theme }) => theme.space.xs};
       top: ${({ theme }) => theme.space.xs};
     }

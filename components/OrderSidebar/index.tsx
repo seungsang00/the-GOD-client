@@ -5,34 +5,27 @@ import {
   StepGuideContainer,
 } from './OrderSidebar.style';
 
-const OrderSidebar = (): ReactElement => {
+const OrderSidebar = ({ step }: { step: number }): ReactElement => {
+  const steps = [0, 1, 2];
+  const description = ['이벤트 내용', '이벤트 기간', '이벤트 장소'];
   return (
     <SidebarContainer>
       <ul className="steps">
-        <li className="step step-001">
-          <StepIndicator className="indicator indicator-step-001">
-            1
-          </StepIndicator>
-          <StepGuideContainer className="visible-desktop-only">
-            데스크톱에서만 보입니다
-          </StepGuideContainer>
-        </li>
-        <li className="step step-002">
-          <StepIndicator className="indicator indicator-step-002">
-            2
-          </StepIndicator>
-          <StepGuideContainer className="visible-desktop-only">
-            데스크톱에서만 보입니다
-          </StepGuideContainer>
-        </li>
-        <li className="step step-003">
-          <StepIndicator className="indicator indicator-step-003">
-            3
-          </StepIndicator>
-          <StepGuideContainer className="visible-desktop-only">
-            데스크톱에서만 보입니다
-          </StepGuideContainer>
-        </li>
+        {steps.map((idx) => (
+          <li
+            key={idx}
+            className={`step step-00${step + 1} ${
+              idx === step ? 'active' : ''
+            }`}
+          >
+            <StepIndicator className={`indicator indicator-step-00${idx + 1}`}>
+              {idx + 1}
+            </StepIndicator>
+            <StepGuideContainer className="visible-desktop-only">
+              {description[idx]}
+            </StepGuideContainer>
+          </li>
+        ))}
       </ul>
     </SidebarContainer>
   );

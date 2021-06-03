@@ -13,11 +13,13 @@ import {
   inputMobile,
   inputLocation,
   inputPerks,
+  initForm,
 } from './form';
 import {
   getSharedContentAsync,
   getContentAsync,
   getContentListAsync,
+  initRead,
 } from './read';
 import {} from './delete';
 
@@ -28,6 +30,7 @@ const actions = {
   createSharedContentAsync,
   updateAsync,
   createAsync,
+  initRead,
   inputArtist,
   inputTitle,
   inputTags,
@@ -38,6 +41,7 @@ const actions = {
   inputLocation,
   inputPerks,
   inputMobile,
+  initForm,
 };
 
 export type ContentAction = ActionType<typeof actions>;

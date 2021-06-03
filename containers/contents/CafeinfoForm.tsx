@@ -1,4 +1,5 @@
 import {
+  Button,
   Carousel,
   Dropdown,
   DropdownTrigger,
@@ -7,7 +8,6 @@ import {
   InputTags,
   OptionList,
   TextArea,
-  TextButton,
   TextInput,
 } from '@components';
 import { sampleSearchInputOptions } from '@utils/sample-data';
@@ -23,26 +23,39 @@ import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
-  const { title, tags, artist } = useSelector(
-    ({ content }: RootState) => content.form
-  );
+  const {
+    title,
+    tags,
+    artist,
+    description,
+    images: preImages,
+  } = useSelector(({ content }: RootState) => content.form);
+  const { data } = useSelector(({ content }: RootState) => content.current);
   const [artists, setArtists] = useState(
     Object.keys(sampleSearchInputOptions.artist)
   );
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [images, setImages] = useState<
-    { data: File; name: string; url: string }[]
-  >([]);
-  const { description } = useSelector(({ content }: RootState) => content.form);
+  const [images, setImages] =
+    useState<{ data: File; name: string; url: string }[]>(preImages);
   const dispatch = useDispatch();
   const tagHandler = (tags: string[]) => {
     dispatch(inputTags(tags));
   };
-
-  useEffect(() => {
-    dispatch(inputImages(images));
-  }, [images]);
-
+  const fetchImageController = async (url: string) => {
+    const blob = await fetch(url).then((r) => r.blob());
+    const ext = url.split('.').pop();
+    const filename = url.split('/').pop();
+    const metadata = { type: `image/${ext}` };
+    const file = new File([blob], filename as string, metadata);
+    setImages((state) => [
+      ...state,
+      {
+        data: file,
+        name: file.name,
+        url: url,
+      },
+    ]);
+  };
   const fileListToArray = (fileList: FileList) => {
     for (let i = 0; i < fileList.length; i++) {
       const reader = new FileReader();
@@ -64,6 +77,17 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
       fileListToArray(e.target.files);
     }
   };
+
+  useEffect(() => {
+    dispatch(inputImages(images));
+  }, [images]);
+
+  useEffect(() => {
+    if (data) {
+      data.images.forEach(fetchImageController);
+    }
+  }, [data]);
+
   return (
     <>
       <section>
@@ -75,63 +99,82 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
             setIsOpen(!isOpen);
           }}
         />
+        <span className="dropdown">
+          <Dropdown visible={isOpen}>
+            <OptionList
+              list={artists}
+              listHandler={(el) => {
+                if (sampleSearchInputOptions.artist[el]) {
+                  setArtists(sampleSearchInputOptions.artist[el]);
+                } else {
+                  setArtists(Object.keys(sampleSearchInputOptions.artist));
+                  setIsOpen(false);
+                }
+              }}
+              stateHandler={(el) => {
+                if (artist.name.length === 0) {
+                  dispatch(inputArtist({ ...artist, name: el }));
+                } else {
+                  dispatch(
+                    inputArtist({ ...artist, name: artist.name + ' ' + el })
+                  );
+                }
+              }}
+            />
+          </Dropdown>
+        </span>
       </section>
       <section>
-        <Dropdown visible={isOpen}>
-          <OptionList
-            list={artists}
-            listHandler={(el) => {
-              if (sampleSearchInputOptions.artist[el]) {
-                setArtists(sampleSearchInputOptions.artist[el]);
-              } else {
-                setArtists(Object.keys(sampleSearchInputOptions.artist));
-                setIsOpen(false);
-              }
-            }}
-            stateHandler={(el) => {
-              if (artist.name.length === 0) {
-                dispatch(inputArtist({ ...artist, name: el }));
-              } else {
-                dispatch(
-                  inputArtist({ ...artist, name: artist.name + ' ' + el })
-                );
-              }
-            }}
-          />
-        </Dropdown>
+        <h2>글 제목</h2>
+        <TextInput
+          type="text"
+          value={title}
+          disabled={false}
+          onChange={(e) => {
+            const { value } = e.target;
+            dispatch(inputTitle(value));
+          }}
+        />
       </section>
-      <TextInput
-        type="text"
-        value={title}
-        disabled={false}
-        onChange={(e) => {
-          const { value } = e.target;
-          dispatch(inputTitle(value));
-        }}
-      />
-      <InputTags tagList={tags} handler={tagHandler} />
-      <TextArea
-        disabled={false}
-        onChange={(e) => {
-          const { value } = e.target;
-          dispatch(inputDescription(value));
-        }}
-        value={description}
-      />
-      <Carousel col={4}>
-        {[
-          <div>
-            <FileInput handleFileChange={imageHandler} />
-          </div>,
-          ...images.map((image, _i) => (
-            <FilePreview
-              url={image.url}
-              handleRemoveFile={() => console.log(image.name)}
-            />
-          )),
-        ]}
-      </Carousel>
-      <TextButton disabled={false} handler={onSubmit} text="다음" />
+      <section>
+        <h2>해시태그</h2>
+        <InputTags tagList={tags} handler={tagHandler} />
+      </section>
+      <section>
+        <h2>이벤트 내용</h2>
+        <TextArea
+          disabled={false}
+          onChange={(e) => {
+            const { value } = e.target;
+            dispatch(inputDescription(value));
+          }}
+          value={description}
+        />
+      </section>
+      <section>
+        <h2>이벤트 이미지</h2>
+        <Carousel col={4}>
+          {[
+            <div>
+              <FileInput handleFileChange={imageHandler} />
+            </div>,
+            ...images.map((image, i) => (
+              <FilePreview
+                url={image.url}
+                handleRemoveFile={() => {
+                  setImages((state) => [
+                    ...state.slice(0, i),
+                    ...state.slice(i + 1, state.length),
+                  ]);
+                }}
+              />
+            )),
+          ]}
+        </Carousel>
+      </section>
+      <section>
+        <Button disabled={false} text="다음" handler={onSubmit} />
+      </section>
     </>
   );
 };

@@ -1,7 +1,6 @@
 import styled from '@styles/themed-components';
 
 export const CommonLayoutStyle = styled.div`
-  padding-top: 60px;
   /* main page */
   .main__banner {
     height: 100vh;

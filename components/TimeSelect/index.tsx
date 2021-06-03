@@ -3,8 +3,14 @@ import { hours, minutes } from '@utils/time';
 import { TimeSelectProps } from 'interfaces/props';
 import { TimeSelectBox } from './TimeSelect.style';
 
-const TimeSelect = ({ setHour, setMinutes }: TimeSelectProps): ReactElement => {
-  const [time, setTime] = useState<string[]>([' --시-- ', ' --분-- ']);
+const TimeSelect = ({
+  setHour,
+  setMinutes,
+  initTime,
+}: TimeSelectProps): ReactElement => {
+  const [time, setTime] = useState<string[]>(
+    initTime ? [initTime.hour, initTime.minute] : ['-- 시 --', '-- 분 --']
+  );
   const [openOption, setOpenOption] = useState<boolean[]>([false, false]);
   const [hour, minute] = time;
   const [isOptionOpenH, isOptionOpenM] = openOption;
@@ -14,7 +20,7 @@ const TimeSelect = ({ setHour, setMinutes }: TimeSelectProps): ReactElement => {
     const newTime = [...time];
     newTime[0] = target.textContent as string;
     setTime(newTime);
-    setHour(time[0]);
+    setHour(newTime[0]);
     setOpenOption([false, false]);
     console.log(target.textContent as string);
   };
@@ -24,7 +30,7 @@ const TimeSelect = ({ setHour, setMinutes }: TimeSelectProps): ReactElement => {
     const newTime = [...time];
     newTime[1] = target.textContent as string;
     setTime(newTime);
-    setMinutes(time[1]);
+    setMinutes(newTime[1]);
     setOpenOption([false, false]);
     console.log(target.textContent as string);
   };

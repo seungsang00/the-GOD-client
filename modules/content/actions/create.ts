@@ -1,6 +1,7 @@
 import {
   API_ENDPOINT,
   Content,
+  ContentForm,
   PostContentResponse,
   PostSharedContentResponse,
 } from '@interfaces';
@@ -16,13 +17,29 @@ import {
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
-export const createRequest = async (content: Content) => {
+export const createRequest = async (content: ContentForm) => {
   const accessToken = localStorage.getItem('accessToken');
+  const formData = new FormData();
+  const keys = Object.keys(content) as (keyof ContentForm)[];
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    if (key === 'images') {
+      content[key].forEach((image) => {
+        formData.append(key, image.data, image.name);
+      });
+      continue;
+    }
+    if (key === 'artist') {
+      formData.append('artistId', JSON.stringify('nha'));
+      continue;
+    }
+    formData.append(key, JSON.stringify(content[key]));
+  }
   const result = await axios.post<PostContentResponse>(
     `${API_ENDPOINT}/content`,
-    { ...content, artist: content.artist.name },
+    formData,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;

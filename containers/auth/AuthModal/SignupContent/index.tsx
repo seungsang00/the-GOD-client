@@ -84,7 +84,7 @@ const SignupContent = ({
         <Button
           disabled={disabled}
           text="sign up"
-          handler={() => submitHandler(userName, email, password)}
+          handler={() => submitHandler(email, password, userName)}
         />
       </FormSection>
       <LinkSection>

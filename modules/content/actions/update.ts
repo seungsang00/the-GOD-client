@@ -1,6 +1,7 @@
 import {
   API_ENDPOINT,
   Content,
+  ContentForm,
   PutBookmarkResponse,
   PutContentResponse,
 } from '@interfaces';
@@ -13,9 +14,7 @@ import {
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
-export const updateRequest = async (content: Content) => {
-  // TODO: 컨텐츠 업데이트 미구현
-  return;
+export const updateRequest = async (content: ContentForm) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.post<PutContentResponse>(
     `${API_ENDPOINT}/content`,

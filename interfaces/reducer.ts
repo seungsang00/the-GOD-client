@@ -52,13 +52,12 @@ export interface SearchResult {
   images: string[];
 }
 
-export interface Content {
+export interface ContentProps {
   id: string;
   artist: Artist;
   title: string;
   tags: string[];
   description: string;
-  images: Image[];
   date: Date;
   time: Time;
   address: Address;
@@ -66,6 +65,16 @@ export interface Content {
   perks: Perks;
   isBookmark?: boolean;
   author?: Author;
+}
+export interface Content extends ContentProps {
+  images: Image[];
+}
+export interface ContentForm extends ContentProps {
+  images: {
+    data: File;
+    name: string;
+    url: string;
+  }[];
 }
 
 export interface Author {
@@ -195,7 +204,7 @@ export interface ContentReducer {
   delete: AsyncState<{ message: string }>;
   shared: AsyncState<{ id: string }>;
   path: AsyncState<{ id: string; contents: Content[] }>;
-  form: Content;
+  form: ContentForm;
 }
 export interface ArtistReducer {
   create: AsyncState<{ message: string }>;
