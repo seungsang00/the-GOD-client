@@ -1,3 +1,4 @@
+import { customMediaQuery } from '@styles/theme';
 import styled from '@styles/themed-components';
 
 export const AccountStyle = styled.div`
@@ -21,27 +22,55 @@ export const AccountStyle = styled.div`
 
     .avatar-edit {
       position: relative;
-      width: fit-content;
+      width: 100%;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
       margin-bottom: ${({ theme }) => theme.space.lg};
       margin-top: ${({ theme }) => theme.space.md};
+
+      ${customMediaQuery(1105)} {
+        justify-content: center;
+      }
     }
+
+    .avatar-edit-buttons {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      flex-wrap: wrap;
+
+      button {
+        min-width: 210px;
+        margin-bottom: ${({ theme }) => theme.space.xs};
+      }
+
+      ${customMediaQuery(1105)} {
+        margin-top: ${({ theme }) => theme.space.md};
+      }
+    }
+
     #formButton {
       font-weight: 500;
       font-size: 1.2rem;
-      width: 2.4rem;
       height: 2.4rem;
-      border-radius: 50%;
+      min-width: 150px;
+      border-radius: 999px;
       background-color: ${({ theme }) => theme.colors.primary.normal};
       display: flex;
       justify-content: center;
       align-items: center;
       color: #fff;
-      position: absolute;
-      right: 0;
-      bottom: 5px;
+      padding: 0 ${({ theme }) => theme.space.sm};
+      margin-bottom: ${({ theme }) => theme.space.xs};
+      margin-right: ${({ theme }) => theme.space.sm};
+      span {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-left: ${({ theme }) => theme.space.sm};
+      }
       &:hover {
         background-color: ${({ theme }) => theme.colors.primary.hover};
       }

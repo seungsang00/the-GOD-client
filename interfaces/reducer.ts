@@ -151,6 +151,9 @@ export type PutBookmarkResponse = AxiosResponse<{ isBookmarked: boolean }>;
 // user
 export type GetInfoResponse = AxiosResponse<User>;
 export type PutInfoResponse = AxiosResponse<User>;
+export type PutProfileImageResponse = AxiosResponse<{
+  profileImg: string;
+}>;
 export type GetContentListResponse = AxiosResponse<{
   contents: Content[];
   totalPage: number;
@@ -179,6 +182,8 @@ export type GetArtistResponse = AxiosResponse<Artists>;
 export type DeleteArtistResponse = AxiosResponse<{ message: string }>;
 export interface UserState {
   userProfile: AsyncState<User>;
+  profileImage: AsyncState<{ profileImage: string }>;
+  username: AsyncState<{ message: string }>;
   bookmarks: AsyncState<Content[]>;
   bookmark: AsyncState<{ isBookmarked: boolean }>;
   contents: AsyncState<Content[]>;
