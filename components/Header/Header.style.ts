@@ -38,7 +38,7 @@ export const SearchField = styled.section`
 
   & > div {
     align-items: flex-start !important;
-    ${({ theme }) => theme.zIndex.depth01 + ' !important'};
+    ${({ theme }) => theme.zIndex.depth03 + ' !important'};
     min-height: calc(100vh-60px);
     height: 100% !important;
     padding-top: 65px;
@@ -58,7 +58,12 @@ export const SearchField = styled.section`
       .modal-component-box {
         background-color: transparent !important;
         border: none;
+        padding: 0 ${({ theme }) => theme.space.md};
       }
     }
+  }
+
+  .modal-close {
+    display: none !important;
   }
 `;

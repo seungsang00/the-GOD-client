@@ -1,18 +1,28 @@
 import { Content } from '@interfaces';
-import { sampleContentListData } from '@utils/sample-data';
-import { useMemo, useState } from 'react';
+import { getContentListThunk } from 'modules/content/actions/read';
+import { RootState } from 'modules/reducer';
+import { useRouter } from 'next/router';
+import { useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import SearchContentLoader from '../SearchContentLoader';
 
 const SearchPageContainer = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { loading, error, data } = useSelector(
+    ({ content }: RootState) => content.list
+  );
+  const contentList = data?.contents;
+
   // const [focusedID, setFocusedID] = useState<string | null>(null);
   const [isPath, setIsPath] = useState<boolean>(false);
   const [sortedList, setSortedList] = useState<{
     selectedContents: Content[];
     restContents: Content[];
-  }>({ selectedContents: [], restContents: sampleContentListData });
+  }>({ selectedContents: [], restContents: contentList as Content[] });
 
   const sortList = (id: string) => {
-    if (!isPath) {
+    if (!isPath && contentList) {
       setSortedList((state) => {
         const checkItem = state.restContents.find(
           (content) => content.id === id
@@ -20,13 +30,13 @@ const SearchPageContainer = () => {
         if (checkItem) {
           return {
             restContents: [
-              ...sampleContentListData.filter((content) => content.id !== id),
+              ...contentList.filter((content) => content.id !== id),
             ],
             selectedContents: [checkItem],
           };
         } else {
           return {
-            restContents: [...sampleContentListData],
+            restContents: [...contentList],
             selectedContents: [],
           };
         }
@@ -63,22 +73,38 @@ const SearchPageContainer = () => {
   const resetHadler = () => {
     setSortedList({
       selectedContents: [],
-      restContents: sampleContentListData,
+      restContents: contentList as Content[],
     });
   };
   useMemo(() => {
     resetHadler();
   }, [isPath]);
+
+  useEffect(() => {
+    const { artistId, location, dateStart, dateEnd } = router.query;
+    dispatch(
+      getContentListThunk({
+        artistId: artistId as string,
+        location: location as string,
+        dateStart: dateStart as string,
+        dateEnd: dateEnd as string,
+      })
+    );
+  }, []);
   return (
     <main>
-      <SearchContentLoader
-        selectedContents={sortedList.selectedContents}
-        restContents={sortedList.restContents}
-        isPath={isPath}
-        resetHadler={resetHadler}
-        setIsPath={setIsPath}
-        handleCardClick={handleCardClick}
-      />
+      {!data || (contentList && contentList.length === 0) ? (
+        <div>null data</div>
+      ) : (
+        <SearchContentLoader
+          selectedContents={sortedList.selectedContents}
+          restContents={sortedList.restContents}
+          isPath={isPath}
+          resetHadler={resetHadler}
+          setIsPath={setIsPath}
+          handleCardClick={handleCardClick}
+        />
+      )}
     </main>
   );
 };
