@@ -194,7 +194,7 @@ export interface AuthReducer {
   signup: AsyncState<{ message: string }>;
   signout: AsyncState<{ message: string }>;
   checkps: AsyncState<{ message: string }>;
-  updateps: AsyncState<{ message: string }>;
+  updateps: AsyncState<{ passwordUpdate: string }>;
   login: AsyncState<{ accessToken: string }>;
   kakao: AsyncState<{ code: string; accessToken: string }>;
 }

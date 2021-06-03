@@ -45,16 +45,24 @@ export const loginRequset = async (props: {
 };
 
 export const checkPSRequset = async (password: string) => {
+  const accessToken = localStorage.getItem('accessToken');
   const result = await axios.post<{ message: string }>(
     `${API_ENDPOINT}/auth/password`,
-    { password }
+    { password },
+    {
+      headers: { authorization: `BEARER ${accessToken}` },
+    }
   );
   return result.data;
 };
 export const updatePSRequset = async (password: string) => {
+  const accessToken = localStorage.getItem('accessToken');
   const result = await axios.put<{ message: string }>(
     `${API_ENDPOINT}/auth/password`,
-    { password }
+    { password },
+    {
+      headers: { authorization: `BEARER ${accessToken}` },
+    }
   );
   return result.data;
 };
@@ -81,7 +89,7 @@ export const updatePSAsync = createAsyncAction(
   AUTH_PASSWORD_UPDATE,
   AUTH_PASSWORD_UPDATE_SUCCESS,
   AUTH_PASSWORD_UPDATE_ERROR
-)<null, { message: string }, AxiosError>();
+)<null, { passwordUpdate: string }, AxiosError>();
 
 export const singupThunk = createAsyncThunk(signupAsync, singupRequest);
 export const loginThunk = createAsyncThunk(loginAsync, loginRequset);
