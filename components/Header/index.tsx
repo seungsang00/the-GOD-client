@@ -21,7 +21,7 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const { isOpen, flyoutController } = useFlyout(false);
-  const { isOpen: isAuthModalOpen, modalController } = useModal();
+  const { isOpen: isAuthModalOpen, modalController, setIsOpen } = useModal();
   const { isOpen: isExpanded, modalController: searchFieldHandler } =
     useModal();
 
@@ -84,7 +84,11 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
                 text="로그인"
                 handler={modalController}
               />
-              <AuthModal isOpen={isAuthModalOpen} handler={modalController} />
+              <AuthModal
+                isOpen={isAuthModalOpen}
+                handler={modalController}
+                setIsOpen={setIsOpen}
+              />
             </div>
           )}
         </nav>
