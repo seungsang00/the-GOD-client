@@ -9,6 +9,9 @@ export const SearchTriggerWrapper = styled.div`
   transition: -ms-transform 150ms ease 0s, -webkit-transform 150ms ease 0s,
     transform 150ms ease 0s, opacity 50ms ease 20ms,
     pointer-events 0ms ease 150ms;
+  ${({ theme }) => theme.media.tablet} {
+    margin-right: ${({ theme }) => theme.space.lg};
+  }
 `;
 
 export const TriggerBg = styled.div`
@@ -28,6 +31,11 @@ export const TriggerBg = styled.div`
   &:active {
     background-color: ${({ theme }) => theme.colors.bg.normal};
   }
+
+  ${({ theme }) => theme.media.tablet} {
+    width: 45vw;
+    min-width: 30vw;
+  }
 `;
 
 export const Trigger = styled.button`
@@ -42,6 +50,9 @@ export const Trigger = styled.button`
   appearance: none;
   background: transparent;
   border: 1px solid transparent;
+  ${({ theme }) => theme.media.mobile} {
+    height: 40px;
+  }
 `;
 
 export const SearchLabel = styled.div`
@@ -69,5 +80,10 @@ export const SearchIcon = styled.div`
   }
   &:active {
     background-color: ${({ theme }) => theme.colors.primary.pressed};
+  }
+  ${({ theme }) => theme.media.mobile} {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
   }
 `;

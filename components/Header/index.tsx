@@ -61,7 +61,8 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
         <div className="logo">
           <Link href="/">
             <a>
-              {logo && logo} <h3>FansSum</h3>
+              <div className="logo-icon">{logo && logo}</div>
+              <h3 className="logo-text">FansSum</h3>
             </a>
           </Link>
         </div>
