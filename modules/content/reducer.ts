@@ -15,6 +15,9 @@ import {
   CONTENT_UPDATE,
   CONTENT_UPDATE_ERROR,
   CONTENT_UPDATE_SUCCESS,
+  CONTENT_DELETE,
+  CONTENT_DELETE_ERROR,
+  CONTENT_DELETE_SUCCESS,
   CONTENT_FORM_ARTIST,
   CONTENT_FORM_TITLE,
   CONTENT_FORM_TAGS,
@@ -75,6 +78,11 @@ const initialState: ContentReducer = {
     time: {
       open: '-- 시 --:-- 분 --:00',
       close: '-- 시 --:-- 분 --:00',
+    },
+    author: {
+      id: '',
+      name: '',
+      profileImage: '',
     },
     address: { storeName: '', roadAddress: '', location: { lat: 0, lng: 0 } },
     mobile: '',
@@ -224,6 +232,30 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
   [CONTENT_UPDATE_ERROR]: (state, action) => ({
     ...state,
     update: {
+      loading: false,
+      error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [CONTENT_DELETE]: (state) => ({
+    ...state,
+    delete: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [CONTENT_DELETE_SUCCESS]: (state, action) => ({
+    ...state,
+    delete: {
+      loading: false,
+      error: null,
+      data: action.payload,
+    },
+  }),
+  [CONTENT_DELETE_ERROR]: (state, action) => ({
+    ...state,
+    delete: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,

@@ -11,10 +11,10 @@ import { createAsyncAction } from 'typesafe-actions';
 export const updateCommentRequest = async (comment: PutCommentReqBody) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.put<{ message: string }>(
-    `${API_ENDPOINT}/comments`,
+    `${API_ENDPOINT}/comment`,
     comment,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;

@@ -10,7 +10,7 @@ export const DropdownStyle = withProps<Props, HTMLDivElement>(styled.div)`
   ${({ visible }) => (visible ? 'display: flex' : 'display: none')};
   justify-content: center;
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -21,8 +21,6 @@ export const DropdownStyle = withProps<Props, HTMLDivElement>(styled.div)`
     ${({ theme }) => theme.zIndex.depth03};
     position: absolute;
     width: ${({ size }) => size};
-    border: 1px solid blue;
-    background-color: pink;
   }
 `;
 

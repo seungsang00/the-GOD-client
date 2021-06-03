@@ -2,17 +2,24 @@ import styled, { withProps } from '@styles/themed-components';
 
 export const Wrapper = styled.section`
   width: 100%;
-  width: 1180px;
   margin: auto;
-  padding: 120px 0;
+  padding: 120px 10%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  ${({ theme }) => theme.media.tablet} {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 export const Image = withProps<{ url: string }, HTMLDivElement>(styled.div)`
   width: 580px;
   height: 580px;
+  min-width: 300px;
+  min-height: 300px;
   background: no-repeat center/cover url(${({ url }) => url});
   background-size: contain;
   background-position: center center;
@@ -30,18 +37,17 @@ export const TextWrapper = styled.div`
 export const Label = styled.p`
   display: inline-block;
   ${({ theme }) => theme.typography.label};
-  ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primary.hover};
   margin-bottom: 1rem;
 `;
 
 export const Title = styled.h2`
   ${({ theme }) => theme.typography.subtitle};
-  ${({ theme }) => theme.colors.black};
   margin-bottom: 1rem;
 `;
 
 export const Description = styled.p`
   ${({ theme }) => theme.typography.description};
-  ${({ theme }) => theme.colors.black};
+  /* color: ${({ theme }) => theme.colors.gray.gray01}; */
   margin-bottom: 2rem;
 `;

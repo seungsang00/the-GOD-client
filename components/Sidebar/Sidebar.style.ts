@@ -11,21 +11,22 @@ export const SidebarContainer = styled.div`
   flex-direction: column;
 
   li.list-item {
-    width: fit-content;
+    width: 150px;
     padding: ${({ theme }) => theme.space.xxs} ${({ theme }) => theme.space.xs};
     height: 100%;
     font-weight: 600;
     border-radius: 8px;
-    background-color: #fff;
+    border: 1px solid transparent;
     line-height: 2rem;
     align-self: flex-start;
     margin-bottom: ${({ theme }) => theme.space.xs};
     &:hover {
-      background-color: ${({ theme }) => theme.colors.grey};
+      ${({ theme }) => theme.concept.glassmorphism.light};
     }
 
-    & > div.active {
-      border-bottom: 2px solid red;
+    &.active {
+      color: #fff;
+      background-color: ${({ theme }) => theme.colors.primary.normal};
     }
   }
 `;

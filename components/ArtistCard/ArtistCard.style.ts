@@ -8,7 +8,7 @@ export const CardWrapper = styled.div`
   align-items: center;
   width: 16rem;
   height: 14rem;
-  ${({ theme }) => theme.concept.glassmorphism};
+  ${({ theme }) => theme.concept.glassmorphism.normal};
   border-radius: 16px;
   padding: ${({ theme }) => theme.space.xs};
   margin-right: ${({ theme }) => theme.space.sm};
@@ -39,7 +39,7 @@ export const AvatarContainer = withProps<AvatarContainerProps, HTMLDivElement>(
     height: 100%;
     object-fit: cover;
     border-radius: 16px;
-    border: 1px solid ${({ theme }) => theme.colors.grey};
+    border: 1px solid ${({ theme }) => theme.colors.line.line01};
   }
 
   

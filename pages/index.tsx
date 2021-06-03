@@ -1,88 +1,47 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import { Toggle, Button, GuideButton, Footer } from '@components';
-import useModal from 'hooks/useModal';
-import Carousel from 'components/Carousel';
-import { AuthModal } from '@containers';
+import { Footer } from '@components';
 import { Layout } from '@layouts';
+import {
+  LandingSampleL,
+  LandingSampleR,
+  MyRouteLanding,
+} from 'containers/main';
+import { MainContainer } from 'layouts/layouts.style';
+import { getArtistThunk } from 'modules/artist';
+import { RootState } from 'modules/reducer';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-const IndexPage = () => {
-  const { isOpen, modalController } = useModal();
-  const [toggleValue, setToggleValue] = useState<boolean>(false);
-  const [guideActive, setGuideActive] = useState<boolean>(false);
+const MainPage = () => {
+  const dispatch = useDispatch();
+  const { data: artistData } = useSelector(
+    ({ artist }: RootState) => artist.read
+  );
+  useEffect(() => {
+    if (!artistData) {
+      dispatch(getArtistThunk());
+    }
+  }, [artistData]);
+
   return (
-    <Layout title="FansSum | 팬심이 모여 문화가 되다" footer={<Footer />}>
-      <section>
-        <nav>
-          <Link href="/main">
-            <a>Main</a>
-          </Link>{' '}
-          |{' '}
-          <Link href="/">
-            <a>Home</a>
-          </Link>{' '}
-          |{' '}
-          <Link href="/about">
-            <a>About</a>
-          </Link>{' '}
-          | <a href="/api/users">Users API</a>
-        </nav>
-      </section>
-
-      <h1>Hello Next.js 👋</h1>
-      <h1>component test</h1>
-      <div style={{ width: '100%', padding: '40px' }}>
-        <label htmlFor="modal">login modal button</label>
-        <button style={{ border: 'solid 1px red' }} onClick={modalController}>
-          modal active button : login + signup
-        </button>
-        <AuthModal isOpen={isOpen} handler={modalController} />
-      </div>
-
-      <div style={{ width: '100%', padding: '40px' }}>
-        <h1>toggle button</h1>
-        <Toggle
-          value={toggleValue}
-          icon="parking"
-          handler={() => {
-            setToggleValue(!toggleValue);
-          }}
-        />
-      </div>
-      <div style={{ width: '100%', padding: '40px' }}>
-        <h1>Button</h1>
-        <Button disabled={false} text="버튼" handler={() => {}} />
-      </div>
-      <div style={{ width: '100%', padding: '40px' }}>
-        <h1>Button</h1>
-        <GuideButton
-          active={guideActive}
-          activeHandler={() => {
-            setGuideActive(!guideActive);
-          }}
-          shareHandler={() => {}}
-          resetHandler={() => {}}
-        />
-      </div>
-      <div style={{ width: '100%', padding: '40px' }}>
-        <h1>carousel</h1>
-        <Carousel>
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-          <div>5</div>
-          <div>6</div>
-          <div>7</div>
-        </Carousel>
-      </div>
-      <p>
-        <Link href="/about">
-          <a>About</a>
-        </Link>
-      </p>
+    <Layout title="FansSum | 팬심이 모여 문화가 되다">
+      <MainContainer className="holster">
+        <div className="container y mandatory-scroll-snapping" dir="ltr">
+          <div>
+            <MyRouteLanding />
+          </div>
+          <div>
+            <LandingSampleL />
+          </div>
+          <div>
+            <LandingSampleR />
+          </div>
+          <div className="footer">
+            <Footer />
+          </div>
+        </div>
+      </MainContainer>
     </Layout>
   );
 };
 
-export default IndexPage;
+export default MainPage;

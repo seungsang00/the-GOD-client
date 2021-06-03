@@ -49,6 +49,7 @@ export type ButtonProps = {
   readonly disabled: boolean;
   readonly text: string;
   handler: MouseEventHandler<HTMLButtonElement> | undefined;
+  type?: string;
 };
 // guide Button type
 export interface GuideButtonProps {

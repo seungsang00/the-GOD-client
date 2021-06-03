@@ -42,7 +42,7 @@ export const getContentListRequest = async ({
   const result = await axios.get<GetContentListResponse>(
     `${API_ENDPOINT}/content/query?artistId=${artistId}&location=${location}&dateStart=${dateStart}&dateEnd=${dateEnd}`,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;

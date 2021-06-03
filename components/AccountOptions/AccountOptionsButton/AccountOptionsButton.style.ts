@@ -10,7 +10,7 @@ export const OptionsButtonContainer = styled.div`
 
   border-radius: 999px;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.grey};
+    background-color: ${({ theme }) => theme.colors.gray.gray04};
   }
 
   button {

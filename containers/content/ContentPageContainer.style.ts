@@ -1,48 +1,127 @@
 import styled from '@styles/themed-components';
+import { customMediaQuery } from '@styles/theme';
 
 export const ImageSection = styled.section`
-  width: 55%;
+  width: 100%;
   height: 400px;
+  margin-bottom: ${({ theme }) => theme.space.lg};
 
   img {
     max-height: 100%;
     max-width: 100%;
     object-fit: cover;
   }
-
-  ${({ theme }) => theme.media.tablet} {
-    width: 100%;
-  }
 `;
 
 export const InfoSection = styled.section`
-  width: 40%;
-  margin-left: ${({ theme }) => theme.space.md};
-  padding: 0 ${({ theme }) => theme.space.sm};
-
-  ${({ theme }) => theme.media.tablet} {
-    width: 100%;
-    margin-top: ${({ theme }) => theme.space.sm};
-  }
+  width: 100%;
+  margin-bottom: ${({ theme }) => theme.space.md};
+  padding: 0 ${({ theme }) => theme.space.lg};
+  padding-bottom: ${({ theme }) => theme.space.md};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  ${({ theme }) => theme.concept.glassmorphism.light};
 
   .head {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     word-break: keep-all;
     position: relative;
-    width: fit-content;
+    margin-top: ${({ theme }) => theme.space.sm};
     margin-bottom: ${({ theme }) => theme.space.md};
+    padding: ${({ theme }) => theme.space.sm};
+
+    .main-title {
+      font-weight: 600;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+    }
+
+    .author-action-trigger {
+      position: relative;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+      color: ${({ theme }) => theme.colors.gray.gray01};
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 0 ${({ theme }) => theme.space.sm};
+      margin-left: ${({ theme }) => theme.space.sm};
+
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.gray.gray04};
+      }
+    }
+
+    ${({ theme }) => theme.media.tablet} {
+      width: 100%;
+      margin-top: ${({ theme }) => theme.space.sm};
+    }
+  }
+  .body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .text-info {
+      width: 50%;
+      min-width: 400px;
+      padding-right: ${({ theme }) => theme.space.sm};
+    }
+
+    .map-info {
+      width: 48%;
+      height: fit-content;
+    }
+
+    ${customMediaQuery(940)} {
+      justify-content: center;
+
+      .text-info {
+        width: 100%;
+        min-width: 360px;
+        margin-bottom: ${({ theme }) => theme.space.sm};
+      }
+      .map-info {
+        width: 100%;
+      }
+    }
   }
 `;
 
 export const Author = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  /* height: 48px; */
+  ${({ theme }) => theme.concept.glassmorphism.deep}
+  box-shadow: none;
+  margin-top: ${({ theme }) => theme.space.xs};
   padding: ${({ theme }) => theme.space.xs};
-  span {
-    margin-left: ${({ theme }) => theme.space.sm};
+  border-radius: 12px;
+
+  & > div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    span {
+      display: block;
+      padding: ${({ theme }) => theme.space.xxs} 0;
+      margin-left: ${({ theme }) => theme.space.sm};
+    }
+    .author-name {
+      font-weight: 500;
+    }
+    .author-desc {
+      font-size: 14px;
+    }
+    img {
+      border-radius: 20px !important;
+    }
   }
 `;
 
@@ -62,27 +141,25 @@ export const SectionStyle = styled.section`
   }
 
   &.perks {
+    border-radius: ${({ theme }) => theme.borderRadius};
+    /* background-color: ${({ theme }) => theme.colors.gray.gray04}; */
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: flex-start;
     padding: ${({ theme }) => theme.space.sm};
+
+    ${customMediaQuery(640)} {
+      justify-content: flex-start;
+    }
   }
 `;
 
 export const ContentPageStyle = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-
-  .top {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin-bottom: ${({ theme }) => theme.space.lg};
-  }
+  max-width: 1024px;
 
   /* space */
   padding: ${({ theme }) => theme.space.xl};
@@ -106,7 +183,7 @@ export const ContentPageStyle = styled.div`
   }
 
   ${({ theme }) => theme.media.mobile} {
-    padding: ${({ theme }) => theme.space.sm};
+    padding: ${({ theme }) => theme.space.sm} ${({ theme }) => theme.space.lg};
     .main-title {
       font-size: 1.2rem !important;
     }
@@ -133,6 +210,8 @@ export const ContentPageStyle = styled.div`
     margin-bottom: ${({ theme }) => theme.space.sm};
 
     h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
       margin-right: ${({ theme }) => theme.space.sm};
     }
     p {

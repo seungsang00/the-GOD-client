@@ -2,71 +2,50 @@ import { Avatar, Flyout, TextButton } from '@components';
 import { CommentStyle } from './Comment.style';
 import { IComment } from '@interfaces';
 import moment from 'moment';
+moment.locale('ko'); // 한글화
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import useFlyout from 'hooks/useFlyout';
-import { useEffect, useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { TextArea } from 'components/TextInput';
 import useTextInput from 'hooks/useTextInput';
-// import { sampleCommentsData } from '@utils/sample-data';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
-import { getInfoThunk } from 'modules/user';
-import {
-  deleteCommentThunk,
-  getCommentListThunk,
-  updateCommentThunk,
-} from 'modules/comment';
-import { useRouter } from 'next/router';
+import { deleteCommentThunk, updateCommentThunk } from 'modules/comment';
+import { PopupNoTitle } from 'components/Popup';
+import useModal from 'hooks/useModal';
 
 type Props = {
   commentData: IComment;
 };
 const Comment = ({ commentData }: Props) => {
-  const router = useRouter();
-  const { id: contentId } = router.query as { id: string };
+  const { id: commentId, user, comment, createdAt } = commentData;
+  const { name, profileImage } = user;
 
-  const { id: commentId, author, comments, createdAt } = commentData;
-  const { name, profileImage } = author;
-
+  const dispatch = useDispatch();
   const [editmode, setEditMode] = useState<boolean>(false);
-
   const { isOpen, flyoutController } = useFlyout(false);
+  const { isOpen: commentPopupIsOpen, modalController } = useModal();
+  const { inputEvent } = useTextInput(comment);
+  const [commentValue, setCommentValue] = useState<string>(comment);
 
-  const { inputEvent } = useTextInput(comments);
-  const { value, onChange, onKeyDown } = inputEvent;
-
-  // ! Store 구독
+  // ! Store 구독 - 내 아이디 가져오기
   const { data: userData } = useSelector(
     (state: RootState) => state.user.userProfile
   );
-  const { data: deleteData } = useSelector(
-    (state: RootState) => state.comment.delete
-  );
-  const { data: updateData } = useSelector(
-    (state: RootState) => state.comment.update
-  );
 
-  // ! userId 가져오기
-  // const userId = '019jkdkjbf1r0882939';
-  let userId: string | undefined;
-  useEffect(() => {
-    getInfoThunk();
-    if (userData) userId = userData.id;
-  }, []);
+  const { value, onChange, onKeyDown } = inputEvent;
 
-  // ! 삭제 후 다시 불러오기
-  useEffect(() => {
-    if (!deleteData) getCommentListThunk(contentId);
-  }, [deleteData]);
-
-  // ! 수정 후 다시 불러오기
-  useEffect(() => {
-    if (!updateData) {
-      getCommentListThunk(contentId);
-      setEditMode(false);
-    }
-  }, [updateData]);
+  // comment ...메뉴 클릭시 팝업
+  const handleClickReport = (e: MouseEvent) => {
+    modalController(e);
+    flyoutController(e);
+  };
+  const handleEditComment = () => {
+    dispatch(updateCommentThunk({ id: commentId, comment: value }));
+    setCommentValue(value); // comment update
+    setEditMode(false);
+  };
 
   return (
     <CommentStyle>
@@ -77,18 +56,14 @@ const Comment = ({ commentData }: Props) => {
         <div className="comment-top">
           <div className="comment-info">
             <div className="comment-author">{name}</div>
-            <span className="time-ago">
-              {moment(createdAt, 'YYYY-MM-DD').fromNow()}
-            </span>
+            <span className="time-ago">{moment(createdAt).fromNow()}</span>
           </div>
           {editmode ? (
             <span>
               <TextButton
                 disabled={false}
                 text="수정"
-                handler={() =>
-                  updateCommentThunk({ id: commentId, comment: value })
-                }
+                handler={handleEditComment}
               />
               <TextButton
                 disabled={false}
@@ -100,9 +75,9 @@ const Comment = ({ commentData }: Props) => {
             <span className="comment-action-trigger" onClick={flyoutController}>
               <FontAwesomeIcon icon={faEllipsisV} />
               {isOpen && (
-                <Flyout handler={flyoutController}>
+                <Flyout isOpen={isOpen} handler={flyoutController}>
                   <ul>
-                    {userId && userId === author.id ? (
+                    {userData && userData.id === user.id ? (
                       <>
                         <li
                           className="flyout-option"
@@ -112,13 +87,17 @@ const Comment = ({ commentData }: Props) => {
                         </li>
                         <li
                           className="flyout-option"
-                          onClick={() => deleteCommentThunk(commentId)}
+                          onClick={() =>
+                            dispatch(deleteCommentThunk(commentId))
+                          }
                         >
                           Delete
                         </li>
                       </>
                     ) : (
-                      <li className="flyout-option">신고</li>
+                      <li className="flyout-option" onClick={handleClickReport}>
+                        신고
+                      </li>
                     )}
                   </ul>
                 </Flyout>
@@ -134,9 +113,25 @@ const Comment = ({ commentData }: Props) => {
             disabled={false}
           />
         ) : (
-          <p>{comments}</p>
+          <p>
+            {commentValue.split('\n').map((el) => (
+              <>
+                {el}
+                <br />
+              </>
+            ))}
+          </p>
         )}
       </section>
+      <PopupNoTitle
+        isOpen={commentPopupIsOpen}
+        modalController={modalController}
+        isNoti={true}
+        description={
+          '서비스 준비중입니다. 빠른시일내로 준비하여 찾아뵙겠습니다.'
+        }
+        buttonHandler={modalController}
+      />
     </CommentStyle>
   );
 };

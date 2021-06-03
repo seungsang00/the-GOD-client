@@ -6,6 +6,7 @@ const Avatar = ({
   profileImage,
   size,
   title,
+  type,
   handler,
 }: AvatarProps): ReactElement => {
   return (
@@ -13,6 +14,7 @@ const Avatar = ({
       className="avatar-container"
       title={title}
       size={size}
+      type={type || 'round'}
       onClick={handler}
     >
       <img src={profileImage} alt="avatar" />

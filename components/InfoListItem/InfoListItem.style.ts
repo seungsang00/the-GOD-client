@@ -10,13 +10,14 @@ export const InfoListItemStyle = styled.div`
   .info-icon {
     width: 3rem;
     height: 3rem;
+    min-width: 3rem;
     font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: ${({ theme }) => theme.space.sm};
-    border-radius: ${({ theme }) => theme.borderRadius};
-    background-color: ${({ theme }) => theme.colors.lightgrey};
+    ${({ theme }) => theme.concept.glassmorphism.deep};
+    border-radius: 20px;
   }
 
   .info-text {

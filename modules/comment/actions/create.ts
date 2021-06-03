@@ -15,7 +15,7 @@ import { createAsyncAction } from 'typesafe-actions';
 export const createCommentRequest = async (comment: PostCommentReqBody) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.post<PostCommentResponse>(
-    `${API_ENDPOINT}/comments`,
+    `${API_ENDPOINT}/comment`,
     comment,
     {
       headers: { authorization: `BEARER ${accessToken}` },

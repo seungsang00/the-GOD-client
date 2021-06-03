@@ -16,7 +16,7 @@ export const Label = styled.label`
   width: 60px;
   height: 30px;
   border-radius: 100px;
-  background-color: #000839;
+  background-color: #2a283e;
   overflow: hidden;
   cursor: pointer;
   &:before,
@@ -32,11 +32,12 @@ export const Label = styled.label`
     transition: 0.5s ease;
   }
   &:before {
-    background-color: #ffa41b;
+    background-color: #d9e4f5;
+    background-image: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%);
   }
 
   &:after {
-    background-color: #000839;
+    background-color: #2a283e;
     left: -38px;
     transform: scale(0.00001);
   }
@@ -46,7 +47,8 @@ export const Checkbox = styled.input`
   display: none;
   &:checked + label {
     &:before {
-      background-color: #fff;
+      background-color: #d9e4f5;
+      background-image: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%);
       transform: translateX(30px);
     }
 

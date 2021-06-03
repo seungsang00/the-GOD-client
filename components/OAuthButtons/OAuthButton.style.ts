@@ -1,7 +1,7 @@
 import styled from '@styles/themed-components';
 
 export const ButtonOAuth = styled.button`
-  ${({ theme }) => theme.concept.glassmorphism};
+  ${({ theme }) => theme.concept.glassmorphism.deep};
   display: flex;
   align-items: center;
   justify-content: center;

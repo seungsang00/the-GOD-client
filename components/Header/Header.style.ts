@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 ${({ theme }) => theme.space.sm};
-  ${({ theme }) => theme.concept.glassmorphism}
+  ${({ theme }) => theme.concept.glassmorphism.normal};
   position: fixed;
   top: 0;
   left: 0;
@@ -38,7 +38,7 @@ export const SearchField = styled.section`
 
   & > div {
     align-items: flex-start !important;
-    ${({ theme }) => theme.zIndex.depth01 + ' !important'};
+    ${({ theme }) => theme.zIndex.depth03 + ' !important'};
     min-height: calc(100vh-60px);
     height: 100% !important;
     padding-top: 65px;
@@ -58,7 +58,12 @@ export const SearchField = styled.section`
       .modal-component-box {
         background-color: transparent !important;
         border: none;
+        padding: 0 ${({ theme }) => theme.space.md};
       }
     }
+  }
+
+  .modal-close {
+    display: none !important;
   }
 `;

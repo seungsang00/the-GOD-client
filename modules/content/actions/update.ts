@@ -14,34 +14,36 @@ import {
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
-export const updateRequest = async (content: ContentForm) => {
+export const updateContentRequest = async (content: ContentForm) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.post<PutContentResponse>(
     `${API_ENDPOINT}/content`,
     content,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;
 };
 export const updateBookmarkRequest = async (content: Content) => {
-  // TODO: 컨텐츠 업데이트 미구현
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.put<PutBookmarkResponse>(
     `${API_ENDPOINT}/user/bookmark`,
     content,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;
 };
 
-export const updateAsync = createAsyncAction(
+export const updateContentAsync = createAsyncAction(
   CONTENT_UPDATE,
   CONTENT_UPDATE_SUCCESS,
   CONTENT_UPDATE_ERROR
 )<null, PutContentResponse, AxiosError>();
 
-export const updateThunk = createAsyncThunk(updateAsync, updateRequest);
+export const updateContentThunk = createAsyncThunk(
+  updateContentAsync,
+  updateContentRequest
+);

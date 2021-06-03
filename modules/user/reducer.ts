@@ -5,6 +5,9 @@ import {
   USER_BOOKMARK_GET,
   USER_BOOKMARK_GET_ERROR,
   USER_BOOKMARK_GET_SUCCESS,
+  USER_BOOKMARK_UPDATE,
+  USER_BOOKMARK_UPDATE_ERROR,
+  USER_BOOKMARK_UPDATE_SUCCESS,
   USER_CONTENT_GET,
   USER_CONTENT_GET_ERROR,
   USER_CONTENT_GET_SUCCESS,
@@ -37,6 +40,11 @@ const initialState: UserState = {
     error: null,
   },
   bookmarks: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  bookmark: {
     data: null,
     loading: false,
     error: null,
@@ -99,7 +107,7 @@ const user = createReducer<UserState, UserAction>(initialState, {
   }),
   [USER_BOOKMARK_GET]: (state) => ({
     ...state,
-    bookmark: {
+    bookmarks: {
       loading: true,
       error: null,
       data: null,
@@ -116,6 +124,30 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [USER_BOOKMARK_GET_ERROR]: (state, action) => ({
     ...state,
     bookmarks: {
+      loading: false,
+      error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [USER_BOOKMARK_UPDATE]: (state) => ({
+    ...state,
+    bookmark: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [USER_BOOKMARK_UPDATE_SUCCESS]: (state, action) => ({
+    ...state,
+    bookmark: {
+      loading: false,
+      error: null,
+      data: action.payload.result, // 따로 수정하지 않음
+    },
+  }),
+  [USER_BOOKMARK_UPDATE_ERROR]: (state, action) => ({
+    ...state,
+    bookmark: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,

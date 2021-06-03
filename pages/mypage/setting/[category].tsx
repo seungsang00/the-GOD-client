@@ -3,6 +3,8 @@ import { Layout, MyPageLayout } from 'layouts';
 import { Sidebar } from '@components';
 import { useRouter } from 'next/dist/client/router';
 import { AccountSettings, ProfileSettings } from '@containers';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const SettingPage = () => {
   const router = useRouter();
@@ -51,7 +53,8 @@ const SettingPage = () => {
               id="settingCategoryHandler"
               onClick={() => setShowMenu(!showMenu)}
             >
-              Button(뒤로가기 OR 햄버거)
+              {/* Button(뒤로가기 OR 햄버거) */}
+              <FontAwesomeIcon icon={faChevronLeft} />
             </div>
           )}
 

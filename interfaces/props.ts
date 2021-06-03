@@ -14,20 +14,23 @@ export interface PerkProps {
 }
 
 export interface TextInputProps extends IInputEvent {
-  type: string;
-  disabled: boolean;
   id?: string;
+  type: string;
+  disabled?: boolean;
   placeholder?: string;
+  name?: string;
 }
 
 export interface AvatarProps extends AvatarContainerProps {
   profileImage: string;
+  type?: 'round' | 'square';
   title?: string;
   handler?: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 export interface AvatarContainerProps {
   size: number;
+  type?: 'round' | 'square';
 }
 
 export interface BadgeProps extends BadgeContainerProps {
@@ -129,4 +132,24 @@ export interface CommentInputProps {
     key,
   }: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onClick?: () => void;
+}
+
+export interface PopupContentProps {
+  isNoti: boolean;
+  description: string;
+  buttonText?: string;
+  buttonHandler: (e: React.MouseEvent | undefined) => void;
+}
+
+export interface PopupProps extends PopupContentProps {
+  isOpen: boolean;
+  modalController: (e: React.MouseEvent | undefined) => void;
+}
+
+export interface PopupWithTitleContentProps extends PopupContentProps {
+  title: string;
+}
+
+export interface PopupWithTitleProps extends PopupProps {
+  title: string;
 }

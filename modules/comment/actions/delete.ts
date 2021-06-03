@@ -11,9 +11,9 @@ import { createAsyncAction } from 'typesafe-actions';
 export const deleteCommentRequest = async (commentId: string) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.delete<{ message: string }>(
-    `${API_ENDPOINT}/comments`,
+    `${API_ENDPOINT}/comment`,
     {
-      headers: { authorization: accessToken },
+      headers: { authorization: `BEARER ${accessToken}` },
       data: { id: commentId },
     }
   );
@@ -24,7 +24,7 @@ export const deleteCommentAsync = createAsyncAction(
   COMMENT_DELETE,
   COMMENT_DELETE_SUCCESS,
   COMMENT_DELETE_ERROR
-)<null, { message: string }, AxiosError>();
+)<null, { result: { id: string }; message: string }, AxiosError>();
 
 export const deleteCommentThunk = createAsyncThunk(
   deleteCommentAsync,

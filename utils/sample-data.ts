@@ -3,45 +3,49 @@ import { IComment, Content, User, Artists } from '@interfaces';
 export const sampleCommentsData: IComment[] = [
   {
     id: 'c019jkdkjbf1r088293902kjer',
-    author: {
+    user: {
       id: '019jkdkjbf1r0882939',
       name: 'testUser',
       profileImage: 'https://bit.ly/3oqUbfM',
     },
-    comments: 'good',
+    comment: `ᴛʜᴇ ᴠᴇʀʏ ʟᴏᴠᴇʟʏ ᴅᴀʏ, ᴍᴀʏ 𝟸𝟿ᴛʜ \n
+    제이크의 20번째 생일을 맞이해서 \n
+    카페이벤트와 미니전시회를 합니다!! \n
+    후니네집에 많이 놀러오세요!! \n
+    ɪɴ sᴇᴏᴜʟ & ɪɴ ʙᴀɴɢᴋᴏᴋ `,
     createdAt: '2021-05-13 16:24:02',
   },
   {
     id: 'c019jkqoeidf1r088293902kjer',
-    author: {
+    user: {
       id: '019jkdkjbf1r0882940',
       name: 'sim',
       profileImage:
         'https://i.pinimg.com/280x280_RS/97/de/54/97de54c12e0bdfa5d334a83f6b682f63.jpg',
     },
-    comments: 'very good',
+    comment: 'very good',
     createdAt: '2021-05-17 16:18:02',
   },
   {
     id: 'c019jkdsldknflskfnreone293902kjer',
-    author: {
+    user: {
       id: '019jkdkjbf1r0882990',
       name: 'reone',
       profileImage:
         'https://i.pinimg.com/736x/f1/2c/f2/f12cf2ff79a75193294dac1ee281e80f.jpg',
     },
-    comments: 'super good',
+    comment: 'super good',
     createdAt: '2021-05-21 17:24:02',
   },
   {
     id: 'c019jkskdfowiehfr088293902kjer',
-    author: {
+    user: {
       id: '019jkdkjbf1r0982039',
       name: 'engene',
       profileImage:
         'https://ih1.redbubble.net/image.2116095556.4251/st,small,507x507-pad,600x600,f8f8f8.jpg',
     },
-    comments: 'amazing',
+    comment: 'amazing',
     createdAt: '2021-05-25 11:24:02',
   },
 ];
@@ -419,7 +423,7 @@ export const sampleContentListData: Content[] = [
     title: '엔하이픈 제이크 생카',
     tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
     description:
-      '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+      'ᴛʜᴇ ᴠᴇʀʏ ʟᴏᴠᴇʟʏ ᴅᴀʏ, ᴍᴀʏ 𝟸𝟿ᴛʜ  Heavy minus sign  지훈이의 23번째 생일을 맞이해서  카페이벤트와 미니전시회를 합니다!!  Potted plant후니네집에 많이 놀러오세요!!  Heavy minus sign  Balloonɪɴ sᴇᴏᴜʟ   &   Balloonɪɴ ʙᴀɴɢᴋᴏᴋ ',
     images: [
       'https://pbs.twimg.com/media/EkSaUUAVgAE--Kc?format=jpg&name=large',
       'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
@@ -463,22 +467,25 @@ export const sampleContentListData: Content[] = [
 ];
 
 export const sampleContentData: Content = {
-  id: '1',
+  id: '8',
   artist: {
-    id: 'enhypen_jay',
-    name: 'Jay',
+    id: 'enhypen_jake',
+    name: 'Jake',
     group: 'ENHYPEN',
     profileImage: '',
   },
-  title: '엔하이픈 제이 데뷔 기념 카페',
+  title: '엔하이픈 제이크 생카',
   tags: ['ENHYPEN', 'BORDER_CARNIVAL', 'Drunk-Dazed', 'FEVER'],
-  description:
-    '엔하이픈 컴백 기념 컵홀더 이벤트를 진행합니다. 서울에서 이벤트를 준비했습니다. 자세한 내용은 정보를 확인해주세요',
+  description: `ᴛʜᴇ ᴠᴇʀʏ ʟᴏᴠᴇʟʏ ᴅᴀʏ, ᴍᴀʏ 𝟸𝟿ᴛʜ \n
+    제이크의 20번째 생일을 맞이해서 \n
+    카페이벤트와 미니전시회를 합니다!! \n
+    후니네집에 많이 놀러오세요!! \n
+    ɪɴ sᴇᴏᴜʟ & ɪɴ ʙᴀɴɢᴋᴏᴋ `,
   images: [
-    'https://pbs.twimg.com/media/EnoGgKDUwAEPORW?format=jpg&name=large',
-    'https://pbs.twimg.com/media/EnoGgKDVkAEq_f5?format=jpg&name=large',
-    'https://pbs.twimg.com/media/EnoGgKDVoAEehLT?format=jpg&name=large',
-    'https://pbs.twimg.com/media/EnoGgKQVgAAgsOm?format=jpg&name=medium',
+    'https://pbs.twimg.com/media/EkSaUUAVgAE--Kc?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EkSaVR3VoAAb4hd?format=jpg&name=large',
+    'https://pbs.twimg.com/media/EkSaUzfU0AExb7l?format=jpg&name=large',
   ],
   date: {
     start: '2021-05-25',
@@ -492,8 +499,8 @@ export const sampleContentData: Content = {
     storeName: '감탄커피',
     roadAddress: '서울 강남구 테헤란로 522 지하 1층',
     location: {
-      lat: 37.0040455,
-      lng: 126.0040014,
+      lat: 37.5079045982256,
+      lng: 127.061346274941,
     },
   },
   mobile: '070-0000-0000',

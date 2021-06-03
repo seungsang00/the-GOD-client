@@ -31,7 +31,7 @@ export const FlyoutStyle = styled.div`
 
       &:hover {
         border-radius: ${({ theme }) => theme.borderRadius};
-        background-color: ${({ theme }) => theme.colors.lightgrey};
+        background-color: ${({ theme }) => theme.colors.gray.gray04};
       }
     }
   }

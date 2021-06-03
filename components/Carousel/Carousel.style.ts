@@ -14,7 +14,7 @@ export default styled.div<{
     height: 100%;
   }
   .carousel-content-container {
-    z-index: 998;
+    z-index: ${({ theme }) => theme.zIndex.depth03};
     width: 100%;
     height: 100%;
     display: flex;
@@ -46,6 +46,10 @@ export default styled.div<{
       display: flex;
       justify-content: center;
       align-items: center;
+
+      img {
+        border-radius: ${({ theme }) => theme.borderRadius};
+      }
     }
   }
   .arrow-box {
@@ -56,13 +60,13 @@ export default styled.div<{
     top: ${(props) => `${props.navPosition / 2 - 15}px`};
     button {
       border-radius: 50%;
-      box-shadow: 0 0 22px 4px rgb(122 122 122 / 60%);
       width: 30px;
+      height: 30px;
       z-index: 999;
       position: absolute;
-      background-color: white;
-      height: 30px;
+      padding: 0;
       font-size: 24px;
+      ${({ theme }) => theme.concept.glassmorphism.deep};
       &.left {
         margin-left: -10px;
         transition: margin-left 0.5s;
@@ -85,16 +89,17 @@ export default styled.div<{
     display: flex;
     position: absolute;
     justify-content: center;
-    bottom: 4px;
+    bottom: 10px;
     width: 100%;
     margin-top: ${({ theme }) => theme.space.xs};
     & > div {
-      font-size: 18px;
+      color: ${({ theme }) => theme.colors.primary.normal};
+      font-size: 7px;
       ${({ theme }) => theme.media.desktop} {
-        font-size: 18px;
+        font-size: 7px;
       }
       ${({ theme }) => theme.media.tablet} {
-        font-size: 14px;
+        font-size: 5px;
       }
       padding: 0 5px;
       opacity: 0.3;

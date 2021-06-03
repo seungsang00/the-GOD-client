@@ -10,7 +10,7 @@ const Modal = ({
 }: ModalProps): ReactElement | null => {
   if (!isOpen) return null;
   return (
-    <ModalStyle onClick={handler}>
+    <ModalStyle onClick={handler} className="modal-overlay">
       <div className="modal-box">
         <div className="modal-close" onClick={handler}>
           <FontAwesomeIcon icon="times" />

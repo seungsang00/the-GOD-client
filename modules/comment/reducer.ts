@@ -130,6 +130,13 @@ const comment = createReducer<CommentReducer, CommentAction>(initialState, {
   }),
   [COMMENT_DELETE_SUCCESS]: (state, action) => ({
     ...state,
+    list: {
+      loading: false,
+      error: null,
+      data:
+        state.list.data &&
+        state.list.data.filter((el) => el.id !== action.payload.result.id),
+    },
     delete: {
       loading: false,
       error: null,
