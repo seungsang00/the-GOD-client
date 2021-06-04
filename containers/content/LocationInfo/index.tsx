@@ -40,6 +40,7 @@ const LocationInfo = ({
     }
   }
   const [_mapModule, setMapModule] = useState<any>(null);
+  console.log(_mapModule);
 
   useEffect(() => {
     setMapModule(new MapModule());

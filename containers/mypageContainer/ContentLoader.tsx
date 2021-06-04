@@ -1,8 +1,10 @@
+import React from 'react';
+import { useRouter } from 'next/router';
 import { Carousel, ContentCard, DataNullLink } from '@components';
 import { ContentLoaderPropsType } from '@interfaces';
-import React from 'react';
 
 const ContentLoader = ({ data, type }: ContentLoaderPropsType) => {
+  const router = useRouter();
   const nullData = {
     myContent: {
       title: '내가 등록한 이벤트는 여기에서 확인할 수 있어요',
@@ -17,6 +19,9 @@ const ContentLoader = ({ data, type }: ContentLoaderPropsType) => {
       linkTo: '/',
     },
   };
+  const moveToContentPage = (id: string) => {
+    router.push(`/content/${id}`);
+  };
   if (!data) {
     return <DataNullLink {...nullData[type]} />;
   }
@@ -27,6 +32,7 @@ const ContentLoader = ({ data, type }: ContentLoaderPropsType) => {
           key={`content_${content.id}`}
           contentData={content}
           isOpen={true}
+          handleClick={() => moveToContentPage(content.id)}
         />
       ))}
     </Carousel>

@@ -1,5 +1,4 @@
 import { Comment, CommentInput } from '@components';
-import { sampleCommentsData } from '@utils/sample-data';
 import useTextInput from 'hooks/useTextInput';
 import { createCommentThunk, getCommentListThunk } from 'modules/comment';
 import { RootState } from 'modules/reducer';
@@ -34,7 +33,7 @@ const Comments = () => {
     }
   }, [error]);
   useEffect(() => {
-    inputEvent.setValue(''); // 댓글추가가 정상적으로 이루어지면 댓글 인풋창 초기화
+    inputEvent.setValue && inputEvent.setValue(''); // 댓글추가가 정상적으로 이루어지면 댓글 인풋창 초기화
     if (id) dispatch(getCommentListThunk(id));
   }, [newCommentData]);
 
