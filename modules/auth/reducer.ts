@@ -14,6 +14,9 @@ import {
   AUTH_SIGNOUT,
   AUTH_SIGNOUT_ERROR,
   AUTH_SIGNOUT_SUCCESS,
+  AUTH_GOOGLE,
+  AUTH_GOOGLE_SUCCESS,
+  AUTH_GOOGLE_ERROR,
   AUTH_SIGNUP,
   AUTH_SIGNUP_ERROR,
   AUTH_SIGNUP_SUCCESS,
@@ -211,6 +214,30 @@ const auth = createReducer<AuthReducer, AuthAction>(initialState, {
     login: {
       loading: false,
       error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [AUTH_GOOGLE]: (state) => ({
+    ...state,
+    login: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [AUTH_GOOGLE_SUCCESS]: (state, action) => ({
+    ...state,
+    login: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [AUTH_GOOGLE_ERROR]: (state, action) => ({
+    ...state,
+    login: {
+      loading: false,
+      error: action.payload.response,
       data: null,
     },
   }),

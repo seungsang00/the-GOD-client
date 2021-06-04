@@ -90,7 +90,7 @@ const ContentPageContainer = ({
   };
 
   useEffect(() => {
-    dispatch(getInfoThunk()); // 사용자 정보 요청
+    if (window) localStorage.getItem('accessToken') && dispatch(getInfoThunk()); // 사용자 정보 요청
   }, []);
 
   return (

@@ -1,5 +1,5 @@
 import { GoogleLoginButton } from '@components';
-import { googelAuthThunk } from 'modules/auth';
+import { googleAuthThunk } from 'modules/auth';
 import React from 'react';
 import {
   GoogleLoginResponse,
@@ -14,8 +14,9 @@ const GoogleLoader = () => {
     <GoogleLoginButton
       clientId={GOOGLE_CLIENT_ID}
       onSubmit={(res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+        console.log(res);
         if ('tokenId' in res) {
-          dispatch(googelAuthThunk(res.tokenId));
+          dispatch(googleAuthThunk(res.tokenId));
         }
       }}
     />
