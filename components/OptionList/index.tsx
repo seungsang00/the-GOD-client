@@ -30,7 +30,7 @@ const OptionList = ({
   return (
     <OptionListStyle>
       {list &&
-        list.map((el: string | IArtist | IGroupArtist | IMember) => {
+        (list as Array<string | IGroupArtist | IArtist | IMember>).map((el) => {
           const value = typeof el === 'string' ? el : el.name;
           return (
             <li

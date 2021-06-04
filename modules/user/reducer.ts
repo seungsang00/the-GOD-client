@@ -1,5 +1,5 @@
 import { createReducer } from 'typesafe-actions';
-import { User, UserState } from '@interfaces';
+import { UserState } from '@interfaces';
 import { UserAction } from './actions';
 import {
   USER_BOOKMARK_GET,

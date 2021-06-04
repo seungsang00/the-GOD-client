@@ -25,7 +25,7 @@ const ProfileSettings = ({
 }) => {
   const dispatch = useDispatch();
   const { disabled, disabledController } = useDisabled(true);
-  const [value, setValue, _error] = useValidInput(
+  const [value, setValue] = useValidInput(
     name,
     verifyUsername,
     usernameStandard
