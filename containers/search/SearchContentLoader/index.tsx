@@ -4,7 +4,10 @@ import { createSharedContentThunk } from 'modules/content';
 import { RootState } from 'modules/reducer';
 import React, { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SearchContentLoaderStyle } from './SearchContentLoader.style';
+import {
+  SearchContentLoaderStyle,
+  ContentListWrapper,
+} from './SearchContentLoader.style';
 import SearchMapContainer from './SearchMapContainer';
 
 const SearchContentLoader = ({
@@ -46,9 +49,8 @@ const SearchContentLoader = ({
 
   return (
     <SearchContentLoaderStyle>
-      <div
+      <ContentListWrapper
         style={{
-          zIndex: 99,
           overflow: 'scroll',
         }}
       >
@@ -68,8 +70,8 @@ const SearchContentLoader = ({
             handleClick={handleCardClick}
           />
         ))}
-      </div>
-      <div>
+      </ContentListWrapper>
+      <div className="root-mode-trigger">
         <GuideButton
           active={isPath}
           activeHandler={() => setIsPath((state) => !state)}

@@ -1,12 +1,33 @@
 import styled from '@styles/themed-components';
 
+export const ContentListWrapper = styled.div`
+  width: 410px;
+  z-index: 99 !important;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: absolute;
+  top: 60px;
+  height: 100%;
+  ${({ theme }) => theme.concept.glassmorphism.light};
+  padding: ${({ theme }) => theme.space.sm};
+
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  ::-webkit-scrollbar-button:start:decrement,
+  ::-webkit-scrollbar-button:end:increment {
+    /*  스크롤의 화살표가 포함된 영역   */
+    display: none;
+  }
+`;
+
 export const SearchContentLoaderStyle = styled.section`
-  width: 400px;
-  overflow: scroll;
   height: 100%;
   & > div {
-    position: absolute;
-    top: 60px;
     &:first-child {
       max-height: calc(100vh - 60px);
       left: 0;
@@ -24,18 +45,6 @@ export const SearchContentLoaderStyle = styled.section`
       z-index: 2;
     }
   }
-
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
-    width: 7px;
-  }
-  ::-webkit-scrollbar-thumb {
-    border-radius: 999px;
-    background-color: rgba(0, 0, 0, 0.2);
-  }
-  ::-webkit-scrollbar-button:start:decrement,
-  ::-webkit-scrollbar-button:end:increment {
-    /*  스크롤의 화살표가 포함된 영역   */
-    display: none;
+  .root-mode-trigger {
   }
 `;
