@@ -26,8 +26,9 @@ const SearchContentLoader = ({
   };
   const contentList = restContents;
   if (
-    !restContents ||
-    (restContents.length === 0 && selectedContents.length === 0)
+    restContents &&
+    restContents.length === 0 &&
+    selectedContents.length === 0
   ) {
     return <DataNullLink {...nullData} />;
   }
@@ -62,14 +63,15 @@ const SearchContentLoader = ({
             handleClick={handleCardClick}
           />
         ))}
-        {restContents.map((content) => (
-          <ContentCard
-            key={`r_content_${content.id}`}
-            contentData={content}
-            isOpen={false}
-            handleClick={handleCardClick}
-          />
-        ))}
+        {restContents &&
+          restContents.map((content) => (
+            <ContentCard
+              key={`r_content_${content.id}`}
+              contentData={content}
+              isOpen={false}
+              handleClick={handleCardClick}
+            />
+          ))}
       </ContentListWrapper>
       <div className="root-mode-trigger">
         <GuideButton
