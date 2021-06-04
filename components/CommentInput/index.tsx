@@ -14,7 +14,7 @@ const CommentInput = ({ handler, value, onChange }: CommentInputProps) => {
   const { data } = useSelector((state: RootState) => state.user.userProfile);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getInfoThunk());
+    if (window) localStorage.getItem('accessToken') && dispatch(getInfoThunk()); // 사용자 정보 요청
   }, []);
 
   return (

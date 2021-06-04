@@ -1,6 +1,6 @@
 // import App from 'next/app';
 import type { AppProps /* AppContext */ } from 'next/app';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from '../modules/store';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
@@ -22,9 +22,6 @@ import {
   faSort,
 } from '@fortawesome/free-solid-svg-icons';
 import { ThemeProvider } from '@styles/themeProvider';
-import { RootState } from 'modules/reducer';
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 library.add(
   faTimes,
   faSort,
@@ -46,14 +43,6 @@ library.add(
 );
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  const { error } = useSelector(({ auth }: RootState) => auth.token);
-  useEffect(() => {
-    if (error) {
-      localStorage.removeItem('accessToken');
-      router.replace('/');
-    }
-  }, [error]);
   return (
     <ThemeProvider>
       <Provider store={store}>

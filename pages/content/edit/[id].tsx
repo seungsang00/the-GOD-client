@@ -77,7 +77,14 @@ const ContentEditPage = () => {
     dispatch(inputId(content.id));
     dispatch(inputTitle(content.title));
     dispatch(inputDescription(content.description));
-    dispatch(inputArtist(content.artist));
+    dispatch(
+      inputArtist({
+        id: content.artist.id,
+        name: content.artist.name,
+        type: content.artist.group ? 'group' : 'solo',
+        profileImage: content.artist.profileImage,
+      })
+    );
     dispatch(inputTags(content.tags));
     dispatch(inputDates(content.date));
     dispatch(inputTimes(content.time));

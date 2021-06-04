@@ -67,7 +67,7 @@ const initialState: ContentReducer = {
   },
   form: {
     id: '',
-    artist: { name: '', group: '', id: '', profileImage: '' },
+    artist: { name: '', type: 'solo', id: '', profileImage: '' },
     title: '',
     tags: [],
     description: '',

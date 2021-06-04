@@ -178,6 +178,7 @@ export type GetSharedContentResponse = AxiosResponse<{
 }>;
 export type GetContentPathResponse = AxiosResponse<SharedContent[]>;
 export type GetUserContentResponse = AxiosResponse<Content[]>;
+export type loginResponse = AxiosResponse<{ accessToken: string }>;
 export type GetBookmarkResponse = AxiosResponse<Content[]>;
 export type GetFollowResponse = AxiosResponse<Artist[]>;
 // comment

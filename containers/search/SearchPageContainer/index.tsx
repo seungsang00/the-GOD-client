@@ -13,17 +13,23 @@ const SearchPageContainer = () => {
   const { loading, error, data } = useSelector(
     ({ content }: RootState) => content.list
   );
-  const contentList = data?.contents;
 
   // const [focusedID, setFocusedID] = useState<string | null>(null);
   const [isPath, setIsPath] = useState<boolean>(false);
   const [sortedList, setSortedList] = useState<{
     selectedContents: Content[];
     restContents: Content[];
-  }>({ selectedContents: [], restContents: contentList as Content[] });
-
+  }>({ selectedContents: [], restContents: [] });
+  useEffect(() => {
+    if (data) {
+      setSortedList({
+        selectedContents: [],
+        restContents: data.contents,
+      });
+    }
+  }, [data]);
   const sortList = (id: string) => {
-    if (!isPath && contentList) {
+    if (!isPath && data?.contents) {
       setSortedList((state) => {
         const checkItem = state.restContents.find(
           (content) => content.id === id
@@ -31,13 +37,13 @@ const SearchPageContainer = () => {
         if (checkItem) {
           return {
             restContents: [
-              ...contentList.filter((content) => content.id !== id),
+              ...data?.contents.filter((content) => content.id !== id),
             ],
             selectedContents: [checkItem],
           };
         } else {
           return {
-            restContents: [...contentList],
+            restContents: [...data?.contents],
             selectedContents: [],
           };
         }
@@ -74,7 +80,7 @@ const SearchPageContainer = () => {
   const resetHadler = () => {
     setSortedList({
       selectedContents: [],
-      restContents: contentList as Content[],
+      restContents: data?.contents as Content[],
     });
   };
   useMemo(() => {
@@ -91,7 +97,7 @@ const SearchPageContainer = () => {
         dateEnd: dateEnd as string,
       })
     );
-  }, []);
+  }, [router.query]);
 
   useEffect(() => {
     if (error) alert(error);
@@ -100,9 +106,9 @@ const SearchPageContainer = () => {
   return (
     <main>
       {loading ? (
-        <Loading />
-      ) : !data || (contentList && contentList.length === 0) ? (
-        <NoContent />
+        <div>loading...</div>
+      ) : !data || (data?.contents && data?.contents.length === 0) ? (
+        <div>null data</div>
       ) : (
         <SearchContentLoader
           selectedContents={sortedList.selectedContents}

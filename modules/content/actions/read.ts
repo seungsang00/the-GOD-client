@@ -23,12 +23,15 @@ import { createAction, createAsyncAction } from 'typesafe-actions';
 
 export const getContentRequest = async (id: string) => {
   const accessToken = localStorage.getItem('accessToken');
-  console.log(`가니`, accessToken);
+  const option = accessToken
+    ? {
+        headers: { authorization: `BEARER ${accessToken}` },
+      }
+    : {};
+  console.log(option);
   const result = await axios.get<GetContentResponse>(
     `${API_ENDPOINT}/content?id=${id}`,
-    {
-      headers: { authorization: `BEARER ${accessToken}` },
-    }
+    option
   );
   return result.data;
 };
@@ -39,11 +42,14 @@ export const getContentListRequest = async ({
   dateEnd,
 }: ContentQuery) => {
   const accessToken = localStorage.getItem('accessToken');
+  const option = accessToken
+    ? {
+        headers: { authorization: `BEARER ${accessToken}` },
+      }
+    : {};
   const result = await axios.get<GetContentListResponse>(
     `${API_ENDPOINT}/content/query?artistId=${artistId}&location=${location}&dateStart=${dateStart}&dateEnd=${dateEnd}`,
-    {
-      headers: { authorization: `BEARER ${accessToken}` },
-    }
+    option
   );
   return result.data;
 };
