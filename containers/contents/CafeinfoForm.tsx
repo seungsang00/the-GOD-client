@@ -10,8 +10,9 @@ import {
   TextArea,
   TextInput,
 } from '@components';
+import { IArtist, IGroupArtist, IMember } from '@interfaces';
 import { nullChecker } from '@utils/contentUtils';
-import { sampleSearchInputOptions } from '@utils/sample-data';
+import { getArtistThunk } from 'modules/artist';
 import {
   inputArtist,
   inputDescription,
@@ -31,9 +32,10 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
     description,
     images: preImages,
   } = useSelector(({ content }: RootState) => content.form);
-  const [artists, setArtists] = useState(
-    Object.keys(sampleSearchInputOptions.artist)
-  );
+  const { data } = useSelector(({ artist }: RootState) => artist.read);
+  const [artists, setArtists] =
+    useState<(IGroupArtist | IArtist | IMember)[]>();
+  const [artistName, setArtistName] = useState('');
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(false);
   const [images, setImages] =
@@ -70,6 +72,17 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
       fileListToArray(e.target.files);
     }
   };
+
+  useEffect(() => {
+    dispatch(getArtistThunk());
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setArtists(data);
+    }
+  }, [data]);
+
   useMemo(() => {
     setImages(preImages);
   }, [preImages]);
@@ -82,35 +95,47 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
     <>
       <section>
         <DropdownTrigger
-          value={artist.name}
+          value={artistName}
           placeholder="아티스트 선택"
           onClick={() => {
-            dispatch(inputArtist({ ...artist, name: '' }));
+            dispatch(
+              inputArtist({ name: '', id: '', profileImage: '', type: 'solo' })
+            );
+            data && setArtists(data);
+            setArtistName('');
             setIsOpen(!isOpen);
           }}
         />
         <span className="dropdown">
           <Dropdown visible={isOpen}>
-            <OptionList
-              list={artists}
-              listHandler={(el) => {
-                if (sampleSearchInputOptions.artist[el]) {
-                  setArtists(sampleSearchInputOptions.artist[el]);
-                } else {
-                  setArtists(Object.keys(sampleSearchInputOptions.artist));
-                  setIsOpen(false);
-                }
-              }}
-              stateHandler={(el) => {
-                if (artist.name.length === 0) {
-                  dispatch(inputArtist({ ...artist, name: el }));
-                } else {
-                  dispatch(
-                    inputArtist({ ...artist, name: artist.name + ' ' + el })
-                  );
-                }
-              }}
-            />
+            {artists && (
+              <OptionList
+                list={artists}
+                listHandler={(key) => {
+                  const selectedArtist = artists.filter(
+                    (el) => el.name === key
+                  )[0] as IGroupArtist;
+                  if (selectedArtist && selectedArtist.type === 'group') {
+                    const { member } = selectedArtist as IGroupArtist;
+                    setArtists(member);
+                  } else {
+                    dispatch(inputArtist(selectedArtist));
+                    data && setArtists(data);
+                    setIsOpen(false);
+                  }
+                }}
+                stateHandler={(key) => {
+                  const selectedArtist = artists.filter(
+                    (el) => el.name === key
+                  )[0] as IGroupArtist;
+                  if (artistName) {
+                    setArtistName(selectedArtist.name);
+                  } else {
+                    setArtistName((state) => state + ' ' + selectedArtist.name);
+                  }
+                }}
+              />
+            )}
           </Dropdown>
         </span>
       </section>
