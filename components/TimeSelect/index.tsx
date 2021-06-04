@@ -1,10 +1,4 @@
-import React, {
-  MouseEvent,
-  ReactElement,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { MouseEvent, ReactElement, useMemo, useState } from 'react';
 import { hours, minutes } from '@utils/time';
 import { TimeSelectProps } from 'interfaces/props';
 import { TimeSelectBox } from './TimeSelect.style';
