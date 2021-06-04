@@ -30,6 +30,9 @@ import {
   AUTH_KAKAO_TOKEN,
   AUTH_KAKAO_TOKEN_SUCCESS,
   AUTH_KAKAO_TOKEN_ERROR,
+  AUTH_TWITTER,
+  AUTH_TWITTER_SUCCESS,
+  AUTH_TWITTER_ERROR,
 } from '../actionTypes';
 
 // default Store
@@ -288,6 +291,30 @@ const auth = createReducer<AuthReducer, AuthAction>(initialState, {
     },
   }),
   [AUTH_KAKAO_ERROR]: (state, action) => ({
+    ...state,
+    login: {
+      loading: false,
+      error: action.payload.response,
+      data: null,
+    },
+  }),
+  [AUTH_TWITTER]: (state) => ({
+    ...state,
+    login: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [AUTH_TWITTER_SUCCESS]: (state, action) => ({
+    ...state,
+    login: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [AUTH_TWITTER_ERROR]: (state, action) => ({
     ...state,
     login: {
       loading: false,
