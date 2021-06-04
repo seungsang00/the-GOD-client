@@ -56,14 +56,20 @@ const MyPage = () => {
       <MyPageLayout>
         {viewWidth && showMenu ? (
           <div id="userInfoLeft">
-            <Avatar
-              profileImage={
-                userProfile.data?.profileImage || '/images/avatar_default.jpg'
-              }
-              size={5}
-            />
-            <h3>{userProfile.data?.name}</h3>
-            <span>{userProfile.data?.email}</span>
+            <div className="profile-image">
+              <Avatar
+                profileImage={
+                  userProfile.data?.profileImage || '/images/avatar_default.jpg'
+                }
+                type="square"
+                size={7}
+              />
+            </div>
+            <p className="email">{userProfile.data?.email}</p>
+            <h3>
+              <span className="username">{userProfile.data?.name}</span>님
+            </h3>
+            <h3 className="hello">덕질하기 좋은 날이죠?</h3>
           </div>
         ) : null}
         <main>

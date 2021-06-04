@@ -56,7 +56,12 @@ export const MyPageStyle = styled.article`
   main {
     width: 70%;
     padding: 0 ${({ theme }) => theme.space.md};
-    padding-left: ${({ theme }) => theme.space.xl};
+    padding-left: 7vw;
+
+    h2 {
+      font-size: 1.45rem;
+      font-family: 'GmarketSansB';
+    }
   }
 
   #settingCategoryHandler {
@@ -78,11 +83,43 @@ export const MyPageStyle = styled.article`
   }
 
   #userInfoLeft {
+    min-width: 16vw;
+    max-height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     padding: ${({ theme }) => theme.space.md} 0;
+    ${({ theme }) => theme.concept.glassmorphism.light};
+    border-radius: ${({ theme }) => theme.borderRadius};
+    border-radius: 40px;
+    background-color: ${({ theme }) => theme.colors.primary.normal};
+    background-image: linear-gradient(to bottom right, #aa5aff, #9b36fe);
+    border: 2px solid ${({ theme }) => theme.colors.primary.hover};
+    font-family: 'GmarketSansM';
+    color: #fff;
+
+    .profile-image {
+      margin-bottom: ${({ theme }) => theme.space.sm};
+    }
+
+    h3 {
+      line-height: 1.5rem;
+      .username {
+        font-family: 'GmarketSansB';
+        font-size: 1.2rem;
+      }
+      &.hello {
+        font-size: 1.1rem;
+      }
+    }
+
+    .email {
+      font-family: 'GmarketSansM';
+      font-size: 0.9rem;
+      margin-bottom: ${({ theme }) => theme.space.sm};
+      color: ${({ theme }) => theme.colors.gray.gray03};
+    }
   }
 
   #userInfoTop {

@@ -1,7 +1,10 @@
 import { Badge, ImagesContainer } from '@components';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ContentCardProps } from '@interfaces';
 import { checkOpenNow } from '@utils/contentUtils';
 import moment from 'moment';
+import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import ContentCardStyle, { TimeBadge } from './ContentCard.style';
 
@@ -39,7 +42,21 @@ const ContentCard = ({
         </TimeBadge>
       </p>
       <p className="content-description">{description}</p>
-      {isOpen && <ImagesContainer title={title} images={images} max={3} />}
+      {isOpen && (
+        <>
+          <ImagesContainer title={title} images={images} max={3} />
+          <div className="content-more-link">
+            <Link href={`/content/${id}`}>
+              <a>
+                <span className="link-icon">
+                  <FontAwesomeIcon icon={faPlus} />
+                </span>
+                <span className="link-text">더보기</span>
+              </a>
+            </Link>
+          </div>
+        </>
+      )}
     </ContentCardStyle>
   );
 };

@@ -1,5 +1,19 @@
 import styled from '@styles/themed-components';
 
+export const DificientAlert = styled.div`
+  .modal-overlay {
+    top: -8px;
+    left: -8px;
+    background-color: transparent;
+    ${({ theme }) => theme.concept.glassmorphism.light};
+    .modal-box {
+      max-width: 340px !important;
+      box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1) !important;
+      background-color: ${({ theme }) => theme.colors.bg.normal + '!important'};
+    }
+  }
+`;
+
 export const MainSearchFormContainer = styled.article`
   .main__searchform {
     justify-content: space-between;
@@ -38,7 +52,7 @@ export const MainSearchFormContainer = styled.article`
         border: 1px solid rgba(255, 255, 255, 0.05);
         background: rgba(255, 255, 255, 0.05);
         &:hover {
-          color: ${({ theme }) => theme.colors.primary};
+          color: ${({ theme }) => theme.colors.primary.normal};
         }
         &:active {
           background: rgba(255, 255, 255, 0.01);

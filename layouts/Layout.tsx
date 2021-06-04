@@ -51,9 +51,14 @@ const Layout = ({
   const handleAvatarClick = () => {
     router.push('/mypage');
   };
+
   useEffect(() => {
-    if (!data) dispatch(getInfoThunk());
+    const accessToken = window.localStorage.getItem('accessToken');
+    if (accessToken && !data) {
+      dispatch(getInfoThunk());
+    }
   }, []);
+
   return (
     <>
       <Head>
