@@ -22,7 +22,11 @@ const SearchContentLoader = ({
     linkTo: '/',
   };
   const contentList = restContents;
-  if (restContents.length === 0 && selectedContents.length === 0) {
+  if (
+    restContents &&
+    restContents.length === 0 &&
+    selectedContents.length === 0
+  ) {
     return <DataNullLink {...nullData} />;
   }
   const { shared } = useSelector(({ content }: RootState) => content);
@@ -57,14 +61,15 @@ const SearchContentLoader = ({
             handleClick={handleCardClick}
           />
         ))}
-        {restContents.map((content) => (
-          <ContentCard
-            key={`r_content_${content.id}`}
-            contentData={content}
-            isOpen={false}
-            handleClick={handleCardClick}
-          />
-        ))}
+        {restContents &&
+          restContents.map((content) => (
+            <ContentCard
+              key={`r_content_${content.id}`}
+              contentData={content}
+              isOpen={false}
+              handleClick={handleCardClick}
+            />
+          ))}
       </div>
       <div>
         <GuideButton
