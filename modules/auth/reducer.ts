@@ -24,6 +24,12 @@ import {
   AUTH_TOKEN_ERROR,
   AUTH_TOKEN_IS_EXPIRE,
   AUTH_TOKEN_SUCCESS,
+  AUTH_KAKAO,
+  AUTH_KAKAO_SUCCESS,
+  AUTH_KAKAO_ERROR,
+  AUTH_KAKAO_TOKEN,
+  AUTH_KAKAO_TOKEN_SUCCESS,
+  AUTH_KAKAO_TOKEN_ERROR,
 } from '../actionTypes';
 
 // default Store
@@ -234,6 +240,54 @@ const auth = createReducer<AuthReducer, AuthAction>(initialState, {
     },
   }),
   [AUTH_GOOGLE_ERROR]: (state, action) => ({
+    ...state,
+    login: {
+      loading: false,
+      error: action.payload.response,
+      data: null,
+    },
+  }),
+  [AUTH_KAKAO_TOKEN]: (state) => ({
+    ...state,
+    kakao: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [AUTH_KAKAO_TOKEN_SUCCESS]: (state, action) => ({
+    ...state,
+    kakao: {
+      loading: false,
+      error: null,
+      data: { accessToken: action.payload.access_token },
+    },
+  }),
+  [AUTH_KAKAO_TOKEN_ERROR]: (state, action) => ({
+    ...state,
+    kakao: {
+      loading: false,
+      error: action.payload.response,
+      data: null,
+    },
+  }),
+  [AUTH_KAKAO]: (state) => ({
+    ...state,
+    login: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [AUTH_KAKAO_SUCCESS]: (state, action) => ({
+    ...state,
+    login: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [AUTH_KAKAO_ERROR]: (state, action) => ({
     ...state,
     login: {
       loading: false,

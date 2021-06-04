@@ -20,6 +20,7 @@ interface HeaderProps {
 const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState<boolean>(false);
+  const { data: loginData } = useSelector(({ auth }: RootState) => auth.login);
   const { isOpen, flyoutController } = useFlyout(false);
   const { isOpen: isAuthModalOpen, modalController, setIsOpen } = useModal();
   const { isOpen: isExpanded, modalController: searchFieldHandler } =
@@ -35,6 +36,9 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
       setIsLogin(false);
     }
   }, [data]);
+  useEffect(() => {
+    if (loginData) setIsLogin(true);
+  }, [loginData]);
   useEffect(() => {
     if (document) {
       // FIXME: 스크롤 이벤트를 인지하지 못하면서 헤더가 사라지는 효과가 적용되지 않음. 수정필요
