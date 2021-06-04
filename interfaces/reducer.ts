@@ -150,6 +150,7 @@ export type AxiosResponse<T> = {
 // auth
 export type LoginResponse = AxiosResponse<{ accessToken: string }>;
 export type GetContentResponse = AxiosResponse<Content>;
+export type GetAccessTokenResponse = AxiosResponse<{ accessToken: string }>;
 // content
 export type GetSearchResultsResponse = AxiosResponse<SearchResult[]>;
 export type PostContentResponse = AxiosResponse<Content>;
@@ -201,6 +202,7 @@ export interface UserState {
 }
 export interface AuthReducer {
   signup: AsyncState<{ message: string }>;
+  token: AsyncState<{ accessToken: string }>;
   signout: AsyncState<{ message: string }>;
   checkps: AsyncState<{ message: string }>;
   updateps: AsyncState<{ passwordUpdate: string }>;

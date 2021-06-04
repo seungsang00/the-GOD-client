@@ -3,7 +3,9 @@ import { verifyEmail, verifyPassword } from '@utils/verifyFunctions';
 import { emailStandard, passwordStandard } from '@utils/verifyStandard';
 import useValidInput from 'hooks/useValidInput';
 import { AuthContentProps } from 'interfaces/props';
+import { RootState } from 'modules/reducer';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FormSection, LinkSection, OAuthSection } from '../authcontent.style';
 import GoogleLoader from './GoogleLoader';
 import KakaoLoader from './KakaoLoader';
@@ -26,6 +28,7 @@ const LoginContent = ({
   );
 
   const [disabled, setDisabled] = useState(true);
+  const { error } = useSelector(({ auth }: RootState) => auth.login);
 
   useEffect(() => {
     // check validation
@@ -61,6 +64,7 @@ const LoginContent = ({
           type="point"
           handler={() => submitHandler(email, password)}
         />
+        {error && <div>이메일과 아이디를 확인해주세요</div>}
       </FormSection>
       <LinkSection>
         <span className="auth-desc">FansSum이 처음이신가요?</span>

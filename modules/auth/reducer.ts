@@ -17,11 +17,19 @@ import {
   AUTH_SIGNUP,
   AUTH_SIGNUP_ERROR,
   AUTH_SIGNUP_SUCCESS,
+  AUTH_TOKEN,
+  AUTH_TOKEN_ERROR,
+  AUTH_TOKEN_SUCCESS,
 } from '../actionTypes';
 
 // default Store
 const initialState: AuthReducer = {
   signup: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  token: {
     data: null,
     loading: false,
     error: null,
@@ -73,6 +81,30 @@ const auth = createReducer<AuthReducer, AuthAction>(initialState, {
   [AUTH_SIGNUP_ERROR]: (state, action) => ({
     ...state,
     signup: {
+      loading: false,
+      error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [AUTH_TOKEN]: (state) => ({
+    ...state,
+    token: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [AUTH_TOKEN_SUCCESS]: (state, action) => ({
+    ...state,
+    token: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [AUTH_TOKEN_ERROR]: (state, action) => ({
+    ...state,
+    token: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,

@@ -35,6 +35,7 @@ import {
   CONTENT_SHARED_GET_SUCCESS,
   CONTENT_SHARED_GET_ERROR,
   CONTENT_INIT_FORM,
+  CONTENT_FORM_ID,
 } from '../actionTypes';
 
 // default Store
@@ -356,6 +357,13 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
         ...state.form.perks,
         [action.payload]: !state.form.perks[action.payload],
       },
+    },
+  }),
+  [CONTENT_FORM_ID]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      id: action.payload,
     },
   }),
   [CONTENT_INIT_FORM]: (state) => ({
