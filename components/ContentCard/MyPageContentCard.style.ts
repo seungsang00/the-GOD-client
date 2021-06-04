@@ -1,4 +1,4 @@
-import styled, { withProps } from '@styles/themed-components';
+import styled from '@styles/themed-components';
 
 export default styled.article`
   cursor: pointer;

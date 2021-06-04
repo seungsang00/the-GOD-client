@@ -1,19 +1,18 @@
-import { Avatar, Badge, ImagesContainer } from '@components';
+import { Avatar, ImagesContainer } from '@components';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ContentCardProps } from '@interfaces';
-import { checkOpenNow } from '@utils/contentUtils';
 import moment from 'moment';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
-import ContentCardStyle, { TimeBadge } from './ContentCard.style';
+import ContentCardStyle from './ContentCard.style';
 
 const MyRouteCard = ({
   isOpen,
   contentData,
   handleClick,
 }: ContentCardProps): ReactElement => {
-  const { id, artist, title, date, images, time, address } = contentData;
+  const { id, artist, title, date, images, address } = contentData;
   return (
     <ContentCardStyle className="route-card" onClick={() => handleClick(id)}>
       <div className="default-view">
