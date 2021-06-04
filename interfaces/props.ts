@@ -46,6 +46,10 @@ export interface BadgeContainerProps {
 export interface TimeSelectProps {
   setHour: (HH: string) => void;
   setMinutes: (MM: string) => void;
+  initTime?: {
+    hour: string;
+    minute: string;
+  };
 }
 
 export interface VerifiedInputProps {
@@ -86,7 +90,7 @@ export type PathContentLoaderPropsType = {
 
 export interface AuthContentProps {
   handleChangeContent: MouseEventHandler<HTMLSpanElement> | undefined;
-  submitHandler: (email: string, password: string, userName?: string) => void;
+  submitHandler: (email: string, password: string, userName: string) => void;
 }
 
 export interface InputWithLabelProps {

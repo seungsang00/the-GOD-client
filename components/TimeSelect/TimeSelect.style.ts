@@ -11,6 +11,8 @@ export const TimeSelectBox = styled.div<{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  border: 1px solid black;
+  border-radius: ${({ theme }) => theme.borderRadius};
 
   article {
     position: relative;

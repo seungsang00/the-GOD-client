@@ -17,11 +17,21 @@ import {
   AUTH_SIGNUP,
   AUTH_SIGNUP_ERROR,
   AUTH_SIGNUP_SUCCESS,
+  AUTH_TOKEN,
+  AUTH_TOKEN_ERROR,
+  AUTH_TOKEN_IS_EXPIRE,
+  AUTH_TOKEN_SUCCESS,
 } from '../actionTypes';
 
 // default Store
 const initialState: AuthReducer = {
+  isExpire: false,
   signup: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  token: {
     data: null,
     loading: false,
     error: null,
@@ -54,6 +64,10 @@ const initialState: AuthReducer = {
 };
 
 const auth = createReducer<AuthReducer, AuthAction>(initialState, {
+  [AUTH_TOKEN_IS_EXPIRE]: (state) => ({
+    ...state,
+    isExpire: true,
+  }),
   [AUTH_SIGNUP]: (state) => ({
     ...state,
     signup: {
@@ -77,6 +91,32 @@ const auth = createReducer<AuthReducer, AuthAction>(initialState, {
       error: action.payload.response?.data.message,
       data: null,
     },
+  }),
+  [AUTH_TOKEN]: (state) => ({
+    ...state,
+    token: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [AUTH_TOKEN_SUCCESS]: (state, action) => ({
+    ...state,
+    token: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+    isExpire: false,
+  }),
+  [AUTH_TOKEN_ERROR]: (state, action) => ({
+    ...state,
+    token: {
+      loading: false,
+      error: action.payload.response,
+      data: null,
+    },
+    isExpire: false,
   }),
   [AUTH_SIGNOUT]: (state) => ({
     ...state,

@@ -2,6 +2,11 @@
 export const AUTH_SIGNUP = 'auth/SIGNUP';
 export const AUTH_SIGNUP_SUCCESS = 'auth/SIGNUP_SUCCESS';
 export const AUTH_SIGNUP_ERROR = 'auth/SIGNUP_ERROR';
+export const AUTH_TOKEN_IS_EXPIRE = 'auth/TOKEN_IS_EXPIRED';
+
+export const AUTH_TOKEN = 'auth/TOKEN';
+export const AUTH_TOKEN_SUCCESS = 'auth/TOKEN_SUCCESS';
+export const AUTH_TOKEN_ERROR = 'auth/TOKEN_ERROR';
 
 export const AUTH_LOGIN = 'auth/LOGIN';
 export const AUTH_LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
@@ -125,6 +130,9 @@ export const CONTENT_FORM_TIMES = 'content/FORM_TIMES';
 export const CONTENT_FORM_LOCATION = 'content/FORM_LOCATION';
 export const CONTENT_FORM_MOBILE = 'content/FORM_MOBILE';
 export const CONTENT_FORM_PERKS = 'content/FORM_PERKS';
+export const CONTENT_FORM_ID = 'content/FORM_ID';
+export const CONTENT_INIT_FORM = 'content/INIT_FORM';
+export const CONTENT_INIT_GET = 'content/INIT_GET';
 
 export const COMMENT_CREATE = 'comment/CREATE';
 export const COMMENT_CREATE_SUCCESS = 'comment/CREATE/SUCCESS';

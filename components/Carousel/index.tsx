@@ -3,18 +3,47 @@ import CarouselStyle from './Carousel.style';
 import { CarouselProps } from '@interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Carousel = ({ isPage, col = 2, children }: CarouselProps) => {
+const Carousel = ({
+  isPage,
+  col = 2,
+  children,
+  autoCol = false,
+}: CarouselProps) => {
   const [isArrow, setIsArrow] = useState<boolean>(false);
+  const [colState, setColState] = useState<number>(col);
+  const [viewWidth, setViewWidth] = useState<number | undefined>(undefined);
+
   const [isPageState, setIsPageState] = useState<boolean>(
     isPage ? true : false
   );
   const [index, setIndex] = useState<number>(0);
   const [nav, setNav] = useState<number>(0);
   const [pageNumber, setPageNumber] = useState<number>(
-    !Array.isArray(children) ? 1 : Math.floor((children.length - 1) / col)
+    !Array.isArray(children) ? 1 : Math.floor((children.length - 1) / colState)
   );
   const slideRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const handleResize = () => {
+    console.log('resize');
+    setViewWidth(window.innerWidth);
+  };
+  useEffect(() => {
+    handleResize();
+    if (window) {
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    if (autoCol) {
+      if (viewWidth && viewWidth < 425) setColState(1);
+      if (viewWidth && viewWidth > 425 && viewWidth < 1024) setColState(2);
+      if (viewWidth && viewWidth > 1024) setColState(4);
+    }
+  }, [viewWidth, autoCol]);
 
   useEffect(() => {
     if (slideRef.current) {
@@ -25,12 +54,14 @@ const Carousel = ({ isPage, col = 2, children }: CarouselProps) => {
 
   useEffect(() => {
     setPageNumber(
-      !Array.isArray(children) ? 0 : Math.floor((children.length - 1) / col) + 1
+      !Array.isArray(children)
+        ? 0
+        : Math.floor((children.length - 1) / colState) + 1
     );
     if (containerRef.current) {
       setNav(containerRef.current.offsetHeight);
     }
-  }, [children]);
+  }, [children, colState]);
   useEffect(() => {
     if (pageNumber > 1) {
       setIsArrow(true);
@@ -61,7 +92,7 @@ const Carousel = ({ isPage, col = 2, children }: CarouselProps) => {
   };
 
   return (
-    <CarouselStyle col={col} navPosition={nav} index={index}>
+    <CarouselStyle col={colState} navPosition={nav} index={index}>
       <div className="carousel-main-cotainer" ref={containerRef}>
         <div className="carousel-content-container" ref={slideRef}>
           {children}
@@ -82,8 +113,8 @@ const Carousel = ({ isPage, col = 2, children }: CarouselProps) => {
           {!Array.isArray(children) && children}
           {Array.isArray(children) &&
             children.map((_el, i) =>
-              i % col === 0 ? (
-                <div key={i} onClick={() => setIndex(Number(i / col))}>
+              i % colState === 0 ? (
+                <div key={i} onClick={() => setIndex(Number(i / colState))}>
                   <FontAwesomeIcon icon="circle" />
                 </div>
               ) : null

@@ -10,11 +10,13 @@ import {
   CONTENT_FORM_LOCATION,
   CONTENT_FORM_PERKS,
   CONTENT_FORM_MOBILE,
+  CONTENT_INIT_FORM,
+  CONTENT_FORM_ID,
 } from 'modules/actionTypes';
-import { Artist, ToggleProps } from '@interfaces';
+import { IArtist, ToggleProps } from '@interfaces';
 export const inputArtist = createAction(
   CONTENT_FORM_ARTIST,
-  (artist: Artist) => artist
+  (artist: IArtist) => artist
 )();
 export const inputTitle = createAction(
   CONTENT_FORM_TITLE,
@@ -30,7 +32,7 @@ export const inputDescription = createAction(
 )();
 export const inputImages = createAction(
   CONTENT_FORM_IMAGES,
-  (images) => images
+  (images: { name: string; data: File; url: string }[]) => images
 )();
 export const inputDates = createAction(CONTENT_FORM_DATES, (dates) => dates)();
 export const inputTimes = createAction(CONTENT_FORM_TIMES, (times) => times)();
@@ -46,3 +48,5 @@ export const inputPerks = createAction(
   CONTENT_FORM_PERKS,
   (icon: ToggleProps['icon']) => icon
 )();
+export const initForm = createAction(CONTENT_INIT_FORM)();
+export const inputId = createAction(CONTENT_FORM_ID, (id: string) => id)();
