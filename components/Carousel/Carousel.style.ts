@@ -14,7 +14,7 @@ export default styled.div<{
     height: 100%;
   }
   .carousel-content-container {
-    z-index: ${({ theme }) => theme.zIndex.depth03};
+    ${({ theme }) => theme.zIndex.depth03};
     width: 100%;
     height: 100%;
     display: flex;

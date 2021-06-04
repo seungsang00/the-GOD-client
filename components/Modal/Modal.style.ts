@@ -1,7 +1,7 @@
 import styled from '@styles/themed-components';
 
 export default styled.div`
-  z-index: ${({ theme }) => theme.zIndex.depth03};
+  ${({ theme }) => theme.zIndex.depth03};
   display: flex;
   justify-content: center;
   align-items: center;
