@@ -47,8 +47,9 @@ const colorsLight = {
   },
   bg: {
     normal: '#f8f8f9',
-    hover: '#fff',
-    focused: 'rgba(255, 255, 255, 0.35)',
+    hover: '#f5f5f5',
+    focused: '#fff',
+    pressed: 'rgba(222, 222, 222, 0.35)',
     disabled: '#d4d9e1',
   },
   dark: {
@@ -105,7 +106,8 @@ const colorsDark = {
   bg: {
     normal: '#2A283E',
     hover: '#322f4c',
-    focused: 'rgba(55, 56, 86, 0.85)',
+    focused: 'rgba(55, 56, 86, 0.75)',
+    pressed: 'rgba(55, 56, 86, 0.99)',
     disabled: '#2d2e47',
   },
   dark: {
