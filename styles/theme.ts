@@ -118,48 +118,42 @@ const colorsDark = {
 
 const typography = {
   title: {
-    fontFamily: '"Gelasio", serif',
+    fontFamily: 'GmarketSansB',
     fontSize: '4rem',
-    fontWeight: 600,
   },
   subtitle: {
-    fontFamily: '"Gelasio", serif',
-    fontSize: '2.5rem',
-    fontWeight: 600,
+    fontFamily: 'GmarketSansM',
+    fontSize: '2rem',
     lineHeight: 1.1,
   },
   heading: {
-    fontFamily: '"Gelasio", serif',
+    fontFamily: 'GmarketSansB',
     fontSize: '1.5rem',
-    fontWeight: 500,
   },
   subheading: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'GmarketSansB',
     fontSize: '1.25rem',
-    fontWeight: 700,
   },
   label: {
-    fontFamily: '"Lato", sans-serif',
-    fontWeight: 700,
+    fontFamily: 'GmarketSansB',
   },
   description: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'SpoqaHanSans',
     lineHeight: 1.5,
   },
   body: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'SpoqaHanSans',
   },
   caption: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'GmarketSansM',
     fontSize: '0.875rem',
   },
   button: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'GmarketSansM',
     fontSize: '0.875rem',
   },
   textbutton: {
-    fontFamily: '"Lato", sans-serif',
-    fontWeight: 700,
+    fontFamily: 'GmarketSansM',
     fontSize: '1rem',
     border: 0,
   },

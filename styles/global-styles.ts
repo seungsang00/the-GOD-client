@@ -8,12 +8,17 @@ interface GlobalStyleProps {
 export const GlobalStyle = createGlobalStyle(
   (props: GlobalStyleProps) => css`
     ${reset}
+    @font-face { font-family: 'GmarketSansB'; src: url(/fonts/GmarketSansTTFBold.ttf) format('truetype'); }
+    @font-face { font-family: 'GmarketSansM'; src: url(/fonts/GmarketSansTTFMedium.ttf) format('truetype'); }
+    @font-face { font-family: 'GmarketSansL'; src: url(/fonts/GmarketSansTTFLight.ttf) format('truetype'); }
+    @font-face { font-family: 'SpoqaHanSans'; src: url(/fonts/SpoqaHanSansNeo-Regular.woff) format('woff'); }
     * {
       box-sizing: border-box;
     }
     body {
       background-color: ${props.theme.colors.bg.normal};
       color: ${props.theme.colors.textColor};
+      font-family: 'SpoqaHanSans';
     }
     a {
       color: inherit;
@@ -36,7 +41,12 @@ export const GlobalStyle = createGlobalStyle(
     textarea {
       resize: none;
     }
-    
+    footer {
+      font-family: 'GmarketSansM';
+    }
+    .logo {
+      font-family: 'GmarketSansB';
+    }
     .location_overlay_box{
       div {
         overflow:hidden;
