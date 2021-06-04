@@ -4,7 +4,7 @@ import { IGroupArtist } from '@interfaces';
 import { RootState } from 'modules/reducer';
 import moment from 'moment';
 import { useRouter } from 'next/router';
-import { MouseEventHandler, useEffect, useState } from 'react';
+import { MouseEventHandler, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   SearchTriggerWrapper,
@@ -50,8 +50,8 @@ const SearchTrigger = ({ handler }: { handler: MouseEventHandler }) => {
     }
   };
 
-  useEffect(() => {
-    if (pathname === '/search') {
+  useMemo(() => {
+    if (pathname === '/search' && artistList) {
       const { artistId, location, dateStart, dateEnd } = query as {
         artistId: string;
         location: string;
@@ -61,7 +61,7 @@ const SearchTrigger = ({ handler }: { handler: MouseEventHandler }) => {
       const artist = findArtistByArtistId(artistId, artistList) as string;
       artist && setQueryData({ artist, location, dateStart, dateEnd });
     }
-  }, []);
+  }, [artistList]);
 
   return (
     <SearchTriggerWrapper className="search-trigger">

@@ -9,7 +9,6 @@ import { ButtonOAuth } from './OAuthButton.style';
 
 interface GoogleLoginProps {
   clientId: string;
-  // TODO: 구글 로그인 기능을 완성하는 단계에서 onSubmit interface를 수정해야 합니다.
   onSubmit: (res: GoogleLoginResponse | GoogleLoginResponseOffline) => void;
 }
 

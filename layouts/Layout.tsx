@@ -8,6 +8,7 @@ import { AuthModal } from '@containers';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
 import { tokenThunk } from 'modules/auth';
+import { getArtistThunk } from 'modules/artist';
 
 type Props = {
   children?: ReactNode;
@@ -23,6 +24,9 @@ const Layout = ({
   const { isOpen, modalController, setIsOpen } = useModal();
   const router = useRouter();
   const dispatch = useDispatch();
+  const { data: artistData } = useSelector(
+    ({ artist }: RootState) => artist.read
+  );
   const { token } = useSelector(({ auth }: RootState) => auth);
   const { isExpire } = useSelector(({ auth }: RootState) => auth);
 
@@ -31,11 +35,15 @@ const Layout = ({
       dispatch(tokenThunk());
     }
   }, [isExpire]);
+  useEffect(() => {
+    if (!artistData) {
+      dispatch(getArtistThunk());
+    }
+  }, [artistData]);
 
   useEffect(() => {
     console.log(token);
     if (token.error) {
-      console.log('effect error,', token);
       localStorage.removeItem('accessToken');
       router.replace('/');
     }
