@@ -125,11 +125,13 @@ const SearchMapContainer = ({
       }
     }
     recoverImage(id: string) {
-      const { marker } = this.markers.find(
-        (content: any) => content.contentId === id
-      );
-      if (marker) {
-        marker.setImage(this.defaultImg);
+      if (this.markers && this.markers.length > 0) {
+        const { marker } = this.markers.find(
+          (content: any) => content.contentId === id
+        );
+        if (marker) {
+          marker.setImage(this.defaultImg);
+        }
       }
     }
 
