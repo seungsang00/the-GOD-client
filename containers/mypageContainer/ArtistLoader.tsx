@@ -18,15 +18,24 @@ const ArtistLoader = ({ data }: PropsType) => {
   }
   return (
     <Carousel>
-      {data.map(({ id, name, group, profileImage }) => (
-        <ArtistCard
-          key={`artist_${id}`}
-          id={id}
-          name={name}
-          group={group}
-          profileImage={profileImage}
+      {data.length === 0 ? (
+        <DataNullLink
+          title="내가 팔로우 한 아티스트는 여기에서 확인할 수 있어요"
+          description="아직 팔로우 한 아티스트가 없어요"
+          buttonText="내 아티스트 찾으러가기"
+          linkTo="/"
         />
-      ))}
+      ) : (
+        data.map(({ id, name, group, profileImage }) => (
+          <ArtistCard
+            key={`artist_${id}`}
+            id={id}
+            name={name}
+            group={group}
+            profileImage={profileImage}
+          />
+        ))
+      )}
     </Carousel>
   );
 };

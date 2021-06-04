@@ -47,6 +47,7 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
   };
 
   useEffect(() => {
+    setArtistName(artist.name);
     setDisabled(nullChecker({ title, tags, artist, description, preImages }));
   }, [title, tags, artist, description, preImages]);
 

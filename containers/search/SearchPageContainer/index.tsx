@@ -80,7 +80,7 @@ const SearchPageContainer = () => {
   const resetHadler = () => {
     setSortedList({
       selectedContents: [],
-      restContents: data?.contents as Content[],
+      restContents: data ? (data.contents as Content[]) : [],
     });
   };
   useMemo(() => {

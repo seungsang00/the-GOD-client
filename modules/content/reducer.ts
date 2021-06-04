@@ -227,7 +227,7 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
     update: {
       loading: false,
       error: null,
-      data: action.payload.result,
+      data: action.payload,
     },
   }),
   [CONTENT_UPDATE_ERROR]: (state, action) => ({
