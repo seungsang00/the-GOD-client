@@ -17,6 +17,13 @@ const AccountOptionsFlyout = ({
         <section className="account-options">
           {/* <div>section title</div> */}
           <ul className="account-options">
+            <Link href="/content/form">
+              <li className="account-option">
+                <a>
+                  <span>이벤트 등록하기</span>
+                </a>
+              </li>
+            </Link>
             <Link href="/mypage/setting/profile">
               <li className="account-option">
                 <a>
@@ -24,13 +31,6 @@ const AccountOptionsFlyout = ({
                 </a>
               </li>
             </Link>
-            <li className="account-option">
-              <Link href="/about">
-                <a>
-                  <span>문의</span>
-                </a>
-              </Link>
-            </li>
             <li className="account-option" onClick={logouthandler}>
               <span>로그아웃</span>
             </li>

@@ -66,6 +66,10 @@ export const MyPageStyle = styled.article`
 
     ${customMediaQuery(925)} {
       width: 100%;
+      h2 {
+        font-size: 1.3rem;
+        font-family: 'GmarketSansB';
+      }
     }
   }
 

@@ -19,10 +19,9 @@ const ContentCard = ({
   return (
     <ContentCardStyle onClick={() => handleClick(id)}>
       <h4 className="content-title">{`[${
-        group ? group + ' ' + name : name
+        name === '전체' ? group : group ? group + ' ' + name : name
       }] ${title}`}</h4>
       <p className="content-dates">
-        {/* {`일정: `} */}
         {moment(date.start).format('YYYY-MM-DD')}
         {` ~ `}
         {moment(date.end).format('YYYY-MM-DD')}
