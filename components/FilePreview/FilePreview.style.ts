@@ -2,6 +2,7 @@ import styled from '@styles/themed-components';
 
 export const PreviewContainer = styled.div`
   width: 100%;
+  height: fit-content !important;
   position: relative;
 
   .button-container {
@@ -12,6 +13,13 @@ export const PreviewContainer = styled.div`
       cursor: pointer;
       right: ${({ theme }) => theme.space.xs};
       top: ${({ theme }) => theme.space.xs};
+      color: ${({ theme }) => theme.colors.gray.gray02};
+      &:hover {
+        color: ${({ theme }) => theme.colors.gray.gray03};
+      }
+      &:active {
+        color: ${({ theme }) => theme.colors.gray.gray01};
+      }
     }
   }
 
