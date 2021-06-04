@@ -13,10 +13,10 @@ import {
   CONTENT_INIT_FORM,
   CONTENT_FORM_ID,
 } from 'modules/actionTypes';
-import { Artist, ToggleProps } from '@interfaces';
+import { IArtist, ToggleProps } from '@interfaces';
 export const inputArtist = createAction(
   CONTENT_FORM_ARTIST,
-  (artist: Artist) => artist
+  (artist: IArtist) => artist
 )();
 export const inputTitle = createAction(
   CONTENT_FORM_TITLE,

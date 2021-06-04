@@ -1,12 +1,13 @@
-import React, { ReactNode, MouseEvent } from 'react';
+import React, { ReactNode, MouseEvent, useEffect } from 'react';
 import Head from 'next/head';
 import { Avatar, Header } from '@components';
 import { CommonLayoutStyle } from './layouts.style';
 import { useRouter } from 'next/dist/client/router';
 import useModal from 'hooks/useModal';
 import { AuthModal } from '@containers';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
+import { tokenThunk } from 'modules/auth';
 
 type Props = {
   children?: ReactNode;
@@ -21,8 +22,25 @@ const Layout = ({
 }: Props) => {
   const { isOpen, modalController, setIsOpen } = useModal();
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { token } = useSelector(({ auth }: RootState) => auth);
+  const { isExpire } = useSelector(({ auth }: RootState) => auth);
 
-  // FIXME: 스토어에서 유저 정보를 받아와야 합니다
+  useEffect(() => {
+    if (isExpire) {
+      dispatch(tokenThunk());
+    }
+  }, [isExpire]);
+
+  useEffect(() => {
+    console.log(token);
+    if (token.error) {
+      console.log('effect error,', token);
+      localStorage.removeItem('accessToken');
+      router.replace('/');
+    }
+  }, [token]);
+
   const { data } = useSelector((state: RootState) => state.user.userProfile);
 
   const handleAvatarClick = (e: MouseEvent) => {

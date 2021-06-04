@@ -31,7 +31,7 @@ export const createContentRequest = async (content: ContentForm) => {
       continue;
     }
     if (key === 'artist') {
-      formData.append('artistId', JSON.stringify('nha'));
+      formData.append('artistId', JSON.stringify(content[key].id));
       continue;
     }
     formData.append(key, JSON.stringify(content[key]));

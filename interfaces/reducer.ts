@@ -31,6 +31,7 @@ export interface IMember {
   id: string;
   name: string;
   profileImage: string;
+  isFollow?: boolean;
 }
 
 export interface signup {
@@ -42,7 +43,7 @@ export interface SharedContent {
   id: string;
   content: Content[];
 }
-// content
+
 export interface SearchResult {
   id: string;
   date: Date;
@@ -54,7 +55,6 @@ export interface SearchResult {
 
 export interface ContentProps {
   id: string;
-  artist: Artist;
   title: string;
   tags: string[];
   description: string;
@@ -67,6 +67,7 @@ export interface ContentProps {
   author: Author;
 }
 export interface Content extends ContentProps {
+  artist: Artist;
   images: Image[];
 }
 export interface ContentForm extends ContentProps {
@@ -75,6 +76,7 @@ export interface ContentForm extends ContentProps {
     name: string;
     url: string;
   }[];
+  artist: IArtist;
 }
 
 export interface Author {
@@ -201,6 +203,7 @@ export interface UserState {
   paths: AsyncState<SharedContent[]>;
 }
 export interface AuthReducer {
+  isExpire: boolean;
   signup: AsyncState<{ message: string }>;
   token: AsyncState<{ accessToken: string }>;
   signout: AsyncState<{ message: string }>;

@@ -8,8 +8,9 @@ import {
   AUTH_TOKEN,
   AUTH_TOKEN_SUCCESS,
   AUTH_TOKEN_ERROR,
+  AUTH_TOKEN_IS_EXPIRE,
 } from 'modules/actionTypes';
-import { createAsyncAction } from 'typesafe-actions';
+import { createAction, createAsyncAction } from 'typesafe-actions';
 
 export const singoutRequest = async (password: string) => {
   const accessToken = localStorage.getItem('accessToken');
@@ -23,6 +24,7 @@ export const singoutRequest = async (password: string) => {
   return result.data;
 };
 
+export const isExpireToken = createAction(AUTH_TOKEN_IS_EXPIRE, () => {})();
 export const tokenRequest = async () => {
   const result = await axios.get<GetAccessTokenResponse>(
     `${API_ENDPOINT}/auth/accesstoken`,

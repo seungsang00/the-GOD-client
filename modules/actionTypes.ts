@@ -2,6 +2,7 @@
 export const AUTH_SIGNUP = 'auth/SIGNUP';
 export const AUTH_SIGNUP_SUCCESS = 'auth/SIGNUP_SUCCESS';
 export const AUTH_SIGNUP_ERROR = 'auth/SIGNUP_ERROR';
+export const AUTH_TOKEN_IS_EXPIRE = 'auth/TOKEN_IS_EXPIRED';
 
 export const AUTH_TOKEN = 'auth/TOKEN';
 export const AUTH_TOKEN_SUCCESS = 'auth/TOKEN_SUCCESS';

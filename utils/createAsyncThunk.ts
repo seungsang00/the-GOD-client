@@ -1,5 +1,4 @@
-import { tokenThunk } from 'modules/auth';
-import { useDispatch } from 'react-redux';
+import { isExpireToken } from 'modules/auth';
 import { Dispatch } from 'redux';
 import { AsyncActionCreatorBuilder } from 'typesafe-actions';
 
@@ -9,7 +8,6 @@ type AnyAAsyncActionCreatorBuilder = AsyncActionCreatorBuilder<
   [any, [any, never]]
 >;
 
-const useDispatchFunction = useDispatch();
 export default function createAsyncThunk<
   A extends AnyAAsyncActionCreatorBuilder,
   F extends (...params: any[]) => Promise<any>
@@ -23,8 +21,8 @@ export default function createAsyncThunk<
         const result = await promiseCreator(...params);
         dispatch(success(result));
       } catch (e) {
-        if (e.response.status === 401) {
-          useDispatchFunction(tokenThunk());
+        if (e.response && e.response.status === 401) {
+          dispatch(isExpireToken());
         }
         dispatch(failure(e));
       }
