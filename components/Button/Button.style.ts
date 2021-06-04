@@ -49,4 +49,26 @@ export default withProps<Props, HTMLButtonElement>(styled.button)`
     padding: 0 16px;
     font-size: 12px;
   }
+
+  ${({ type, disabled, theme }) =>
+    type === 'point' &&
+    `
+    background-color: ${
+      disabled ? theme.colors.secondary.disabled : theme.colors.secondary.normal
+    };
+    &:hover {
+      background-color: ${
+        disabled
+          ? theme.colors.secondary.disabled
+          : theme.colors.secondary.hover
+      };
+    }
+    &:active {
+      background-color: ${
+        disabled
+          ? theme.colors.secondary.disabled
+          : theme.colors.secondary.pressed
+      };
+    }
+  `}
 `;

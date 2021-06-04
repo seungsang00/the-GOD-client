@@ -44,7 +44,8 @@ export const HeaderContainer = styled.header`
   }
   .auth-modal-trigger {
     & > button {
-      min-width: 89px;
+      min-width: 90px;
+      word-break: keep-all;
     }
   }
 
