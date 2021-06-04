@@ -13,9 +13,9 @@ const SettingPage = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { category } = router.query;
-  const { data: userInfo } = useSelector(
-    (state: RootState) => state.user.userProfile
-  );
+  // const { data: userInfo } = useSelector(
+  //   (state: RootState) => state.user.userProfile
+  // );
   const { data: usernameUpdateResponse } = useSelector(
     (state: RootState) => state.user.username
   );
