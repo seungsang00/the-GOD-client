@@ -7,7 +7,6 @@ import {
 } from '@components';
 import { Dates } from '@interfaces';
 import { nullChecker } from '@utils/contentUtils';
-import { minutes } from '@utils/time';
 import { inputDates, inputTimes } from 'modules/content';
 import { RootState } from 'modules/reducer';
 import moment from 'moment';

@@ -5,10 +5,23 @@ import { useRouter } from 'next/dist/client/router';
 import { AccountSettings, ProfileSettings } from '@containers';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'modules/reducer';
+import { getInfoThunk } from 'modules/user';
 
 const SettingPage = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { category } = router.query;
+  const { data: userInfo } = useSelector(
+    (state: RootState) => state.user.userProfile
+  );
+  const { data: usernameUpdateResponse } = useSelector(
+    (state: RootState) => state.user.username
+  );
+  const { data: avatarUpdateResponse } = useSelector(
+    (state: RootState) => state.user.profileImage
+  );
 
   const [showMenu, setShowMenu] = useState<boolean | null>(null);
 
@@ -18,11 +31,18 @@ const SettingPage = () => {
   };
 
   useEffect(() => {
+    const token = window.localStorage.getItem('accessToken');
+    if (!token) router.push('/');
+    dispatch(getInfoThunk());
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    dispatch(getInfoThunk());
+  }, [usernameUpdateResponse, avatarUpdateResponse]);
 
   useEffect(() => {
     setViewWidth(window.innerWidth);
@@ -53,12 +73,16 @@ const SettingPage = () => {
               id="settingCategoryHandler"
               onClick={() => setShowMenu(!showMenu)}
             >
-              {/* Button(뒤로가기 OR 햄버거) */}
               <FontAwesomeIcon icon={faChevronLeft} />
             </div>
           )}
 
-          {category === 'profile' && <ProfileSettings />}
+          {category === 'profile' && userInfo && (
+            <ProfileSettings
+              profileImage={userInfo.profileImage}
+              name={userInfo.name}
+            />
+          )}
           {category === 'account-settings' && <AccountSettings />}
         </main>
       </MyPageLayout>

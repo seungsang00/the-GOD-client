@@ -8,20 +8,19 @@ export const OptionListStyle = styled.ul`
   padding: ${({ theme }) => theme.space.xs} ${({ theme }) => theme.space.xs};
   border-radius: ${({ theme }) => theme.borderRadius};
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  ${({ theme }) => theme.concept.glassmorphism};
+  ${({ theme }) => theme.concept.glassmorphism.deep};
+  background-color: ${({ theme }) => theme.colors.bg.normal};
   border: 1px solid ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) => theme.colors.bgColor};
 
   .option-item {
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.7rem;
     padding: ${({ theme }) => theme.space.xs} ${({ theme }) => theme.space.sm};
   }
   .option-item:hover {
     border-radius: ${({ theme }) => theme.borderRadius};
-    ${({ theme }) => theme.concept.glassmorphism.normal};
+    ${({ theme }) => theme.concept.glassmorphism.light};
     border: none;
   }
 `;

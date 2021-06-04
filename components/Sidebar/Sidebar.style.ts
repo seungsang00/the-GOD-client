@@ -20,6 +20,13 @@ export const SidebarContainer = styled.div`
     line-height: 2rem;
     align-self: flex-start;
     margin-bottom: ${({ theme }) => theme.space.xs};
+
+    & > div > a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
     &:hover {
       ${({ theme }) => theme.concept.glassmorphism.light};
     }

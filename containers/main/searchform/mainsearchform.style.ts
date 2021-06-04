@@ -6,7 +6,7 @@ export const MainSearchFormContainer = styled.article`
     height: 5rem;
     border-radius: 999px;
     padding: ${({ theme }) => theme.space.xs};
-    ${({ theme }) => theme.concept.glassmorphism005};
+    ${({ theme }) => theme.concept.glassmorphism.deep};
   }
   .trigger-wrapper {
     display: flex;
@@ -27,7 +27,7 @@ export const MainSearchFormContainer = styled.article`
       border: 1px solid transparent;
       cursor: pointer;
       &:hover {
-        ${({ theme }) => theme.concept.glassmorphism005};
+        ${({ theme }) => theme.concept.glassmorphism.deep};
       }
     }
     &.search-button {
@@ -63,12 +63,12 @@ export const MainSearchFormContainer = styled.article`
     font-size: 1rem;
     font-weight: 500;
     color: #fff;
-    background-color: ${({ theme }) => theme.colors.button.default.normal};
+    background-color: ${({ theme }) => theme.colors.primary.normal};
     &:hover {
-      background-color: ${({ theme }) => theme.colors.button.default.hover};
+      background-color: ${({ theme }) => theme.colors.primary.hover};
     }
     &:active {
-      background-color: ${({ theme }) => theme.colors.button.default.pressed};
+      background-color: ${({ theme }) => theme.colors.primary.pressed};
     }
     z-index: ${({ theme }) => theme.zIndex.depth04};
     display: flex;

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Layout } from '@layouts';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  initForm,
   inputArtist,
   inputDates,
   inputDescription,
