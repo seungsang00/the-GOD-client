@@ -7,6 +7,7 @@ export const ImagesContainerStyle = withProps<{ max: number }, HTMLDivElement>(
   display: grid;
   ${({ max }) => `grid-template-columns: repeat(${max}, 1fr);`};
   grid-gap: ${({ theme }) => theme.space.xs};
+  margin-top: ${({ theme }) => theme.space.xs};
   
   img {
     width: 100%;

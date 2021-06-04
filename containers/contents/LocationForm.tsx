@@ -53,13 +53,13 @@ const LocationForm = ({
       const content = `<div class="location_overlay_box">
           <div>
             <div class="location_overlay_storename">
-            가게이름 :${place.place_name}
+            가게이름: ${place.place_name}
             </div>
             <div class="location_overlay_address">
-            위치 :${place.road_address_name}
+            위치: ${place.road_address_name}
             </div>
             <div class="location_overlay_mobile">
-            연락처 :${place.phone ? place.phone : '없음'}
+            연락처: ${place.phone ? place.phone : '없음'}
             </div>
           </div>
         </div>`;

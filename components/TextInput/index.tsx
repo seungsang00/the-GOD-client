@@ -1,5 +1,11 @@
 import { TextInputProps } from 'interfaces/props';
-import React, { ChangeEvent, KeyboardEvent, ReactElement } from 'react';
+import React, {
+  ChangeEvent,
+  KeyboardEvent,
+  ReactElement,
+  useCallback,
+  useRef,
+} from 'react';
 import { StyledTextInput, StyledTextArea } from './TextInput.style';
 export const TextInput = ({
   type,
@@ -42,6 +48,15 @@ export const TextArea = ({
   disabled,
   placeholder,
 }: TextAreaProps): ReactElement => {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const handleResizeHeight = useCallback(() => {
+    if (ref === null || ref.current === null) {
+      return;
+    }
+    ref.current.style.height = '3rem';
+    ref.current.style.height = ref.current.scrollHeight + 10 + 'px';
+  }, []);
+
   return (
     <StyledTextArea
       className="textarea"
@@ -50,6 +65,8 @@ export const TextArea = ({
       placeholder={placeholder}
       onKeyDown={onKeyDown}
       onChange={onChange}
+      ref={ref}
+      onInput={handleResizeHeight}
     ></StyledTextArea>
   );
 };
