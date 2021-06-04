@@ -10,7 +10,7 @@ const UnderConstruction = ({ description }: Props): ReactElement => {
   description = description || 'We will be back asap :)';
   const router = useRouter();
   const moveToMain = () => {
-    router.push('/main');
+    router.push('/');
   };
   return (
     <Wrapper>
