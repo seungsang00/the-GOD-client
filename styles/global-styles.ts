@@ -63,11 +63,12 @@ export const GlobalStyle = createGlobalStyle(
       font-size: 18px;
       font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
       line-height: 1.5;
+      color: ${props.theme.colors.black.black01};
 
     & > div {
       padding:15px;
       width: 286px;
-      border-radius: 5px;
+      border-radius: ${props.theme.borderRadius};
       height: 120px;
       border-bottom: 2px solid #ccc;
       border-right: 1px solid #ccc;
@@ -86,13 +87,14 @@ export const GlobalStyle = createGlobalStyle(
       }
     }
     .location_overlay_storename{
-
+      font-weight: 600;
+      padding-top: 3px;
     }
     .location_overlay_address{
-
+      font-size: 0.95rem;
     }
     .location_overlay_mobile{
-
+      font-size: 0.95rem;
     }
   `
 );

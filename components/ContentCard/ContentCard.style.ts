@@ -8,10 +8,10 @@ export default styled.div`
   margin: ${({ theme }) => theme.space.xxs} 0;
   ${({ theme }) => theme.concept.glassmorphism.deep};
   &:hover {
-    background-color: #fff;
+    background-color: ${({ theme }) => theme.colors.bg.hover};
   }
   &:active {
-    background-color: ${({ theme }) => theme.colors.gray.gray04};
+    background-color: ${({ theme }) => theme.colors.bg.pressed};
   }
 
   .content-title {
