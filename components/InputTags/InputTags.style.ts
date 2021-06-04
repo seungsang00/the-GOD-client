@@ -14,12 +14,24 @@ export const InputTagsSection = styled.section`
     margin-bottom: ${({ theme }) => theme.space.xxs};
   }
 
+  input {
+    width: 50%;
+    max-width: 100%;
+  }
+
   span.tag {
-    font-weight: 500;
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.secondary.pressed};
     border-radius: 5px;
-    border: 1px solid blue;
     padding: 0 ${({ theme }) => theme.space.xxs};
     margin-right: ${({ theme }) => theme.space.xs};
-    /* TODO: 버튼 스타일에 맞춰서 normal, hover, action 스타일 추가하기 */
+    ${({ theme }) => theme.concept.glassmorphism.light};
+    cursor: pointer;
+    &:hover {
+      border: 1px solid ${({ theme }) => theme.colors.secondary.disabled};
+    }
+    &:active {
+      background-color: ${({ theme }) => theme.colors.secondary.disabled};
+    }
   }
 `;
