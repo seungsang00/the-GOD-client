@@ -8,12 +8,17 @@ interface GlobalStyleProps {
 export const GlobalStyle = createGlobalStyle(
   (props: GlobalStyleProps) => css`
     ${reset}
+    @font-face { font-family: 'GmarketSansB'; src: url(/fonts/GmarketSansTTFBold.ttf) format('truetype'); }
+    @font-face { font-family: 'GmarketSansM'; src: url(/fonts/GmarketSansTTFMedium.ttf) format('truetype'); }
+    @font-face { font-family: 'GmarketSansL'; src: url(/fonts/GmarketSansTTFLight.ttf) format('truetype'); }
+    @font-face { font-family: 'SpoqaHanSans'; src: url(/fonts/SpoqaHanSansNeo-Regular.woff) format('woff'); }
     * {
       box-sizing: border-box;
     }
     body {
       background-color: ${props.theme.colors.bg.normal};
       color: ${props.theme.colors.textColor};
+      font-family: 'SpoqaHanSans';
     }
     a {
       color: inherit;
@@ -36,7 +41,12 @@ export const GlobalStyle = createGlobalStyle(
     textarea {
       resize: none;
     }
-    
+    footer {
+      font-family: 'GmarketSansM';
+    }
+    .logo {
+      font-family: 'GmarketSansB';
+    }
     .location_overlay_box{
       div {
         overflow:hidden;
@@ -53,11 +63,12 @@ export const GlobalStyle = createGlobalStyle(
       font-size: 18px;
       font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
       line-height: 1.5;
+      color: ${props.theme.colors.black.black01};
 
     & > div {
       padding:15px;
       width: 286px;
-      border-radius: 5px;
+      border-radius: ${props.theme.borderRadius};
       height: 120px;
       border-bottom: 2px solid #ccc;
       border-right: 1px solid #ccc;
@@ -76,13 +87,14 @@ export const GlobalStyle = createGlobalStyle(
       }
     }
     .location_overlay_storename{
-
+      font-weight: 600;
+      padding-top: 3px;
     }
     .location_overlay_address{
-
+      font-size: 0.95rem;
     }
     .location_overlay_mobile{
-
+      font-size: 0.95rem;
     }
   `
 );

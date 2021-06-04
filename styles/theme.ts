@@ -47,8 +47,9 @@ const colorsLight = {
   },
   bg: {
     normal: '#f8f8f9',
-    hover: '#fff',
-    focused: 'rgba(255, 255, 255, 0.35)',
+    hover: '#f5f5f5',
+    focused: '#fff',
+    pressed: 'rgba(222, 222, 222, 0.35)',
     disabled: '#d4d9e1',
   },
   dark: {
@@ -105,7 +106,8 @@ const colorsDark = {
   bg: {
     normal: '#2A283E',
     hover: '#322f4c',
-    focused: 'rgba(55, 56, 86, 0.85)',
+    focused: 'rgba(55, 56, 86, 0.75)',
+    pressed: 'rgba(55, 56, 86, 0.99)',
     disabled: '#2d2e47',
   },
   dark: {
@@ -118,48 +120,42 @@ const colorsDark = {
 
 const typography = {
   title: {
-    fontFamily: '"Gelasio", serif',
+    fontFamily: 'GmarketSansB',
     fontSize: '4rem',
-    fontWeight: 600,
   },
   subtitle: {
-    fontFamily: '"Gelasio", serif',
-    fontSize: '2.5rem',
-    fontWeight: 600,
+    fontFamily: 'GmarketSansM',
+    fontSize: '2rem',
     lineHeight: 1.1,
   },
   heading: {
-    fontFamily: '"Gelasio", serif',
+    fontFamily: 'GmarketSansB',
     fontSize: '1.5rem',
-    fontWeight: 500,
   },
   subheading: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'GmarketSansB',
     fontSize: '1.25rem',
-    fontWeight: 700,
   },
   label: {
-    fontFamily: '"Lato", sans-serif',
-    fontWeight: 700,
+    fontFamily: 'GmarketSansB',
   },
   description: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'SpoqaHanSans',
     lineHeight: 1.5,
   },
   body: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'SpoqaHanSans',
   },
   caption: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'GmarketSansM',
     fontSize: '0.875rem',
   },
   button: {
-    fontFamily: '"Lato", sans-serif',
+    fontFamily: 'GmarketSansM',
     fontSize: '0.875rem',
   },
   textbutton: {
-    fontFamily: '"Lato", sans-serif',
-    fontWeight: 700,
+    fontFamily: 'GmarketSansM',
     fontSize: '1rem',
     border: 0,
   },

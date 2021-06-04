@@ -12,7 +12,12 @@ const ThemeToggleButton = () => {
   return (
     <Wrapper>
       <Checkbox type="checkbox" id="toggleTheme" />
-      <Label htmlFor="toggleTheme" onClick={swapTheme}></Label>
+      <Label htmlFor="toggleTheme" onClick={swapTheme}>
+        <img
+          src={theme === 'light' ? '/images/sun.svg' : '/images/moon.svg'}
+          alt="theme-button"
+        />
+      </Label>
     </Wrapper>
   );
 };
