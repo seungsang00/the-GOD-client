@@ -29,7 +29,7 @@ export const singupRequest = async ({ email, password, name }: signup) => {
   return result.data;
 };
 
-export const loginRequset = async (props: {
+export const loginRequest = async (props: {
   email: string;
   password: string;
 }) => {
@@ -44,7 +44,7 @@ export const loginRequset = async (props: {
   return result.data.result.accessToken;
 };
 
-export const checkPSRequset = async (password: string) => {
+export const checkPSRequest = async (password: string) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.post<{ message: string }>(
     `${API_ENDPOINT}/auth/password`,
@@ -55,7 +55,7 @@ export const checkPSRequset = async (password: string) => {
   );
   return result.data;
 };
-export const updatePSRequset = async (password: string) => {
+export const updatePSRequest = async (password: string) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.put<{ message: string }>(
     `${API_ENDPOINT}/auth/password`,
@@ -92,6 +92,6 @@ export const updatePSAsync = createAsyncAction(
 )<null, { passwordUpdate: string }, AxiosError>();
 
 export const singupThunk = createAsyncThunk(signupAsync, singupRequest);
-export const loginThunk = createAsyncThunk(loginAsync, loginRequset);
-export const updatePSThunk = createAsyncThunk(updatePSAsync, updatePSRequset);
-export const checkPSThunk = createAsyncThunk(checkPSAsync, checkPSRequset);
+export const loginThunk = createAsyncThunk(loginAsync, loginRequest);
+export const updatePSThunk = createAsyncThunk(updatePSAsync, updatePSRequest);
+export const checkPSThunk = createAsyncThunk(checkPSAsync, checkPSRequest);

@@ -168,14 +168,14 @@ const typography = {
 const conceptLight = {
   glassmorphism: {
     normal: `
-      background: rgba( 255, 255, 255, 0.20 );
+      background: rgba( 255, 255, 255, 0.40 );
       box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
       backdrop-filter: blur( 3.0px );
       -webkit-backdrop-filter: blur( 3.0px );
       border: 1px solid rgba( 255, 255, 255, 0.18 );
     `,
     deep: `
-      background: rgba( 255, 255, 255, 0.35 );
+      background: rgba( 255, 255, 255, 0.65 );
       box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.1 );
       backdrop-filter: blur( 3.0px );
       -webkit-backdrop-filter: blur( 3.0px );

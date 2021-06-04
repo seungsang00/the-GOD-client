@@ -1,3 +1,4 @@
+import { customMediaQuery } from '@styles/theme';
 import styled from '@styles/themed-components';
 
 export const HeaderContainer = styled.header`
@@ -18,6 +19,21 @@ export const HeaderContainer = styled.header`
     font-weight: 600;
     cursor: pointer;
     margin-right: ${({ theme }) => theme.space.sm};
+
+    a {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-icon {
+      width: 55px;
+      height: 55px;
+      border: 1px solid ${({ theme }) => theme.colors.primary.normal};
+    }
+
+    .logo-text {
+      margin-left: ${({ theme }) => theme.space.xs};
+    }
   }
   nav.gnb {
     cursor: pointer;
@@ -28,7 +44,14 @@ export const HeaderContainer = styled.header`
   }
   .auth-modal-trigger {
     & > button {
-      min-width: 60px;
+      min-width: 90px;
+      word-break: keep-all;
+    }
+  }
+
+  ${customMediaQuery(730)} {
+    .logo-text {
+      display: none;
     }
   }
 `;

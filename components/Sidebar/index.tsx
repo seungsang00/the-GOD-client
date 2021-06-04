@@ -35,7 +35,9 @@ const Sidebar = ({ list, ref }: SidebarProps): ReactElement => {
                     <a>{item.text}</a>
                   </Link>
                 ) : (
-                  <a href={`#${item.link}`}>{item.text}</a>
+                  <a className="item-link" href={`#${item.link}`}>
+                    {item.text}
+                  </a>
                 )}
               </div>
             </li>
