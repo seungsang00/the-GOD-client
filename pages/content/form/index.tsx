@@ -4,15 +4,17 @@ import { OrderSidebar } from '@components';
 import CafeInfoForm from 'containers/contents/CafeinfoForm';
 import RangeForm from 'containers/contents/RangeForm';
 import LocationForm from 'containers/contents/LocationForm';
-import { createThunk } from 'modules/content';
+import { createContentThunk } from 'modules/content';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
 import { initRead } from 'modules/content/actions/read';
 import FormStyle from '@styles/formstyle.style';
+import { useRouter } from 'next/router';
 
 const ContentFormPage = () => {
   const [step, setStep] = useState<number>(0);
-  const { form } = useSelector(({ content }: RootState) => content);
+  const router = useRouter();
+  const { form, create } = useSelector(({ content }: RootState) => content);
   const dispatch = useDispatch();
   const nextStep = () => {
     if (step < 2) setStep(step + 1);
@@ -23,8 +25,14 @@ const ContentFormPage = () => {
     return;
   };
   const submitHandler = () => {
-    dispatch(createThunk(form));
+    dispatch(createContentThunk(form));
   };
+  useEffect(() => {
+    if (create.data) {
+      router.replace(`/content/${create.data.id}`);
+    }
+  }, [create]);
+
   useEffect(() => {
     dispatch(initRead());
   }, []);

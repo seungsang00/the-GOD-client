@@ -10,6 +10,7 @@ import {
   TextArea,
   TextInput,
 } from '@components';
+import { nullChecker } from '@utils/contentUtils';
 import { sampleSearchInputOptions } from '@utils/sample-data';
 import {
   inputArtist,
@@ -19,7 +20,7 @@ import {
   inputTitle,
 } from 'modules/content';
 import { RootState } from 'modules/reducer';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
@@ -30,32 +31,23 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
     description,
     images: preImages,
   } = useSelector(({ content }: RootState) => content.form);
-  const { data } = useSelector(({ content }: RootState) => content.current);
   const [artists, setArtists] = useState(
     Object.keys(sampleSearchInputOptions.artist)
   );
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState<boolean>(false);
   const [images, setImages] =
     useState<{ data: File; name: string; url: string }[]>(preImages);
   const dispatch = useDispatch();
+
   const tagHandler = (tags: string[]) => {
     dispatch(inputTags(tags));
   };
-  const fetchImageController = async (url: string) => {
-    const blob = await fetch(url).then((r) => r.blob());
-    const ext = url.split('.').pop();
-    const filename = url.split('/').pop();
-    const metadata = { type: `image/${ext}` };
-    const file = new File([blob], filename as string, metadata);
-    setImages((state) => [
-      ...state,
-      {
-        data: file,
-        name: file.name,
-        url: url,
-      },
-    ]);
-  };
+
+  useEffect(() => {
+    setDisabled(nullChecker({ title, tags, artist, description, preImages }));
+  }, [title, tags, artist, description, preImages]);
+
   const fileListToArray = (fileList: FileList) => {
     for (let i = 0; i < fileList.length; i++) {
       const reader = new FileReader();
@@ -72,21 +64,19 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
       };
     }
   };
+
   const imageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       fileListToArray(e.target.files);
     }
   };
+  useMemo(() => {
+    setImages(preImages);
+  }, [preImages]);
 
   useEffect(() => {
     dispatch(inputImages(images));
   }, [images]);
-
-  useEffect(() => {
-    if (data) {
-      data.images.forEach(fetchImageController);
-    }
-  }, [data]);
 
   return (
     <>
@@ -173,7 +163,7 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
         </Carousel>
       </section>
       <section>
-        <Button disabled={false} text="다음" handler={onSubmit} />
+        <Button disabled={disabled} text="다음" handler={onSubmit} />
       </section>
     </>
   );

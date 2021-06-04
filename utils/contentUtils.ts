@@ -16,3 +16,14 @@ export const checkOpenNow = (openTime: string, closeTime: string) => {
     return false;
   }
 };
+
+export const nullChecker = (obj: { [key: string]: any }) => {
+  for (let key in obj) {
+    if (!Boolean(obj[key]) || obj[key].length === 0) {
+      return true;
+    }
+    if (key === 'open' || key === 'close')
+      if (obj[key].indexOf('--') > -1) return true;
+  }
+  return false;
+};

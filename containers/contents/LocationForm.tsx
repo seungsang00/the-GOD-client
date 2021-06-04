@@ -1,5 +1,6 @@
 import { Button, TextInput, Toggle } from '@components';
 import { ToggleProps } from '@interfaces';
+import { nullChecker } from '@utils/contentUtils';
 import { inputLocation, inputMobile, inputPerks } from 'modules/content';
 import { RootState } from 'modules/reducer';
 import React, { useEffect, useState } from 'react';
@@ -125,8 +126,8 @@ const LocationForm = ({
   const { perks, address, mobile } = useSelector(
     ({ content }: RootState) => content.form
   );
-  const { data } = useSelector(({ content }: RootState) => content.current);
   const [searchModule, setSearchModule] = useState<MapModule | null>(null);
+  const [disabled, setDisabled] = useState(false);
   const [keyword, setKeyword] = useState<string>('');
   const dispatch = useDispatch();
 
@@ -135,16 +136,8 @@ const LocationForm = ({
   }, []);
 
   useEffect(() => {
-    if (searchModule && data) {
-      const { address, mobile } = data;
-      dispatch(inputLocation(address));
-      if (mobile) {
-        dispatch(inputMobile(mobile));
-      }
-      setKeyword(address.storeName);
-    }
-  }, [searchModule, data]);
-
+    setDisabled(nullChecker({ keyword: address.storeName }));
+  }, [perks, address, mobile]);
   useEffect(() => {
     if (searchModule) {
       searchModule.keywordSearch(keyword);
@@ -219,7 +212,7 @@ const LocationForm = ({
         </div>
         <section>
           <Button disabled={false} handler={onPrev} text="이전" />
-          <Button disabled={false} handler={onSubmit} text="다음" />
+          <Button disabled={disabled} handler={onSubmit} text="다음" />
         </section>
       </div>
       <div id="map"></div>

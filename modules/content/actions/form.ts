@@ -11,6 +11,7 @@ import {
   CONTENT_FORM_PERKS,
   CONTENT_FORM_MOBILE,
   CONTENT_INIT_FORM,
+  CONTENT_FORM_ID,
 } from 'modules/actionTypes';
 import { Artist, ToggleProps } from '@interfaces';
 export const inputArtist = createAction(
@@ -48,3 +49,4 @@ export const inputPerks = createAction(
   (icon: ToggleProps['icon']) => icon
 )();
 export const initForm = createAction(CONTENT_INIT_FORM)();
+export const inputId = createAction(CONTENT_FORM_ID, (id: string) => id)();
