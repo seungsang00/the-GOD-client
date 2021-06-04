@@ -5,9 +5,10 @@ import TextButton from 'components/TextButton';
 import useDisabled from 'hooks/useDisabled';
 import useValidInput from 'hooks/useValidInput';
 import { updatePSThunk } from 'modules/auth';
+import { getInfoThunk } from 'modules/user';
 import { RootState } from 'modules/reducer';
 import moment, { MomentInput } from 'moment';
-import React, { MouseEvent, ReactElement } from 'react';
+import React, { MouseEvent, ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { EditUserInfoWrapper } from './EditUserInfo.style';
 
@@ -39,6 +40,12 @@ export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
     disabledController(e);
   };
 
+  useEffect(() => {
+    if (pwUpdateResponse) {
+      dispatch(getInfoThunk());
+    }
+  }, [pwUpdateResponse]);
+
   return (
     <>
       <EditUserInfoWrapper>
@@ -55,11 +62,10 @@ export const EditPassword = ({ field }: EditUserInfoProps): ReactElement => {
             <div className="pwchange-recent-date">
               <span>최종 수정일 :</span>
               <span className="password-update-date">
-                {pwUpdateResponse
-                  ? moment(pwUpdateResponse as MomentInput).fromNow()
-                  : data
-                  ? moment(data.passwordUpdate).fromNow()
-                  : '최초 가입일'}
+                {data &&
+                  data.passwordUpdate &&
+                  moment(data.passwordUpdate).fromNow()}
+                {!data && '최초 가입일'}
               </span>
             </div>
           ) : (
