@@ -1,21 +1,21 @@
 import { AccountOptionsProps } from '@interfaces';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { FlyoutContainer } from './AccountOptionsFlyout.style';
 
 const AccountOptionsFlyout = ({
   handler,
 }: AccountOptionsProps): ReactElement => {
+  const router = useRouter();
   const logouthandler = () => {
     window.localStorage.removeItem('accessToken');
-    // FIXME: 로컬스토리지가 변한 것을 페이지가 바로 인식하지 못합니다. 강제 새로고침 말고 다른 방법은 없을까요?
-    document.location.href = '/';
+    router.replace('/');
   };
   return (
     <FlyoutContainer className="flyout-overlay" onClick={handler}>
       <div id="AccountOptionsFlyout" className="flyout-content">
         <section className="account-options">
-          {/* <div>section title</div> */}
           <ul className="account-options">
             <Link href="/content/form">
               <li className="account-option">
