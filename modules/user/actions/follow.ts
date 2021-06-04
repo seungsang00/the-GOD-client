@@ -1,7 +1,6 @@
 import {
   API_ENDPOINT,
   GetFollowResponse,
-  GetInfoResponse,
   PutFollowResponse,
 } from '@interfaces';
 import axios, { AxiosError } from 'axios';

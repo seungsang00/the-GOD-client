@@ -9,7 +9,11 @@ const PathContentCard = ({ id, data }: { id: string; data: Content[] }) => {
       <div>
         {data.map((el, i) => {
           <div key={i}>
-            <ContentCard {...el} />
+            <ContentCard
+              isOpen={false}
+              contentData={el}
+              handleClick={() => {}}
+            />
           </div>;
         })}
       </div>

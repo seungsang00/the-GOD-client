@@ -4,7 +4,7 @@ import { OrderSidebar } from '@components';
 import CafeInfoForm from 'containers/contents/CafeinfoForm';
 import RangeForm from 'containers/contents/RangeForm';
 import LocationForm from 'containers/contents/LocationForm';
-import { createThunk } from 'modules/content';
+import { createContentThunk } from 'modules/content';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
 
@@ -21,7 +21,7 @@ const ContentFormPage = () => {
     return;
   };
   const submitHandler = () => {
-    dispatch(createThunk(form));
+    dispatch(createContentThunk(form));
   };
   return (
     <Layout title={`이벤트 등록 Step${step} | FansSum`}>

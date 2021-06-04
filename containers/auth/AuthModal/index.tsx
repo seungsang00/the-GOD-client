@@ -6,10 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginThunk, singupThunk } from 'modules/auth/actions';
 import { AuthModalStyle } from './authcontent.style';
 import { RootState } from 'modules/reducer';
-import { useRouter } from 'next/router';
 
 const AuthModal = ({ isOpen, handler }: CutomModalProps): ReactElement => {
-  const router = useRouter();
   const dispatch = useDispatch();
   const [isLoginContent, setIsLoginContent] = useState<boolean>(true);
   const { data: signupResponse } = useSelector(
