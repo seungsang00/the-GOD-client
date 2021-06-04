@@ -77,12 +77,7 @@ const SettingPage = () => {
             </div>
           )}
 
-          {category === 'profile' && userInfo && (
-            <ProfileSettings
-              profileImage={userInfo.profileImage}
-              name={userInfo.name}
-            />
-          )}
+          {category === 'profile' && <ProfileSettings />}
           {category === 'account-settings' && <AccountSettings />}
         </main>
       </MyPageLayout>

@@ -11,28 +11,24 @@ import { verifyUsername } from '@utils/verifyFunctions';
 import { usernameStandard } from '@utils/verifyStandard';
 import useDisabled from 'hooks/useDisabled';
 import useValidInput from 'hooks/useValidInput';
-import { updateProfileImageThunk, updateUserNameThunk } from 'modules/user';
-import React, { MouseEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { RootState } from 'modules/reducer';
+import {
+  getInfoThunk,
+  updateProfileImageThunk,
+  updateUserNameThunk,
+} from 'modules/user';
+import React, { MouseEvent, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AccountStyle } from '../account/account.style';
 
-const ProfileSettings = ({
-  profileImage,
-  name,
-}: {
-  profileImage: string;
-  name: string;
-}) => {
+const ProfileSettings = () => {
   const dispatch = useDispatch();
+  const { data } = useSelector((state: RootState) => state.user.userProfile);
   const { disabled, disabledController } = useDisabled(true);
-  const [value, setValue] = useValidInput(
-    name,
-    verifyUsername,
-    usernameStandard
-  );
+  const [value, setValue] = useValidInput('', verifyUsername, usernameStandard);
   const [avatarFile, setAvatarFile] = useState<Blob | null>(null);
   const [avatarUrl, setAvatarUrl] = useState<string>(
-    profileImage || '/images/avatar_default.jpg'
+    '/images/avatar_default.jpg'
   );
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +53,19 @@ const ProfileSettings = ({
     const formdata = new FormData();
     formdata.append('profileImage', avatarFile as Blob);
     dispatch(updateProfileImageThunk(formdata));
+    setAvatarFile(null);
   };
+
+  useEffect(() => {
+    if (data) {
+      setValue(data.name);
+      setAvatarUrl(data.profileImage);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (!data) dispatch(getInfoThunk());
+  }, [data]);
 
   return (
     <AccountStyle>
