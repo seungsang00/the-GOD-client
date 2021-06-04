@@ -9,7 +9,6 @@ import GoogleLoader from './GoogleLoader';
 import KakaoLoader from './KakaoLoader';
 import TwitterLoader from './TwitterLoader';
 
-// FIXME: 진짜 로직에 필요한 값으로 대체되어야 합니다
 const LoginContent = ({
   handleChangeContent,
   submitHandler,
