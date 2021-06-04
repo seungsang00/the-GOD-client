@@ -6,6 +6,7 @@ import {
   TimeSelect,
 } from '@components';
 import { Dates } from '@interfaces';
+import { nullChecker } from '@utils/contentUtils';
 import { inputDates, inputTimes } from 'modules/content';
 import { RootState } from 'modules/reducer';
 import moment from 'moment';
@@ -28,22 +29,17 @@ const RangeForm = ({
     return { hour, minute };
   };
 
-  const {
-    form: { time, date },
-    current,
-  } = useSelector(({ content }: RootState) => content);
+  const { time, date } = useSelector(({ content }: RootState) => content.form);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState(false);
   const [dates, setDates] = useState<Dates>({
     startDate: date.start ? moment(date.start) : null,
     endDate: date.end ? moment(date.end) : null,
   });
-  const [openTime, setopenTime] = useState<{ hour: string; minute: string }>(
-    timeController(time.open)
-  );
-  const [closeTime, setCloseTime] = useState<{ hour: string; minute: string }>(
-    timeController(time.close)
-  );
+  const [openTime, setOpenTime] = useState<{ hour: string; minute: string }>();
+  const [closeTime, setCloseTime] =
+    useState<{ hour: string; minute: string }>();
 
   const [focusedInput, setFocusedInput] =
     useState<'startDate' | 'endDate' | null>('startDate');
@@ -56,15 +52,11 @@ const RangeForm = ({
   const handleResize = () => {
     setViewWidth(window.innerWidth);
   };
+
   useEffect(() => {
-    if (current.data) {
-      const { date, time } = current.data;
-      setDates({ startDate: moment(date.start), endDate: moment(date.end) });
-      setopenTime(timeController(time.open));
-      setCloseTime(timeController(time.close));
-      dispatch(inputTimes(time));
-    }
-  }, [current.data]);
+    setOpenTime(timeController(time.open));
+    setCloseTime(timeController(time.close));
+  }, [time]);
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
@@ -72,6 +64,16 @@ const RangeForm = ({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  useEffect(() => {
+    setDisabled(
+      nullChecker({
+        open: time.open,
+        close: time.close,
+        start: date.start,
+        end: date.end,
+      })
+    );
+  }, [time, date]);
 
   useEffect(() => {
     dispatch(inputDates({ start: dates.startDate, end: dates.endDate }));
@@ -124,51 +126,60 @@ const RangeForm = ({
         <div>
           <h2>오픈</h2>
           <TimeSelect
-            setHour={(hour: string) =>
+            setHour={(hour: string) => {
+              const timeArr = time.open.split(':');
+              timeArr[0] = hour;
               dispatch(
                 inputTimes({
                   close: time.close,
-                  open: time.open.replace('-- 시 --', hour),
+                  open: timeArr.join(':'),
                 })
-              )
-            }
-            setMinutes={(minute: string) =>
+              );
+            }}
+            setMinutes={(minute: string) => {
+              const timeArr = time.open.split(':');
+              timeArr[1] = minute;
               dispatch(
                 inputTimes({
                   close: time.close,
-                  open: time.open.replace('-- 분 --', minute),
+                  open: timeArr.join(':'),
                 })
-              )
-            }
+              );
+            }}
             initTime={openTime}
           />
         </div>
         <div>
           <h2>마감</h2>
           <TimeSelect
-            setHour={(hour: string) =>
+            setHour={(hour: string) => {
+              const timeArr = time.close.split(':');
+              timeArr[0] = hour;
+              console.log(time);
               dispatch(
                 inputTimes({
                   open: time.open,
-                  close: time.close.replace('-- 시 --', hour),
+                  close: timeArr.join(':'),
                 })
-              )
-            }
-            setMinutes={(minute: string) =>
+              );
+            }}
+            setMinutes={(minute: string) => {
+              const timeArr = time.close.split(':');
+              timeArr[1] = minute;
               dispatch(
                 inputTimes({
                   open: time.open,
-                  close: time.close.replace('-- 분 --', minute),
+                  close: timeArr.join(':'),
                 })
-              )
-            }
+              );
+            }}
             initTime={closeTime}
           />
         </div>
       </section>
       <section>
         <Button disabled={false} handler={onPrev} text="이전" />
-        <Button disabled={false} handler={onSubmit} text="다음" />
+        <Button disabled={disabled} handler={onSubmit} text="다음" />
       </section>
     </>
   );

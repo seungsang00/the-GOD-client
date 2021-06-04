@@ -171,7 +171,7 @@ const auth = createReducer<AuthReducer, AuthAction>(initialState, {
     updateps: {
       loading: false,
       error: null,
-      data: { message: action.payload.message },
+      data: action.payload,
     },
   }),
   [AUTH_PASSWORD_UPDATE_ERROR]: (state, action) => ({

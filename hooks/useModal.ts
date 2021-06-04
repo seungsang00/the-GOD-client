@@ -17,6 +17,6 @@ const useModal = () => {
       setIsOpen(false);
     }
   };
-  return { isOpen, modalController };
+  return { isOpen, modalController, setIsOpen };
 };
 export default useModal;

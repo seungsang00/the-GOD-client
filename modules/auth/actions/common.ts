@@ -11,9 +11,14 @@ import {
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
-export const singoutRequest = async () => {
+export const singoutRequest = async (password: string) => {
+  const accessToken = localStorage.getItem('accessToken');
   const result = await axios.delete<{ message: string }>(
-    `${API_ENDPOINT}/auth/signout`
+    `${API_ENDPOINT}/auth/signout`,
+    {
+      headers: { authorization: `BEARER ${accessToken}` },
+      data: { password },
+    }
   );
   return result.data;
 };

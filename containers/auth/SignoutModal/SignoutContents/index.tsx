@@ -1,8 +1,4 @@
 import { Button, PasswordInput } from '@components';
-import { verifyPassword } from '@utils/verifyFunctions';
-import { passwordStandard } from '@utils/verifyStandard';
-import useValidInput from 'hooks/useValidInput';
-import { useRouter } from 'next/dist/client/router';
 import React, {
   MouseEventHandler,
   ReactElement,
@@ -19,15 +15,15 @@ import {
 } from './signoutcontent.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
+import { RootState } from 'modules/reducer';
 
-type Props = {
-  email?: string;
-  handler: MouseEventHandler<HTMLButtonElement> | undefined;
+type FirstStepProps = {
+  handler: MouseEventHandler<HTMLButtonElement>;
 };
 
-export const SignoutFirstStep = ({ email, handler }: Props): ReactElement => {
-  const fakeEmail = 'fakeemail@gmail.com'; // FIXME: 사용자의 이메일 정보를 스토어에서 받아와야 합니다
-  email = email || fakeEmail;
+export const SignoutFirstStep = ({ handler }: FirstStepProps): ReactElement => {
+  const { data } = useSelector((state: RootState) => state.user.userProfile);
   return (
     <Wrapper>
       <ImageSection className="image-area">
@@ -35,7 +31,7 @@ export const SignoutFirstStep = ({ email, handler }: Props): ReactElement => {
       </ImageSection>
       <TitleSection>
         <h1>정말 떠나시는건가요?</h1>
-        <p className="user-email">{email}</p>
+        <p className="user-email">{data && data.email}</p>
       </TitleSection>
       <InfoSection>
         <ul>
@@ -54,19 +50,31 @@ export const SignoutFirstStep = ({ email, handler }: Props): ReactElement => {
         </ul>
       </InfoSection>
       <ButtonSection className="button-area">
-        <Button disabled={false} text="역시 탈퇴할래요" handler={handler} />
+        <Button
+          disabled={false}
+          text="역시 탈퇴할래요"
+          handler={handler as MouseEventHandler<HTMLButtonElement>}
+        />
       </ButtonSection>
     </Wrapper>
   );
 };
 
-export const SignoutSecondStep = ({ email, handler }: Props): ReactElement => {
+type SecondStepProps = {
+  handler: MouseEventHandler<HTMLButtonElement>;
+  password: string;
+  setPassword: (value: string) => void;
+  passwordError: string | null;
+};
+
+export const SignoutSecondStep = ({
+  handler,
+  password,
+  setPassword,
+  passwordError,
+}: SecondStepProps): ReactElement => {
   const [disabled, setDisabled] = useState(true);
-  const [password, setPassword, passwordError] = useValidInput(
-    '',
-    verifyPassword,
-    passwordStandard
-  );
+  const { data } = useSelector((state: RootState) => state.user.userProfile);
 
   useEffect(() => {
     if (password) {
@@ -78,14 +86,11 @@ export const SignoutSecondStep = ({ email, handler }: Props): ReactElement => {
     }
   }, [passwordError]);
 
-  const fakeEmail = 'fakeemail@gmail.com'; // FIXME: 사용자의 이메일 정보를 스토어에서 받아와야 합니다
-  email = email || fakeEmail;
-
   return (
     <Wrapper>
       <TitleSection>
         <h1>계정 확인</h1>
-        <p className="user-email">{fakeEmail}</p>
+        <p className="user-email">{data && data.email}</p>
         <p>회원 탈퇴를 위해 계정 비밀번호를 입력해주세요</p>
       </TitleSection>
       <FormSection className="form-area">
@@ -102,12 +107,33 @@ export const SignoutSecondStep = ({ email, handler }: Props): ReactElement => {
   );
 };
 
-export const SignoutResult = (): ReactElement => {
-  const router = useRouter();
-  const handleSignout = () => {
-    // TODO: 회원 탈퇴 요청을 추가해야 합니다
-    router.push('/');
-  };
+type ThirdStepProps = {
+  handler: MouseEventHandler<HTMLButtonElement>;
+  resetHandler: MouseEventHandler<HTMLButtonElement>;
+};
+export const SignoutThirdStep = ({
+  handler,
+  resetHandler,
+}: ThirdStepProps): ReactElement => {
+  const { data } = useSelector((state: RootState) => state.user.userProfile);
+  return (
+    <Wrapper>
+      <ImageSection className="image-area">
+        <img src="/images/crying.svg" alt="crying emogi" />
+      </ImageSection>
+      <TitleSection>
+        <h1>이 계정이 완전히 삭제됩니다</h1>
+        <p className="user-email">{data && data.email}</p>
+      </TitleSection>
+      <ButtonSection className="button-area">
+        <Button disabled={false} text="취소" handler={resetHandler} />
+        <Button disabled={false} text="확인" type="line" handler={handler} />
+      </ButtonSection>
+    </Wrapper>
+  );
+};
+
+export const SignoutResult = ({ handler }: FirstStepProps): ReactElement => {
   return (
     <Wrapper>
       <ImageSection>
@@ -118,11 +144,7 @@ export const SignoutResult = (): ReactElement => {
         <p>이제는 우리가 헤어져야 할 시간 다음에 또 만나요</p>
       </TitleSection>
       <ButtonSection className="button-area">
-        <Button
-          disabled={false}
-          text="메인으로 돌아가기"
-          handler={handleSignout}
-        />
+        <Button disabled={false} text="메인으로 돌아가기" handler={handler} />
       </ButtonSection>
     </Wrapper>
   );

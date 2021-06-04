@@ -45,8 +45,10 @@ const LoginContent = ({
     <article>
       <OAuthSection>
         <TwitterLoader />
-        <GoogleLoader />
-        <KakaoLoader />
+        <div className="second-row">
+          <GoogleLoader />
+          <KakaoLoader />
+        </div>
       </OAuthSection>
       <Horizon text="or" />
       <FormSection>
@@ -59,12 +61,13 @@ const LoginContent = ({
         <Button
           disabled={disabled}
           text="signin"
+          type="point"
           handler={() => submitHandler(email, password)}
         />
         {error && <div>이메일과 아이디를 확인해주세요</div>}
       </FormSection>
       <LinkSection>
-        <span>Already a member?</span>
+        <span className="auth-desc">FansSum이 처음이신가요?</span>
         <span className="auth-link" onClick={handleChangeContent}>
           회원가입하러가기
         </span>

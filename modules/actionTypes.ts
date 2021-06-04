@@ -57,9 +57,17 @@ export const USER_INFO_GET = 'user/INFO_GET';
 export const USER_INFO_GET_SUCCESS = 'user/INFO_GET_SUCCESS';
 export const USER_INFO_GET_ERROR = 'user/INFO_GET_ERROR';
 
-export const USER_INFO_UPDATE = 'user/info/update';
-export const USER_INFO_UPDATE_SUCCESS = 'user/info/update/success';
-export const USER_INFO_UPDATE_ERROR = 'user/info/update/success';
+export const USER_INFO_UPDATE = 'user/INFO_UPDATE';
+export const USER_INFO_UPDATE_SUCCESS = 'user/INFO_UPDATE_SUCCESS';
+export const USER_INFO_UPDATE_ERROR = 'user/INFO_UPDATE_ERROR';
+
+export const USER_NAME_UPDATE = 'user/NAME_UPDATE';
+export const USER_NAME_UPDATE_SUCCESS = 'user/NAME_UPDATE_SUCCESS';
+export const USER_NAME_UPDATE_ERROR = 'user/NAME_UPDATE_ERROR';
+
+export const USER_AVATAR_UPDATE = 'user/AVATAR_UPDATE';
+export const USER_AVATAR_UPDATE_SUCCESS = 'user/AVATAR_UPDATE_SUCCESS';
+export const USER_AVATAR_UPDATE_ERROR = 'user/AVATAR_UPDATE_ERROR';
 
 export const USER_CONTENT_GET = 'user/CONTENT_GET';
 export const USER_CONTENT_GET_SUCCESS = 'user/CONTENT_GET_SUCCESS';
