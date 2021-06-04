@@ -84,13 +84,14 @@ const SignupContent = ({
         <Button
           disabled={disabled}
           text="sign up"
+          type="point"
           handler={() => submitHandler(email, password, userName)}
         />
       </FormSection>
       <LinkSection>
-        <span>Not a member?</span>
+        <span className="auth-desc">FansSum 계정이 있으신가요?</span>
         <span className="auth-link" onClick={handleChangeContent}>
-          Sign up now
+          로그인하러가기
         </span>
       </LinkSection>
     </article>

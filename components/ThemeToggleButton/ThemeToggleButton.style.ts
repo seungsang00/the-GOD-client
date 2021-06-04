@@ -1,10 +1,11 @@
 import styled from '@styles/themed-components';
 
 export const Wrapper = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 0;
   right: 100px;
-  bottom: 0;
+  bottom: 0; */
+  margin-right: ${({ theme }) => theme.space.sm};
   display: flex;
   align-items: center;
   justify-content: center;

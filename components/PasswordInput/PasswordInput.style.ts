@@ -3,10 +3,11 @@ import styled from '@styles/themed-components';
 export const PasswordInputField = styled.div`
   input {
     width: 100%;
-    height: 32px;
-    border: 1px solid ${({ theme }) => theme.colors.line.line01};
-    border-radius: ${({ theme }) => theme.borderRadius};
-    margin-bottom: ${({ theme }) => theme.space.xxs};
+    height: 40px;
+    border: 1px solid ${({ theme }) => theme.colors.bg.hover};
+    border-radius: 999px;
+    margin-bottom: ${({ theme }) => theme.space.xs};
+    padding: 0 ${({ theme }) => theme.space.sm};
   }
 
   input.valid {
@@ -23,8 +24,10 @@ export const PasswordInputField = styled.div`
 
   #visibleController {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 11px;
+    right: 16px;
+    cursor: pointer;
+    color: ${({ theme }) => theme.colors.secondary.hover};
 
     svg {
       color: inherit;
@@ -32,6 +35,6 @@ export const PasswordInputField = styled.div`
   }
 
   #visibleController.inactive {
-    color: ${({ theme }) => theme.colors.gray.gray04};
+    color: ${({ theme }) => theme.colors.secondary.disabled};
   }
 `;
