@@ -76,9 +76,12 @@ export const FooterSection = styled.section`
   margin: ${({ theme }) => theme.space.xs} ${({ theme }) => theme.space.sm};
   h6 {
     font-weight: 600;
+    font-size: 12px;
     margin-bottom: ${({ theme }) => theme.space.sm};
+    cursor: default;
   }
   li {
+    font-size: 11px;
     margin: ${({ theme }) => theme.space.xs} 0;
   }
 `;
