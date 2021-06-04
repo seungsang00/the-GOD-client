@@ -98,10 +98,10 @@ const colorsDark = {
     disabled: '#a4e5b7',
   },
   line: {
-    line01: '#d4d9e1',
-    line02: '#dfe3e9',
-    line03: '#ebecf0',
-    line04: '#f5f5f5',
+    line01: '#414870',
+    line02: '#373856',
+    line03: '#2e3152',
+    line04: '#2d2e47',
   },
   bg: {
     normal: '#2A283E',
