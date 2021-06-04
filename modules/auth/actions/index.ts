@@ -9,7 +9,7 @@ export * from './email';
 import { kakaoTokenAsync, kakaoAuthAsync } from './kakao';
 import { googleAuthAsync } from './google';
 import { twitterAuthAsync } from './twitter';
-import { signoutAsync } from './common';
+import { signoutAsync, tokenAsync } from './common';
 import { checkPSAsync, updatePSAsync, signupAsync, loginAsync } from './email';
 
 const actions = {
@@ -22,6 +22,7 @@ const actions = {
   updatePSAsync,
   loginAsync,
   signupAsync,
+  tokenAsync,
 };
 
 export type AuthAction = ActionType<typeof actions>;

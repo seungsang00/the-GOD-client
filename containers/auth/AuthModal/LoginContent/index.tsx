@@ -3,13 +3,14 @@ import { verifyEmail, verifyPassword } from '@utils/verifyFunctions';
 import { emailStandard, passwordStandard } from '@utils/verifyStandard';
 import useValidInput from 'hooks/useValidInput';
 import { AuthContentProps } from 'interfaces/props';
+import { RootState } from 'modules/reducer';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { FormSection, LinkSection, OAuthSection } from '../authcontent.style';
 import GoogleLoader from './GoogleLoader';
 import KakaoLoader from './KakaoLoader';
 import TwitterLoader from './TwitterLoader';
 
-// FIXME: 진짜 로직에 필요한 값으로 대체되어야 합니다
 const LoginContent = ({
   handleChangeContent,
   submitHandler,
@@ -27,6 +28,7 @@ const LoginContent = ({
   );
 
   const [disabled, setDisabled] = useState(true);
+  const { error } = useSelector(({ auth }: RootState) => auth.login);
 
   useEffect(() => {
     // check validation
@@ -59,6 +61,7 @@ const LoginContent = ({
           text="signin"
           handler={() => submitHandler(email, password)}
         />
+        {error && <div>이메일과 아이디를 확인해주세요</div>}
       </FormSection>
       <LinkSection>
         <span>Already a member?</span>
