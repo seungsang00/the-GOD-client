@@ -3,7 +3,12 @@ import CarouselStyle from './Carousel.style';
 import { CarouselProps } from '@interfaces';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Carousel = ({ isPage, col = 2, children }: CarouselProps) => {
+const Carousel = ({
+  isPage,
+  col = 2,
+  children,
+  autoCol = false,
+}: CarouselProps) => {
   const [isArrow, setIsArrow] = useState<boolean>(false);
   const [colState, setColState] = useState<number>(col);
   const [viewWidth, setViewWidth] = useState<number | undefined>(undefined);
@@ -33,9 +38,12 @@ const Carousel = ({ isPage, col = 2, children }: CarouselProps) => {
   }, []);
 
   useEffect(() => {
-    if (viewWidth && viewWidth < 425) setColState(1);
-    if (viewWidth && viewWidth > 425) setColState(4);
-  }, [viewWidth]);
+    if (autoCol) {
+      if (viewWidth && viewWidth < 425) setColState(1);
+      if (viewWidth && viewWidth > 425 && viewWidth < 1024) setColState(2);
+      if (viewWidth && viewWidth > 1024) setColState(4);
+    }
+  }, [viewWidth, autoCol]);
 
   useEffect(() => {
     if (slideRef.current) {
@@ -84,7 +92,7 @@ const Carousel = ({ isPage, col = 2, children }: CarouselProps) => {
   };
 
   return (
-    <CarouselStyle col={col} navPosition={nav} index={index}>
+    <CarouselStyle col={colState} navPosition={nav} index={index}>
       <div className="carousel-main-cotainer" ref={containerRef}>
         <div className="carousel-content-container" ref={slideRef}>
           {children}

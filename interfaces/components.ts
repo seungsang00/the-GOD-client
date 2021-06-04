@@ -64,6 +64,7 @@ export interface GuideButtonProps {
 export interface CarouselProps {
   isPage?: boolean;
   // isPreview?: boolean;
+  autoCol?: boolean;
   col?: 4 | 2 | 1;
   children: JSX.Element[] | JSX.Element;
 }

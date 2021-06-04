@@ -14,17 +14,39 @@ import {
 } from 'modules/actionTypes';
 import { createAsyncAction } from 'typesafe-actions';
 
-export const updateContentRequest = async (content: ContentForm) => {
+const createContentForm = (content: ContentForm) => {
+  const formData = new FormData();
+  const keys = Object.keys(content) as (keyof ContentForm)[];
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    if (key === 'author') continue;
+    if (key === 'images') {
+      content[key].forEach((image) => {
+        formData.append(key, image.data, image.name);
+      });
+      continue;
+    }
+    if (key === 'artist') {
+      formData.append('artistId', JSON.stringify('nha'));
+      continue;
+    }
+    formData.append(key, JSON.stringify(content[key]));
+  }
+  return formData;
+};
+export const updateContentRequest = async (contentform: ContentForm) => {
   const accessToken = localStorage.getItem('accessToken');
-  const result = await axios.post<PutContentResponse>(
+  const formData = createContentForm(contentform);
+  const result = await axios.put<PutContentResponse>(
     `${API_ENDPOINT}/content`,
-    content,
+    formData,
     {
       headers: { authorization: `BEARER ${accessToken}` },
     }
   );
   return result.data;
 };
+
 export const updateBookmarkRequest = async (content: Content) => {
   const accessToken = localStorage.getItem('accessToken');
   const result = await axios.put<PutBookmarkResponse>(

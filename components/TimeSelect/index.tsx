@@ -1,4 +1,10 @@
-import React, { MouseEvent, ReactElement, useState } from 'react';
+import React, {
+  MouseEvent,
+  ReactElement,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { hours, minutes } from '@utils/time';
 import { TimeSelectProps } from 'interfaces/props';
 import { TimeSelectBox } from './TimeSelect.style';
@@ -12,7 +18,6 @@ const TimeSelect = ({
     initTime ? [initTime.hour, initTime.minute] : ['-- 시 --', '-- 분 --']
   );
   const [openOption, setOpenOption] = useState<boolean[]>([false, false]);
-  const [hour, minute] = time;
   const [isOptionOpenH, isOptionOpenM] = openOption;
 
   const handleSelectHour = (e: MouseEvent) => {
@@ -35,10 +40,13 @@ const TimeSelect = ({
     console.log(target.textContent as string);
   };
 
+  useMemo(() => {
+    initTime && setTime([initTime.hour, initTime.minute]);
+  }, [initTime]);
   return (
     <TimeSelectBox
-      hour={hour}
-      minute={minute}
+      hour={time[0]}
+      minute={time[1]}
       isOptionOpenM={isOptionOpenM}
       isOptionOpenH={isOptionOpenH}
     >
@@ -47,7 +55,7 @@ const TimeSelect = ({
           className="selectbox-display"
           onClick={() => setOpenOption([true, false])}
         >
-          {hour}
+          {time[0]}
         </div>
         {isOptionOpenH && (
           <ul className="option-container">
@@ -65,7 +73,7 @@ const TimeSelect = ({
           className="selectbox-display"
           onClick={() => setOpenOption([false, true])}
         >
-          {minute}
+          {time[1]}
         </div>
         {isOptionOpenM && (
           <ul className="option-container">

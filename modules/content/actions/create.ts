@@ -23,6 +23,7 @@ export const createContentRequest = async (content: ContentForm) => {
   const keys = Object.keys(content) as (keyof ContentForm)[];
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
+    if (key === 'id' || key === 'author') continue;
     if (key === 'images') {
       content[key].forEach((image) => {
         formData.append(key, image.data, image.name);

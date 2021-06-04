@@ -14,6 +14,7 @@ import {
   inputLocation,
   inputPerks,
   initForm,
+  inputId,
 } from './form';
 import {
   getSharedContentAsync,
@@ -31,6 +32,8 @@ const actions = {
   updateContentAsync,
   deleteContentAsync,
   createContentAsync,
+  inputId,
+  initRead,
   inputArtist,
   inputTitle,
   inputTags,
