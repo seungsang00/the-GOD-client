@@ -38,6 +38,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getInfoThunk, updateBookmarkThunk } from 'modules/user';
 import { RootState } from 'modules/reducer';
 import { deleteContentThunk } from 'modules/content';
+import moment from 'moment';
 
 const ContentPageContainer = ({
   artist,
@@ -156,9 +157,9 @@ const ContentPageContainer = ({
                 <span>{artistName}</span>
               </InfoListItem>
               <InfoListItem icon={faCalendar} title="이벤트 일정">
-                <span>{start}</span>
+                <span>{moment(start).format('YYYY-MM-DD')}</span>
                 <span>{` ~ `}</span>
-                <span>{end}</span>
+                <span>{moment(end).format('YYYY-MM-DD')}</span>
               </InfoListItem>
               <InfoListItem icon={faClock} title="영업 시간">
                 <span>{open}</span>

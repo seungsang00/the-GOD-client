@@ -28,8 +28,6 @@ const ContentPage = () => {
     <Layout title={`${data && data.title} | FansSum::팬심이 모여 문화가 되다`}>
       {loading && 'loading...'}
       {data && <ContentPageContainer {...data} />}
-      {/* 아래는 삭제되어야 할 부분 (테스트용) */}
-      {!data && <ContentPageContainer {...sampleContentData} />}
     </Layout>
   );
 };
