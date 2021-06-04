@@ -91,9 +91,16 @@ const SearchPageContainer = () => {
       })
     );
   }, []);
+
+  useEffect(() => {
+    if (error) alert(error);
+  }, [error]);
+
   return (
     <main>
-      {!data || (contentList && contentList.length === 0) ? (
+      {loading ? (
+        <div>loading...</div>
+      ) : !data || (contentList && contentList.length === 0) ? (
         <div>null data</div>
       ) : (
         <SearchContentLoader

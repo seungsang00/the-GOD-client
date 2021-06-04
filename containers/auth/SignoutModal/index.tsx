@@ -23,10 +23,10 @@ const SignoutModal = ({
 }: CutomModalProps): ReactElement => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { error: _checkpsError, data: checkpwResponse } = useSelector(
+  const { /*error: checkpsError,*/ data: checkpwResponse } = useSelector(
     (state: RootState) => state.auth.checkps
   );
-  const { error: _signoutError, data: signoutResponse } = useSelector(
+  const { data: signoutResponse } = useSelector(
     (state: RootState) => state.auth.signout
   );
   const [step, setStep] = useState<number>(1);
