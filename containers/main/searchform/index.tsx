@@ -16,12 +16,18 @@ import { RootState } from 'modules/reducer';
 import { getArtistThunk } from 'modules/artist';
 import { useRouter } from 'next/router';
 
+import { PopupNoTitle } from 'components/Popup';
+import useModal from 'hooks/useModal';
+
 const MainSearchForm = (): ReactElement => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { data: artistData } = useSelector(
     ({ artist }: RootState) => artist.read
   );
+
+  const { isOpen: searchPopupIsOpen, modalController, setIsOpen } = useModal();
+  const [popupMessage, setPopupMessage] = useState('');
 
   // FIXME: option list 불러오기 (main 접속시 최초 1회)
   const optionlistB = sampleSearchInputOptions.location;
@@ -71,9 +77,26 @@ const MainSearchForm = (): ReactElement => {
   // 검색 버튼 핸들러
   const handleSearchClick = () => {
     const { artistId, location, dateStart, dateEnd } = makeQueryData();
-    router.push(
-      `/search?artistId=${artistId}&location=${location}&dateStart=${dateStart}&dateEnd=${dateEnd}`
-    );
+
+    if (
+      !artistId ||
+      !location ||
+      dateStart === 'Invalid date' ||
+      dateEnd === 'Invalid date'
+    ) {
+      let msg = '검색 조건을 입력해 주세요';
+      if (!artistId) msg = '아티스트를 선택해 주세요';
+      else if (!location) msg = '지역을 선택해 주세요';
+      else if (dateStart === 'Invalid date') msg = '시작 날짜를 선택해 주세요';
+      else if (dateEnd === 'Invalid date') msg = '종료 날짜를 선택해 주세요';
+
+      setPopupMessage(msg);
+      setIsOpen(true);
+    } else {
+      router.push(
+        `/search?artistId=${artistId}&location=${location}&dateStart=${dateStart}&dateEnd=${dateEnd}`
+      );
+    }
   };
 
   // 상태 관리 핸들러
@@ -154,115 +177,128 @@ const MainSearchForm = (): ReactElement => {
   }, [viewWidth]);
 
   return (
-    <MainSearchFormContainer className="main__banner">
-      <section
-        className="main__searchform"
-        style={{ display: 'flex', justifyContent: 'space-evenly' }}
-      >
-        <div className={`trigger-wrapper ${!isDoneA ? 'active' : 'inactive'}`}>
-          <DropdownTrigger
-            value={stateA}
-            placeholder="아티스트 선택"
-            onClick={(e) =>
-              handleShowOption(e, showA, setShowA, setShowB, setShowC)
-            }
-          ></DropdownTrigger>
-        </div>
-        <div
-          className={`trigger-wrapper ${
-            isDoneA && !isDoneB ? 'active' : 'inactive'
-          }`}
+    <>
+      <MainSearchFormContainer className="main__banner">
+        <section
+          className="main__searchform"
+          style={{ display: 'flex', justifyContent: 'space-evenly' }}
         >
-          <DropdownTrigger
-            value={stateB}
-            placeholder="위치 선택"
-            onClick={(e) =>
-              handleShowOption(e, showB, setShowB, setShowA, setShowC)
-            }
-          ></DropdownTrigger>
-        </div>
-        <div
-          className={`trigger-wrapper ${
-            isDoneA && isDoneB ? 'active' : 'inactive'
-          }`}
+          <div
+            className={`trigger-wrapper ${!isDoneA ? 'active' : 'inactive'}`}
+          >
+            <DropdownTrigger
+              value={stateA}
+              placeholder="아티스트 선택"
+              onClick={(e) =>
+                handleShowOption(e, showA, setShowA, setShowB, setShowC)
+              }
+            ></DropdownTrigger>
+          </div>
+          <div
+            className={`trigger-wrapper ${
+              isDoneA && !isDoneB ? 'active' : 'inactive'
+            }`}
+          >
+            <DropdownTrigger
+              value={stateB}
+              placeholder="위치 선택"
+              onClick={(e) =>
+                handleShowOption(e, showB, setShowB, setShowA, setShowC)
+              }
+            ></DropdownTrigger>
+          </div>
+          <div
+            className={`trigger-wrapper ${
+              isDoneA && isDoneB ? 'active' : 'inactive'
+            }`}
+          >
+            <DropdownTrigger
+              value={
+                dates.startDate
+                  ? moment(dates.startDate).format('YYYY.MM.DD')
+                  : '날짜 입력'
+              }
+              placeholder="dd3"
+              onClick={(e) =>
+                handleShowOption(e, showC, setShowC, setShowB, setShowA)
+              }
+            ></DropdownTrigger>
+          </div>
+          <div
+            className={`trigger-wrapper ${
+              isDoneA && isDoneB ? 'active' : 'inactive'
+            }`}
+          >
+            <DropdownTrigger
+              value={
+                dates.endDate
+                  ? moment(dates.endDate).format('YYYY.MM.DD')
+                  : '날짜 입력'
+              }
+              placeholder="dd3"
+              onClick={(e) =>
+                handleShowOption(e, showC, setShowC, setShowB, setShowA)
+              }
+            ></DropdownTrigger>
+          </div>
+          {viewWidth && viewWidth > 768 && (
+            <div className={`trigger-wrapper search-button ${isActive}`}>
+              <div onClick={handleSearchClick}>
+                <FontAwesomeIcon icon={faSearch} />
+              </div>
+            </div>
+          )}
+        </section>
+        <section
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            position: 'relative',
+          }}
         >
-          <DropdownTrigger
-            value={
-              dates.startDate
-                ? moment(dates.startDate).format('YYYY.MM.DD')
-                : '날짜 입력'
-            }
-            placeholder="dd3"
-            onClick={(e) =>
-              handleShowOption(e, showC, setShowC, setShowB, setShowA)
-            }
-          ></DropdownTrigger>
-        </div>
-        <div
-          className={`trigger-wrapper ${
-            isDoneA && isDoneB ? 'active' : 'inactive'
-          }`}
-        >
-          <DropdownTrigger
-            value={
-              dates.endDate
-                ? moment(dates.endDate).format('YYYY.MM.DD')
-                : '날짜 입력'
-            }
-            placeholder="dd3"
-            onClick={(e) =>
-              handleShowOption(e, showC, setShowC, setShowB, setShowA)
-            }
-          ></DropdownTrigger>
-        </div>
-        {viewWidth && viewWidth > 768 && (
-          <div className={`trigger-wrapper search-button ${isActive}`}>
-            <div onClick={handleSearchClick}>
+          <Dropdown visible={showA}>
+            <OptionList
+              list={listA}
+              listHandler={handleOptionA}
+              stateHandler={handleChangeStateA}
+            />
+          </Dropdown>
+          <Dropdown visible={showB}>
+            <OptionList
+              list={listB}
+              listHandler={handleOptionB}
+              stateHandler={handleChangeStateB}
+            />
+          </Dropdown>
+          <Dropdown visible={showC}>
+            <DatePicker
+              dates={dates}
+              handleDateChange={setDates}
+              focusedInput={focusedInput}
+              handleFocusInput={handleFocusInput}
+              numberOfMonths={viewWidth && viewWidth <= 650 ? 1 : 2}
+            />
+          </Dropdown>
+        </section>
+        {viewWidth && viewWidth <= 768 && (
+          <div className={`search-button__bottom--container ${isActive}`}>
+            <div className="search-button__bottom" onClick={handleSearchClick}>
               <FontAwesomeIcon icon={faSearch} />
+              <span>검색하기</span>
             </div>
           </div>
         )}
-      </section>
-      <section
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          position: 'relative',
-        }}
-      >
-        <Dropdown visible={showA}>
-          <OptionList
-            list={listA}
-            listHandler={handleOptionA}
-            stateHandler={handleChangeStateA}
-          />
-        </Dropdown>
-        <Dropdown visible={showB}>
-          <OptionList
-            list={listB}
-            listHandler={handleOptionB}
-            stateHandler={handleChangeStateB}
-          />
-        </Dropdown>
-        <Dropdown visible={showC}>
-          <DatePicker
-            dates={dates}
-            handleDateChange={setDates}
-            focusedInput={focusedInput}
-            handleFocusInput={handleFocusInput}
-            numberOfMonths={viewWidth && viewWidth <= 650 ? 1 : 2}
-          />
-        </Dropdown>
-      </section>
-      {viewWidth && viewWidth <= 768 && (
-        <div className={`search-button__bottom--container ${isActive}`}>
-          <div className="search-button__bottom" onClick={handleSearchClick}>
-            <FontAwesomeIcon icon={faSearch} />
-            <span>검색하기</span>
-          </div>
-        </div>
-      )}
-    </MainSearchFormContainer>
+      </MainSearchFormContainer>
+      <div>
+        <PopupNoTitle
+          isOpen={searchPopupIsOpen}
+          modalController={modalController}
+          isNoti={true}
+          description={popupMessage}
+          buttonHandler={modalController}
+        />
+      </div>
+    </>
   );
 };
 
