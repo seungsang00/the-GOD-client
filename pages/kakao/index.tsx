@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { kakaoAuthThunk, kakaoTokenThunk } from 'modules/auth';
 import { RootState } from 'modules/reducer';
+import { Loading } from '@containers';
 
 //TODO: Error 모달 추가 필요
 
@@ -43,9 +44,13 @@ const Kakao = () => {
   }, [error, loginError]);
   useEffect(() => {
     if (loginData) {
-      window.close();
+      router.replace('/');
     }
   }, [loginData]);
-  return <div>kakao loding</div>;
+  return (
+    <>
+      <Loading />
+    </>
+  );
 };
 export default Kakao;

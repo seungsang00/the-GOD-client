@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Layout } from '@layouts';
 import { ContentPageContainer, Loading } from '@containers';
-import { sampleContentData } from '../../utils/sample-data';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
