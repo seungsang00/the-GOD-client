@@ -56,6 +56,34 @@ export default styled.div`
     line-height: 1.1rem;
     height: 3.3rem;
   }
+  .content-more-link {
+    font-weight: 600;
+    margin-top: ${({ theme }) => theme.space.sm};
+    margin-right: ${({ theme }) => theme.space.xxs};
+    color: ${({ theme }) => theme.colors.gray.gray01};
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    a {
+      width: 5rem;
+      height: 1.8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 999px;
+      &:hover {
+        background-color: ${({ theme }) => theme.colors.gray.gray04};
+      }
+    }
+    .link-icon {
+      font-size: 0.7rem;
+      margin-right: ${({ theme }) => theme.space.xxs};
+    }
+    .link-text {
+      margin-top: 2px;
+    }
+  }
 `;
 
 interface Props {
