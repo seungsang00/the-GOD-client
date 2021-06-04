@@ -9,3 +9,4 @@ export { default as Comments } from './comments';
 export { default as ContentPageContainer } from './content';
 export { default as ProfileSettings } from './profile';
 export { default as MainSearchForm } from './main/searchform';
+export * from './indicate';

@@ -22,7 +22,10 @@ const SearchContentLoader = ({
     linkTo: '/',
   };
   const contentList = restContents;
-  if (restContents.length === 0 && selectedContents.length === 0) {
+  if (
+    !restContents ||
+    (restContents.length === 0 && selectedContents.length === 0)
+  ) {
     return <DataNullLink {...nullData} />;
   }
   const { shared } = useSelector(({ content }: RootState) => content);

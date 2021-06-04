@@ -1,4 +1,5 @@
 import { Content } from '@interfaces';
+import { Loading, NoContent } from 'containers/indicate';
 import { getContentListThunk } from 'modules/content/actions/read';
 import { RootState } from 'modules/reducer';
 import { useRouter } from 'next/router';
@@ -99,9 +100,9 @@ const SearchPageContainer = () => {
   return (
     <main>
       {loading ? (
-        <div>loading...</div>
+        <Loading />
       ) : !data || (contentList && contentList.length === 0) ? (
-        <div>null data</div>
+        <NoContent />
       ) : (
         <SearchContentLoader
           selectedContents={sortedList.selectedContents}

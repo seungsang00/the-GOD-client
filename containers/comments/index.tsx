@@ -39,8 +39,8 @@ const Comments = () => {
 
   return (
     <article>
-      {loading && <p>loading...</p>}
       <CommentInput handler={handleSubmitNewComment} {...inputEvent} />
+      {loading && <p>loading...</p>}
       {data &&
         data
           .sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1))
