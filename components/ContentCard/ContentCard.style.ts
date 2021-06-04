@@ -15,11 +15,12 @@ export default styled.div`
   }
 
   .content-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 600;
   }
   .content-dates {
     display: flex;
+    font-size: 1rem;
     justify-content: flex-start;
     align-items: center;
     font-weight: 500;

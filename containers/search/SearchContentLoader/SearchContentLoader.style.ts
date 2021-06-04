@@ -33,7 +33,7 @@ export const SearchContentLoaderStyle = styled.section`
       left: 0;
     }
     &:nth-child(2) {
-      z-index: 9;
+      z-index: 9999;
       top: 70px;
       right: 20px;
     }
@@ -46,5 +46,7 @@ export const SearchContentLoaderStyle = styled.section`
     }
   }
   .root-mode-trigger {
+    position: absolute;
+    width: 100vw;
   }
 `;

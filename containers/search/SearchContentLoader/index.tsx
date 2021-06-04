@@ -73,7 +73,16 @@ const SearchContentLoader = ({
             />
           ))}
       </ContentListWrapper>
-      <div className="root-mode-trigger">
+      <div
+        className="root-mode-trigger"
+        style={{
+          position: 'absolute',
+          width: '100vw',
+          zIndex: 6,
+          top: 0,
+          right: 0,
+        }}
+      >
         <GuideButton
           active={isPath}
           activeHandler={() => setIsPath((state) => !state)}
