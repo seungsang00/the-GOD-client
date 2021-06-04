@@ -8,6 +8,7 @@ import {
   CONTENT_GET,
   CONTENT_GET_ERROR,
   CONTENT_GET_SUCCESS,
+  CONTENT_INIT_GET,
   CONTENT_LIST_GET,
   CONTENT_LIST_GET_ERROR,
   CONTENT_LIST_GET_SUCCESS,
@@ -33,6 +34,8 @@ import {
   CONTENT_SHARED_GET,
   CONTENT_SHARED_GET_SUCCESS,
   CONTENT_SHARED_GET_ERROR,
+  CONTENT_INIT_FORM,
+  CONTENT_FORM_ID,
 } from '../actionTypes';
 
 // default Store
@@ -70,12 +73,12 @@ const initialState: ContentReducer = {
     description: '',
     images: [],
     date: {
-      start: 'yyyy-mm-dd',
-      end: 'yyyy-mm-dd',
+      start: undefined,
+      end: undefined,
     },
     time: {
-      open: 'HH:MM:00',
-      close: 'HH:MM:00',
+      open: '-- 시 --:-- 분 --:00',
+      close: '-- 시 --:-- 분 --:00',
     },
     author: {
       id: '',
@@ -107,6 +110,14 @@ const initialState: ContentReducer = {
 };
 
 const content = createReducer<ContentReducer, ContentAction>(initialState, {
+  [CONTENT_INIT_GET]: (state) => ({
+    ...state,
+    current: {
+      loading: false,
+      error: null,
+      data: null,
+    },
+  }),
   [CONTENT_GET]: (state) => ({
     ...state,
     current: {
@@ -347,6 +358,17 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
         [action.payload]: !state.form.perks[action.payload],
       },
     },
+  }),
+  [CONTENT_FORM_ID]: (state, action) => ({
+    ...state,
+    form: {
+      ...state.form,
+      id: action.payload,
+    },
+  }),
+  [CONTENT_INIT_FORM]: (state) => ({
+    ...state,
+    form: initialState.form,
   }),
 });
 

@@ -31,6 +31,7 @@ export interface IMember {
   id: string;
   name: string;
   profileImage: string;
+  isFollow?: boolean;
 }
 
 export interface signup {
@@ -42,7 +43,7 @@ export interface SharedContent {
   id: string;
   content: Content[];
 }
-// content
+
 export interface SearchResult {
   id: string;
   date: Date;
@@ -52,13 +53,11 @@ export interface SearchResult {
   images: string[];
 }
 
-export interface Content {
+export interface ContentProps {
   id: string;
-  artist: Artist;
   title: string;
   tags: string[];
   description: string;
-  images: Image[];
   date: Date;
   time: Time;
   address: Address;
@@ -66,6 +65,18 @@ export interface Content {
   perks: Perks;
   isBookmark?: boolean;
   author: Author;
+}
+export interface Content extends ContentProps {
+  artist: Artist;
+  images: Image[];
+}
+export interface ContentForm extends ContentProps {
+  images: {
+    data: File;
+    name: string;
+    url: string;
+  }[];
+  artist: IArtist;
 }
 
 export interface Author {
@@ -141,6 +152,7 @@ export type AxiosResponse<T> = {
 // auth
 export type LoginResponse = AxiosResponse<{ accessToken: string }>;
 export type GetContentResponse = AxiosResponse<Content>;
+export type GetAccessTokenResponse = AxiosResponse<{ accessToken: string }>;
 // content
 export type GetSearchResultsResponse = AxiosResponse<SearchResult[]>;
 export type PostContentResponse = AxiosResponse<Content>;
@@ -191,7 +203,9 @@ export interface UserState {
   paths: AsyncState<SharedContent[]>;
 }
 export interface AuthReducer {
+  isExpire: boolean;
   signup: AsyncState<{ message: string }>;
+  token: AsyncState<{ accessToken: string }>;
   signout: AsyncState<{ message: string }>;
   checkps: AsyncState<{ message: string }>;
   updateps: AsyncState<{ passwordUpdate: string }>;
@@ -211,7 +225,7 @@ export interface ContentReducer {
   delete: AsyncState<{ message: string }>;
   shared: AsyncState<{ id: string }>;
   path: AsyncState<{ id: string; contents: Content[] }>;
-  form: Content;
+  form: ContentForm;
 }
 export interface ArtistReducer {
   create: AsyncState<{ message: string }>;

@@ -17,8 +17,9 @@ import {
   CONTENT_SHARED_GET,
   CONTENT_SHARED_GET_SUCCESS,
   CONTENT_SHARED_GET_ERROR,
+  CONTENT_INIT_GET,
 } from 'modules/actionTypes';
-import { createAsyncAction } from 'typesafe-actions';
+import { createAction, createAsyncAction } from 'typesafe-actions';
 
 export const getContentRequest = async (id: string) => {
   const accessToken = localStorage.getItem('accessToken');
@@ -47,6 +48,7 @@ export const getContentListRequest = async ({
   return result.data;
 };
 
+export const initRead = createAction(CONTENT_INIT_GET)();
 export const getSharedContentRequest = async (id: string) => {
   const result = await axios.get<GetSharedContentResponse>(
     `${API_ENDPOINT}/sharedcontent?id=${id}`

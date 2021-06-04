@@ -1,5 +1,6 @@
-import { TextButton, TextInput, Toggle } from '@components';
+import { Button, TextInput, Toggle } from '@components';
 import { ToggleProps } from '@interfaces';
+import { nullChecker } from '@utils/contentUtils';
 import { inputLocation, inputMobile, inputPerks } from 'modules/content';
 import { RootState } from 'modules/reducer';
 import React, { useEffect, useState } from 'react';
@@ -29,13 +30,17 @@ const LocationForm = ({
         center: new kakao.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
         level: 5, // 지도의 확대 레벨
       };
-      this.mapOption = {
+      this.miniMapOption = {
         center: new kakao.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+        draggable: false,
         level: 7, // 지도의 확대 레벨
       };
       this.mapContainer = document.getElementById('map'); // 지도를 표시할 div
       this.miniMapContainer = document.getElementById('miniMap');
-      this.miniMap = new kakao.maps.Map(this.miniMapContainer, this.mapOption); // 지도를 표시할 div
+      this.miniMap = new kakao.maps.Map(
+        this.miniMapContainer,
+        this.miniMapOption
+      ); // 지도를 표시할 div
       this.map = new kakao.maps.Map(this.mapContainer, this.mapOption);
       this.ps = new kakao.maps.services.Places();
       this.displayMarker = this.displayMarker.bind(this);
@@ -91,7 +96,7 @@ const LocationForm = ({
         overlay.setMap(map);
       });
       this.kakao.maps.event.addListener(marker, 'mouseout', function () {
-        // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
+        // 마커에서 마우스가 나가면 오버레이창이 사라집니다.
         overlay.setMap(null);
       });
     }
@@ -117,10 +122,12 @@ const LocationForm = ({
       this.ps.keywordSearch(keyword, this.placesSearchCB);
     }
   }
+
   const { perks, address, mobile } = useSelector(
     ({ content }: RootState) => content.form
   );
-  const [searchModule, setSearchModule] = useState<any>(null);
+  const [searchModule, setSearchModule] = useState<MapModule | null>(null);
+  const [disabled, setDisabled] = useState(false);
   const [keyword, setKeyword] = useState<string>('');
   const dispatch = useDispatch();
 
@@ -129,17 +136,27 @@ const LocationForm = ({
   }, []);
 
   useEffect(() => {
+    setDisabled(nullChecker({ keyword: address.storeName }));
+  }, [perks, address, mobile]);
+  useEffect(() => {
     if (searchModule) {
       searchModule.keywordSearch(keyword);
     }
   }, [searchModule, keyword]);
+  useEffect(() => {
+    if (searchModule && address.storeName.length !== 0) {
+      setKeyword(address.storeName);
+    }
+  }, [searchModule, address]);
 
   return (
-    <div>
-      <div className="검색창">
+    <div className="location-box">
+      <div className="location-search-box">
+        <h2>가게 검색</h2>
         <TextInput
           id="sample5_address"
           type="text"
+          disabled={false}
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           placeholder="여기"
@@ -147,8 +164,8 @@ const LocationForm = ({
             // 맵이 보이고
           }}
         />
-        <div style={{ display: 'flex', width: '100%' }}>
-          <div style={{ width: '150px', height: '150px' }}>
+        <div id="preview">
+          <div style={{ width: '7rem', height: '7rem' }}>
             <div
               id="miniMap"
               style={{
@@ -159,11 +176,12 @@ const LocationForm = ({
             ></div>
           </div>
           <div>
+            <h2>가게명(이후 검색 결과에 표시됩니다.)</h2>
             <div id="mapAddress">{address.storeName}</div>
+            <h2>도로명 주소</h2>
             <TextInput
               id="detailAddr"
               type="text"
-              name="detail"
               disabled={true}
               onChange={() => {}}
               value={address.roadAddress}
@@ -182,7 +200,8 @@ const LocationForm = ({
             }}
           />
         </div>
-        <div style={{ display: 'flex' }}>
+        <h2>장소 정보</h2>
+        <div className="perks" style={{ display: 'flex' }}>
           {Object.keys(perks).map((el) => (
             <Toggle
               value={perks[el]}
@@ -191,18 +210,12 @@ const LocationForm = ({
             />
           ))}
         </div>
+        <section>
+          <Button disabled={false} handler={onPrev} text="이전" />
+          <Button disabled={disabled} handler={onSubmit} text="다음" />
+        </section>
       </div>
-      <div
-        id="map"
-        style={{
-          position: 'absolute',
-          width: '50%',
-          height: '50%',
-          zIndex: 10,
-        }}
-      ></div>
-      <TextButton disabled={false} handler={onPrev} text="이전" />
-      <TextButton disabled={false} handler={onSubmit} text="다음" />
+      <div id="map"></div>
     </div>
   );
 };

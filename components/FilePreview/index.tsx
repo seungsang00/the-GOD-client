@@ -23,7 +23,6 @@ const FilePreview = ({
             />
           </div>
           <img src={url} alt="uploaded file preview" />
-          <div className="preview-wrapper"></div>
         </PreviewContainer>
       )}
     </>

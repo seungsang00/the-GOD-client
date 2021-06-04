@@ -6,6 +6,7 @@ import { useRouter } from 'next/dist/client/router';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
 import { getInfoThunk } from 'modules/user';
+import { tokenThunk } from 'modules/auth';
 
 type Props = {
   children?: ReactNode;
@@ -20,6 +21,24 @@ const Layout = ({
 }: Props) => {
   const router = useRouter();
   const dispatch = useDispatch();
+  const { token } = useSelector(({ auth }: RootState) => auth);
+  const { isExpire } = useSelector(({ auth }: RootState) => auth);
+
+  useEffect(() => {
+    if (isExpire) {
+      dispatch(tokenThunk());
+    }
+  }, [isExpire]);
+
+  useEffect(() => {
+    console.log(token);
+    if (token.error) {
+      console.log('effect error,', token);
+      localStorage.removeItem('accessToken');
+      router.replace('/');
+    }
+  }, [token]);
+
   const { data } = useSelector((state: RootState) => state.user.userProfile);
   const handleAvatarClick = () => {
     router.push('/mypage');

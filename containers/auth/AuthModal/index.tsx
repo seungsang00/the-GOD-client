@@ -30,7 +30,7 @@ const AuthModal = ({ isOpen, handler }: CutomModalProps): ReactElement => {
 
   useEffect(() => {
     if (loginResponse) {
-      document.location.href = '/';
+      router.reload();
     }
   }, [loginResponse]);
 
