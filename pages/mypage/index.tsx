@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Layout, MyPageLayout } from 'layouts';
-import { useRouter } from 'next/dist/client/router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
-import { ArtistLoader, ContentLoader, PathContentLoader } from '@containers';
+import {
+  ArtistLoader,
+  ContentLoader,
+  Loading,
+  PathContentLoader,
+} from '@containers';
 import { Avatar } from '@components';
+import {
+  getBookmarksThunk,
+  getFollowsThunk,
+  getMyContentThunk,
+  getPathThunk,
+} from 'modules/user';
 
 const MyPage = () => {
-  const router = useRouter();
+  const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState<boolean | null>(null);
   const [viewWidth, setViewWidth] = useState<number | undefined>(undefined);
   const { follows, paths, userProfile, bookmarks, contents } = useSelector(
@@ -19,7 +29,10 @@ const MyPage = () => {
   };
 
   useEffect(() => {
-    console.dir(router);
+    dispatch(getMyContentThunk());
+    dispatch(getFollowsThunk());
+    dispatch(getPathThunk());
+    dispatch(getBookmarksThunk());
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -35,7 +48,9 @@ const MyPage = () => {
       setShowMenu(false);
     }
   }, [viewWidth]);
-
+  if (!follows.data || !paths.data || !bookmarks.data || !contents.data) {
+    return <Loading />;
+  }
   return (
     <Layout title={`MyPage | FansSum::팬심이 모여 문화가 되다`}>
       <MyPageLayout>

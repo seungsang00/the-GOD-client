@@ -20,11 +20,14 @@ export const getFollowsAsync = createAsyncAction(
 
 export const getFollowsRequest = async () => {
   const token: string | null = localStorage.getItem('accessToken');
-  const result = await axios.get<GetFollowResponse>(`${API_ENDPOINT}/user`, {
-    headers: {
-      authorization: `bearer ${token}`,
-    },
-  });
+  const result = await axios.get<GetFollowResponse>(
+    `${API_ENDPOINT}/user/follow`,
+    {
+      headers: {
+        authorization: `bearer ${token}`,
+      },
+    }
+  );
   return result.data;
 };
 export const updateFollowRequest = async (id: string) => {

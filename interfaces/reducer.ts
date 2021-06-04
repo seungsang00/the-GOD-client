@@ -1,6 +1,6 @@
 import { AsyncState } from '@utils/reducerUtils';
 
-export const API_ENDPOINT = `https://${process.env.NEXT_PUBLIC_API}`;
+export const API_ENDPOINT = `${process.env.NEXT_PUBLIC_API}`;
 
 export interface User {
   id: string;
@@ -157,7 +157,7 @@ export type GetAccessTokenResponse = AxiosResponse<{ accessToken: string }>;
 export type GetSearchResultsResponse = AxiosResponse<SearchResult[]>;
 export type PostContentResponse = AxiosResponse<Content>;
 export type PostSharedContentResponse = AxiosResponse<{ id: string }>;
-export type PutContentResponse = AxiosResponse<Content>;
+export type PutContentResponse = AxiosResponse<{ message: string }>;
 export type PutFollowResponse = AxiosResponse<{ isFollow: boolean }>;
 export type PutBookmarkResponse = AxiosResponse<{ isBookmarked: boolean }>;
 // user
@@ -211,7 +211,7 @@ export interface AuthReducer {
   checkps: AsyncState<{ message: string }>;
   updateps: AsyncState<{ passwordUpdate: string }>;
   login: AsyncState<{ accessToken: string }>;
-  kakao: AsyncState<{ code: string; accessToken: string }>;
+  kakao: AsyncState<{ accessToken: string }>;
 }
 export interface ContentReducer {
   list: AsyncState<{
@@ -222,7 +222,7 @@ export interface ContentReducer {
   }>;
   current: AsyncState<Content>;
   create: AsyncState<Content>;
-  update: AsyncState<Content>;
+  update: AsyncState<{ message: string }>;
   delete: AsyncState<{ message: string }>;
   shared: AsyncState<{ id: string }>;
   path: AsyncState<{ id: string; contents: Content[] }>;

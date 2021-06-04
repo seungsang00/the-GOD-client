@@ -16,9 +16,13 @@ const PathContentLoader = ({ data }: PathContentLoaderPropsType) => {
   }
   return (
     <Carousel>
-      {data.map(({ id, content }) => (
-        <PathContentCard id={id} data={content} />
-      ))}
+      {data.length === 0 ? (
+        <DataNullLink {...nullData} />
+      ) : (
+        data.map(({ id, content }) => (
+          <PathContentCard id={id} data={content} />
+        ))
+      )}
     </Carousel>
   );
 };
