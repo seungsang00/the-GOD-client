@@ -14,7 +14,7 @@ const NoTitle = ({
       <div>
         <p>{description}</p>
       </div>
-      <div>
+      <div className="button-area">
         {!isNoti && (
           <Button disabled={false} text={'취소'} handler={buttonHandler} />
         )}

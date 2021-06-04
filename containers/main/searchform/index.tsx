@@ -8,7 +8,10 @@ import {
   handleChangeState,
   handleOptionList,
 } from '@utils/dropdownUtils';
-import { MainSearchFormContainer } from './mainsearchform.style';
+import {
+  MainSearchFormContainer,
+  DificientAlert,
+} from './mainsearchform.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
@@ -289,7 +292,7 @@ const MainSearchForm = (): ReactElement => {
           </div>
         )}
       </MainSearchFormContainer>
-      <div>
+      <DificientAlert>
         <PopupNoTitle
           isOpen={searchPopupIsOpen}
           modalController={modalController}
@@ -297,7 +300,7 @@ const MainSearchForm = (): ReactElement => {
           description={popupMessage}
           buttonHandler={modalController}
         />
-      </div>
+      </DificientAlert>
     </>
   );
 };
