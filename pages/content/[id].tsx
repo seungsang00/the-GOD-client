@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Layout } from '@layouts';
-import { ContentPageContainer } from '@containers';
+import { ContentPageContainer, Loading } from '@containers';
 import { sampleContentData } from '../../utils/sample-data';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,8 +26,7 @@ const ContentPage = () => {
 
   return (
     <Layout title={`${data && data.title} | FansSum::팬심이 모여 문화가 되다`}>
-      {loading && 'loading...'}
-      {data && <ContentPageContainer {...data} />}
+      {loading ? <Loading /> : data && <ContentPageContainer {...data} />}
     </Layout>
   );
 };

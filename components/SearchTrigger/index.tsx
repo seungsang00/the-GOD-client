@@ -68,12 +68,18 @@ const SearchTrigger = ({ handler }: { handler: MouseEventHandler }) => {
       <TriggerBg className="trigger-bg">
         <Trigger onClick={handler}>
           {router.pathname === '/' || !queryData ? (
-            <SearchLabel onClick={handler}>검색하기</SearchLabel>
+            <SearchLabel className="query-trigger" onClick={handler}>
+              검색하기
+            </SearchLabel>
           ) : (
             <>
-              <SearchLabel onClick={handler}>{queryData.artist}</SearchLabel>
-              <SearchLabel onClick={handler}>{queryData.location}</SearchLabel>
-              <SearchLabel onClick={handler}>{`${moment(
+              <SearchLabel className="query-data" onClick={handler}>
+                {queryData.artist}
+              </SearchLabel>
+              <SearchLabel className="query-data" onClick={handler}>
+                {queryData.location}
+              </SearchLabel>
+              <SearchLabel className="query-data" onClick={handler}>{`${moment(
                 queryData.dateStart
               ).format('MM월 DD일')} - ${moment(queryData.dateEnd).format(
                 'MM월 DD일'

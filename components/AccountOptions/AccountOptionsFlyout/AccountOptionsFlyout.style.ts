@@ -26,6 +26,7 @@ export const FlyoutContainer = styled.div`
       padding: ${({ theme }) => theme.space.xs} ${({ theme }) => theme.space.sm};
 
       &:hover {
+        color: #fff;
         border-radius: ${({ theme }) => theme.borderRadius};
         background-color: ${({ theme }) => theme.colors.primary.normal};
       }

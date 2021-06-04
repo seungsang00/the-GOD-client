@@ -15,8 +15,7 @@ export const HeaderContainer = styled.header`
   ${({ theme }) => theme.zIndex.depth04 + ' !important'};
 
   .logo {
-    font-size: 1.7rem;
-    font-weight: 600;
+    font-size: 1.25rem;
     cursor: pointer;
     margin-right: ${({ theme }) => theme.space.sm};
 

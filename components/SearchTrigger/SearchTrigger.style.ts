@@ -1,3 +1,4 @@
+import { customMediaQuery } from '@styles/theme';
 import styled from '@styles/themed-components';
 
 export const SearchTriggerWrapper = styled.div`
@@ -34,7 +35,11 @@ export const TriggerBg = styled.div`
 
   ${({ theme }) => theme.media.tablet} {
     width: 45vw;
-    min-width: 30vw;
+    min-width: 380px;
+  }
+  ${customMediaQuery(650)} {
+    width: fit-content;
+    min-width: fit-content;
   }
 `;
 
@@ -64,6 +69,39 @@ export const SearchLabel = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   padding: 0 ${({ theme }) => theme.space.md};
+  ${customMediaQuery(650)} {
+    &.query-trigger {
+      padding: 0 ${({ theme }) => theme.space.xs};
+      padding-right: 30vw;
+    }
+    &.query-data {
+      padding: 0 ${({ theme }) => theme.space.xs};
+    }
+  }
+  ${customMediaQuery(550)} {
+    &.query-trigger {
+      padding: 0 ${({ theme }) => theme.space.xs};
+      padding-right: 20vw;
+    }
+  }
+  ${customMediaQuery(490)} {
+    &.query-trigger {
+      padding: 0 ${({ theme }) => theme.space.xs};
+      padding-right: 15vw;
+    }
+  }
+  ${customMediaQuery(450)} {
+    &.query-trigger {
+      padding: 0 ${({ theme }) => theme.space.xs};
+      padding-right: 10vw;
+    }
+  }
+  ${customMediaQuery(430)} {
+    &.query-trigger {
+      padding: 0 ${({ theme }) => theme.space.xs};
+      padding-right: ${({ theme }) => theme.space.sm};
+    }
+  }
 `;
 
 export const SearchIcon = styled.div`

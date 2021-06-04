@@ -70,7 +70,7 @@ export const MainSearchFormContainer = styled.article`
     &:active {
       background-color: ${({ theme }) => theme.colors.primary.pressed};
     }
-    z-index: ${({ theme }) => theme.zIndex.depth04};
+    ${({ theme }) => theme.zIndex.depth04};
     display: flex;
     justify-content: center;
     align-items: center;

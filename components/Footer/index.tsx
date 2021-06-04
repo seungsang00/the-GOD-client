@@ -28,25 +28,37 @@ const Footer = ({ logo }: any): ReactElement => {
         <FooterSection className="main-footer-section" {...animatedItem[3]}>
           <h6>ABOUT US</h6>
           <ul>
-            <li>FansSum Wiki</li>
-            <li>Client Repo</li>
-            <li>Server Repo</li>
+            <li>
+              <a href="https://github.com/codestates/the-GOD-client/wiki">
+                FansSum Wiki
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/codestates/the-GOD-client">
+                Client Repo
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/codestates/the-GOD-server">
+                Server Repo
+              </a>
+            </li>
           </ul>
         </FooterSection>
         <FooterSection className="main-footer-section" {...animatedItem[2]}>
           <h6>CONTACT</h6>
           <ul>
             <li>
-              <a>Eonjo Sim</a>
+              <a href="">Eonjo Sim</a>
             </li>
             <li>
-              <a>Jaewon Choi</a>
+              <a href="">Jaewon Choi</a>
             </li>
             <li>
-              <a>Seungyeon Yoo</a>
+              <a href="">Seungyeon Yoo</a>
             </li>
             <li>
-              <a>Yoontaek Lee</a>
+              <a href="">Yoontaek Lee</a>
             </li>
           </ul>
         </FooterSection>

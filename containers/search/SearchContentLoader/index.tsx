@@ -4,7 +4,10 @@ import { createSharedContentThunk } from 'modules/content';
 import { RootState } from 'modules/reducer';
 import React, { ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SearchContentLoaderStyle } from './SearchContentLoader.style';
+import {
+  SearchContentLoaderStyle,
+  ContentListWrapper,
+} from './SearchContentLoader.style';
 import SearchMapContainer from './SearchMapContainer';
 
 const SearchContentLoader = ({
@@ -22,7 +25,11 @@ const SearchContentLoader = ({
     linkTo: '/',
   };
   const contentList = restContents;
-  if (restContents.length === 0 && selectedContents.length === 0) {
+  if (
+    restContents &&
+    restContents.length === 0 &&
+    selectedContents.length === 0
+  ) {
     return <DataNullLink {...nullData} />;
   }
   const { shared } = useSelector(({ content }: RootState) => content);
@@ -43,9 +50,8 @@ const SearchContentLoader = ({
 
   return (
     <SearchContentLoaderStyle>
-      <div
+      <ContentListWrapper
         style={{
-          zIndex: 99,
           overflow: 'scroll',
         }}
       >
@@ -57,16 +63,26 @@ const SearchContentLoader = ({
             handleClick={handleCardClick}
           />
         ))}
-        {restContents.map((content) => (
-          <ContentCard
-            key={`r_content_${content.id}`}
-            contentData={content}
-            isOpen={false}
-            handleClick={handleCardClick}
-          />
-        ))}
-      </div>
-      <div>
+        {restContents &&
+          restContents.map((content) => (
+            <ContentCard
+              key={`r_content_${content.id}`}
+              contentData={content}
+              isOpen={false}
+              handleClick={handleCardClick}
+            />
+          ))}
+      </ContentListWrapper>
+      <div
+        className="root-mode-trigger"
+        style={{
+          position: 'absolute',
+          width: '100vw',
+          zIndex: 6,
+          top: 0,
+          right: 0,
+        }}
+      >
         <GuideButton
           active={isPath}
           activeHandler={() => setIsPath((state) => !state)}

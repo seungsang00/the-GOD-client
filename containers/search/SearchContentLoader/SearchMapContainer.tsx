@@ -76,13 +76,13 @@ const SearchMapContainer = ({
       const el = `<div class="location_overlay_box">
           <div>
             <div class="location_overlay_storename">
-            가게이름 :${storeName}
+            ${storeName}
             </div>
             <div class="location_overlay_address">
-            위치 :${roadAddress}
+            ${roadAddress}
             </div>
             <div class="location_overlay_mobile">
-            연락처 :${mobile.length === 0 ? '없음' : mobile}
+            ${mobile.length === 0 ? '없음' : mobile}
             </div>
           </div>
         </div>`;
@@ -125,11 +125,13 @@ const SearchMapContainer = ({
       }
     }
     recoverImage(id: string) {
-      const { marker } = this.markers.find(
-        (content: any) => content.contentId === id
-      );
-      if (marker) {
-        marker.setImage(this.defaultImg);
+      if (this.markers && this.markers.length > 0) {
+        const { marker } = this.markers.find(
+          (content: any) => content.contentId === id
+        );
+        if (marker) {
+          marker.setImage(this.defaultImg);
+        }
       }
     }
 
