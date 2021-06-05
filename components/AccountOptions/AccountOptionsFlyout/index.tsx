@@ -1,16 +1,14 @@
 import { AccountOptionsProps } from '@interfaces';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { ReactElement } from 'react';
 import { FlyoutContainer } from './AccountOptionsFlyout.style';
 
 const AccountOptionsFlyout = ({
   handler,
 }: AccountOptionsProps): ReactElement => {
-  const router = useRouter();
   const logouthandler = () => {
     window.localStorage.removeItem('accessToken');
-    router.replace('/');
+    document.location.href = '/';
   };
   return (
     <FlyoutContainer className="flyout-overlay" onClick={handler}>
