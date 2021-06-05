@@ -25,7 +25,9 @@ export const ImageWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-right: 3rem;
+  &.left {
+    margin-right: 5rem;
+  }
 `;
 export const Image = withProps<
   {
@@ -50,6 +52,9 @@ export const Image = withProps<
   background-size: contain;
   background-position: center center;
   z-index: ${({ zIndex }) => zIndex};
+  &.bg {
+    filter: opacity(0.7) !important;
+  }
 `;
 
 export const TextWrapper = styled.div`

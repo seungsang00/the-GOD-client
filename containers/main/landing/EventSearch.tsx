@@ -24,7 +24,7 @@ const EventSearch = () => {
 
   return (
     <Wrapper>
-      <ImageWrapper className="landing-images">
+      <ImageWrapper className="landing-images left">
         <Image
           url="/images/landing_search001.svg"
           size={34}
