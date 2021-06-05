@@ -19,6 +19,8 @@ export const GlobalStyle = createGlobalStyle(
       background-color: ${props.theme.colors.bg.normal};
       color: ${props.theme.colors.textColor};
       font-family: 'SpoqaHanSans';
+      font-size: 14px;
+      /* overflow-x: hidden; */
     }
     a {
       color: inherit;

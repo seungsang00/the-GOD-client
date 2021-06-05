@@ -5,7 +5,7 @@ const useScrollFadeIn = (
   direction: Direction = 'up',
   duration: number = 1,
   delay: number = 0,
-  threshold: number = 0.65
+  threshold: number = 0.75
 ) => {
   const element = useRef<HTMLDivElement | null>(null);
 

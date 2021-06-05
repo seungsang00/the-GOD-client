@@ -12,15 +12,15 @@ import {
 
 const MyRouteLanding = () => {
   const animatedItem = {
-    0: useScrollFadeIn('up', 1, 0),
-    1: useScrollFadeIn('up', 1, 0.2),
-    2: useScrollFadeIn('up', 1, 0.3),
-    3: useScrollFadeIn('up', 1, 0.4),
-    4: useScrollFadeIn('up', 1, 0.5),
-    5: useScrollFadeIn('up', 1, 0.6),
-    6: useScrollFadeIn('up', 1, 0.7),
-    7: useScrollFadeIn('up', 1, 0.8),
-    8: useScrollFadeIn('up', 1, 1.0),
+    0: useScrollFadeIn('up', 1, 0, 1.0),
+    1: useScrollFadeIn('up', 1, 0.2, 1.0),
+    2: useScrollFadeIn('up', 1, 0.3, 0.9),
+    3: useScrollFadeIn('up', 1, 0.4, 0.9),
+    4: useScrollFadeIn('up', 1, 0.5, 0.9),
+    5: useScrollFadeIn('up', 1, 0.6, 0.9),
+    6: useScrollFadeIn('up', 1, 0.7, 0.8),
+    7: useScrollFadeIn('up', 1, 0.8, 0.9),
+    8: useScrollFadeIn('up', 1, 1.0, 0.9),
   };
 
   return (

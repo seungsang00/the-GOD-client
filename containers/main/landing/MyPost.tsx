@@ -45,17 +45,17 @@ const MyPost = () => {
       <ImageWrapper className="landing-images right">
         <Image
           url="/images/landing_post001.svg"
-          size={41}
+          size={37}
           bottom={'0px'}
-          left={'-20px'}
+          left={'-30px'}
           zIndex={1}
           {...animatedItem[0]}
         />
         <Image
           url="/images/landing_post002.svg"
           size={45}
-          bottom={'0px'}
-          right={'-210px'}
+          bottom={'-30px'}
+          right={'-140px'}
           zIndex={2}
           {...animatedItem[1]}
         />
@@ -71,7 +71,7 @@ const MyPost = () => {
           url="/images/landing_post004.svg"
           size={27}
           bottom={'60px'}
-          left={'50px'}
+          left={'0px'}
           zIndex={4}
           {...animatedItem[3]}
         />
@@ -79,7 +79,7 @@ const MyPost = () => {
           url="/images/landing_post004_02.svg"
           size={14}
           bottom={'60px'}
-          left={'40px'}
+          left={'0px'}
           zIndex={4}
           {...animatedItem[4]}
         />
@@ -95,15 +95,15 @@ const MyPost = () => {
           url="/images/landing_post006.svg"
           size={15}
           top={'145px'}
-          right={'140px'}
+          right={'200px'}
           zIndex={6}
           {...animatedItem[8]}
         />
         <Image
           url="/images/landing_post007.svg"
           size={24}
-          top={'-20px'}
-          left={'170px'}
+          top={'-10px'}
+          left={'130px'}
           zIndex={5}
           {...animatedItem[9]}
         />
@@ -111,23 +111,23 @@ const MyPost = () => {
           url="/images/landing_post008.svg"
           size={10}
           top={'100px'}
-          right={'-60px'}
+          right={'40px'}
           zIndex={6}
           {...animatedItem[11]}
         />
         <Image
           url="/images/landing_post010.svg"
           size={18}
-          top={'-60px'}
-          right={'-110px'}
+          top={'-40px'}
+          left={'170px'}
           zIndex={5}
           {...animatedItem[12]}
         />
         <Image
           url="/images/landing_post011.svg"
           size={16}
-          top={'60px'}
-          right={'-90px'}
+          top={'90px'}
+          left={'220px'}
           zIndex={7}
           {...animatedItem[13]}
         />
