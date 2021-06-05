@@ -1,4 +1,14 @@
 import styled from '@styles/themed-components';
+import { keyframes } from 'styled-components';
+
+const bouncing = keyframes`
+  0% {
+    transform: translate3d(0, 10px, 0) scale(1.2, 0.85);
+  }
+  100% {
+    transform: translate3d(0, -20px, 0) scale(0.9, 1.1);
+  }
+`;
 
 export const Wrapper = styled.main`
   width: 100%;
@@ -12,6 +22,8 @@ export const Wrapper = styled.main`
     font-weight: 700;
     font-size: 3rem;
     margin-bottom: ${({ theme }) => theme.space.lg};
+    animation: ${bouncing} 0.4s alternate infinite
+      cubic-bezier(0.6, 0.05, 0.15, 0.95);
   }
   p {
     font-size: 1rem;
