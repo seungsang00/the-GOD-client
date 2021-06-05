@@ -22,8 +22,11 @@ export const Wrapper = styled.main`
     font-weight: 700;
     font-size: 3rem;
     margin-bottom: ${({ theme }) => theme.space.lg};
-    animation: ${bouncing} 0.4s alternate infinite
-      cubic-bezier(0.6, 0.05, 0.15, 0.95);
+
+    &.icon {
+      animation: ${bouncing} 0.4s alternate infinite
+        cubic-bezier(0.6, 0.05, 0.15, 0.95);
+    }
   }
   p {
     font-size: 1rem;

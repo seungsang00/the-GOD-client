@@ -6,6 +6,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  ${({ theme }) => theme.concept.glassmorphism.deep};
+  border-radius: ${({ theme }) => theme.borderRadius};
 
   h4 {
     font-size: 1.2rem;
