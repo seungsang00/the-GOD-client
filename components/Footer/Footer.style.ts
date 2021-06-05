@@ -39,19 +39,32 @@ export const FooterContainer = styled.div`
     justify-content: center;
     align-items: flex-start;
     margin-left: ${({ theme }) => theme.space.sm};
-    margin-top: ${({ theme }) => theme.space.lg};
+    margin-top: ${({ theme }) => theme.space.md};
     margin-right: ${({ theme }) => theme.space.xxl};
 
     h3.logo {
       font-size: 1.7rem;
-      font-weight: 600;
       cursor: pointer;
       margin-bottom: ${({ theme }) => theme.space.xs};
-    }
 
-    span.slogan {
-      font-size: 14px;
-      margin-bottom: ${({ theme }) => theme.space.xxs};
+      a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & > div {
+          display: flex;
+          flex-direction: column;
+          .logo-text {
+            font-weight: 600;
+          }
+          span.slogan {
+            font-size: 14px;
+            margin-top: ${({ theme }) => theme.space.xxs};
+            margin-bottom: ${({ theme }) => theme.space.xxs};
+            font-family: 'GmarketSansM';
+          }
+        }
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 import Head from 'next/head';
-import { Avatar, Header } from '@components';
+import { Avatar, Header, LogoIcon } from '@components';
 import { CommonLayoutStyle } from './layouts.style';
 import { useRouter } from 'next/dist/client/router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -67,6 +67,7 @@ const Layout = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header
+        logo={<LogoIcon size={3} />}
         avatar={
           <Avatar
             profileImage={

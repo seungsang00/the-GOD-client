@@ -24,12 +24,6 @@ export const HeaderContainer = styled.header`
       align-items: center;
     }
 
-    .logo-icon {
-      width: 55px;
-      height: 55px;
-      border: 1px solid ${({ theme }) => theme.colors.primary.normal};
-    }
-
     .logo-text {
       margin-left: ${({ theme }) => theme.space.xs};
     }

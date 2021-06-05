@@ -38,3 +38,4 @@ export { default as ImagesContainer } from './ImagesContainer';
 export { default as ThemeToggleButton } from './ThemeToggleButton';
 export { default as SearchTrigger } from './SearchTrigger';
 export * from './Popup';
+export * from './Logo';
