@@ -53,16 +53,16 @@ const Footer = (): ReactElement => {
           <h6>CONTACT</h6>
           <ul>
             <li>
-              <a href="">Eonjo Sim</a>
+              <a href="https://github.com/sim0417">Eonjo Sim</a>
             </li>
             <li>
-              <a href="">Jaewon Choi</a>
+              <a href="https://github.com/Reone1">Jaewon Choi</a>
             </li>
             <li>
-              <a href="">Seungyeon Yoo</a>
+              <a href="https://github.com/seungsang00">Seungyeon Yoo</a>
             </li>
             <li>
-              <a href="">Yoontaek Lee</a>
+              <a href="https://github.com/yoontaek0928">Yoontaek Lee</a>
             </li>
           </ul>
         </FooterSection>
