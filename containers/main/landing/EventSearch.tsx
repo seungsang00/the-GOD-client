@@ -69,12 +69,13 @@ const EventSearch = () => {
       <TextWrapper>
         <Label {...animatedItem[4]}>FansSum for You</Label>
         <Title {...animatedItem[5]}>
-          최애 이벤트 카페 찾기, <br />
-          이제 팬썸에서 쉽게 찾자!
+          컵홀더 이벤트 찾기 힘드셨죠? <br />
+          이제 팬썸에서 한번에 검색해요!
         </Title>
         <Description {...animatedItem[6]}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-          suscipit id nisi sit amet maximus.
+          컵홀더 이벤트 스크랩이요?? 팬썸에서 한번에 검색할 수 있는걸요?!
+          <br />
+          아티스트, 지역, 기간에 따라 컵홀더 이벤트를 찾아보세요!
         </Description>
       </TextWrapper>
     </Wrapper>

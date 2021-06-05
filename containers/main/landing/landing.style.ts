@@ -28,6 +28,9 @@ export const ImageWrapper = styled.div`
   &.left {
     margin-right: 5rem;
   }
+  &.right {
+    margin-left: 5rem;
+  }
 `;
 export const Image = withProps<
   {
@@ -59,7 +62,7 @@ export const Image = withProps<
 
 export const TextWrapper = styled.div`
   box-sizing: border-box;
-  width: 580px;
+  width: 640px;
   padding-left: 50px;
   display: flex;
   flex-direction: column;

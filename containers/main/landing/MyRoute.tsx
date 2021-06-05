@@ -76,14 +76,20 @@ const MyRouteLanding = () => {
         />
       </ImageWrapper>
       <TextWrapper>
-        <Label {...animatedItem[3]}>My FansSum Route</Label>
+        <Label {...animatedItem[3]}>FansSum Route</Label>
         <Title {...animatedItem[4]}>
-          컵홀더 투어를 계획하시나요? FansSum에서 나만의 투어 루트를
-          만들어보세요!
+          컵홀더 투어를 계획하시나요?
+          <br />
+          FansSum에서
+          <br />
+          나만의 루트를 만들어보세요!
         </Title>
         <Description {...animatedItem[7]}>
-          검색결과 페이지에서 마이루트 버튼을 클릭해 나만의 투어 루트를 만들 수
-          있어요!
+          검색결과 페이지에서 마이루트 버튼을 클릭해 보세요!
+          <br />
+          [팬썸 루트 모드] ON!! 이제 자유롭게 루트를 만들고 저장해보세요.
+          <br />
+          저장한 마이루트는 마이페이지에서 언제든지 확인할 수 있어요.
         </Description>
       </TextWrapper>
     </Wrapper>

@@ -1,12 +1,6 @@
 import { Footer } from '@components';
 import { Layout } from '@layouts';
-import {
-  EventSearch,
-  LandingSampleL,
-  LandingSampleR,
-  MyPost,
-  MyRouteLanding,
-} from 'containers/main';
+import { EventSearch, MyPost, MyRouteLanding } from 'containers/main';
 import { MainContainer } from 'layouts/layouts.style';
 
 const MainPage = () => {
@@ -22,12 +16,6 @@ const MainPage = () => {
           </div>
           <div>
             <MyRouteLanding />
-          </div>
-          <div>
-            <LandingSampleL />
-          </div>
-          <div>
-            <LandingSampleR />
           </div>
           <div className="footer">
             <Footer />
