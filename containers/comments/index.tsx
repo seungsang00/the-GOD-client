@@ -44,7 +44,7 @@ const Comments = () => {
       {data &&
         data
           .sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1))
-          .map((comment) => <Comment commentData={comment} />)}
+          .map((comment) => <Comment key={comment.id} commentData={comment} />)}
       {/* 아래는 삭제되어야 할 부분 (테스트용) */}
       {/* {!data &&
         sampleCommentsData.map((comment) => <Comment commentData={comment} />)} */}
