@@ -61,8 +61,8 @@ const MyRouteLanding = () => {
         <Image
           url="/images/landing_myroute007.svg"
           size={20}
-          bottom={'40px'}
-          left={'-140px'}
+          bottom={'50px'}
+          left={'-100px'}
           zIndex={5}
           {...animatedItem[6]}
         />
