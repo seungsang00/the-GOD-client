@@ -42,7 +42,7 @@ const MyPage = () => {
   useEffect(() => {
     setViewWidth(window.innerWidth);
 
-    if (viewWidth && viewWidth > 768) {
+    if (viewWidth && viewWidth > 925) {
       setShowMenu(true);
     } else {
       setShowMenu(false);
@@ -73,13 +73,20 @@ const MyPage = () => {
           </div>
         ) : null}
         <main>
-          {viewWidth && viewWidth <= 768 && (
+          {viewWidth && viewWidth <= 925 && (
             <div>
               <div id="userInfoTop">
-                <Avatar profileImage="/images/avatar_default.jpg" size={3} />
+                <Avatar
+                  profileImage={
+                    userProfile.data?.profileImage ||
+                    '/images/avatar_default.jpg'
+                  }
+                  type="square"
+                  size={3}
+                />
                 <div className="text">
                   <h2>{userProfile.data?.name}</h2>
-                  <span>{userProfile.data?.email}</span>
+                  <p className="email">{userProfile.data?.email}</p>
                 </div>
               </div>
             </div>

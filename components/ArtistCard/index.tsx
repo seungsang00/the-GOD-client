@@ -21,7 +21,9 @@ const ArtistCard = ({
       <AvatarContainer>
         <img src={profileImage} alt={`${group ? group + '/' : ''}${name}`} />
       </AvatarContainer>
-      <span>{`${group ? group + '/' : ''}${name === '전체' ? '' : name}`}</span>
+      <span className="artist-name">{`${group ? group + '/' : ''}${
+        name === '전체' ? '' : name
+      }`}</span>
     </CardWrapper>
   );
 };

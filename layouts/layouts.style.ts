@@ -1,3 +1,4 @@
+import { customMediaQuery } from '@styles/theme';
 import styled from '@styles/themed-components';
 
 export const CommonLayoutStyle = styled.div`
@@ -62,6 +63,14 @@ export const MyPageStyle = styled.article`
       font-size: 1.45rem;
       font-family: 'GmarketSansB';
     }
+
+    ${customMediaQuery(925)} {
+      width: 100%;
+      h2 {
+        font-size: 1.3rem;
+        font-family: 'GmarketSansB';
+      }
+    }
   }
 
   #settingCategoryHandler {
@@ -83,7 +92,8 @@ export const MyPageStyle = styled.article`
   }
 
   #userInfoLeft {
-    min-width: 16vw;
+    min-width: 240px;
+    width: 270px;
     max-height: 300px;
     display: flex;
     flex-direction: column;
@@ -129,6 +139,12 @@ export const MyPageStyle = styled.article`
 
     & > .text {
       margin-left: ${({ theme }) => theme.space.sm};
+      .email {
+        font-family: 'GmarketSansM';
+        font-size: 0.97rem;
+        margin-top: ${({ theme }) => theme.space.xxs};
+        color: ${({ theme }) => theme.colors.gray.gray01};
+      }
     }
 
     ${({ theme }) => theme.media.mobile} {

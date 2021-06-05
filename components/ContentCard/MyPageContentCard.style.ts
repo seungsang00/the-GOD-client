@@ -1,14 +1,17 @@
-import styled, { withProps } from '@styles/themed-components';
+import styled from '@styles/themed-components';
 
-export default styled.div`
+export default styled.article`
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  cursor: pointer;
+  justify-content: flex-start;
   border-radius: ${({ theme }) => theme.borderRadius};
   padding: ${({ theme }) => theme.space.sm};
   max-width: 600px;
-  margin: ${({ theme }) => theme.space.xxs} 0;
+  min-width: 400px;
+  margin: ${({ theme }) => theme.space.xxs} ${({ theme }) => theme.space.xs};
   ${({ theme }) => theme.concept.glassmorphism.deep};
+  box-shadow: 0 7px 14px 0 rgba(31, 38, 135, 0.1);
   &:hover {
     background-color: ${({ theme }) => theme.colors.bg.hover};
   }
@@ -113,23 +116,5 @@ export default styled.div`
         align-items: flex-end;
       }
     }
-  }
-`;
-
-interface Props {
-  isOpen: boolean;
-}
-export const TimeBadge = withProps<Props, HTMLSpanElement>(styled.span)`
-  display: inline-block;
-  margin-left: ${({ theme }) => theme.space.xs};
-  & > span {
-    padding: 0 ${({ theme }) => theme.space.xs};
-    background-color: ${({ isOpen, theme }) =>
-      isOpen ? theme.colors.green.hover : theme.colors.red.hover};
-    font-size: 12px;
-    font-weight: 600;
-    height: 24px;
-    padding-top: 3px;
-    margin: 0;
   }
 `;

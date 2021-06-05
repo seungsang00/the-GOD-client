@@ -1,5 +1,5 @@
 import { Content } from '@interfaces';
-import { Loading, NoContent } from 'containers/indicate';
+// import { Loading, NoContent } from 'containers/indicate';
 import { getContentListThunk } from 'modules/content/actions/read';
 import { RootState } from 'modules/reducer';
 import { useRouter } from 'next/router';

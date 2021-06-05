@@ -7,11 +7,19 @@ export const CardWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 16rem;
+  max-width: 16rem;
   height: 14rem;
   ${({ theme }) => theme.concept.glassmorphism.normal};
+  box-shadow: 0 7px 14px 0 rgba(31, 38, 135, 0.1);
   border-radius: 16px;
   padding: ${({ theme }) => theme.space.xs};
-  margin-right: ${({ theme }) => theme.space.sm};
+  margin: ${({ theme }) => theme.space.md + '!important'};
+  margin-right: ${({ theme }) => theme.space.sm + '!important'};
+  margin-left: ${({ theme }) => theme.space.sm + '!important'};
+
+  .artist-name {
+    font-family: 'GmarketSansM';
+  }
 
   ${({ theme }) => theme.media.tablet} {
     margin-bottom: ${({ theme }) => theme.space.sm};
@@ -26,7 +34,7 @@ export const CardWrapper = styled.div`
 export const AvatarContainer = withProps<AvatarContainerProps, HTMLDivElement>(
   styled.div
 )`
-  height: 10rem;
+  height: 11rem;
   margin-bottom: 1rem;
 
   ${({ theme }) => theme.media.mobile} {

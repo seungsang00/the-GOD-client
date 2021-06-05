@@ -1,11 +1,15 @@
+import { customMediaQuery } from '@styles/theme';
 import styled from '@styles/themed-components';
 
 export const SidebarContainer = styled.div`
+  height: 100%;
   position: sticky;
   top: 0px;
   left: 0px;
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.secondary.normal};
+  border-radius: ${({ theme }) => theme.borderRadius};
 
   ul {
     padding: 0 ${({ theme }) => theme.space.sm};
@@ -26,11 +30,12 @@ export const SidebarContainer = styled.div`
     }
   }
 
-  width: 16rem;
   ${({ theme }) => theme.media.desktop} {
-    width: 18rem;
+    width: 15rem;
   }
-
+  ${customMediaQuery(1024)} {
+    width: 6rem;
+  }
   ${({ theme }) => theme.media.tablet} {
     width: 5rem;
   }
@@ -48,16 +53,17 @@ export const StepIndicator = styled.div`
   height: 2.5rem;
   border-radius: ${({ theme }) => theme.borderRadius};
   color: ${({ theme }) => theme.colors.textColor};
-  font-size: 2rem;
+  font-size: 1.5rem;
 `;
 
 export const StepGuideContainer = styled.div`
+  font-size: 1.2rem;
+  font-family: 'GmarketSansM';
   margin-left: ${({ theme }) => theme.space.sm};
   color: ${({ theme }) => theme.colors.textColor};
-  ${({ theme }) => theme.media.tablet} {
+  ${customMediaQuery(1024)} {
     display: none;
   }
-
   ${({ theme }) => theme.media.mobile} {
     display: none;
   }

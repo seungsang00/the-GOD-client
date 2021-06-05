@@ -21,8 +21,13 @@ export const StyledTextInput = withProps<TextInputProps, HTMLInputElement>(
 export const StyledTextArea = styled.textarea`
   width: 100%;
   padding: ${({ theme }) => theme.space.sm};
-  padding-top: ${({ theme }) => theme.space.md};
+  padding-top: ${({ theme }) => theme.space.sm};
   padding-right: 3rem;
-  background-color: ${({ theme }) => theme.colors.gray.gray04} !important;
+  border: 1px solid ${({ theme }) => theme.colors.line.line02};
+  background-color: ${({ theme }) => theme.colors.line.line04};
   border-radius: ${({ theme }) => theme.borderRadius};
+  &:focus {
+    border: 1px solid ${({ theme }) => theme.colors.primary.hover};
+    background-color: ${({ theme }) => theme.colors.bg.focused};
+  }
 `;

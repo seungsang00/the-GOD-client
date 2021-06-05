@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Toggle = ({ value, icon, handler }: ToggleProps): ReactElement => {
   const text = {
-    parking: '주차 가능',
-    bus: '버스 정류장',
+    parking: '주차가능',
+    bus: '버스정류장',
     train: '기차역',
-    baby: '유아용 좌석',
+    baby: '유아용좌석',
     cat: '반려동물 출입가능', // pet
     subway: '지하철',
     sort: '엘리베이터 사용가능', // elevator

@@ -41,7 +41,7 @@ export interface signup {
 }
 export interface SharedContent {
   id: string;
-  content: Content[];
+  contents: Content[];
 }
 
 export interface SearchResult {
