@@ -13,12 +13,12 @@ const Kakao = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const {
-    loading: _,
+    // loading: _,
     data,
     error,
   } = useSelector((state: RootState) => state.auth.kakao);
   const {
-    loading: _loginLoading,
+    // loading: _loginLoading,
     data: loginData,
     error: loginError,
   } = useSelector((state: RootState) => state.auth.login);

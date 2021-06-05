@@ -42,13 +42,17 @@ export default styled.div<{
           }
         `;
       }}
-      min-height:240px;
+      /* min-height:240px; */
       display: flex;
       justify-content: center;
       align-items: center;
 
       img {
         border-radius: ${({ theme }) => theme.borderRadius};
+        min-height: 240px;
+        min-width: 240px;
+        height: 300px;
+        object-fit: cover;
       }
     }
   }

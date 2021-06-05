@@ -92,7 +92,12 @@ const Carousel = ({
   };
 
   return (
-    <CarouselStyle col={colState} navPosition={nav} index={index}>
+    <CarouselStyle
+      className="carousel-wrapper"
+      col={colState}
+      navPosition={nav}
+      index={index}
+    >
       <div className="carousel-main-cotainer" ref={containerRef}>
         <div className="carousel-content-container" ref={slideRef}>
           {children}

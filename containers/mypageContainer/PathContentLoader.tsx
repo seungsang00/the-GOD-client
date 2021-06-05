@@ -11,16 +11,17 @@ const PathContentLoader = ({ data }: PathContentLoaderPropsType) => {
     buttonText: '나만의 팬썸 루트 만들기',
     linkTo: '/',
   };
+  console.log(data);
   if (!data) {
     return <DataNullLink {...nullData} />;
   }
   return (
-    <Carousel>
+    <Carousel col={2}>
       {data.length === 0 ? (
         <DataNullLink {...nullData} />
       ) : (
-        data.map(({ id, content }) => (
-          <PathContentCard id={id} data={content} />
+        data.map(({ id, contents }) => (
+          <PathContentCard id={id} data={contents} />
         ))
       )}
     </Carousel>

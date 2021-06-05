@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Layout } from '@layouts';
+import { FormLayout, FormStyle, Layout } from '@layouts';
 import { OrderSidebar } from '@components';
 import CafeInfoForm from 'containers/contents/CafeinfoForm';
 import RangeForm from 'containers/contents/RangeForm';
@@ -8,7 +8,6 @@ import { createContentThunk } from 'modules/content';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
 import { initRead } from 'modules/content/actions/read';
-import FormStyle from '@styles/formstyle.style';
 import { useRouter } from 'next/router';
 
 const ContentFormPage = () => {
@@ -42,7 +41,7 @@ const ContentFormPage = () => {
         <div>
           <OrderSidebar step={step} />
         </div>
-        <div>
+        <FormLayout>
           {[
             <section className="info">
               <CafeInfoForm onSubmit={nextStep} />
@@ -54,7 +53,7 @@ const ContentFormPage = () => {
               <LocationForm onPrev={prevStep} onSubmit={submitHandler} />
             </section>,
           ].filter((_el, i) => i === step)}
-        </div>
+        </FormLayout>
       </FormStyle>
     </Layout>
   );

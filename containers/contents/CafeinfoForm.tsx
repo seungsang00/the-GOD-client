@@ -11,6 +11,7 @@ import {
   TextInput,
 } from '@components';
 import { IArtist, IGroupArtist, IMember } from '@interfaces';
+import { FormStepOne } from '@layouts';
 import { nullChecker } from '@utils/contentUtils';
 import { getArtistThunk } from 'modules/artist';
 import {
@@ -93,11 +94,17 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
   }, [images]);
 
   return (
-    <>
-      <section>
+    <FormStepOne className="form-step-001">
+      <section className="form-artist">
+        <div className="section-title">
+          <h2>아티스트</h2>
+          <span className="section-description">
+            이벤트의 주인공을 선택해주세요
+          </span>
+        </div>
         <DropdownTrigger
           value={artistName}
-          placeholder="아티스트 선택"
+          placeholder="누구를 위한 이벤트 인가요?"
           onClick={() => {
             dispatch(
               inputArtist({ name: '', id: '', profileImage: '', type: 'solo' })
@@ -107,7 +114,7 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
             setIsOpen(!isOpen);
           }}
         />
-        <span className="dropdown">
+        <div className="dropdown">
           <Dropdown visible={isOpen}>
             {artists && (
               <OptionList
@@ -138,10 +145,15 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
               />
             )}
           </Dropdown>
-        </span>
+        </div>
       </section>
-      <section>
-        <h2>글 제목</h2>
+      <section className="form-title">
+        <div className="section-title">
+          <h2>타이틀</h2>
+          <span className="section-description">
+            컨텐츠 타이틀을 입력해주세요 (ex. "엔하이픈 희승 데뷔 1주년 이벤트")
+          </span>
+        </div>
         <TextInput
           type="text"
           value={title}
@@ -150,14 +162,26 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
             const { value } = e.target;
             dispatch(inputTitle(value));
           }}
+          placeholder='컨텐츠 타이틀을 입력해주세요 (ex. "엔하이픈 희승 데뷔 1주년 이벤트" )'
         />
       </section>
-      <section>
-        <h2>해시태그</h2>
+      <section className="form-hashtags">
+        <div className="section-title">
+          <h2>해시태그</h2>
+          <span className="section-description">
+            태그를 입력해주세요 (입력한 태그를 클릭하면 삭제할 수 있어요)
+          </span>
+        </div>
         <InputTags tagList={tags} handler={tagHandler} />
       </section>
-      <section>
-        <h2>이벤트 내용</h2>
+      <section className="form-description">
+        <div className="section-title">
+          <h2>이벤트 내용</h2>
+          <span className="section-description">
+            이벤트 상세내용을 입력해주세요. (ex. 이벤트 소개글, 이벤트 특전 내용
+            등)
+          </span>
+        </div>
         <TextArea
           disabled={false}
           onChange={(e) => {
@@ -165,33 +189,41 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
             dispatch(inputDescription(value));
           }}
           value={description}
+          placeholder="이벤트 상세내용을 입력해주세요. (ex. 이벤트 소개글, 이벤트 특전 내용 등)"
         />
       </section>
-      <section>
-        <h2>이벤트 이미지</h2>
-        <Carousel col={4}>
-          {[
-            <div>
-              <FileInput handleFileChange={imageHandler} />
-            </div>,
-            ...images.map((image, i) => (
-              <FilePreview
-                url={image.url}
-                handleRemoveFile={() => {
-                  setImages((state) => [
-                    ...state.slice(0, i),
-                    ...state.slice(i + 1, state.length),
-                  ]);
-                }}
-              />
-            )),
-          ]}
-        </Carousel>
+      <section className="form-images">
+        <div className="section-title">
+          <h2>이미지 파일</h2>
+          <span className="section-description">
+            이벤트 카페의 사진 또는 동영상 파일을 업로드할 수 있어요.
+          </span>
+        </div>
+        <div className="file-input">
+          <FileInput handleFileChange={imageHandler} />
+        </div>
+        <div className="images">
+          <Carousel col={4}>
+            {[
+              ...images.map((image, i) => (
+                <FilePreview
+                  url={image.url}
+                  handleRemoveFile={() => {
+                    setImages((state) => [
+                      ...state.slice(0, i),
+                      ...state.slice(i + 1, state.length),
+                    ]);
+                  }}
+                />
+              )),
+            ]}
+          </Carousel>
+        </div>
       </section>
       <section>
         <Button disabled={disabled} text="다음" handler={onSubmit} />
       </section>
-    </>
+    </FormStepOne>
   );
 };
 

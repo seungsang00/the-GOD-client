@@ -7,7 +7,7 @@ import useValidInput from 'hooks/useValidInput';
 import { updatePSThunk } from 'modules/auth';
 import { getInfoThunk } from 'modules/user';
 import { RootState } from 'modules/reducer';
-import moment, { MomentInput } from 'moment';
+import moment from 'moment';
 import React, { MouseEvent, ReactElement, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { EditUserInfoWrapper } from './EditUserInfo.style';

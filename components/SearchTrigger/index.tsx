@@ -4,7 +4,7 @@ import { IGroupArtist } from '@interfaces';
 import { RootState } from 'modules/reducer';
 import moment from 'moment';
 import { useRouter } from 'next/router';
-import { MouseEventHandler, useEffect, useMemo, useState } from 'react';
+import { MouseEventHandler, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   SearchTriggerWrapper,

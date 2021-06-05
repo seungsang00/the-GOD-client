@@ -201,7 +201,7 @@ const LocationForm = ({
           />
         </div>
         <h2>장소 정보</h2>
-        <div className="perks" style={{ display: 'flex' }}>
+        <div className="perks" style={{ display: 'flex', flexWrap: 'wrap' }}>
           {Object.keys(perks).map((el) => (
             <Toggle
               value={perks[el]}

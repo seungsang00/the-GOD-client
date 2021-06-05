@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { Carousel, ContentCard, DataNullLink } from '@components';
+import { Carousel, MyPageContentCard, DataNullLink } from '@components';
 import { ContentLoaderPropsType } from '@interfaces';
 
 const ContentLoader = ({ data, type }: ContentLoaderPropsType) => {
@@ -31,7 +31,7 @@ const ContentLoader = ({ data, type }: ContentLoaderPropsType) => {
         <DataNullLink {...nullData[type]} />
       ) : (
         data.map((content) => (
-          <ContentCard
+          <MyPageContentCard
             key={`content_${content.id}`}
             contentData={content}
             isOpen={true}
