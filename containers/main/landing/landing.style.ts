@@ -15,14 +15,41 @@ export const Wrapper = styled.section`
   }
 `;
 
-export const Image = withProps<{ url: string }, HTMLDivElement>(styled.div)`
+export const ImageWrapper = styled.div`
   width: 580px;
   height: 580px;
   min-width: 300px;
   min-height: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3rem;
+`;
+export const Image = withProps<
+  {
+    url: string;
+    size: number;
+    top?: string;
+    bottom?: string;
+    left?: string;
+    right?: string;
+    zIndex?: number;
+  },
+  HTMLDivElement
+>(styled.div)`
+  position: absolute;
+  top: ${({ top }) => top};
+  bottom: ${({ bottom }) => bottom};
+  left: ${({ left }) => left};
+  right: ${({ right }) => right};
+  width: ${({ size }) => size}rem;
+  height: ${({ size }) => size}rem;
   background: no-repeat center/cover url(${({ url }) => url});
   background-size: contain;
   background-position: center center;
+  z-index: ${({ zIndex }) => zIndex};
 `;
 
 export const TextWrapper = styled.div`
