@@ -15,16 +15,20 @@ const FormStyle = styled.div<{ step: number }>`
     z-index: 3;
     padding: ${({ theme }) => theme.space.sm};
   }
-  > div:last-child {
-    padding: 5px;
+  > main {
+    /* padding: 5px; */
     width: 100%;
     .range {
+      height: 100%;
+      > article {
+        height: 100%;
+      }
       .time {
-        display: flex;
-        justify-content: space-between;
+        /* display: flex; */
+        /* justify-content: space-between; */
         > div {
           flex: 1 0;
-          margin: 1rem;
+          /* margin: 1rem; */
         }
       }
     }

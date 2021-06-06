@@ -169,7 +169,8 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
         <div className="section-title">
           <h2>해시태그</h2>
           <span className="section-description">
-            태그를 입력해주세요 (입력한 태그를 클릭하면 삭제할 수 있어요)
+            태그를 입력해주세요 (Enter키를 누르면 태그가 추가되고, 입력한 태그를
+            클릭하면 삭제할 수 있어요)
           </span>
         </div>
         <InputTags tagList={tags} handler={tagHandler} />
