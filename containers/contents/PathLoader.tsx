@@ -5,6 +5,7 @@ import SearchMapContainer from 'containers/search/SearchContentLoader/SearchMapC
 import React from 'react';
 
 const PathLoader = ({ contents }: { contents: Content[] }) => {
+  // console.log(contents);
   return (
     <>
       <SearchContentLoaderStyle>
@@ -14,14 +15,15 @@ const PathLoader = ({ contents }: { contents: Content[] }) => {
             overflow: 'scroll',
           }}
         >
-          {contents.map((content) => (
-            <ContentCard
-              key={`content_${content.id}`}
-              contentData={content}
-              isOpen={true}
-              handleClick={() => {}}
-            />
-          ))}
+          {contents &&
+            contents.map((content) => (
+              <ContentCard
+                key={`content_${content.id}`}
+                contentData={content}
+                isOpen={true}
+                handleClick={() => {}}
+              />
+            ))}
         </div>
         <div
           style={{

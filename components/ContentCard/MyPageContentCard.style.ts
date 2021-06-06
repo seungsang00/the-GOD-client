@@ -19,6 +19,11 @@ export default styled.article`
     background-color: ${({ theme }) => theme.colors.bg.pressed};
   }
 
+  section.default-view {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .content-title {
     font-size: 1.1rem;
     font-weight: 600;
