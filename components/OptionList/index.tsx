@@ -18,7 +18,6 @@ const OptionList = ({
     // ? artist : location
     if (typeof el !== 'string') {
       // 아티스트
-      // TODO: 새로운 핸들러 추가
       listHandler(el.name, el.id);
       stateHandler(el.name, el.id);
     } else {

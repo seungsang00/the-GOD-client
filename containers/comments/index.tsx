@@ -32,6 +32,7 @@ const Comments = () => {
       alert(error);
     }
   }, [error]);
+  // TODO: 에러 발생시 커스텀 404 페이지 띄우기
   useEffect(() => {
     inputEvent.setValue && inputEvent.setValue(''); // 댓글추가가 정상적으로 이루어지면 댓글 인풋창 초기화
     if (id) dispatch(getCommentListThunk(id));

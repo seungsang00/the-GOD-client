@@ -1,4 +1,3 @@
-// TODO: 컨텐츠 삭제 미구현
 import { API_ENDPOINT } from '@interfaces';
 import createAsyncThunk from '@utils/createAsyncThunk';
 import axios, { AxiosError } from 'axios';

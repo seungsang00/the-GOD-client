@@ -102,6 +102,7 @@ const SearchPageContainer = () => {
   useEffect(() => {
     if (error) alert(error);
   }, [error]);
+  // TODO: 에러 발생시 커스텀 404 페이지 띄우기
 
   return (
     <>
