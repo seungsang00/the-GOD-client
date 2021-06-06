@@ -85,7 +85,6 @@ const ContentPageContainer = ({
     flyoutController(e);
   };
   const handleDelete = () => {
-    // TODO: 서버에 삭제 요청 보내기
     dispatch(deleteContentThunk(id));
     router.push('/');
   };

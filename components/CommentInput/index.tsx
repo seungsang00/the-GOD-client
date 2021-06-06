@@ -10,7 +10,6 @@ import { getInfoThunk } from 'modules/user';
 import { CommentInputProps } from '@interfaces';
 
 const CommentInput = ({ handler, value, onChange }: CommentInputProps) => {
-  // TODO: 스토어에서 사용자 프로필이미지를 가져와야 합니다
   const { data } = useSelector((state: RootState) => state.user.userProfile);
   const dispatch = useDispatch();
   useEffect(() => {

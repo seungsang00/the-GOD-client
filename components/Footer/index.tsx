@@ -1,9 +1,10 @@
+import { LogoIcon } from 'components/Logo';
 import useScrollFadeIn from 'hooks/useScrollFadeIn';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 import { FooterContainer, FooterSection, FooterWrapper } from './Footer.style';
 
-const Footer = ({ logo }: any): ReactElement => {
+const Footer = (): ReactElement => {
   const animatedItem = {
     0: useScrollFadeIn('up', 1, 0),
     1: useScrollFadeIn('up', 1, 0.2),
@@ -19,11 +20,14 @@ const Footer = ({ logo }: any): ReactElement => {
           <h3 className="logo">
             <Link href="/">
               <a>
-                {logo && logo} <span className="logo-text">FansSum</span>
+                <LogoIcon size={4} />
+                <div>
+                  <span className="logo-text">FansSum</span>
+                  <span className="slogan">팬심이 모여 문화가 되다</span>
+                </div>
               </a>
             </Link>
           </h3>
-          <span className="slogan">팬심이 모여 문화가 되다</span>
         </section>
         <FooterSection className="main-footer-section" {...animatedItem[3]}>
           <h6>ABOUT US</h6>
@@ -49,16 +53,16 @@ const Footer = ({ logo }: any): ReactElement => {
           <h6>CONTACT</h6>
           <ul>
             <li>
-              <a href="">Eonjo Sim</a>
+              <a href="https://github.com/sim0417">Eonjo Sim</a>
             </li>
             <li>
-              <a href="">Jaewon Choi</a>
+              <a href="https://github.com/Reone1">Jaewon Choi</a>
             </li>
             <li>
-              <a href="">Seungyeon Yoo</a>
+              <a href="https://github.com/seungsang00">Seungyeon Yoo</a>
             </li>
             <li>
-              <a href="">Yoontaek Lee</a>
+              <a href="https://github.com/yoontaek0928">Yoontaek Lee</a>
             </li>
           </ul>
         </FooterSection>

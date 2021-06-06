@@ -1,5 +1,5 @@
 import { Content } from '@interfaces';
-// import { Loading, NoContent } from 'containers/indicate';
+import { Loading, NoContent } from 'containers/indicate';
 import { getContentListThunk } from 'modules/content/actions/read';
 import { RootState } from 'modules/reducer';
 import { useRouter } from 'next/router';
@@ -102,13 +102,14 @@ const SearchPageContainer = () => {
   useEffect(() => {
     if (error) alert(error);
   }, [error]);
+  // TODO: 에러 발생시 커스텀 404 페이지 띄우기
 
   return (
-    <main>
+    <>
       {loading ? (
-        <div>loading...</div>
+        <Loading />
       ) : !data || (data?.contents && data?.contents.length === 0) ? (
-        <div>null data</div>
+        <NoContent />
       ) : (
         <SearchContentLoader
           selectedContents={sortedList.selectedContents}
@@ -119,7 +120,7 @@ const SearchPageContainer = () => {
           handleCardClick={handleCardClick}
         />
       )}
-    </main>
+    </>
   );
 };
 

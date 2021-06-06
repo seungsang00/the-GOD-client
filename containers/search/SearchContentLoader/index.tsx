@@ -19,7 +19,7 @@ const SearchContentLoader = ({
   handleCardClick,
 }: SearchContentLoaderProps): ReactElement => {
   const nullData = {
-    description: '검색 결과',
+    description: '이벤트 주최자이신가요? 지금 이벤트를 등록해보세요!',
     title: '일치하는 검색결과가 없어요 ㅠㅠ',
     buttonText: '이벤트 등록하기',
     linkTo: '/',
@@ -49,12 +49,16 @@ const SearchContentLoader = ({
   }, [shared]);
 
   return (
-    <SearchContentLoaderStyle>
+    <SearchContentLoaderStyle id="SearchContentLoader">
       <ContentListWrapper
         style={{
           overflow: 'scroll',
         }}
       >
+        {!restContents && <DataNullLink {...nullData} />}
+        {restContents &&
+          restContents.length === 0 &&
+          selectedContents.length === 0 && <DataNullLink {...nullData} />}
         {selectedContents.map((content) => (
           <ContentCard
             key={`s_content_${content.id}`}

@@ -30,7 +30,7 @@ const SearchMapContainer = ({
       this.mapContainer = document.getElementById('map'); // 지도를 표시할 div
       this.map = new kakao.maps.Map(this.mapContainer, this.mapOption);
       this.customMarkerImage = new kakao.maps.MarkerImage(
-        'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png',
+        '/images/logo-pin-icon.svg', // 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', '/images/logo_icon.svg'로 변경 가능합니다만 색상 때문에 가독성이 떨어집니다
         new kakao.maps.Size(64, 69),
         { offset: new kakao.maps.Point(27, 69) }
       );
@@ -137,8 +137,10 @@ const SearchMapContainer = ({
 
     fetchData(contents: Content[]) {
       // 마커를 생성하고 지도에 표시합니다
-      for (let i = 0; i < contents.length; i++) {
-        this.displayMarker(contents[i]);
+      if (contents) {
+        for (let i = 0; i < contents.length; i++) {
+          this.displayMarker(contents[i]);
+        }
       }
     }
 
@@ -186,7 +188,7 @@ const SearchMapContainer = ({
     setMap(new MapModule());
   }, []);
   useEffect(() => {
-    if (map) {
+    if (map && contents) {
       map.fetchData(contents);
       contents.forEach((content) => {
         map.recoverImage(content.id);
@@ -204,7 +206,7 @@ const SearchMapContainer = ({
   }, [selectedId]);
 
   useMemo(() => {
-    if (map) {
+    if (map && contents) {
       contents.forEach((content) => {
         map.recoverImage(content.id);
       });

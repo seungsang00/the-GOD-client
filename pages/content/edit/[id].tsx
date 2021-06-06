@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Layout } from '@layouts';
+import { FormStyle, Layout } from '@layouts';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   inputArtist,
@@ -20,7 +20,6 @@ import CafeInfoForm from 'containers/contents/CafeinfoForm';
 import RangeForm from 'containers/contents/RangeForm';
 import LocationForm from 'containers/contents/LocationForm';
 import { useRouter } from 'next/router';
-import FormStyle from '@styles/formstyle.style';
 import { getContentThunk } from 'modules/content/actions/read';
 import { Content, ToggleProps } from '@interfaces';
 

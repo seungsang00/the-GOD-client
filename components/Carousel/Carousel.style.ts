@@ -49,9 +49,6 @@ export default styled.div<{
 
       img {
         border-radius: ${({ theme }) => theme.borderRadius};
-        min-height: 240px;
-        min-width: 240px;
-        height: 300px;
         object-fit: cover;
       }
     }

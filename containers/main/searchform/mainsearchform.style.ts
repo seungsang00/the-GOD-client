@@ -63,7 +63,7 @@ export const MainSearchFormContainer = styled.article`
   .search-button__bottom--container {
     position: fixed;
     right: 0;
-    bottom: 2rem;
+    top: 80vh;
     width: 100%;
     display: flex;
     justify-content: center;

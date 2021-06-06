@@ -5,7 +5,7 @@ const useScrollFadeIn = (
   direction: Direction = 'up',
   duration: number = 1,
   delay: number = 0,
-  threshold: number = 0.65
+  threshold: number = 0.75
 ) => {
   const element = useRef<HTMLDivElement | null>(null);
 
@@ -36,9 +36,8 @@ const useScrollFadeIn = (
           current.style.opacity = '1';
           current.style.transform = 'translate3d(0, 0, 0)';
         } else {
-          // TODO: 애니메이션 초기화해서 다시 스크롤할 때도 재현되게
           current.style.opacity = '0';
-          current.style.transform = 'translate3d(0, 20%, 0)';
+          current.style.transform = 'translate3d(0, 40%, 0)';
         }
       }
     },

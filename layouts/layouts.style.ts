@@ -149,6 +149,16 @@ export const MyPageStyle = styled.article`
 
     ${({ theme }) => theme.media.mobile} {
       flex-direction: column;
+
+      & > .text {
+        margin: 0;
+        margin: ${({ theme }) => theme.space.md} 0;
+        justify-content: center;
+        align-items: center;
+        .email {
+          text-align: center;
+        }
+      }
     }
   }
 

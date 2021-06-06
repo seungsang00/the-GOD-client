@@ -26,20 +26,22 @@ const ContentLoader = ({ data, type }: ContentLoaderPropsType) => {
     return <DataNullLink {...nullData[type]} />;
   }
   return (
-    <Carousel>
+    <>
       {data.length === 0 ? (
         <DataNullLink {...nullData[type]} />
       ) : (
-        data.map((content) => (
-          <MyPageContentCard
-            key={`content_${content.id}`}
-            contentData={content}
-            isOpen={true}
-            handleClick={() => moveToContentPage(content.id)}
-          />
-        ))
+        <Carousel>
+          {data.map((content) => (
+            <MyPageContentCard
+              key={`content_${content.id}`}
+              contentData={content}
+              isOpen={true}
+              handleClick={() => moveToContentPage(content.id)}
+            />
+          ))}
+        </Carousel>
       )}
-    </Carousel>
+    </>
   );
 };
 export default ContentLoader;

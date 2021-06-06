@@ -1,4 +1,10 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, {
+  MouseEvent,
+  MouseEventHandler,
+  ReactElement,
+  useEffect,
+  useState,
+} from 'react';
 import moment from 'moment';
 import { Artists, Dates, IMember } from '@interfaces';
 import { DatePicker, Dropdown, DropdownTrigger, OptionList } from '@components';
@@ -22,7 +28,11 @@ import { useRouter } from 'next/router';
 import { PopupNoTitle } from 'components/Popup';
 import useModal from 'hooks/useModal';
 
-const MainSearchForm = (): ReactElement => {
+const MainSearchForm = ({
+  handler,
+}: {
+  handler: MouseEventHandler;
+}): ReactElement => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { data: artistData } = useSelector(
@@ -78,7 +88,7 @@ const MainSearchForm = (): ReactElement => {
   };
 
   // 검색 버튼 핸들러
-  const handleSearchClick = () => {
+  const handleSearchClick = (e: MouseEvent) => {
     const { artistId, location, dateStart, dateEnd } = makeQueryData();
 
     if (
@@ -96,6 +106,7 @@ const MainSearchForm = (): ReactElement => {
       setPopupMessage(msg);
       setIsOpen(true);
     } else {
+      handler(e);
       router.push(
         `/search?artistId=${artistId}&location=${location}&dateStart=${dateStart}&dateEnd=${dateEnd}`
       );
