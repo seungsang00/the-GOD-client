@@ -14,7 +14,6 @@ const PathLoader = ({ contents }: { contents: Content[] }) => {
   }>({ lat: 37.537187, lng: 127.005476 });
   const handleClickCard = (lat: number, lng: number) => {
     setFocusedPin({ lat, lng });
-    console.log({ lat, lng });
   };
   return (
     <>

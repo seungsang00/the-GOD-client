@@ -2,7 +2,7 @@ import { ContentCard, DataNullLink, GuideButton } from '@components';
 import { SearchContentLoaderProps } from '@interfaces';
 import { createSharedContentThunk } from 'modules/content';
 import { RootState } from 'modules/reducer';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   SearchContentLoaderStyle,
@@ -23,6 +23,13 @@ const SearchContentLoader = ({
     title: '일치하는 검색결과가 없어요 ㅠㅠ',
     buttonText: '이벤트 등록하기',
     linkTo: '/',
+  };
+  const [focusedPin, setFocusedPin] = useState<{
+    lat: number;
+    lng: number;
+  }>({ lat: 37.537187, lng: 127.005476 });
+  const setMapCenter = (lat: number, lng: number) => {
+    setFocusedPin({ lat, lng });
   };
   const contentList = restContents;
   if (
@@ -74,6 +81,7 @@ const SearchContentLoader = ({
               contentData={content}
               isOpen={false}
               handleClick={handleCardClick}
+              handleClickCard={setMapCenter}
             />
           ))}
       </ContentListWrapper>
@@ -110,6 +118,7 @@ const SearchContentLoader = ({
           contents={contentList}
           path={selectedContents}
           handleClick={handleCardClick}
+          latLng={focusedPin}
         />
       </div>
     </SearchContentLoaderStyle>

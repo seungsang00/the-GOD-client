@@ -46,6 +46,18 @@ export const AccountStyle = styled.div`
         min-width: 210px;
         margin-bottom: ${({ theme }) => theme.space.xs};
       }
+      & > form {
+        width: fit-content;
+        label {
+          background: none;
+          box-shadow: none;
+          border: none;
+          padding: 0;
+        }
+        ${customMediaQuery(1105)} {
+          width: 100%;
+        }
+      }
 
       ${customMediaQuery(1105)} {
         margin-top: ${({ theme }) => theme.space.md};
@@ -70,6 +82,9 @@ export const AccountStyle = styled.div`
         font-size: 1rem;
         font-weight: 600;
         margin-left: ${({ theme }) => theme.space.sm};
+      }
+      ${customMediaQuery(1105)} {
+        margin-right: 0;
       }
       &:hover {
         background-color: ${({ theme }) => theme.colors.primary.hover};
