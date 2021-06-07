@@ -2,6 +2,7 @@ import { ContentCard, DataNullLink, GuideButton } from '@components';
 import { SearchContentLoaderProps } from '@interfaces';
 import { createSharedContentThunk } from 'modules/content';
 import { RootState } from 'modules/reducer';
+import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -18,18 +19,12 @@ const SearchContentLoader = ({
   setIsPath,
   handleCardClick,
 }: SearchContentLoaderProps): ReactElement => {
+  const router = useRouter();
   const nullData = {
     description: '이벤트 주최자이신가요? 지금 이벤트를 등록해보세요!',
     title: '일치하는 검색결과가 없어요 ㅠㅠ',
     buttonText: '이벤트 등록하기',
     linkTo: '/',
-  };
-  const [focusedPin, setFocusedPin] = useState<{
-    lat: number;
-    lng: number;
-  }>({ lat: 37.537187, lng: 127.005476 });
-  const setMapCenter = (lat: number, lng: number) => {
-    setFocusedPin({ lat, lng });
   };
   const contentList = restContents;
   if (
@@ -49,9 +44,24 @@ const SearchContentLoader = ({
     document.execCommand('copy');
     document.body.removeChild(t);
   };
+  const [focusedPin, setFocusedPin] = useState<{
+    lat: number;
+    lng: number;
+  }>({ lat: 37.537187, lng: 127.005476 });
+  const setMapCenter = (lat: number, lng: number) => {
+    setFocusedPin({ lat, lng });
+  };
+  useEffect(() => {
+    if (restContents && restContents[0]) {
+      console.log(restContents);
+      const { lat, lng } = restContents[0].address.location;
+      setFocusedPin({ lat, lng });
+    }
+  }, [restContents]);
   useEffect(() => {
     if (shared.data) {
       clipBoardAction(shared.data.id);
+      router.push('/mypage');
     }
   }, [shared]);
 
