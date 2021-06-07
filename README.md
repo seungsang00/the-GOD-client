@@ -45,10 +45,11 @@
   
   
 ## 😎 우리가 만들었어요
+### The G.O.D _(The Game Of Death)_
 |Name |	Position |	github |
 |:--|:--|:--|
-|심언조|Back-end| [sim0417](https://github.com/sim0417)|
-|유승연|Front-end|  [seungsang00](https://github.com/seungsang00) |
-|이윤택|Back-end| [Reone1](https://github.com/Reone1)|
-|최재원|Front-end| [yoontaek0928](https://github.com/yoontaek0928)|
+|🐈 심언조|Back-end| [sim0417](https://github.com/sim0417)|
+|🦖 유승연|Front-end|  [seungsang00](https://github.com/seungsang00) |
+|🐕 이윤택|Back-end| [Reone1](https://github.com/Reone1)|
+|🦦 최재원|Front-end| [yoontaek0928](https://github.com/yoontaek0928)|
 
