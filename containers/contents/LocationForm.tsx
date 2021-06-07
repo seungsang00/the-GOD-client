@@ -90,6 +90,8 @@ const LocationForm = ({
         if (place.phone) {
           dispatch(inputMobile(place.phone));
         }
+
+        setLocationBoxActive(false);
       });
       this.kakao.maps.event.addListener(marker, 'mouseover', function () {
         // 마우스를 올리면하면 장소명이 인포윈도우에 표출됩니다
@@ -149,6 +151,13 @@ const LocationForm = ({
     }
   }, [searchModule, address]);
 
+  const setLocationBoxActive = (enable: boolean) => {
+    const locationBox = document.querySelector('.location-search-box');
+    if (!locationBox) return;
+    locationBox.setAttribute('active', enable.toString());
+    console.log(locationBox);
+  };
+
   return (
     <div className="location-box">
       <div className="location-search-box">
@@ -159,9 +168,17 @@ const LocationForm = ({
           disabled={false}
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              setLocationBoxActive(false);
+              (e.target as HTMLInputElement).blur();
+            }
+          }}
           placeholder="여기"
           onClick={() => {
-            // 맵이 보이고
+            // 테블릿 사이즈 일 때 높이가 입력창 만큼 줄어들어야 한다.
+            // 지도에서 위치 선정이 끝나면 다시 원래 크기로 돌아간다.
+            setLocationBoxActive(true);
           }}
         />
         <div id="preview">
@@ -188,7 +205,7 @@ const LocationForm = ({
             />
           </div>
         </div>
-        <div>
+        <div className="location-mobile">
           <TextInput
             type="tel"
             disabled={false}
@@ -200,17 +217,19 @@ const LocationForm = ({
             }}
           />
         </div>
-        <h2>장소 정보</h2>
-        <div className="perks" style={{ display: 'flex', flexWrap: 'wrap' }}>
-          {Object.keys(perks).map((el) => (
-            <Toggle
-              value={perks[el]}
-              icon={el as ToggleProps['icon']}
-              handler={() => dispatch(inputPerks(el as ToggleProps['icon']))}
-            />
-          ))}
+        <div className="location-info">
+          <h2>장소 정보</h2>
+          <div className="perks" style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {Object.keys(perks).map((el) => (
+              <Toggle
+                value={perks[el]}
+                icon={el as ToggleProps['icon']}
+                handler={() => dispatch(inputPerks(el as ToggleProps['icon']))}
+              />
+            ))}
+          </div>
         </div>
-        <section>
+        <section className="location-buttons">
           <Button disabled={false} handler={onPrev} text="이전" />
           <Button disabled={disabled} handler={onSubmit} text="다음" />
         </section>

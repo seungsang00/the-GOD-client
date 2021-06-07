@@ -15,16 +15,20 @@ const FormStyle = styled.div<{ step: number }>`
     z-index: 3;
     padding: ${({ theme }) => theme.space.sm};
   }
-  > div:last-child {
-    padding: 5px;
+
+  > main {
     width: 100%;
     .range {
+      height: 100%;
+      > article {
+        height: 100%;
+      }
       .time {
-        display: flex;
-        justify-content: space-between;
+        /* display: flex; */
+        /* justify-content: space-between; */
         > div {
           flex: 1 0;
-          margin: 1rem;
+          /* margin: 1rem; */
         }
       }
     }
@@ -56,6 +60,15 @@ const FormStyle = styled.div<{ step: number }>`
           > button {
             min-width: 40%;
             width: 40%;
+          }
+        }
+
+        ${({ theme }) => theme.media.tablet} {
+          height: auto;
+          &[active='true'] .location-mobile,
+          &[active='true'] .location-info,
+          &[active='true'] .location-buttons{
+            display: none;
           }
         }
       }
