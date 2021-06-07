@@ -44,11 +44,11 @@ const LoginContent = ({
   return (
     <article>
       <OAuthSection>
-        <TwitterLoader />
-        <div className="second-row">
-          <GoogleLoader />
+        <GoogleLoader />
+        {/* <div className="second-row">
+          <TwitterLoader />
           <KakaoLoader />
-        </div>
+        </div> */}
       </OAuthSection>
       <Horizon text="or" />
       <FormSection>
