@@ -55,7 +55,7 @@ const InfoListItem = ({
           <Button
             disabled={false}
             type="line"
-            text={follow ? '팔로우' : '언팔로우'}
+            text={follow ? '언팔로우' : '팔로우🤍'}
             handler={handleArtistFollow}
           />
         </div>
