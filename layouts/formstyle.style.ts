@@ -15,8 +15,8 @@ const FormStyle = styled.div<{ step: number }>`
     z-index: 3;
     padding: ${({ theme }) => theme.space.sm};
   }
+
   > main {
-    /* padding: 5px; */
     width: 100%;
     .range {
       height: 100%;
@@ -60,6 +60,15 @@ const FormStyle = styled.div<{ step: number }>`
           > button {
             min-width: 40%;
             width: 40%;
+          }
+        }
+
+        ${({ theme }) => theme.media.tablet} {
+          height: auto;
+          &[active='true'] .location-mobile,
+          &[active='true'] .location-info,
+          &[active='true'] .location-buttons{
+            display: none;
           }
         }
       }
