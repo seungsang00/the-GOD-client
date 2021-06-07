@@ -1,14 +1,20 @@
 import { Content } from '@interfaces';
 import React, { useEffect, useMemo, useState } from 'react';
 
+type LatLng = {
+  lat: number;
+  lng: number;
+};
 const SearchMapContainer = ({
   contents,
   handleClick,
   path,
+  latLng,
 }: {
   contents: Content[];
   path: Content[];
   handleClick: (id: string) => void;
+  latLng: LatLng;
 }) => {
   class MapModule {
     kakao: any;
@@ -20,6 +26,7 @@ const SearchMapContainer = ({
     defaultImg: any;
     markers: any;
     customMarkerImage: any;
+    moveLatLon: any;
     constructor() {
       const { kakao }: any = window;
       this.kakao = kakao;
@@ -29,6 +36,8 @@ const SearchMapContainer = ({
       };
       this.mapContainer = document.getElementById('map'); // 지도를 표시할 div
       this.map = new kakao.maps.Map(this.mapContainer, this.mapOption);
+      // ! 움직일 좌표
+      this.moveLatLon = new kakao.maps.LatLng(latLng.lat, latLng.lng);
       this.customMarkerImage = new kakao.maps.MarkerImage(
         '/images/logo-pin-icon.svg', // 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', '/images/logo_icon.svg'로 변경 가능합니다만 색상 때문에 가독성이 떨어집니다
         new kakao.maps.Size(64, 69),
@@ -65,6 +74,18 @@ const SearchMapContainer = ({
       this.removePolyline = this.removePolyline.bind(this);
       this.pointsToPath = this.pointsToPath.bind(this);
       this.drawPolyline = this.drawPolyline.bind(this);
+      this.panTo = this.panTo.bind(this);
+    }
+
+    // TODO: panTo
+    panTo(lat: number, lng: number) {
+      // 이동할 위도 경도 위치를 생성합니다
+      var moveLatLon = new this.kakao.maps.LatLng(lat, lng);
+      // console.log(`moveLatLon`, lat, lng, moveLatLon);
+
+      // 지도 중심을 부드럽게 이동시킵니다
+      // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+      moveLatLon && this.map.panTo(moveLatLon);
     }
 
     displayMarker(content: Content) {
@@ -218,6 +239,13 @@ const SearchMapContainer = ({
       setSelectedId('');
     }
   }, [path]);
+
+  useEffect(() => {
+    const { lat, lng } = latLng;
+    if (map) {
+      map.panTo(lat, lng);
+    }
+  }, [latLng]);
 
   return <div style={{ width: '100%', height: '100%' }} id="map"></div>;
 };

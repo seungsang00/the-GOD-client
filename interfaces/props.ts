@@ -122,6 +122,7 @@ export interface ContentCardProps {
   isOpen: boolean; // 현재 디테일 영역이 열려있는 컨텐츠id
   contentData: Content;
   handleClick: (id: string) => void;
+  handleClickCard?: (lat: number, lng: number) => void;
 }
 
 export interface CommentInputProps {

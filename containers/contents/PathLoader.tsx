@@ -5,10 +5,17 @@ import {
   SearchContentLoaderStyle,
 } from 'containers/search/SearchContentLoader/SearchContentLoader.style';
 import SearchMapContainer from 'containers/search/SearchContentLoader/SearchMapContainer';
-import React from 'react';
+import React, { useState } from 'react';
 
 const PathLoader = ({ contents }: { contents: Content[] }) => {
-  console.log(contents);
+  const [focusedPin, setFocusedPin] = useState<{
+    lat: number;
+    lng: number;
+  }>({ lat: 37.537187, lng: 127.005476 });
+  const handleClickCard = (lat: number, lng: number) => {
+    setFocusedPin({ lat, lng });
+    console.log({ lat, lng });
+  };
   return (
     <>
       <SearchContentLoaderStyle>
@@ -25,6 +32,7 @@ const PathLoader = ({ contents }: { contents: Content[] }) => {
                 contentData={content}
                 isOpen={true}
                 handleClick={() => {}}
+                handleClickCard={handleClickCard}
               />
             ))}
         </ContentListWrapper>
@@ -42,6 +50,7 @@ const PathLoader = ({ contents }: { contents: Content[] }) => {
             contents={contents}
             path={contents}
             handleClick={() => {}}
+            latLng={focusedPin}
           />
         </div>
       </SearchContentLoaderStyle>

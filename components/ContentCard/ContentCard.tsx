@@ -12,12 +12,18 @@ const ContentCard = ({
   isOpen,
   contentData,
   handleClick,
+  handleClickCard,
 }: ContentCardProps): ReactElement => {
   const { id, artist, title, description, date, images, time, address } =
     contentData;
   const { group, name } = artist;
+  const { lat, lng } = address.location as { lat: number; lng: number };
+  const cardHandler = () => {
+    handleClick(id);
+    handleClickCard && handleClickCard(lat, lng);
+  };
   return (
-    <ContentCardStyle onClick={() => handleClick(id)}>
+    <ContentCardStyle onClick={cardHandler}>
       <h4 className="content-title">{`[${
         name === '전체' ? group : group ? group + ' ' + name : name
       }] ${title}`}</h4>
