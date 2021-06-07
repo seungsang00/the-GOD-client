@@ -15,6 +15,11 @@ export const googleAuthRequest = async (token: string) => {
       token,
     }
   );
+  
+  if (window && result.data?.result?.accessToken) {
+    localStorage.setItem('accessToken', result.data.result.accessToken);
+  }
+
   return result.data;
 };
 
