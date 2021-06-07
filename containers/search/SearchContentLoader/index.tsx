@@ -51,6 +51,10 @@ const SearchContentLoader = ({
   const setMapCenter = (lat: number, lng: number) => {
     setFocusedPin({ lat, lng });
   };
+  const sharedHandler = () => {
+    dispatch(createSharedContentThunk(selectedContents));
+    router.push('/mypage');
+  };
   useEffect(() => {
     if (restContents && restContents[0]) {
       console.log(restContents);
@@ -61,7 +65,6 @@ const SearchContentLoader = ({
   useEffect(() => {
     if (shared.data) {
       clipBoardAction(shared.data.id);
-      router.push('/mypage');
     }
   }, [shared]);
 
@@ -109,9 +112,7 @@ const SearchContentLoader = ({
           active={isPath}
           activeHandler={() => setIsPath((state) => !state)}
           resetHandler={resetHadler}
-          shareHandler={() => {
-            dispatch(createSharedContentThunk(selectedContents));
-          }}
+          shareHandler={sharedHandler}
         />
       </div>
       <div
