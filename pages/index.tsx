@@ -1,4 +1,4 @@
-import { Footer } from '@components';
+import { Footer, ScrollToTopButton } from '@components';
 import { Layout } from '@layouts';
 import { EventSearch, MyPost, MyRouteLanding } from 'containers/main';
 import { MainContainer } from 'layouts/layouts.style';
@@ -21,6 +21,7 @@ const MainPage = () => {
             <Footer />
           </div>
         </div>
+        <ScrollToTopButton />
       </MainContainer>
     </Layout>
   );

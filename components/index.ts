@@ -39,3 +39,4 @@ export { default as SearchTrigger } from './SearchTrigger';
 export * from './Popup';
 export * from './ContentCard';
 export * from './Logo';
+export { default as ScrollToTopButton } from './Button/ScrollToTopButton';
