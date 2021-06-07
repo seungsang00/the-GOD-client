@@ -17,6 +17,9 @@ import {
   USER_FOLLOW_GET,
   USER_FOLLOW_GET_ERROR,
   USER_FOLLOW_GET_SUCCESS,
+  USER_FOLLOW_UPDATE,
+  USER_FOLLOW_UPDATE_ERROR,
+  USER_FOLLOW_UPDATE_SUCCESS,
   USER_INFO_GET,
   USER_INFO_GET_ERROR,
   USER_INFO_GET_SUCCESS,
@@ -51,6 +54,11 @@ const initialState: UserState = {
     error: null,
   },
   follows: {
+    data: null,
+    loading: false,
+    error: null,
+  },
+  follow: {
     data: null,
     loading: false,
     error: null,
@@ -236,6 +244,30 @@ const user = createReducer<UserState, UserAction>(initialState, {
   [USER_FOLLOW_GET_ERROR]: (state, action) => ({
     ...state,
     follows: {
+      loading: false,
+      error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [USER_FOLLOW_UPDATE]: (state) => ({
+    ...state,
+    follow: {
+      loading: true,
+      error: null,
+      data: null,
+    },
+  }),
+  [USER_FOLLOW_UPDATE_SUCCESS]: (state, action) => ({
+    ...state,
+    follow: {
+      loading: false,
+      error: null,
+      data: action.payload.result,
+    },
+  }),
+  [USER_FOLLOW_UPDATE_ERROR]: (state, action) => ({
+    ...state,
+    follow: {
       loading: false,
       error: action.payload.response?.data.message,
       data: null,

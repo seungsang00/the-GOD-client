@@ -90,6 +90,10 @@ export const USER_FOLLOW_GET = 'user/FOLLOW_GET';
 export const USER_FOLLOW_GET_SUCCESS = 'user/FOLLOW_GET_SUCCESS';
 export const USER_FOLLOW_GET_ERROR = 'user/FOLLOW_GET_ERROR';
 
+export const USER_FOLLOW_UPDATE = 'user/FOLLOW_UPDATE';
+export const USER_FOLLOW_UPDATE_SUCCESS = 'user/FOLLOW_UPDATE_SUCCESS';
+export const USER_FOLLOW_UPDATE_ERROR = 'user/FOLLOW_UPDATE_ERROR';
+
 //content
 export const CONTENT_CREATE = 'content/CREATE';
 export const CONTENT_CREATE_SUCCESS = 'content/CREATE_SUCCESS';

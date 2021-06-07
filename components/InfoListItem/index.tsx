@@ -1,15 +1,46 @@
+import { Button } from '@components';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { ReactNode } from 'react';
+import { updateFollowThunk } from 'modules/user';
+import { RootState } from 'modules/reducer';
+import { ReactNode, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { InfoListItemStyle } from './InfoListItem.style';
 
 interface InfoListItemProps {
   icon: IconProp;
   title: string;
   children: ReactNode;
+  isArtist: boolean;
+  artist?: any;
 }
 
-const InfoListItem = ({ icon, title, children }: InfoListItemProps) => {
+const InfoListItem = ({
+  icon,
+  title,
+  children,
+  isArtist,
+  artist,
+}: InfoListItemProps) => {
+  const dispatch = useDispatch();
+  const [follow, setFollow] = useState<boolean>(false);
+  const { data } = useSelector((state: RootState) => state.user.follow);
+  const handleArtistFollow = () => {
+    dispatch(updateFollowThunk(artist.id));
+    console.log('follow!!');
+  };
+  useEffect(() => {
+    if (artist) {
+      setFollow(artist.isFollow);
+    }
+  }, []);
+  useEffect(() => {
+    if (data) {
+      setFollow(data.isFollow);
+      console.log('follow??');
+    }
+    console.log('why??');
+  }, [data]);
   return (
     <InfoListItemStyle>
       <div className="info-icon">
@@ -19,6 +50,16 @@ const InfoListItem = ({ icon, title, children }: InfoListItemProps) => {
         <div className="title">{title}</div>
         <div>{children}</div>
       </div>
+      {isArtist && (
+        <div className="follow-button">
+          <Button
+            disabled={false}
+            type="line"
+            text={follow ? '팔로우' : '언팔로우'}
+            handler={handleArtistFollow}
+          />
+        </div>
+      )}
     </InfoListItemStyle>
   );
 };

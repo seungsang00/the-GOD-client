@@ -11,7 +11,7 @@ import {
   getMyContentAsync,
   getPathAsync,
 } from './content';
-import { getFollowsAsync } from './follow';
+import { getFollowsAsync, updateFollowAsync } from './follow';
 const actions = {
   updateInfoAsync,
   updateProfileImageAsync,
@@ -22,6 +22,7 @@ const actions = {
   getPathAsync,
   getMyContentAsync,
   getFollowsAsync,
+  updateFollowAsync,
 };
 
 export type UserAction = ActionType<typeof actions>;

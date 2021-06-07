@@ -10,6 +10,9 @@ import {
   USER_FOLLOW_GET,
   USER_FOLLOW_GET_SUCCESS,
   USER_FOLLOW_GET_ERROR,
+  USER_FOLLOW_UPDATE,
+  USER_FOLLOW_UPDATE_SUCCESS,
+  USER_FOLLOW_UPDATE_ERROR,
 } from '../../actionTypes';
 
 export const getFollowsAsync = createAsyncAction(
@@ -17,6 +20,12 @@ export const getFollowsAsync = createAsyncAction(
   USER_FOLLOW_GET_SUCCESS,
   USER_FOLLOW_GET_ERROR
 )<null, GetFollowResponse, AxiosError>();
+
+export const updateFollowAsync = createAsyncAction(
+  USER_FOLLOW_UPDATE,
+  USER_FOLLOW_UPDATE_SUCCESS,
+  USER_FOLLOW_UPDATE_ERROR
+)<null, PutFollowResponse, AxiosError>();
 
 export const getFollowsRequest = async () => {
   const token: string | null = localStorage.getItem('accessToken');
@@ -34,7 +43,7 @@ export const updateFollowRequest = async (id: string) => {
   const token: string | null = localStorage.getItem('accessToken');
   const result = await axios.put<PutFollowResponse>(
     `${API_ENDPOINT}/user/follow`,
-    { id },
+    { artistId: id },
     {
       headers: {
         authorization: `bearer ${token}`,
@@ -46,4 +55,8 @@ export const updateFollowRequest = async (id: string) => {
 export const getFollowsThunk = createAsyncThunk(
   getFollowsAsync,
   getFollowsRequest
+);
+export const updateFollowThunk = createAsyncThunk(
+  updateFollowAsync,
+  updateFollowRequest
 );
