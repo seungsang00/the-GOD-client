@@ -152,27 +152,36 @@ const ContentPageContainer = ({
           </section>
           <div className="body">
             <section className="text-info">
-              <InfoListItem icon={faHeart} title="아티스트">
+              <InfoListItem
+                icon={faHeart}
+                title="아티스트"
+                isArtist={true}
+                artist={artist}
+              >
                 <span>{artistName}</span>
               </InfoListItem>
-              <InfoListItem icon={faCalendar} title="이벤트 일정">
+              <InfoListItem
+                icon={faCalendar}
+                title="이벤트 일정"
+                isArtist={false}
+              >
                 <span>{moment(start).format('YYYY-MM-DD')}</span>
                 <span>{` ~ `}</span>
                 <span>{moment(end).format('YYYY-MM-DD')}</span>
               </InfoListItem>
-              <InfoListItem icon={faClock} title="영업 시간">
+              <InfoListItem icon={faClock} title="영업 시간" isArtist={false}>
                 <span>{open}</span>
                 <span>{` ~ `}</span>
                 <span>{close}</span>
               </InfoListItem>
-              <InfoListItem icon={faMapMarkerAlt} title="위치">
+              <InfoListItem icon={faMapMarkerAlt} title="위치" isArtist={false}>
                 <span className="road-address">
                   {roadAddress}
                   {` `}
                 </span>
                 <span className="store-name">{storeName}</span>
               </InfoListItem>
-              <InfoListItem icon={faPhoneAlt} title="연락처">
+              <InfoListItem icon={faPhoneAlt} title="연락처" isArtist={false}>
                 <span>{mobile}</span>
               </InfoListItem>
             </section>

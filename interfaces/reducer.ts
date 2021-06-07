@@ -201,6 +201,7 @@ export interface UserState {
   bookmark: AsyncState<{ isBookmarked: boolean }>;
   contents: AsyncState<Content[]>;
   follows: AsyncState<Artist[]>;
+  follow: AsyncState<{ isFollow: boolean }>;
   paths: AsyncState<SharedContent[]>;
 }
 export interface AuthReducer {

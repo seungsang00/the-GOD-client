@@ -6,6 +6,7 @@ export const InfoListItemStyle = styled.div`
   align-items: center;
   padding: ${({ theme }) => theme.space.xs};
   border-radius: ${({ theme }) => theme.borderRadius};
+  word-break: keep-all;
 
   .info-icon {
     width: 3rem;
@@ -22,6 +23,7 @@ export const InfoListItemStyle = styled.div`
 
   .info-text {
     line-height: 1.1rem;
+    word-break: keep-all;
     .title {
       font-weight: 600;
       margin-bottom: ${({ theme }) => theme.space.xxs};
@@ -29,5 +31,10 @@ export const InfoListItemStyle = styled.div`
     .sub {
       font-size: 0.8rem;
     }
+  }
+
+  .follow-button {
+    margin-left: 10rem;
+    word-break: keep-all;
   }
 `;
