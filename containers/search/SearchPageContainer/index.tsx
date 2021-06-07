@@ -29,12 +29,22 @@ const SearchPageContainer = () => {
     }
   }, [data]);
   const sortList = (id: string) => {
+    // console.log('isPath : ', isPath);
+    // console.log('data?.contents : ', data?.contents);
+
     if (!isPath && data?.contents) {
       setSortedList((state) => {
         const checkItem = state.restContents.find(
           (content) => content.id === id
         );
         if (checkItem) {
+          // console.log('checkItem :', checkItem);
+          // console.log('id :', id);
+          // console.log(data?.contents.filter((content) => content.id !== id));
+          // console.log(
+          //   state?.restContents.filter((content) => content.id !== id)
+          // );
+
           return {
             restContents: [
               ...data?.contents.filter((content) => content.id !== id),
@@ -75,6 +85,7 @@ const SearchPageContainer = () => {
     }
   };
   const handleCardClick = (id: string) => {
+    // console.log('click ID : ', id);
     sortList(id);
   };
   const resetHadler = () => {
