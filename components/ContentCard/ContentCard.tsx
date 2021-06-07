@@ -46,7 +46,7 @@ const ContentCard = ({
           <ImagesContainer title={title} images={images} max={3} />
           <div className="content-more-link">
             <Link href={`/content/${id}`}>
-              <a>
+              <a title="컨텐츠 페이지로 이동">
                 <span className="link-icon">
                   <FontAwesomeIcon icon={faPlus} />
                 </span>

@@ -47,7 +47,7 @@ const TimeSelect = ({
       <article className="selectbox-hour">
         <div
           className="selectbox-display"
-          onClick={() => setOpenOption([true, false])}
+          onClick={() => setOpenOption([!isOptionOpenH, false])}
         >
           {time[0]}
         </div>
@@ -61,11 +61,11 @@ const TimeSelect = ({
           </ul>
         )}
       </article>
-      <span>:</span>
+      <span className="time-connector">:</span>
       <article className="selectbox-minutes">
         <div
           className="selectbox-display"
-          onClick={() => setOpenOption([false, true])}
+          onClick={() => setOpenOption([false, !isOptionOpenM])}
         >
           {time[1]}
         </div>

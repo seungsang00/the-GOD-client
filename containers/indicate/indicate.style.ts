@@ -27,6 +27,9 @@ export const Wrapper = styled.main`
       animation: ${bouncing} 0.4s alternate infinite
         cubic-bezier(0.6, 0.05, 0.15, 0.95);
     }
+    &.error-image {
+      margin-top: ${({ theme }) => theme.space.lg};
+    }
   }
   p {
     font-size: 1rem;

@@ -12,6 +12,7 @@ import { RootState } from 'modules/reducer';
 import moment from 'moment';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { RangeFormWrapper } from './RangeForm.style';
 
 const RangeForm = ({
   onPrev,
@@ -88,29 +89,36 @@ const RangeForm = ({
   }, [viewWidth]);
 
   return (
-    <>
-      <section>
-        <div>
+    <RangeFormWrapper>
+      <section className="dates">
+        <div className="section-title">
+          <h2>이벤트 일정</h2>
+          <span className="section-description">
+            이벤트가 진행될 기간을 입력해주세요.
+          </span>
+        </div>
+        <div className="form-dates-triggers">
           <DropdownTrigger
             value={
               dates.startDate
-                ? moment(dates.startDate).format('YYYY.MM.DD')
-                : '날짜 입력'
+                ? moment(dates.startDate).format('YYYY년 MM월 DD일')
+                : '---- 년 -- 월 -- 일'
             }
             placeholder="dd3"
             onClick={() => setIsOpen((state) => !state)}
           />
+          <span>~</span>
           <DropdownTrigger
             value={
               dates.endDate
-                ? moment(dates.endDate).format('YYYY.MM.DD')
-                : '날짜 입력'
+                ? moment(dates.endDate).format('YYYY년 MM월 DD일')
+                : '---- 년 -- 월 -- 일'
             }
             placeholder="dd3"
             onClick={() => setIsOpen((state) => !state)}
           />
         </div>
-        <span className="dropdown">
+        <div className="dropdown">
           <Dropdown visible={isOpen}>
             <DatePicker
               dates={dates}
@@ -120,68 +128,76 @@ const RangeForm = ({
               numberOfMonths={viewWidth && viewWidth <= 650 ? 1 : 2}
             />
           </Dropdown>
-        </span>
+        </div>
       </section>
       <section className="time">
-        <div>
-          <h2>오픈</h2>
-          <TimeSelect
-            setHour={(hour: string) => {
-              const timeArr = time.open.split(':');
-              timeArr[0] = hour;
-              dispatch(
-                inputTimes({
-                  close: time.close,
-                  open: timeArr.join(':'),
-                })
-              );
-            }}
-            setMinutes={(minute: string) => {
-              const timeArr = time.open.split(':');
-              timeArr[1] = minute;
-              dispatch(
-                inputTimes({
-                  close: time.close,
-                  open: timeArr.join(':'),
-                })
-              );
-            }}
-            initTime={openTime}
-          />
+        <div className="section-title">
+          <h2>영업 시간</h2>
+          <span className="section-description">
+            매장 영업 시간을 입력해주세요
+          </span>
         </div>
-        <div>
-          <h2>마감</h2>
-          <TimeSelect
-            setHour={(hour: string) => {
-              const timeArr = time.close.split(':');
-              timeArr[0] = hour;
-              console.log(time);
-              dispatch(
-                inputTimes({
-                  open: time.open,
-                  close: timeArr.join(':'),
-                })
-              );
-            }}
-            setMinutes={(minute: string) => {
-              const timeArr = time.close.split(':');
-              timeArr[1] = minute;
-              dispatch(
-                inputTimes({
-                  open: time.open,
-                  close: timeArr.join(':'),
-                })
-              );
-            }}
-            initTime={closeTime}
-          />
+        <div className="form-time">
+          <div className="form-time-open">
+            <h2>오픈</h2>
+            <TimeSelect
+              setHour={(hour: string) => {
+                const timeArr = time.open.split(':');
+                timeArr[0] = hour;
+                dispatch(
+                  inputTimes({
+                    close: time.close,
+                    open: timeArr.join(':'),
+                  })
+                );
+              }}
+              setMinutes={(minute: string) => {
+                const timeArr = time.open.split(':');
+                timeArr[1] = minute;
+                dispatch(
+                  inputTimes({
+                    close: time.close,
+                    open: timeArr.join(':'),
+                  })
+                );
+              }}
+              initTime={openTime}
+            />
+          </div>
+          <div className="form-time-close">
+            <h2>마감</h2>
+            <TimeSelect
+              setHour={(hour: string) => {
+                const timeArr = time.close.split(':');
+                timeArr[0] = hour;
+                console.log(time);
+                dispatch(
+                  inputTimes({
+                    open: time.open,
+                    close: timeArr.join(':'),
+                  })
+                );
+              }}
+              setMinutes={(minute: string) => {
+                const timeArr = time.close.split(':');
+                timeArr[1] = minute;
+                dispatch(
+                  inputTimes({
+                    open: time.open,
+                    close: timeArr.join(':'),
+                  })
+                );
+              }}
+              initTime={closeTime}
+            />
+          </div>
         </div>
       </section>
-      <section>
+      <section className="form-move-step-buttons">
         <Button disabled={false} handler={onPrev} text="이전" />
         <Button disabled={disabled} handler={onSubmit} text="다음" />
       </section>
-    </>
+    </RangeFormWrapper>
   );
 };
 

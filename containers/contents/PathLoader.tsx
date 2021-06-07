@@ -1,28 +1,33 @@
 import { ContentCard } from '@components';
 import { Content } from '@interfaces';
-import { SearchContentLoaderStyle } from 'containers/search/SearchContentLoader/SearchContentLoader.style';
+import {
+  ContentListWrapper,
+  SearchContentLoaderStyle,
+} from 'containers/search/SearchContentLoader/SearchContentLoader.style';
 import SearchMapContainer from 'containers/search/SearchContentLoader/SearchMapContainer';
 import React from 'react';
 
 const PathLoader = ({ contents }: { contents: Content[] }) => {
+  console.log(contents);
   return (
     <>
       <SearchContentLoaderStyle>
-        <div
+        <ContentListWrapper
           style={{
             zIndex: 99,
             overflow: 'scroll',
           }}
         >
-          {contents.map((content) => (
-            <ContentCard
-              key={`content_${content.id}`}
-              contentData={content}
-              isOpen={true}
-              handleClick={() => {}}
-            />
-          ))}
-        </div>
+          {contents &&
+            contents.map((content) => (
+              <ContentCard
+                key={`content_${content.id}`}
+                contentData={content}
+                isOpen={true}
+                handleClick={() => {}}
+              />
+            ))}
+        </ContentListWrapper>
         <div
           style={{
             position: 'absolute',
