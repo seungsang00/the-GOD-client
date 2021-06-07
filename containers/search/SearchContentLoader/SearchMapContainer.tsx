@@ -37,7 +37,10 @@ const SearchMapContainer = ({
       this.mapContainer = document.getElementById('map'); // 지도를 표시할 div
       this.map = new kakao.maps.Map(this.mapContainer, this.mapOption);
       // ! 움직일 좌표
-      this.moveLatLon = new kakao.maps.LatLng(latLng.lat, latLng.lng);
+      if (latLng) {
+        this.moveLatLon = new kakao.maps.LatLng(latLng.lat, latLng.lng);
+      }
+
       this.customMarkerImage = new kakao.maps.MarkerImage(
         '/images/logo-pin-icon.svg', // 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', '/images/logo_icon.svg'로 변경 가능합니다만 색상 때문에 가독성이 떨어집니다
         new kakao.maps.Size(64, 69),
@@ -241,8 +244,8 @@ const SearchMapContainer = ({
   }, [path]);
 
   useEffect(() => {
-    const { lat, lng } = latLng;
-    if (map) {
+    if (map && latLng) {
+      const { lat, lng } = latLng;
       map.panTo(lat, lng);
     }
   }, [latLng]);
