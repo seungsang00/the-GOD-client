@@ -5,14 +5,15 @@ import PathLoader from 'containers/contents/PathLoader';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSharedContentThunk } from 'modules/content/actions/read';
 import { RootState } from 'modules/reducer';
-// import { DataNullLink } from '@components';
-import { sampleContentListData } from '@utils/sample-data';
+import { Error, Loading } from '@containers';
 
 const ContentEditPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const dispatch = useDispatch();
-  const { path } = useSelector(({ content }: RootState) => content);
+  const { loading, error, data } = useSelector(
+    ({ content }: RootState) => content.path
+  );
 
   useEffect(() => {
     if (id) {
@@ -22,23 +23,13 @@ const ContentEditPage = () => {
 
   return (
     <Layout title={`투어 경로 | FansSum`}>
-      <main>
-        {path.data ? (
-          <PathLoader contents={path.data.contents} />
-        ) : (
-          <>
-            <PathLoader contents={sampleContentListData} />
-            {/* 
-            FIXME: 로딩 데이터가 없는경우 처리
-            <DataNullLink
-            title="오류"
-            description="오류"
-            buttonText="홈으로"
-            linkTo="/"
-          /> */}
-          </>
-        )}
-      </main>
+      {loading ? (
+        <Loading />
+      ) : error ? (
+        <Error />
+      ) : (
+        <main>{data && <PathLoader contents={data.contents} />}</main>
+      )}
     </Layout>
   );
 };
