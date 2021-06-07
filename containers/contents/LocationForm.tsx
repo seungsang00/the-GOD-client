@@ -76,6 +76,8 @@ const LocationForm = ({
         content: content,
         position: marker.getPosition(),
       });
+      // 지도 이동 막기
+      this.miniMap.setDraggable(false);
       // 마커에 클릭이벤트를 등록합니다
       this.kakao.maps.event.addListener(marker, 'click', function () {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
@@ -161,7 +163,12 @@ const LocationForm = ({
   return (
     <div className="location-box">
       <div className="location-search-box">
-        <h2>가게 검색</h2>
+        <div className="section-title">
+          <h2>매장명 검색</h2>
+          <span className="section-description">
+            지도에서 핀을 클릭하면 자동으로 주소값이 입력됩니다.
+          </span>
+        </div>
         <TextInput
           id="sample5_address"
           type="text"
@@ -174,7 +181,7 @@ const LocationForm = ({
               (e.target as HTMLInputElement).blur();
             }
           }}
-          placeholder="여기"
+          placeholder="매장명 또는 키워드를 입력해주세요 (ex. 오가다 KBS)"
           onClick={() => {
             // 테블릿 사이즈 일 때 높이가 입력창 만큼 줄어들어야 한다.
             // 지도에서 위치 선정이 끝나면 다시 원래 크기로 돌아간다.
@@ -182,7 +189,10 @@ const LocationForm = ({
           }}
         />
         <div id="preview">
-          <div style={{ width: '7rem', height: '7rem' }}>
+          <div
+            id="miniMapWrapper"
+            style={{ width: '7rem', height: '7rem', marginRight: '0.5rem' }}
+          >
             <div
               id="miniMap"
               style={{
@@ -192,14 +202,14 @@ const LocationForm = ({
               }}
             ></div>
           </div>
-          <div>
-            <h2>가게명(이후 검색 결과에 표시됩니다.)</h2>
+          <div className="preview-text">
+            <h3>매장명</h3>
             <div id="mapAddress">{address.storeName}</div>
-            <h2>도로명 주소</h2>
+            <h3 className="detail">상세 주소</h3>
             <TextInput
               id="detailAddr"
               type="text"
-              disabled={true}
+              disabled={false}
               onChange={() => {}}
               value={address.roadAddress}
             />
@@ -218,7 +228,9 @@ const LocationForm = ({
           />
         </div>
         <div className="location-info">
-          <h2>장소 정보</h2>
+          <div className="section-title">
+            <h2>편의 정보</h2>
+          </div>
           <div className="perks" style={{ display: 'flex', flexWrap: 'wrap' }}>
             {Object.keys(perks).map((el) => (
               <Toggle
