@@ -161,6 +161,8 @@ const typography = {
   },
 };
 
+const boxShadow = `box-shadow: 0 7px 14px 0 rgba(31, 38, 135, 0.1);`;
+
 const conceptLight = {
   glassmorphism: {
     normal: `
@@ -246,6 +248,21 @@ const zIndex = {
 
 const borderRadius = calcRem(16);
 
+const customScroll = `
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  ::-webkit-scrollbar-button:start:decrement,
+  ::-webkit-scrollbar-button:end:increment {
+    /*  스크롤의 화살표가 포함된 영역   */
+    display: none;
+  }
+`;
+
 const light = {
   colors: {
     textColor: '#2f2f37',
@@ -257,6 +274,8 @@ const light = {
   space,
   zIndex,
   borderRadius,
+  customScroll,
+  boxShadow,
 };
 
 const dark = {
@@ -270,6 +289,8 @@ const dark = {
   space,
   zIndex,
   borderRadius,
+  customScroll,
+  boxShadow,
 };
 
 export const lightTheme: DefaultTheme = { ...light };
