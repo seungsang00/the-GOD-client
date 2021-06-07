@@ -6,10 +6,20 @@
     },
     "production": {
       "presets": ["next/babel"],
-      "plugins": ["babel-plugin-styled-components"]
+      "plugins": [
+        [
+          "styled-components",
+          {
+            "ssr": true,
+            "displayName": true,
+            "preprocess": false
+          }
+        ]
+      ]
     },
     "test": {
-      "presets": ["@babel/preset-env"]
+      "presets": ["@babel/preset-env", "@babel/react"]
     }
-  }
+  },
+  "plugins": [["babel-plugin-styled-components", { "ssr": true, "displayName": true, "preprocess": false }]]
 }

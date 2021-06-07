@@ -1,15 +1,30 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import { Footer, ScrollToTopButton } from '@components';
+import { Layout } from '@layouts';
+import { EventSearch, MyPost, MyRouteLanding } from 'containers/main';
+import { MainContainer } from 'layouts/layouts.style';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-)
+const MainPage = () => {
+  return (
+    <Layout title="FansSum | 팬심이 모여 문화가 되다">
+      <MainContainer className="holster">
+        <div className="container y mandatory-scroll-snapping" dir="ltr">
+          <div>
+            <EventSearch />
+          </div>
+          <div>
+            <MyPost />
+          </div>
+          <div>
+            <MyRouteLanding />
+          </div>
+          <div className="footer">
+            <Footer />
+          </div>
+        </div>
+        <ScrollToTopButton />
+      </MainContainer>
+    </Layout>
+  );
+};
 
-export default IndexPage
+export default MainPage;
