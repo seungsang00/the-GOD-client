@@ -53,3 +53,7 @@
 |🐕 이윤택|Back-end| [Reone1](https://github.com/Reone1)|
 |🦦 최재원|Front-end| [yoontaek0928](https://github.com/yoontaek0928)|
 
+
+## FansSum Wiki
+[🧭 Wiki 보러가기](https://github.com/codestates/the-GOD-client/wiki)
+
