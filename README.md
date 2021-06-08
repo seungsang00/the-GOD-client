@@ -24,7 +24,7 @@
   
   
 ## 🔧 FansSum은 이런 기술을 사용해 만들어졌어요
-![Stack Architecture](https://images.velog.io/images/seungsang00/post/7574db50-cd40-44fa-8c53-9e113479e6fb/Final%20-%20Stack%20Architecture.jpg)
+![Stack Architecture](https://images.velog.io/images/seungsang00/post/1bc74951-fbce-43f7-b6d3-a40ed4bb4dbf/undefined%20(1).png)
 
 #### COMMON
 ![image](https://img.shields.io/badge/COMMON-TYPESCRIPT-blue?style=for-the-badge&logo=typescript)
