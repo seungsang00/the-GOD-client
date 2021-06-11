@@ -60,7 +60,7 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
 
   return (
     <>
-      <HeaderContainer>
+      <HeaderContainer id="headerContainer">
         <div className="logo">
           <Link href="/">
             <a>

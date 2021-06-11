@@ -16,7 +16,6 @@ export const Label = styled.label`
   height: 30px;
   border-radius: 100px;
   border: 1px solid #2a283e;
-  ${({ theme }) => theme.concept.glassmorphism.deep};
   cursor: pointer;
 
   &:hover {

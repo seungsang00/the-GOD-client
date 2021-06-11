@@ -23,15 +23,7 @@ export const TriggerBg = styled.div`
   vertical-align: middle;
   border-radius: 40px;
   transition: box-shadow 0.2s ease;
-  ${({ theme }) => theme.concept.glassmorphism.deep};
   box-shadow: 0px 1px 2px rgb(0 0 0 / 8%), 0px 4px 12px rgb(0 0 0 / 5%) !important;
-  background-color: ${({ theme }) => theme.colors.bg.focused};
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.bg.hover};
-  }
-  &:active {
-    background-color: ${({ theme }) => theme.colors.bg.normal};
-  }
 
   ${({ theme }) => theme.media.tablet} {
     width: 45vw;

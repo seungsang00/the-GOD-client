@@ -7,7 +7,6 @@ export const ButtonOAuth = styled.button`
   justify-content: center;
   width: 100%;
   height: 2.5rem;
-  /* color: #fafafa; */
   border-radius: 999px;
   margin-bottom: ${({ theme }) => theme.space.xs};
   padding: 0 ${({ theme }) => theme.space.md};
@@ -15,5 +14,12 @@ export const ButtonOAuth = styled.button`
   span {
     margin-left: ${({ theme }) => theme.space.xs};
     font-weight: 600;
+  }
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.bg.hover};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.colors.bg.pressed};
   }
 `;
