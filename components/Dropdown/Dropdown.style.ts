@@ -25,8 +25,10 @@ export const DropdownStyle = withProps<Props, HTMLDivElement>(styled.div)`
 `;
 
 export const DropdownTriggerStyle = styled.div`
+  width: 100%;
   ${({ theme }) => theme.zIndex.depth03};
   button {
+    width: 100%;
     cursor: pointer;
     font-size: 1.1rem;
     font-weight: 500;

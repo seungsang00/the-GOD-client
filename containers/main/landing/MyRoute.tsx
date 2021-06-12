@@ -27,50 +27,46 @@ const MyRouteLanding = () => {
     <Wrapper>
       <ImageWrapper className="landing-images left">
         <Image
-          url="/images/landing_myroute001.svg"
-          size={38}
-          top={'-30px'}
-          left={'-70px'}
-          zIndex={1}
-          {...animatedItem[0]}
-        />
-        <Image
           url="/images/landing_myroute003.svg"
           size={24}
-          bottom={'130px'}
-          right={'-200px'}
+          width={13}
+          bottom={'20%'}
+          right={'0%'}
           zIndex={3}
           {...animatedItem[1]}
         />
         <Image
           url="/images/landing_myroute004.svg"
           size={30}
-          bottom={'40px'}
-          left={'0px'}
+          height={28}
+          bottom={'20%'}
+          left={'0%'}
           zIndex={4}
           {...animatedItem[2]}
         />
         <Image
           url="/images/landing_myroute006.svg"
           size={25}
-          top={'80px'}
-          right={'120px'}
+          width={17}
+          top={'17%'}
+          right={'10%'}
           zIndex={5}
           {...animatedItem[5]}
         />
         <Image
           url="/images/landing_myroute007.svg"
           size={20}
-          bottom={'50px'}
-          left={'-100px'}
+          width={15}
+          bottom={'10%'}
+          left={'10%'}
           zIndex={5}
           {...animatedItem[6]}
         />
         <Image
           url="/images/landing_myroute008.svg"
           size={14}
-          top={'-40px'}
-          right={'-30px'}
+          top={'0%'}
+          right={'0%'}
           zIndex={5}
           {...animatedItem[8]}
         />

@@ -46,6 +46,9 @@ export const GlobalStyle = createGlobalStyle(
     footer {
       font-family: 'GmarketSansM';
     }
+    #main {
+      width: 100%;
+    }
     .logo {
       font-family: 'GmarketSansB';
     }

@@ -10,12 +10,12 @@ export const CommonLayoutStyle = styled.div`
 
 export const MainContainer = styled.div`
   .holster {
+    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-flow: column nowrap;
-    font-family: monospace;
   }
   .container {
     display: flex;
