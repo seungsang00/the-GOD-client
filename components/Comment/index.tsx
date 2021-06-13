@@ -6,7 +6,7 @@ moment.locale('ko'); // 한글화
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import useFlyout from 'hooks/useFlyout';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, MouseEventHandler, useState } from 'react';
 import { TextArea } from 'components/TextInput';
 import useTextInput from 'hooks/useTextInput';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,14 +17,16 @@ import useModal from 'hooks/useModal';
 
 type Props = {
   commentData: IComment;
+  flyoutController: MouseEventHandler;
+  isOpen: boolean;
 };
-const Comment = ({ commentData }: Props) => {
+const Comment = ({ commentData, isOpen, flyoutController }: Props) => {
   const { id: commentId, user, comment, createdAt } = commentData;
   const { name, profileImage } = user;
 
   const dispatch = useDispatch();
   const [editmode, setEditMode] = useState<boolean>(false);
-  const { isOpen, flyoutController } = useFlyout(false);
+  // const { isOpen, flyoutController } = useFlyout(false);
   const { isOpen: commentPopupIsOpen, modalController } = useModal();
   const { inputEvent } = useTextInput(comment);
   const [commentValue, setCommentValue] = useState<string>(comment);

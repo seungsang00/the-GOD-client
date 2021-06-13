@@ -1,4 +1,5 @@
 import { Comment, CommentInput } from '@components';
+import useFlyout from 'hooks/useFlyout';
 import useTextInput from 'hooks/useTextInput';
 import { createCommentThunk, getCommentListThunk } from 'modules/comment';
 import { RootState } from 'modules/reducer';
@@ -11,6 +12,7 @@ const Comments = () => {
   const dispatch = useDispatch();
   const { id } = router.query as { id: string };
   const { inputEvent } = useTextInput('');
+  const { isOpen, flyoutController } = useFlyout(false);
 
   const { loading, error, data } = useSelector(
     (state: RootState) => state.comment.list
@@ -23,6 +25,8 @@ const Comments = () => {
     const comment = { id, comment: inputEvent.value };
     dispatch(createCommentThunk(comment));
   };
+
+  const handleFlyout = () => {};
 
   useEffect(() => {
     if (id) dispatch(getCommentListThunk(id));
@@ -45,10 +49,14 @@ const Comments = () => {
       {data &&
         data
           .sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1))
-          .map((comment) => <Comment key={comment.id} commentData={comment} />)}
-      {/* 아래는 삭제되어야 할 부분 (테스트용) */}
-      {/* {!data &&
-        sampleCommentsData.map((comment) => <Comment commentData={comment} />)} */}
+          .map((comment) => (
+            <Comment
+              key={comment.id}
+              commentData={comment}
+              isOpen={isOpen}
+              flyoutController={flyoutController}
+            />
+          ))}
     </article>
   );
 };
