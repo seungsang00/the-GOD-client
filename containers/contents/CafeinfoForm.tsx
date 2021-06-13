@@ -47,36 +47,43 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
     dispatch(inputTags(tags));
   };
 
-  useEffect(() => {
+  useMemo(() => {
     setArtistName(artist.name);
     setDisabled(nullChecker({ title, tags, artist, description, preImages }));
   }, [title, tags, artist, description, preImages]);
 
-  const fileListToArray = (fileList: FileList) => {
-    for (let i = 0; i < fileList.length; i++) {
+  const fileListToArray = (
+    file: File
+  ): Promise<{ data: File; name: string; url: string }> => {
+    return new Promise((resolve, _reject) => {
       const reader = new FileReader();
-      reader.readAsDataURL(fileList[i]);
+      reader.readAsDataURL(file);
       reader.onloadend = () => {
-        setImages((state) => [
-          ...state,
-          {
-            data: fileList[i],
-            name: fileList[i].name,
-            url: reader.result as string,
-          },
-        ]);
+        resolve({
+          data: file,
+          name: file.name,
+          url: reader.result as string,
+        });
       };
-    }
+    });
   };
 
-  const imageHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const imageHandler = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      fileListToArray(e.target.files);
+      const fileList = e.target.files;
+      for (let i = 0; i < fileList.length; i++) {
+        const newFile = await fileListToArray(fileList[i]);
+        setImages((state) => state.concat(newFile));
+      }
     }
   };
 
   useEffect(() => {
     dispatch(getArtistThunk());
+    console.log(tags);
+    return () => {
+      setImages([]);
+    };
   }, []);
 
   useEffect(() => {
@@ -136,11 +143,7 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
                   const selectedArtist = artists.filter(
                     (el) => el.name === key
                   )[0] as IGroupArtist;
-                  if (artistName) {
-                    setArtistName(selectedArtist.name);
-                  } else {
-                    setArtistName((state) => state + ' ' + selectedArtist.name);
-                  }
+                  setArtistName((state) => state + ' ' + selectedArtist.name);
                 }}
               />
             )}
@@ -208,6 +211,7 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
             {[
               ...images.map((image, i) => (
                 <FilePreview
+                  key={image.name}
                   url={image.url}
                   handleRemoveFile={() => {
                     setImages((state) => [

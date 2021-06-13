@@ -60,7 +60,9 @@ const RangeForm = ({
   }, [time]);
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    if (window) {
+      window.addEventListener('resize', handleResize);
+    }
     return () => {
       window.removeEventListener('resize', handleResize);
     };

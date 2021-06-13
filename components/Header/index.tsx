@@ -29,11 +29,13 @@ const Header = ({ logo, avatar }: HeaderProps): ReactElement => {
   const { data } = useSelector((state: RootState) => state.user.userProfile);
 
   useEffect(() => {
-    const accessToken = window.localStorage.getItem('accessToken');
-    if (accessToken) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
+    if (window) {
+      const accessToken = window.localStorage.getItem('accessToken');
+      if (accessToken) {
+        setIsLogin(true);
+      } else {
+        setIsLogin(false);
+      }
     }
   }, [data]);
   useEffect(() => {

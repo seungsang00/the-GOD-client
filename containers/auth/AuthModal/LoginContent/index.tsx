@@ -8,6 +8,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { FormSection, LinkSection, OAuthSection } from '../authcontent.style';
 import GoogleLoader from './GoogleLoader';
+import KakaoLoader from './KakaoLoader';
+import TwitterLoader from './TwitterLoader';
 // import KakaoLoader from './KakaoLoader';
 // import TwitterLoader from './TwitterLoader';
 
@@ -45,10 +47,10 @@ const LoginContent = ({
     <article>
       <OAuthSection>
         <GoogleLoader />
-        {/* <div className="second-row">
+        <div className="second-row">
           <TwitterLoader />
           <KakaoLoader />
-        </div> */}
+        </div>
       </OAuthSection>
       <Horizon text="or" />
       <FormSection>

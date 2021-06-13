@@ -54,7 +54,7 @@ export const getContentListRequest = async ({
   return result.data;
 };
 
-export const initRead = createAction(CONTENT_INIT_GET)();
+export const initRead = createAction(CONTENT_INIT_GET, () => {})();
 export const getSharedContentRequest = async (id: string) => {
   const result = await axios.get<GetSharedContentResponse>(
     `${API_ENDPOINT}/sharedcontent?id=${id}`
