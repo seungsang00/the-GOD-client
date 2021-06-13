@@ -59,7 +59,7 @@ const MyPost = () => {
           bottom={'17%'}
           left={'0px'}
           zIndex={4}
-          {...animatedItem[3]}
+          {...animatedItem[0]}
         />
         <Image
           url="/images/landing_post004_02.svg"

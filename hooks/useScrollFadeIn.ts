@@ -36,8 +36,8 @@ const useScrollFadeIn = (
           current.style.opacity = '1';
           current.style.transform = 'translate3d(0, 0, 0)';
         } else {
-          current.style.opacity = '0';
-          current.style.transform = 'translate3d(0, 40%, 0)';
+          // current.style.opacity = '0';
+          // current.style.transform = 'translate3d(0, 40%, 0)';
         }
       }
     },

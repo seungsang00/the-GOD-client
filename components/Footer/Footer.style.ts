@@ -7,6 +7,7 @@ export const FooterWrapper = styled.footer`
   flex-direction: column;
   justify-content: center;
   padding: 0 ${({ theme }) => theme.space.sm};
+  margin-bottom: 1.5rem;
 
   section.copyright {
     text-align: center;
@@ -27,7 +28,7 @@ export const FooterContainer = styled.div`
   padding: ${({ theme }) => theme.space.sm};
   background-color: ${({ theme }) => theme.colors.primary.normal};
   background-image: linear-gradient(to bottom right, #aa5aff, #9b36fe);
-  color: ${({ theme }) => theme.colors.line.line04};
+  color: #fff;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-radius: 20px;
