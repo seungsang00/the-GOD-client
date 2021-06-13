@@ -6,7 +6,7 @@ import { MainContainer } from 'layouts/layouts.style';
 const MainPage = () => {
   return (
     <Layout title="FansSum | 팬심이 모여 문화가 되다">
-      <MainContainer className="holster">
+      <MainContainer id="main" className="holster">
         <div className="container y mandatory-scroll-snapping" dir="ltr">
           <div>
             <EventSearch />

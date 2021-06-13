@@ -67,7 +67,7 @@ const Layout = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Header
-        logo={<LogoIcon size={3} />}
+        logo={<LogoIcon size={2.7} />}
         avatar={
           <Avatar
             profileImage={

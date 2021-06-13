@@ -65,7 +65,7 @@ const SearchTrigger = ({ handler }: { handler: MouseEventHandler }) => {
 
   return (
     <SearchTriggerWrapper className="search-trigger">
-      <TriggerBg className="trigger-bg">
+      <TriggerBg id="searchTriggerBg" className="trigger-bg">
         <Trigger onClick={handler}>
           {router.pathname === '/' || !queryData ? (
             <SearchLabel className="query-trigger" onClick={handler}>

@@ -225,7 +225,7 @@ export const customMediaQuery = (maxWidth: number): string => {
 const media = {
   desktop: customMediaQuery(1920),
   tablet: customMediaQuery(768),
-  mobile: customMediaQuery(425),
+  mobile: customMediaQuery(450),
 };
 
 // 간격 시스템
@@ -264,6 +264,7 @@ const customScroll = `
 `;
 
 const light = {
+  themeIcon: `/images/sun.svg`,
   colors: {
     textColor: '#2f2f37',
     ...colorsLight,
@@ -279,6 +280,7 @@ const light = {
 };
 
 const dark = {
+  themeIcon: `/images/moon.svg`,
   colors: {
     textColor: '#fff',
     ...colorsDark,

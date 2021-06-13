@@ -21,6 +21,10 @@ export const MainSearchFormContainer = styled.article`
     border-radius: 999px;
     padding: ${({ theme }) => theme.space.xs};
     ${({ theme }) => theme.concept.glassmorphism.deep};
+    ${({ theme }) => theme.media.tablet} {
+      height: 3.3rem;
+      padding: 0;
+    }
   }
   .trigger-wrapper {
     display: flex;

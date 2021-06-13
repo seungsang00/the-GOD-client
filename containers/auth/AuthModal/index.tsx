@@ -37,7 +37,7 @@ const AuthModal = ({ isOpen, handler }: CutomModalProps): ReactElement => {
   }, [loginResponse]);
 
   return (
-    <AuthModalStyle>
+    <AuthModalStyle id="authModal">
       <Modal
         isOpen={isOpen}
         component={
