@@ -24,7 +24,6 @@ const Carousel = ({
   const slideRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const handleResize = () => {
-    console.log('resize');
     setViewWidth(window.innerWidth);
   };
   useEffect(() => {

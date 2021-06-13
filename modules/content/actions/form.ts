@@ -48,5 +48,5 @@ export const inputPerks = createAction(
   CONTENT_FORM_PERKS,
   (icon: ToggleProps['icon']) => icon
 )();
-export const initForm = createAction(CONTENT_INIT_FORM)();
+export const initForm = createAction(CONTENT_INIT_FORM, () => {})();
 export const inputId = createAction(CONTENT_FORM_ID, (id: string) => id)();

@@ -14,8 +14,9 @@ import {
   CONTENT_SHARED_CREATE,
   CONTENT_SHARED_CREATE_SUCCESS,
   CONTENT_SHARED_CREATE_ERROR,
+  CONTENT_CREATE_INIT,
 } from 'modules/actionTypes';
-import { createAsyncAction } from 'typesafe-actions';
+import { createAction, createAsyncAction } from 'typesafe-actions';
 
 export const createContentRequest = async (content: ContentForm) => {
   const accessToken = localStorage.getItem('accessToken');
@@ -58,6 +59,8 @@ export const createSharedContentRequest = async (contents: Content[]) => {
   );
   return result.data;
 };
+
+export const initCreateState = createAction(CONTENT_CREATE_INIT)();
 
 export const createContentAsync = createAsyncAction(
   CONTENT_CREATE,
