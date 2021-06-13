@@ -130,21 +130,12 @@ const LocationForm = ({
   const { perks, address, mobile } = useSelector(
     ({ content }: RootState) => content.form
   );
-<<<<<<< HEAD
   const { loading: formLoading } = useSelector(
     ({ content }: RootState) => content.create
   );
   const { loading: updateLoading } = useSelector(
     ({ content }: RootState) => content.update
   );
-=======
-  const { loading: formLoading } = useSelector(({ content }: RootState) => {
-    content.form;
-  });
-  const { loading: updateLoading } = useSelector(({ content }: RootState) => {
-    content.update;
-  });
->>>>>>> eff68273fff568e0f0dbc122cfe989b5952b22bc
   const [searchModule, setSearchModule] = useState<MapModule | null>(null);
   const [disabled, setDisabled] = useState(false);
   const [keyword, setKeyword] = useState<string>('');
