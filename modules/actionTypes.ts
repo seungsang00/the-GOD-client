@@ -95,6 +95,7 @@ export const USER_FOLLOW_UPDATE_SUCCESS = 'user/FOLLOW_UPDATE_SUCCESS';
 export const USER_FOLLOW_UPDATE_ERROR = 'user/FOLLOW_UPDATE_ERROR';
 
 //content
+export const CONTENT_CREATE_INIT = 'content/CREATE_INIT';
 export const CONTENT_CREATE = 'content/CREATE';
 export const CONTENT_CREATE_SUCCESS = 'content/CREATE_SUCCESS';
 export const CONTENT_CREATE_ERROR = 'content/CREATE_ERROR';

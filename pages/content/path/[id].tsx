@@ -23,12 +23,12 @@ const ContentEditPage = () => {
 
   return (
     <Layout title={`투어 경로 | FansSum`}>
-      {loading ? (
-        <Loading />
-      ) : error ? (
-        <Error />
-      ) : (
-        <main>{data && <PathLoader contents={data.contents} />}</main>
+      {loading && <Loading />}
+      {error && <Error />}
+      {data && (
+        <main>
+          <PathLoader contents={data.contents} />
+        </main>
       )}
     </Layout>
   );

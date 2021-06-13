@@ -28,7 +28,6 @@ export const getContentRequest = async (id: string) => {
         headers: { authorization: `BEARER ${accessToken}` },
       }
     : {};
-  console.log(option);
   const result = await axios.get<GetContentResponse>(
     `${API_ENDPOINT}/content?id=${id}`,
     option
@@ -54,7 +53,7 @@ export const getContentListRequest = async ({
   return result.data;
 };
 
-export const initRead = createAction(CONTENT_INIT_GET)();
+export const initRead = createAction(CONTENT_INIT_GET, () => {})();
 export const getSharedContentRequest = async (id: string) => {
   const result = await axios.get<GetSharedContentResponse>(
     `${API_ENDPOINT}/sharedcontent?id=${id}`

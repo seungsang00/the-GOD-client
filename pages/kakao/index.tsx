@@ -40,6 +40,7 @@ const Kakao = () => {
     if (error || loginError) {
       const kakaoPageError = error || loginError;
       alert(kakaoPageError);
+      router.replace('/');
     }
   }, [error, loginError]);
   useEffect(() => {
