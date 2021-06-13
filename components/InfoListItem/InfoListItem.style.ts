@@ -2,11 +2,17 @@ import styled from '@styles/themed-components';
 
 export const InfoListItemStyle = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: ${({ theme }) => theme.space.xs};
   border-radius: ${({ theme }) => theme.borderRadius};
   word-break: keep-all;
+
+  & > .info-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
   .info-icon {
     width: 3rem;
@@ -34,7 +40,6 @@ export const InfoListItemStyle = styled.div`
   }
 
   .follow-button {
-    margin-left: 10rem;
     word-break: keep-all;
   }
 `;
