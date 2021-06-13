@@ -3,7 +3,7 @@ import useTextInput from 'hooks/useTextInput';
 import { createCommentThunk, getCommentListThunk } from 'modules/comment';
 import { RootState } from 'modules/reducer';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Comments = () => {
@@ -11,6 +11,7 @@ const Comments = () => {
   const dispatch = useDispatch();
   const { id } = router.query as { id: string };
   const { inputEvent } = useTextInput('');
+  const [nowOpen, setNowOpen] = useState<string | null>(null);
 
   const { loading, error, data } = useSelector(
     (state: RootState) => state.comment.list
@@ -22,6 +23,14 @@ const Comments = () => {
   const handleSubmitNewComment = () => {
     const comment = { id, comment: inputEvent.value };
     dispatch(createCommentThunk(comment));
+  };
+
+  const handleFlyout = (id: string) => {
+    if (nowOpen === id) {
+      setNowOpen(null);
+    } else {
+      setNowOpen(id);
+    }
   };
 
   useEffect(() => {
@@ -45,10 +54,14 @@ const Comments = () => {
       {data &&
         data
           .sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1))
-          .map((comment) => <Comment key={comment.id} commentData={comment} />)}
-      {/* 아래는 삭제되어야 할 부분 (테스트용) */}
-      {/* {!data &&
-        sampleCommentsData.map((comment) => <Comment commentData={comment} />)} */}
+          .map((comment) => (
+            <Comment
+              key={comment.id}
+              commentData={comment}
+              isOpen={nowOpen === comment.id ? true : false}
+              flyoutController={() => handleFlyout(comment.id)}
+            />
+          ))}
     </article>
   );
 };
