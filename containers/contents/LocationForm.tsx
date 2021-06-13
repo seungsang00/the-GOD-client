@@ -130,6 +130,12 @@ const LocationForm = ({
   const { perks, address, mobile } = useSelector(
     ({ content }: RootState) => content.form
   );
+  const { loading: formLoading } = useSelector(
+    ({ content }: RootState) => content.create
+  );
+  const { loading: updateLoading } = useSelector(
+    ({ content }: RootState) => content.update
+  );
   const [searchModule, setSearchModule] = useState<MapModule | null>(null);
   const [disabled, setDisabled] = useState(false);
   const [keyword, setKeyword] = useState<string>('');
@@ -157,7 +163,6 @@ const LocationForm = ({
     const locationBox = document.querySelector('.location-search-box');
     if (!locationBox) return;
     locationBox.setAttribute('active', enable.toString());
-    console.log(locationBox);
   };
 
   return (
@@ -243,7 +248,11 @@ const LocationForm = ({
         </div>
         <section className="location-buttons">
           <Button disabled={false} handler={onPrev} text="이전" />
-          <Button disabled={disabled} handler={onSubmit} text="다음" />
+          <Button
+            disabled={updateLoading || formLoading || disabled}
+            handler={onSubmit}
+            text="다음"
+          />
         </section>
       </div>
       <div id="map"></div>

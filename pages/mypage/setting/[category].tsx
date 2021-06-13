@@ -31,10 +31,12 @@ const SettingPage = () => {
   };
 
   useEffect(() => {
-    const token = window.localStorage.getItem('accessToken');
-    if (!token) router.push('/');
+    if (window) {
+      window.addEventListener('resize', handleResize);
+      const token = window.localStorage.getItem('accessToken');
+      if (!token) router.push('/');
+    }
     dispatch(getInfoThunk());
-    window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
