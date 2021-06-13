@@ -40,3 +40,4 @@ export * from './Popup';
 export * from './ContentCard';
 export * from './Logo';
 export { default as ScrollToTopButton } from './Button/ScrollToTopButton';
+export { default as LikeButton } from './LikeButton';

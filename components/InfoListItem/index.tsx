@@ -1,4 +1,4 @@
-import { Button } from '@components';
+import { LikeButton } from '@components';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { updateFollowThunk } from 'modules/user';
@@ -52,12 +52,7 @@ const InfoListItem = ({
       </div>
       {isArtist && (
         <div className="follow-button">
-          <Button
-            disabled={false}
-            type="line"
-            text={follow ? '언팔로우' : '팔로우🤍'}
-            handler={handleArtistFollow}
-          />
+          <LikeButton isActive={follow} handler={handleArtistFollow} />
         </div>
       )}
     </InfoListItemStyle>
