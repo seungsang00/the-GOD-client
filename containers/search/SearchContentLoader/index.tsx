@@ -57,7 +57,6 @@ const SearchContentLoader = ({
   };
   useEffect(() => {
     if (restContents && restContents[0]) {
-      console.log(restContents);
       const { lat, lng } = restContents[0].address.location;
       setFocusedPin({ lat, lng });
     }

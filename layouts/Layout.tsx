@@ -40,7 +40,6 @@ const Layout = ({
   }, [artistData]);
 
   useEffect(() => {
-    console.log(token);
     if (token.error) {
       localStorage.removeItem('accessToken');
       router.replace('/');

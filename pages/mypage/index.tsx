@@ -33,7 +33,9 @@ const MyPage = () => {
     dispatch(getFollowsThunk());
     dispatch(getPathThunk());
     dispatch(getBookmarksThunk());
-    window.addEventListener('resize', handleResize);
+    if (window) {
+      window.addEventListener('resize', handleResize);
+    }
     return () => {
       window.removeEventListener('resize', handleResize);
     };

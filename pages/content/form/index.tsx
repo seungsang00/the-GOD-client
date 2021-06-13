@@ -4,7 +4,7 @@ import { OrderSidebar } from '@components';
 import CafeInfoForm from 'containers/contents/CafeinfoForm';
 import RangeForm from 'containers/contents/RangeForm';
 import LocationForm from 'containers/contents/LocationForm';
-import { createContentThunk } from 'modules/content';
+import { createContentThunk, initCreateState, initForm } from 'modules/content';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'modules/reducer';
 import { initRead } from 'modules/content/actions/read';
@@ -24,7 +24,7 @@ const ContentFormPage = () => {
     return;
   };
   const submitHandler = () => {
-    dispatch(createContentThunk(form));
+    if (!create.loading) dispatch(createContentThunk(form));
   };
   useEffect(() => {
     if (create.data) {
@@ -34,6 +34,10 @@ const ContentFormPage = () => {
 
   useEffect(() => {
     dispatch(initRead());
+    return () => {
+      dispatch(initForm());
+      dispatch(initCreateState());
+    };
   }, []);
   return (
     <Layout title={`이벤트 등록 Step${step + 1} | FansSum`}>
@@ -43,13 +47,13 @@ const ContentFormPage = () => {
         </div>
         <FormLayout>
           {[
-            <section className="info">
+            <section key="info" className="info">
               <CafeInfoForm onSubmit={nextStep} />
             </section>,
-            <section className="range">
+            <section key="range" className="range">
               <RangeForm onPrev={prevStep} onSubmit={nextStep} />
             </section>,
-            <section className="location">
+            <section key="location" className="location">
               <LocationForm onPrev={prevStep} onSubmit={submitHandler} />
             </section>,
           ].filter((_el, i) => i === step)}

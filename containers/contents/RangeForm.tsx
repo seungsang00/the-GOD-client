@@ -60,7 +60,9 @@ const RangeForm = ({
   }, [time]);
 
   useEffect(() => {
-    window.addEventListener('resize', handleResize);
+    if (window) {
+      window.addEventListener('resize', handleResize);
+    }
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -170,7 +172,6 @@ const RangeForm = ({
               setHour={(hour: string) => {
                 const timeArr = time.close.split(':');
                 timeArr[0] = hour;
-                console.log(time);
                 dispatch(
                   inputTimes({
                     open: time.open,

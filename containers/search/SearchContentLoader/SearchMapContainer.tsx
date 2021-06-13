@@ -44,7 +44,7 @@ const SearchMapContainer = ({
       this.customMarkerImage = new kakao.maps.MarkerImage(
         '/images/logo-pin-icon.svg', // 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', '/images/logo_icon.svg'로 변경 가능합니다만 색상 때문에 가독성이 떨어집니다
         new kakao.maps.Size(64, 69),
-        { offset: new kakao.maps.Point(27, 69) }
+        { offset: new kakao.maps.Point(31, 69) }
       );
       this.polyline = null;
       this.defaultImg = null;
@@ -162,9 +162,17 @@ const SearchMapContainer = ({
     fetchData(contents: Content[]) {
       // 마커를 생성하고 지도에 표시합니다
       if (contents) {
+        var bounds = new this.kakao.maps.LatLngBounds();
         for (let i = 0; i < contents.length; i++) {
+          bounds.extend(
+            new this.kakao.maps.LatLng(
+              contents[i].address.location.lat,
+              contents[i].address.location.lng
+            )
+          );
           this.displayMarker(contents[i]);
         }
+        this.map.setBounds(bounds);
       }
     }
 

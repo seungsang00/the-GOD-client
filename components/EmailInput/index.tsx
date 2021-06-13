@@ -13,7 +13,6 @@ const EmailInput = ({
   };
 
   useEffect(() => {
-    console.log(error);
     const target = document.querySelector('#emailInput');
     if (target && value) {
       if (!error) {

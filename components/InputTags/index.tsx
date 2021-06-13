@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { ReactElement, useMemo, useState } from 'react';
 import { InputTagsSection } from './InputTags.style';
 
 interface IInputTags {
@@ -27,15 +27,12 @@ const InputTags = ({ tagList, handler }: IInputTags): ReactElement => {
     const filteredTags = tags.filter((tag: string) => tag !== key);
     setTags(filteredTags);
   };
-  useEffect(() => {
-    if (tagList) setTags(tagList);
-  }, [tagList]);
 
   useMemo(() => handler(tags), [tags]);
   return (
     <InputTagsSection>
-      {tags &&
-        tags.map((el) => (
+      {tagList &&
+        tagList.map((el) => (
           <span
             className="tag"
             key={el}
