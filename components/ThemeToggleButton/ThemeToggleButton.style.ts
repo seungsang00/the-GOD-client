@@ -29,6 +29,10 @@ export const Label = styled.label`
     width: 20px;
     height: 20px;
   }
+
+  ${({ theme }) => theme.media.mobile} {
+    width: 40px;
+  }
 `;
 
 export const Checkbox = styled.input`

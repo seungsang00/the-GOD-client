@@ -39,6 +39,9 @@ export const HeaderContainer = styled.header`
     & > button {
       min-width: 90px;
       word-break: keep-all;
+      ${({ theme }) => theme.media.mobile} {
+        min-width: 60px;
+      }
     }
   }
 

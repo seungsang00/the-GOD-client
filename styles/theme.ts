@@ -225,7 +225,7 @@ export const customMediaQuery = (maxWidth: number): string => {
 const media = {
   desktop: customMediaQuery(1920),
   tablet: customMediaQuery(768),
-  mobile: customMediaQuery(425),
+  mobile: customMediaQuery(450),
 };
 
 // 간격 시스템

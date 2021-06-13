@@ -46,6 +46,9 @@ export const GlobalStyle = createGlobalStyle(
     footer {
       font-family: 'GmarketSansM';
     }
+    #main {
+      width: 100%;
+    }
     #headerContainer {
       ${props.theme.concept.glassmorphism.normal};
     }
