@@ -21,7 +21,6 @@ const TimeSelect = ({
     setTime(newTime);
     setHour(newTime[0]);
     setOpenOption([false, false]);
-    console.log(target.textContent as string);
   };
 
   const handleSelectMinutes = (e: MouseEvent) => {
@@ -31,7 +30,6 @@ const TimeSelect = ({
     setTime(newTime);
     setMinutes(newTime[1]);
     setOpenOption([false, false]);
-    console.log(target.textContent as string);
   };
 
   useMemo(() => {

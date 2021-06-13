@@ -16,15 +16,12 @@ const useTextInput = (initValue: string) => {
     }: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       switch (key) {
         case 'Enter':
-          console.log('Enter');
           break;
         default:
           break;
       }
     },
-    onClick: () => {
-      console.log('Click');
-    },
+    onClick: () => {},
     setValue: setValue,
   };
   return { value, inputEvent };

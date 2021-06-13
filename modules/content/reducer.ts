@@ -36,6 +36,7 @@ import {
   CONTENT_SHARED_GET_ERROR,
   CONTENT_INIT_FORM,
   CONTENT_FORM_ID,
+  CONTENT_CREATE_INIT,
 } from '../actionTypes';
 
 // default Store
@@ -163,6 +164,14 @@ const content = createReducer<ContentReducer, ContentAction>(initialState, {
     path: {
       loading: false,
       error: action.payload.response?.data.message,
+      data: null,
+    },
+  }),
+  [CONTENT_CREATE_INIT]: (state) => ({
+    ...state,
+    create: {
+      loading: false,
+      error: null,
       data: null,
     },
   }),

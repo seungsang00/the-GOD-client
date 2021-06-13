@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { FormStyle, Layout } from '@layouts';
+import { FormLayout, FormStyle, Layout } from '@layouts';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  initForm,
   inputArtist,
   inputDates,
   inputDescription,
@@ -103,7 +104,11 @@ const ContentEditPage = () => {
   useEffect(() => {
     dispatch(inputImages(images));
   }, [images]);
-  useEffect(() => {}, [form]);
+  useEffect(() => {
+    return () => {
+      dispatch(initForm());
+    };
+  }, []);
 
   useEffect(() => {
     if (update.data) {
@@ -117,19 +122,21 @@ const ContentEditPage = () => {
         <div>
           <OrderSidebar step={step} />
         </div>
-        <div>
-          {[
-            <section className="info">
-              <CafeInfoForm onSubmit={nextStep} />
-            </section>,
-            <section className="range">
-              <RangeForm onPrev={prevStep} onSubmit={nextStep} />
-            </section>,
-            <section className="location">
-              <LocationForm onPrev={prevStep} onSubmit={submitHandler} />
-            </section>,
-          ].filter((_el, i) => i === step)}
-        </div>
+        <FormLayout>
+          <div>
+            {[
+              <section key="info" className="info">
+                <CafeInfoForm onSubmit={nextStep} />
+              </section>,
+              <section key="range" className="range">
+                <RangeForm onPrev={prevStep} onSubmit={nextStep} />
+              </section>,
+              <section key="location" className="location">
+                <LocationForm onPrev={prevStep} onSubmit={submitHandler} />
+              </section>,
+            ].filter((_el, i) => i === step)}
+          </div>
+        </FormLayout>
       </FormStyle>
     </Layout>
   );

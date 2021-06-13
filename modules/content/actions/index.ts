@@ -1,6 +1,10 @@
 import { ActionType } from 'typesafe-actions';
 
-import { createContentAsync, createSharedContentAsync } from './create';
+import {
+  createContentAsync,
+  createSharedContentAsync,
+  initCreateState,
+} from './create';
 import { updateContentAsync } from './update';
 import {
   inputArtist,
@@ -45,6 +49,7 @@ const actions = {
   inputPerks,
   inputMobile,
   initForm,
+  initCreateState,
 };
 
 export type ContentAction = ActionType<typeof actions>;
