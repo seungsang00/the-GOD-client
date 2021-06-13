@@ -157,7 +157,6 @@ const LocationForm = ({
     const locationBox = document.querySelector('.location-search-box');
     if (!locationBox) return;
     locationBox.setAttribute('active', enable.toString());
-    console.log(locationBox);
   };
 
   return (
