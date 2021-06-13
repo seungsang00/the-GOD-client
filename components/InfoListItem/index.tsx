@@ -40,12 +40,14 @@ const InfoListItem = ({
   }, [data]);
   return (
     <InfoListItemStyle>
-      <div className="info-icon">
-        <FontAwesomeIcon icon={icon} />
-      </div>
-      <div className="info-text">
-        <div className="title">{title}</div>
-        <div>{children}</div>
+      <div className="info-wrapper">
+        <div className="info-icon">
+          <FontAwesomeIcon icon={icon} />
+        </div>
+        <div className="info-text">
+          <div className="title">{title}</div>
+          <div>{children}</div>
+        </div>
       </div>
       {isArtist && (
         <div className="follow-button">

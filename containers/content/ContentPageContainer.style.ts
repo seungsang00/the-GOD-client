@@ -63,6 +63,10 @@ export const InfoSection = styled.section`
       width: 100%;
       margin-top: ${({ theme }) => theme.space.sm};
     }
+
+    ${({ theme }) => theme.media.mobile} {
+      padding: ${({ theme }) => theme.space.sm} 0;
+    }
   }
   .body {
     display: flex;
@@ -176,14 +180,19 @@ export const ContentPageStyle = styled.div`
   }
 
   ${({ theme }) => theme.media.tablet} {
-    padding: ${({ theme }) => theme.space.md};
+    max-width: 95%;
+    padding: ${({ theme }) => theme.space.md} ${({ theme }) => theme.space.sm};
     .main-title {
       font-size: 1.4rem !important;
     }
   }
 
   ${({ theme }) => theme.media.mobile} {
-    padding: ${({ theme }) => theme.space.sm} ${({ theme }) => theme.space.lg};
+    padding: ${({ theme }) => theme.space.sm} ${({ theme }) => theme.space.xs};
+
+    & > main {
+      width: 100%;
+    }
     .main-title {
       font-size: 1.2rem !important;
     }
