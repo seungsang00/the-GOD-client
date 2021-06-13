@@ -5,7 +5,7 @@ import { faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
 
 const ScrollToTopButton = (): ReactElement | null => {
   const handler = () => {
-    const target = document
+    document
       .querySelector('.mandatory-scroll-snapping')
       ?.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };

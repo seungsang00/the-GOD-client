@@ -43,6 +43,7 @@ const LocationInfo = ({
 
   useEffect(() => {
     setMapModule(new MapModule());
+    console.log(_mapModule);
   }, []);
 
   return <MapContainer id="map"></MapContainer>;
