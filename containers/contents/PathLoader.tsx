@@ -8,7 +8,6 @@ import SearchMapContainer from 'containers/search/SearchContentLoader/SearchMapC
 import React, { useState } from 'react';
 
 const PathLoader = ({ contents }: { contents: Content[] }) => {
-  console.log(contents);
   const [focusedPin, setFocusedPin] = useState<{
     lat: number;
     lng: number;

@@ -28,7 +28,6 @@ export const getContentRequest = async (id: string) => {
         headers: { authorization: `BEARER ${accessToken}` },
       }
     : {};
-  console.log(option);
   const result = await axios.get<GetContentResponse>(
     `${API_ENDPOINT}/content?id=${id}`,
     option

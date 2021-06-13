@@ -27,7 +27,6 @@ const InfoListItem = ({
   const { data } = useSelector((state: RootState) => state.user.follow);
   const handleArtistFollow = () => {
     dispatch(updateFollowThunk(artist.id));
-    console.log('follow!!');
   };
   useEffect(() => {
     if (artist) {
@@ -37,9 +36,7 @@ const InfoListItem = ({
   useEffect(() => {
     if (data) {
       setFollow(data.isFollow);
-      console.log('follow??');
     }
-    console.log('why??');
   }, [data]);
   return (
     <InfoListItemStyle>

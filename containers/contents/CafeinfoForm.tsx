@@ -80,7 +80,6 @@ const CafeInfoForm = ({ onSubmit }: { onSubmit: () => void }) => {
 
   useEffect(() => {
     dispatch(getArtistThunk());
-    console.log(tags);
     return () => {
       setImages([]);
     };

@@ -14,7 +14,6 @@ const GoogleLoader = () => {
     <GoogleLoginButton
       clientId={GOOGLE_CLIENT_ID}
       onSubmit={(res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
-        console.log(res);
         if ('tokenId' in res) {
           dispatch(googleAuthThunk(res.tokenId));
         }
