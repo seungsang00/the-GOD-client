@@ -71,4 +71,8 @@ export default withProps<Props, HTMLButtonElement>(styled.button)`
       };
     }
   `}
+  ${({ theme }) => theme.media.mobile} {
+    height: 2rem;
+    padding: 0 0.5rem !important;
+  }
 `;

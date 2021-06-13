@@ -46,6 +46,30 @@ export const GlobalStyle = createGlobalStyle(
     footer {
       font-family: 'GmarketSansM';
     }
+    #main {
+      width: 100%;
+    }
+    #headerContainer {
+      ${props.theme.concept.glassmorphism.normal};
+    }
+    #searchTriggerBg, #themeToggleBtnWrapper {
+      ${props.theme.concept.glassmorphism.deep};
+      &:hover {
+        background-color: ${props.theme.colors.bg.hover};
+      }
+      &:active {
+        background-color: ${props.theme.colors.bg.pressed};
+      }
+    }
+    #themeToggleBtn {
+      width: 20px;
+      height: 20px;
+      background-image: url(${props.theme.themeIcon});
+      background-size: contain;
+    }
+    #authModal > .modal-overlay > .modal-box {
+      ${props.theme.concept.glassmorphism.deep};
+    }
     .logo {
       font-family: 'GmarketSansB';
     }

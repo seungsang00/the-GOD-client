@@ -28,40 +28,42 @@ const EventSearch = () => {
         <Image
           url="/images/landing_search001.svg"
           size={34}
-          top={'0px'}
-          left={'0px'}
+          width={32}
+          top={'0%'}
+          left={'10%'}
           zIndex={1}
           {...animatedItem[0]}
         />
         <Image
           url="/images/landing_search002.svg"
           size={25}
-          bottom={'70px'}
-          left={'-100px'}
+          width={19}
+          bottom={'15%'}
+          left={'0%'}
           zIndex={2}
           {...animatedItem[1]}
         />
         <Image
           url="/images/landing_search003.svg"
-          size={24}
-          bottom={'80px'}
-          right={'-80px'}
+          size={25}
+          bottom={'14%'}
+          right={'0%'}
           zIndex={3}
           {...animatedItem[2]}
         />
         <Image
           url="/images/landing_search004.svg"
           size={20}
-          bottom={'30px'}
-          left={'140px'}
+          bottom={'7%'}
+          left={'30%'}
           zIndex={4}
           {...animatedItem[3]}
         />
         <Image
           url="/images/landing_search005.svg"
           size={5}
-          top={'180px'}
-          right={'10px'}
+          top={'30%'}
+          right={'15%'}
           zIndex={5}
           {...animatedItem[7]}
         />
