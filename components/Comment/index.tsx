@@ -5,7 +5,6 @@ import moment from 'moment';
 moment.locale('ko'); // 한글화
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import useFlyout from 'hooks/useFlyout';
 import { MouseEvent, MouseEventHandler, useState } from 'react';
 import { TextArea } from 'components/TextInput';
 import useTextInput from 'hooks/useTextInput';
@@ -26,7 +25,6 @@ const Comment = ({ commentData, isOpen, flyoutController }: Props) => {
 
   const dispatch = useDispatch();
   const [editmode, setEditMode] = useState<boolean>(false);
-  // const { isOpen, flyoutController } = useFlyout(false);
   const { isOpen: commentPopupIsOpen, modalController } = useModal();
   const { inputEvent } = useTextInput(comment);
   const [commentValue, setCommentValue] = useState<string>(comment);

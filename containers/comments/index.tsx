@@ -1,10 +1,9 @@
 import { Comment, CommentInput } from '@components';
-import useFlyout from 'hooks/useFlyout';
 import useTextInput from 'hooks/useTextInput';
 import { createCommentThunk, getCommentListThunk } from 'modules/comment';
 import { RootState } from 'modules/reducer';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Comments = () => {
@@ -12,7 +11,7 @@ const Comments = () => {
   const dispatch = useDispatch();
   const { id } = router.query as { id: string };
   const { inputEvent } = useTextInput('');
-  const { isOpen, flyoutController } = useFlyout(false);
+  const [nowOpen, setNowOpen] = useState<string | null>(null);
 
   const { loading, error, data } = useSelector(
     (state: RootState) => state.comment.list
@@ -26,7 +25,13 @@ const Comments = () => {
     dispatch(createCommentThunk(comment));
   };
 
-  const handleFlyout = () => {};
+  const handleFlyout = (id: string) => {
+    if (nowOpen === id) {
+      setNowOpen(null);
+    } else {
+      setNowOpen(id);
+    }
+  };
 
   useEffect(() => {
     if (id) dispatch(getCommentListThunk(id));
@@ -53,8 +58,8 @@ const Comments = () => {
             <Comment
               key={comment.id}
               commentData={comment}
-              isOpen={isOpen}
-              flyoutController={flyoutController}
+              isOpen={nowOpen === comment.id ? true : false}
+              flyoutController={() => handleFlyout(comment.id)}
             />
           ))}
     </article>
