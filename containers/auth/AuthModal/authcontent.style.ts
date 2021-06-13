@@ -14,7 +14,6 @@ export const AuthModalStyle = styled.div`
     justify-content: center;
     align-items: center;
     padding: ${({ theme }) => theme.space.md};
-    ${({ theme }) => theme.concept.glassmorphism.deep};
 
     .modal-content-box {
       width: 100%;

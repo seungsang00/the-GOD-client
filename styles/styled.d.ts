@@ -2,6 +2,7 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    themeIcon: string;
     borderRadius: string;
     boxShadow: string;
     colors: {
