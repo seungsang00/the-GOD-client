@@ -37,6 +37,14 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name="title" property="og:title" content="" />
+          <meta name="description" property="og:description" content="" />
+          <meta
+            name="image"
+            property="og:image"
+            content="/images/logo_icon.svg"
+          />
+          <meta name="url" property="og:url" content="" />
           <script
             type="text/javascript"
             src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_JS_ID}&libraries=drawing,services`}

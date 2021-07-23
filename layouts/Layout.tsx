@@ -8,6 +8,7 @@ import { RootState } from 'modules/reducer';
 import { getInfoThunk } from 'modules/user';
 import { tokenThunk } from 'modules/auth';
 import { getArtistThunk } from 'modules/artist';
+import { setMetaTags } from '@utils/setMetaTags';
 
 type Props = {
   children?: ReactNode;
@@ -52,6 +53,11 @@ const Layout = ({
   };
 
   useEffect(() => {
+    setMetaTags({
+      title: '테스트 타이틀',
+      description: '테스트 설명글',
+      imageUrl: '/images/heart.svg',
+    });
     const accessToken = window.localStorage.getItem('accessToken');
     if (accessToken && !data) {
       dispatch(getInfoThunk());
